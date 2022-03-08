@@ -1,3 +1,6 @@
+import VariantButtonGroup from "./ButtonGroup";
+import DenseTable from "./Table";
+
 export function Management() {
   return (
     <>
@@ -6,6 +9,8 @@ export function Management() {
       <div>edit manage</div>
 
       <div>management list</div>
+      <VariantButtonGroup />
+      <DenseTable />
     </>
   );
 }

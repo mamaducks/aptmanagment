@@ -1,3 +1,6 @@
+import VariantButtonGroup from "./ButtonGroup";
+import DenseTable from "./Table";
+
 export function Maintenence() {
   return (
     <>
@@ -6,6 +9,8 @@ export function Maintenence() {
       <div>edit work order</div>
 
       <div>work order = workOrder</div>
+      <VariantButtonGroup />
+      <DenseTable />
     </>
   );
 }
