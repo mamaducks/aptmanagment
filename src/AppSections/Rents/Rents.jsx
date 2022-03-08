@@ -9,8 +9,20 @@ export function Rents() {
       <div>edit rent roll</div>
 <VariantButtonGroup />
 <DenseTable />
+<div>
+rents
+user employee id
+site/unit
+amount due
+amount paid
 
+credit/delinquency
+month
+tenant id
+vacant
+</div>
       <div>rent roll list</div>
+      <div>site</div>
       <div>
           site name
       TENANT																			

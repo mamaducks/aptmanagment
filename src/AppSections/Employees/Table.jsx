@@ -25,11 +25,11 @@ export default function DenseTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Employee Name</TableCell>
+            <TableCell align="right">type of employee</TableCell>
+            <TableCell align="right">start date</TableCell>
+            <TableCell align="right">end date</TableCell>
+            <TableCell align="right">rate?</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

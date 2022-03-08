@@ -1,5 +1,7 @@
 import VariantButtonGroup from "./ButtonGroup";
+import { TodoItemCreator } from "./NewWorkOrder";
 import DenseTable from "./Table";
+import { TodoList } from "../../App/Todo/ToDo";
 
 export function Maintenence() {
   return (
@@ -7,10 +9,48 @@ export function Maintenence() {
       <div>header: Maintenance</div>
       <div>add: new work order</div>
       <div>edit work order</div>
+      <div>add bills</div>
 
       <div>work order = workOrder</div>
+      <div>
+      work order 
+employee id
+parts
+cost
+site/and if unit
+date
+
+      </div>
       <VariantButtonGroup />
-      <DenseTable />
+      <DenseTable /> 
+      <div>
+      clickable rows take to workorder view
+      make cost and parts data
+      user that edits cost and parts / maintenance employee id
+      vehicle maintenance
+      snow/ lawn care
+      Appliances
+      flooring
+</div>
+<div>
+maintenance
+
+user supervisor id
+bills categories
+work orders
+contractors info?
+
+gl codes ids
+
+user employee id
+add work order
+edit work order
+submit work order
+
+</div>
+<div>
+    <TodoList />
+</div>
     </>
   );
 }

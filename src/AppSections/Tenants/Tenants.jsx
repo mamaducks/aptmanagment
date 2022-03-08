@@ -9,6 +9,15 @@ export function Tenants() {
       <div>move out: Tenants / transfer: tenant</div>
 <VariantButtonGroup />
 <DenseTable />
+<div>
+name info
+from applicant
+date lease
+renewal date
+rent start/rent current? maybe from rent roll
+move in/out/transfer
+site unit
+</div>
       <div>tenant list</div>
       <div>site name move in date move out date maintenance request </div>
     </>
