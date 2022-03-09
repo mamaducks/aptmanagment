@@ -1,4 +1,7 @@
 import VariantButtonGroup from "./ButtonGroup";
+import { Employee } from "./EmployeeList";
+import DataGridDemo from "./EmployeeTableGrid";
+import Demo from "./EmployeeTableGrid";
 import DenseTable from "./Table";
 
 export function Employees() {
@@ -18,13 +21,14 @@ end date
 rate?
 type of employee
       </div>
-
+<Employee />
 <DenseTable />
+<DataGridDemo />
     </>
   );
 }
 
-export const Employee = () => {
+export const EmployeeStuff = () => {
   return (
     <>
       <div>Admin</div>

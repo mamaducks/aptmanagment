@@ -1,52 +1,45 @@
 import { atom, selector, selectorFamily } from "recoil";
+import { localStorageEffect } from "./localStorage";
 
 export const PENDING = "pending";
 export const ACCEPTED = "accepted";
 export const REJECTED = "rejected";
 
-
-
-
 export const applicantListState = atom({
-    key: 'applicantListState',
-    default: [],
-  });
+  key: "applicantListState",
+  default: {
+    id: "1",
+    dateApplied: "3/3/22",
+    name: "dave smith",
+    phone: "856-777-0098",
+    familySize: "3",
+  },
+  effects_UNSTABLE: [localStorageEffect("applicantList", [])],
+});
 
-  export const applicantListFilterState = atom({
-    key: 'applicantListFilterState',
-    default: 'Show All',
-  });
+export const applicantListFilterState = atom({
+  key: "applicantListFilterState",
+  default: "Show All",
+});
 
-  export const filteredApplicantListState = selector({
-    key: 'filteredTodoListState',
-    get: ({get}) => {
-      const filter = get(applicantListFilterState);
-      const list = get(applicantListState);
-  
-      switch (filter) {
-        case 'Show Pending':
-            return list.filter((item) => item.isPending);
-        case 'Show Accepted':
-          return list.filter((item) => item.isAccepted);
-        case 'Show Rejected':
-          return list.filter((item) => !item.isRejected);
-        default:
-          return list;
-      }
-    },
-  });
+export const filteredApplicantListState = selector({
+  key: "filteredTodoListState",
+  get: ({ get }) => {
+    const filter = get(applicantListFilterState);
+    const list = get(applicantListState);
 
-
-
-
-
-
-
-
-
-
-
-
+    switch (filter) {
+      case "Show Pending":
+        return list.filter((item) => item.isPending);
+      case "Show Accepted":
+        return list.filter((item) => item.isAccepted);
+      case "Show Rejected":
+        return list.filter((item) => !item.isRejected);
+      default:
+        return list;
+    }
+  },
+});
 
 // export const getAllNewsData = selector({
 //   key: "getAllNewsData",
@@ -82,9 +75,6 @@ export const applicantListState = atom({
 //             (item) => item.applicantId === applicantId
 //           ),
 // });
-
-
-
 
 export const getApplicantInfo = selectorFamily({
   key: "getApplicantInfo",

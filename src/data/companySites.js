@@ -1,6 +1,6 @@
-const sites = [
+export const sites = [
    {
-    id: "edgewoodAcres",
+    siteId: "edgewoodAcres",
     name: "Edgewood Acres",
     address: "439 Church Rd",
     city: "Sicklerville",
@@ -14,7 +14,7 @@ const sites = [
     ],
   },
   {
-    id: "edgewoodGardens",
+    siteId: "edgewoodGardens",
     name: "Edgewood Gardens",
     address: "439 Church Rd",
     city: "Sicklerville",
@@ -28,7 +28,7 @@ const sites = [
     ],
   },
   {
-    id: "hayesMill1",
+    siteId: "hayesMill1",
     name: "Hayes Mill I",
     address: "187 Hayes Mill Road",
     city: "Atco",
@@ -42,7 +42,7 @@ const sites = [
     ],
   },
   {
-    id: "hayesMill2",
+    siteId: "hayesMill2",
     name: "Hayes Mill II",
     address: "207 Hayes Mill Road",
     city: "Atco",
@@ -57,7 +57,7 @@ const sites = [
   },
 
   {
-    id: "hillcrest",
+    siteId: "hillcrest",
     site: "Hillcrest",
     address: "160 West Avenue",
     city: "Woodstown",
@@ -71,7 +71,7 @@ const sites = [
     ],
   },
   {
-    id: "hillcrestWest",
+    siteId: "hillcrestWest",
     site: "Hillcrest West",
     address: "619 Soders Road",
     city: "Carneys Point",
@@ -85,7 +85,7 @@ const sites = [
     ],
   },
   {
-    id: "buenaTerrace",
+    siteId: "buenaTerrace",
     site: "Buena Terrace",
     address: "1002 W Summer Ave",
     city: "Minotola",
@@ -99,7 +99,7 @@ const sites = [
     ],
   },
   {
-    id: "kingsway",
+    siteId: "kingsway",
     site: "Kingsway Apts",
     address: "1 Lore Drive",
     city: "Swedesboro",
@@ -114,7 +114,7 @@ const sites = [
   },
 
   {
-    id: "barclay",
+    siteId: "barclay",
     site: "Barclay Village",
     address: "Lake St",
     city: "Jamesburg",
@@ -129,7 +129,7 @@ const sites = [
     ],
   },
   {
-    id: "cherryCourt",
+    siteId: "cherryCourt",
     site: "Cherry Court",
     address: "Cherry Street",
     city: "Jamesburg",
@@ -143,7 +143,7 @@ const sites = [
     ],
   },
   {
-    id: "monroeTown",
+    siteId: "monroeTown",
     site: "Monroe Towne",
     address: "800 N Main Street",
     city: "Williamstown",
@@ -157,7 +157,7 @@ const sites = [
     ],
   },
   {
-    id: "monroeTowneEast",
+    siteId: "monroeTowneEast",
     site: "Monroe Towne East",
     address: "175 Walnut Street",
     city: "Williamstown",
@@ -171,7 +171,7 @@ const sites = [
     ],
   },
   {
-    id: "liverpool",
+    siteId: "liverpool",
     site: "Liverpool",
     address: "733 Philadelphia Ave",
     city: "Egg Harbor",
@@ -185,7 +185,7 @@ const sites = [
     ],
   },
   {
-    id: "aloeVillage",
+    siteId: "aloeVillage",
     site: "Aloe Village",
     address: "1311 Aloe Road",
     city: "Egg Harbor",
@@ -199,7 +199,7 @@ const sites = [
     ],
   },
   {
-    id: "delseaView",
+    siteId: "delseaView",
     site: "Delseaview",
     address: "15 Costill Ave",
     city: "Clayton",
@@ -213,7 +213,7 @@ const sites = [
     ],
   },
   {
-    id: "royalOaks",
+    siteId: "royalOaks",
     site: "Royal Oaks",
     address: "259 Pine Brook Drive",
     city: "Mantua",
@@ -227,7 +227,7 @@ const sites = [
     ],
   },
   {
-    id: "liverpoolEstates",
+    siteId: "liverpoolEstates",
     site: "Liverpool South",
     address: "",
     city: "Port Norris",
