@@ -1,5 +1,5 @@
-import sites from "./companySites"
+import {sites} from "./companySites"
 
 export const data = {
-    sites,
+    sites, 
   };

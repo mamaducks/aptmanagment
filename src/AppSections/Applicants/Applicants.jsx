@@ -26,7 +26,7 @@ export function Applicants() {
         7 Date Time Name Phone # Race Family M/F D/P Inc. Unit Rental Occupancy
         Lease Removal Comments Size Level Size Assist. Cont. Date Date Date
       </div>
-      <DataGridDemo />
+      {/* <DataGridDemo /> */}
      
       
     </>

@@ -21,6 +21,7 @@ import {
 } from "recoil";
 import { applicantListState } from "../../data/applicantAtoms";
 import { useCallback, useState } from "react";
+import { SiteCheckboxes } from "./SiteCheckboxes";
 
 export function Applicant() {
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
@@ -246,6 +247,25 @@ export function Applicant() {
               {...addProps({ name: "handicapped", label: "Handicapped" })}
             />
           </FormGroup>
+        </FormControl>
+        <FormControl>
+
+        <FormLabel id="sites">Sites Applying For</FormLabel>
+
+        <SiteCheckboxes />
+        
+          <FormGroup row>
+            <FormControlLabel
+              id="siteList"
+              control={<Checkbox />}
+              {...addProps({
+                name: "siteList",
+                label: "SiteList",
+              })}
+            />
+            </FormGroup>
+
+
         </FormControl>
       </Stack>
       {/* <input type="text" value={item.text} onChange={editItemText} />

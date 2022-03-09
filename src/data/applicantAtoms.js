@@ -23,7 +23,7 @@ export const applicantListFilterState = atom({
 });
 
 export const filteredApplicantListState = selector({
-  key: "filteredTodoListState",
+  key: "filteredApplicantListState",
   get: ({ get }) => {
     const filter = get(applicantListFilterState);
     const list = get(applicantListState);
