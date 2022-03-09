@@ -23,6 +23,17 @@ import {
 
   ]
 
+  
+
+  export const MAINTENANCE = "maintenance";
+export const SITEMANAGER = "site manager";
+export const MAINTENANCESUPER = "maintenance supervisor";
+export const OFFICE = "office manager";
+export const ADMIN = "admin";
+
+// export const OTHER = "other";
+
+
 //   export const allUsersState = atom({
 //     key: 'allUsersState',
 //     default: [],

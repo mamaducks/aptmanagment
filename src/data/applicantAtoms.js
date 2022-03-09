@@ -1,0 +1,96 @@
+import { atom, selector, selectorFamily } from "recoil";
+
+export const PENDING = "pending";
+export const ACCEPTED = "accepted";
+export const REJECTED = "rejected";
+
+
+
+
+export const applicantListState = atom({
+    key: 'applicantListState',
+    default: [],
+  });
+
+  export const applicantListFilterState = atom({
+    key: 'applicantListFilterState',
+    default: 'Show All',
+  });
+
+  export const filteredApplicantListState = selector({
+    key: 'filteredTodoListState',
+    get: ({get}) => {
+      const filter = get(applicantListFilterState);
+      const list = get(applicantListState);
+  
+      switch (filter) {
+        case 'Show Pending':
+            return list.filter((item) => item.isPending);
+        case 'Show Accepted':
+          return list.filter((item) => item.isAccepted);
+        case 'Show Rejected':
+          return list.filter((item) => !item.isRejected);
+        default:
+          return list;
+      }
+    },
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const getAllNewsData = selector({
+//   key: "getAllNewsData",
+//   get: ({ get }) =>
+//     get(getAllTelescopesInfo)
+//       .map(({ id, title, recentNews = [] }) =>
+//         recentNews.map((item) => ({
+//           ...item,
+//           telescopeId: id,
+//           telescopeTitle: title,
+//         }))
+//       )
+//       .flat()
+//       .filter((item) => !!item.newsId),
+// });
+
+// export const getAllNewsDataFiltered = selector({
+//   key: "getAllNewsDataFiltered",
+//   get: ({ get }) =>
+//     get(getAllNewsData).filter(
+//       (item) => !get(excludedNewsIds).includes(item.telescopeId)
+//     ),
+// });
+
+// export const getApplicantDataForTenant = selectorFamily({
+//   key: "getApplicantDataForTenant",
+//   get:
+//     (applicantId) =>
+//     ({ get }) =>
+//       !applicantId
+//         ? get(getAllApplicantDataAccepted)
+//         : get(getAllApplicantData).filter(
+//             (item) => item.applicantId === applicantId
+//           ),
+// });
+
+
+
+
+export const getApplicantInfo = selectorFamily({
+  key: "getApplicantInfo",
+  get:
+    (applicantId) =>
+    ({ get }) => {
+      return get(getApplicantInfo).find((item) => item.id === applicantId);
+    },
+});
