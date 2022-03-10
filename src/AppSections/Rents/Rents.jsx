@@ -1,5 +1,7 @@
 import VariantButtonGroup from "./ButtonGroup";
 import DenseTable from "./Table";
+import {Rent } from "./RentSheet"
+import { RentRoll } from "./RentRoll";
 
 export function Rents() {
   return (
@@ -9,26 +11,9 @@ export function Rents() {
       <div>edit rent roll</div>
 <VariantButtonGroup />
 <DenseTable />
-<div>
-rents
-user employee id
-site/unit
-amount due
-amount paid
+<Rent />
+<RentRoll />
 
-credit/delinquency
-month
-tenant id
-vacant
-</div>
-      <div>rent roll list</div>
-      <div>site</div>
-      <div>
-          site name
-      TENANT																			
-APT. #	LAST NAME		JAN		FEB		MAR		APR		MAY		JUN		JUL		AUG		SEP	
-      </div>
-      <div>upload deposit slip copy</div>
-    </>
+</>
   );
 }

@@ -17,14 +17,10 @@ export default function VariantButtonGroup() {
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <Button>add: new work order</Button>
-          <Button>edit work order</Button>
+          <Button>add new bill</Button>
           <Button>remove: </Button>
         </ButtonGroup>
-        <ButtonGroup variant="text" aria-label="text button group">
-        <Button>add: new work order</Button>
-          <Button>edit work order</Button>
-          <Button>remove: </Button>
-        </ButtonGroup>
+      
       </Box>
     );
   }

@@ -1,4 +1,3 @@
-import { ApplicantList } from "./Applicant";
 import { Applicant } from "./ApplicantList";
 import VariantButtonGroup from "./ButtonGroup";
 import DenseTable from "./Table";

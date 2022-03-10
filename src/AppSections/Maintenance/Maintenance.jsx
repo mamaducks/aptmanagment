@@ -1,79 +1,14 @@
 import VariantButtonGroup from "./ButtonGroup";
-import { TodoItemCreator } from "./NewWorkOrder";
-import DenseTable from "./Table";
+import { NewRequest } from "./NewWorkOrder/NewWorkRequest";
 import { TodoList } from "../../App/Todo/ToDo";
-
-export function Maintenence() {
-  return (
-    <>
-      <div>header: Maintenance</div>
-      <div>add: new work order</div>
-      <div>edit work order</div>
-      <div>add bills</div>
-
-      <div>work order = workOrder</div>
-      <div>
-      work order 
-employee id
-parts
-cost
-site/and if unit
-date
-
-      </div>
-      <VariantButtonGroup />
-      <DenseTable /> 
-      <div>
-      clickable rows take to workorder view
-      make cost and parts data
-      user that edits cost and parts / maintenance employee id
-      vehicle maintenance
-      snow/ lawn care
-      Appliances
-      flooring
-</div>
-<div>
-maintenance
-
-user supervisor id
-bills categories
-work orders
-contractors info?
-
-gl codes ids
-
-user employee id
-add work order
-edit work order
-submit work order
-
-</div>
-<div>
-    <TodoList />
-</div>
-    </>
-  );
-}
-
-export const WorkOrder = () => {
-  return (
-    <>
-      <div>Site 12</div>
-      <div>Unit 449</div>
-      <div>Creator 5</div>
-      <div>Assignee 6</div>
-      <div>Occupant John Smith</div>
-      <div>Work requested * Fix something</div>
-      <div>Remarks</div>
-      <div>3 Gloves 3 Painting Supplies</div>
-      <div>print</div>
-    </>
-  );
-};
+import { WorkOrderTable } from "./WorkOrderTable";
+import { WorkOrderView } from "./WorkOrderView";
+import { Bill } from "./EnterBill";
 
 export const GLCodes = () => {
   return (
     <>
+      as atom ...?
       <div>5070 Maintenence Payroll</div>
       <div> 5330 Miscellaneous</div>
       <div>5070 Outside Maintenance</div>
@@ -85,3 +20,33 @@ export const GLCodes = () => {
     </>
   );
 };
+
+export function Maintenence() {
+  return (
+    <>
+      <div>header: Maintenance</div>
+      <div>display WorkOrdersTable</div>
+      <div>edit work order</div>
+      <div>
+        print work order send work order multiple recipient
+        cancel work order
+      </div>
+      <div>work order employee id parts cost site/and if unit date</div>
+      <VariantButtonGroup />
+      <div>Work Order Table</div>
+      clickable rows take to workorder view
+      <WorkOrderTable />
+      <div>Enter Work Order</div>
+      <NewRequest />
+      
+      <WorkOrderView />
+      edit work order user that edits cost and parts / maintenance employee id
+      <div>Add Company Bill</div>
+      <Bill />
+      <div>
+        to do list has some totals stuff
+        <TodoList />
+      </div>
+    </>
+  );
+}

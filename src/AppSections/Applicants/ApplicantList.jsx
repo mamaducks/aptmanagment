@@ -21,7 +21,7 @@ import {
 } from "recoil";
 import { applicantListState } from "../../data/applicantAtoms";
 import { useCallback, useState } from "react";
-import { SiteCheckboxes } from "./SiteCheckboxes";
+import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
 
 export function Applicant() {
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);

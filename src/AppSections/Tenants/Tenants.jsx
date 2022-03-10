@@ -1,5 +1,6 @@
 import VariantButtonGroup from "./ButtonGroup";
 import DenseTable from "./Table";
+import {Tenant} from "./TenantMoveIn"
 
 export function Tenants() {
   return (
@@ -9,6 +10,7 @@ export function Tenants() {
       <div>move out: Tenants / transfer: tenant</div>
 <VariantButtonGroup />
 <DenseTable />
+<Tenant />
 <div>
 name info
 from applicant

@@ -61,7 +61,7 @@ export function Employee() {
   );
 
   const addEmployee = useCallback(() => {
-    setEmployeeList((applicants) => [...applicants, item]);
+    setEmployeeList((employees) => [...employees, item]);
   }, [item, setEmployeeList]);
 
   return (
