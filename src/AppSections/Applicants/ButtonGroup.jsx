@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import NewApplicantDialog from './EnterApplicantDialog';
+import UpdateApplicantDialog from './UpdateApplicantDialog';
+import MoveInDialog from './MoveInDialog';
 
 export default function VariantButtonGroup() {
     return (
@@ -18,14 +20,10 @@ export default function VariantButtonGroup() {
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <NewApplicantDialog />
-          <Button>applicant status</Button>
-          <Button>move applicant in</Button>
+          <UpdateApplicantDialog />
+          <MoveInDialog />
         </ButtonGroup>
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button>add: new applicant</Button>
-          <Button>applicant status</Button>
-          <Button>move applicant in</Button>
-        </ButtonGroup>
+        
       </Box>
     );
   }

@@ -6,7 +6,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { todoListState } from "../../../data/newRequestAtoms";
+import { workOrderState } from "../../../data/workOrderAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -21,7 +21,7 @@ import { Parts } from "./Parts";
 import { WorkOrderHours } from "./WorkOrderHours";
 
 export function NewRequest() {
-  const [todoList, setTodoList] = useRecoilState(todoListState);
+  const [todoList, setTodoList] = useRecoilState(workOrderState);
   const [order, setOrder] = useState({});
 
   // const index = todoList.findIndex((listItem) => listItem === item);

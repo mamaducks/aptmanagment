@@ -6,21 +6,21 @@ import {
     useRecoilValue,
   } from 'recoil';
 
-  export const todoListState = atom({
-    key: 'todoListState',
+  export const workOrderState = atom({
+    key: 'workOrderState',
     default: [],
   });
 
-  export const todoListFilterState = atom({
-    key: 'todoListFilterState',
+  export const workOrderFilterState = atom({
+    key: 'workOrderFilterState',
     default: 'Show All',
   });
 
-  export const filteredTodoListState = selector({
-    key: 'filteredTodoListState',
+  export const filteredWorkOrderListState = selector({
+    key: 'filteredWorkOrderListState',
     get: ({get}) => {
-      const filter = get(todoListFilterState);
-      const list = get(todoListState);
+      const filter = get(workOrderFilterState);
+      const list = get(workOrderState);
   
       switch (filter) {
         case 'Show Completed':
@@ -33,10 +33,10 @@ import {
     },
   });
 
-  export const todoListStatsState = selector({
-    key: 'todoListStatsState',
+  export const workOrderStatsState = selector({
+    key: 'workOrderStatsState',
     get: ({get}) => {
-      const todoList = get(todoListState);
+      const todoList = get(workOrderState);
       const totalNum = todoList.length;
       const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
       const totalUncompletedNum = totalNum - totalCompletedNum;

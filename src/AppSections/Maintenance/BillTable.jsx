@@ -17,7 +17,6 @@ export function BillTable() {
 <TableHead>
   <TableRow>
     <TableCell>category</TableCell>
-    <TableCell align="right">category</TableCell>
     <TableCell align="right">paid to</TableCell>
     <TableCell align="right">amount paid</TableCell>
 
@@ -37,7 +36,7 @@ export function BillTable() {
       <TableCell align="right">company or contractor name</TableCell>
       <TableCell align="right">$ amt paid</TableCell>
       <TableCell align="right">date</TableCell>
-      <TableCell align="right">total to date?</TableCell>
+      {/* <TableCell align="right">total to date?</TableCell> */}
     </TableRow>
 </TableBody>
 </Table>

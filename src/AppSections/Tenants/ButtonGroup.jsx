@@ -19,8 +19,10 @@ export default function VariantButtonGroup() {
       >
         {/* <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{gap: 3}}> */}
           <NewTenantDialog />
-          <Button>move out: Tenants / transfer: tenant</Button>
-          <Button>remove: </Button>
+          <Button>edit tenant info </Button>
+          
+          <Button>View Tenant Info </Button>
+          <Button>move Tenant out </Button>
         {/* </ButtonGroup> */}
      
       </Box>

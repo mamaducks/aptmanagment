@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import NewWorkRequestDialog from './NewWorkOrder/WorkOrderDialog';
+import AddBillDialog from './EnterBillDialog';
 
 export default function VariantButtonGroup() {
     return (
@@ -18,8 +19,9 @@ export default function VariantButtonGroup() {
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
         <NewWorkRequestDialog />
-          <Button>add new bill</Button>
-          <Button>remove: </Button>
+        <Button>View Work Orders </Button>
+        <AddBillDialog />
+          <Button>View Bills </Button>
         </ButtonGroup>
       
       </Box>

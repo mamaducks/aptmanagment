@@ -7,19 +7,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-export function WorkOrderTable() {
+export function SiteWorkOrderTable() {
     return (
       <>
         <div>total maintenance hours billed : WorkHoursBill</div>
   
-        <div>Maintenance Work Orders Table</div>
-        by date
+        <div>Maintenance Work Orders </div>
+        
+        <div>choose site start typing or choose from dropdown </div>
+        <div>have view all current month / recent months</div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>site</TableCell>
-                <TableCell align="right">work order #</TableCell>
+                <TableCell>work order #</TableCell>
                 <TableCell align="right">hours billed</TableCell>
                 <TableCell align="right">parts total</TableCell>
                 <TableCell align="right">total billed</TableCell>
@@ -34,9 +35,8 @@ export function WorkOrderTable() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  site name
+                # of order
                 </TableCell>
-                <TableCell align="right"># of order</TableCell>
                 <TableCell align="right">total hrs $</TableCell>
                 <TableCell align="right"> total partd $</TableCell>
                 <TableCell align="right">total</TableCell>
@@ -49,4 +49,3 @@ export function WorkOrderTable() {
         </>
         );
         }
-

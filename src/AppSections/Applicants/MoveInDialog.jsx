@@ -7,11 +7,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
-import { Tenant } from './TenantMoveIn';
-import MoveInApplicant from '../Applicants/MoveInApplicant';
+import { Applicant } from './ApplicantList';
+import UpdateApplicant from './UpdateApplicant';
+import MoveInApplicant from './MoveInApplicant';
 
 
-export default function NewTenantDialog() {
+export default function MoveInDialog() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,14 +26,12 @@ export default function NewTenantDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Add New Tenant
+       Move In Applicant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Enter Tenant Information</DialogTitle>
+        <DialogTitle>Applicants</DialogTitle>
         <DialogContent>
         <MoveInApplicant />
-        or start new tenant info
-        <Tenant />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

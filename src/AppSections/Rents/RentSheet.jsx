@@ -66,24 +66,19 @@ import {
   
     return (
       <Paper sx={{ p: "30px" }}>
-          <div>employeeId</div>
-          <div>month</div>
-          <div>site</div>
-          <div>unit</div>
-          <div>tenantId</div>
+        <div>user employee id</div>
+        <div>current month</div>
+        <div>by site</div>
+        <div>table that is editable</div>
+        <div>unit</div>
 
-          <div>
-rents
-user employee id
-site/unit
-amount due
-amount paid
+          <div>tenant id autofilled</div>
+          <div>amount due</div>
+          <div>amount paid</div>
+          <div>credit/delinquency auto filled</div>
+          <div>vacant</div>
 
-credit/delinquency
-month
-tenant id
-vacant
-</div>
+        
           
         <Box sx={{ width: "500px" }}>
           <TextField

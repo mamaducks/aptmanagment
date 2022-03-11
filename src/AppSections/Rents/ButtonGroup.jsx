@@ -16,15 +16,12 @@ export default function VariantButtonGroup() {
         }}
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>add: new rent roll</Button>
-          <Button>edit rent roll</Button>
-          <Button>remove: </Button>
+          <Button>enter rents</Button>
+          <Button>view rent roll</Button>
+          <Button>upload deposit slips</Button>
+          <Button>view deposit slips</Button>
         </ButtonGroup>
-        <ButtonGroup variant="text" aria-label="text button group">
-        <Button>add: new rent roll</Button>
-          <Button>edit rent roll</Button>
-          <Button>remove: </Button>
-        </ButtonGroup>
+      
       </Box>
     );
   }

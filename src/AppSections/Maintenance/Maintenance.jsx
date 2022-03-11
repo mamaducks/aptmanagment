@@ -4,6 +4,8 @@ import { TodoList } from "../../App/Todo/ToDo";
 import { WorkOrderTable } from "./WorkOrderTable";
 import { WorkOrderView } from "./WorkOrderView";
 import { Bill } from "./EnterBill";
+import { SiteWorkOrderTable } from "./SiteWorkOrders";
+import { BillTable } from "./BillTable";
 
 export const GLCodes = () => {
   return (
@@ -28,25 +30,21 @@ export function Maintenence() {
       <div>display WorkOrdersTable</div>
       <div>edit work order</div>
       <div>
-        print work order send work order multiple recipient
-        cancel work order
+        print work order send work order multiple recipient cancel work order
       </div>
       <div>work order employee id parts cost site/and if unit date</div>
       <VariantButtonGroup />
       <div>Work Order Table</div>
       clickable rows take to workorder view
       <WorkOrderTable />
-      <div>Enter Work Order</div>
-      <NewRequest />
-      
+      <SiteWorkOrderTable />
       <WorkOrderView />
       edit work order user that edits cost and parts / maintenance employee id
-      <div>Add Company Bill</div>
-      <Bill />
-      <div>
-        to do list has some totals stuff
-        <TodoList />
-      </div>
+      <div>view bills by contractor/company, category sort by newest or oldest </div>
+      bills month or year to date (can view month)
+      <BillTable />
+      to do list has some totals stuff
+      <TodoList />
     </>
   );
 }
