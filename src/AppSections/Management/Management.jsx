@@ -1,28 +1,27 @@
-import LinkButtonGroup from "../../App/LinkButtons";
-import { BillsOverview } from "./BillsOverView";
-import { BillSheet } from "./BillsSummary";
 import VariantButtonGroup from "./ButtonGroup";
-import DenseTable from "./Table";
+
 
 export function Management() {
   return (
     <>
+    <VariantButtonGroup />
       <div>header: Management</div>
-      <div>add: new manage</div>
-      <div>edit manage</div>
+      <div>Year overview</div>
       <div>add sites</div>
-      <div>edit sites</div>
+      <div>current totals overview year to date</div>
+      <div>company billing total overview one line of totals year to date</div>
       <div>
-        management user view rents : RentRollSummary  total maintenance hours billed :
-        WorkHoursBill 
+        maintenance billing total overview one line of totals year to date
       </div>
-      <div>management list</div>
-      <VariantButtonGroup />
+      <div>
+        RentRollSummary overview one line total in out under over year to date
+        or monthly
+      </div>
+      <div>
+        total maintenance hours billed : WorkHoursBill year to date or monthly
+      </div>
+      
       Year overview
-      <BillsOverview />
-      {/* <BillSheet /> */}
-
-      {/* <DenseTable /> */}
     </>
   );
 }

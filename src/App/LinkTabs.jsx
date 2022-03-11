@@ -12,11 +12,12 @@ export default function NavTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ display: "flex",  width: "100%", justifyContent: "center", }}>
       <Tabs
         value={window.location.pathname}
         onChange={handleChange}
         aria-label="nav tabs example"
+        sx={{alignItems: "center"}}
       >
         {/* {siteSections.map((item, index) => ( */}
         {Object.values(routes).map(({ link, label, index }) => (

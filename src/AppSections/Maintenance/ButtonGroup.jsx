@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import NewWorkRequestDialog from './NewWorkOrder/WorkOrderDialog';
 
 export default function VariantButtonGroup() {
     return (
@@ -16,7 +17,7 @@ export default function VariantButtonGroup() {
         }}
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>add: new work order</Button>
+        <NewWorkRequestDialog />
           <Button>add new bill</Button>
           <Button>remove: </Button>
         </ButtonGroup>

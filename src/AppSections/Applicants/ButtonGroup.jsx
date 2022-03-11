@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import NewApplicantDialog from './EnterApplicantDialog';
 
 export default function VariantButtonGroup() {
     return (
@@ -16,7 +17,7 @@ export default function VariantButtonGroup() {
         }}
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>add: new applicant</Button>
+          <NewApplicantDialog />
           <Button>applicant status</Button>
           <Button>move applicant in</Button>
         </ButtonGroup>

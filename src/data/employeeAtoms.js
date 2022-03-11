@@ -49,7 +49,7 @@ export const ADMIN = "admin";
 //     },
 //   });
 export const employeeListState = atom({
-  key: "applicantListState",
+  key: "employeeListState",
   default: {
     id: "1",
     dateHired: "3/3/22",

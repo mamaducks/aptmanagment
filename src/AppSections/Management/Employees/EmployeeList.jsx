@@ -19,7 +19,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { employeeListState } from "../../data/employeeAtoms";
+import { employeeListState } from "../../../data/employeeAtoms";
 import { useCallback, useState } from "react";
 
 export function Employee() {

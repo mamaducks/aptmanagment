@@ -6,71 +6,77 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-
 import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
-  import {getAllBillsInfo} from "../../data/billAtoms";
-  import { useCallback, useState } from "react";
-import { Box, FormControl, FormGroup, FormLabel, Paper, Stack, TextField } from '@mui/material';
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { getAllBillsInfo } from "../../data/billAtoms";
+import { useCallback, useState } from "react";
+import {
+  Box,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  Paper,
+  Stack,
+  TextField,
+} from "@mui/material";
 
 export function Bill() {
+  const [bill, setBill] = useRecoilState(getAllBillsInfo);
+  const [newBill, setNewBill] = useState({});
 
-    const [bill, setBill] = useRecoilState(getAllBillsInfo);
-    const [newBill, setNewBill] = useState({});
-    
-    // const index = todoList.findIndex((listItem) => listItem === item);
-  
-    // const editItemText = ({target: {value}}) => {
-    //   const newList = replaceItemAtIndex(todoList, index, {
-    //     ...item,
-    //     text: value,
-    //   });
-  
-    //   setTodoList(newList);
-    // };
-  
-    // const toggleItemCompletion = () => {
-    //   const newList = replaceItemAtIndex(todoList, index, {
-    //     ...item,
-    //     isComplete: !item.isComplete,
-    //   });
-  
-    //   setTodoList(newList);
-    // };
-  
-    // const deleteItem = () => {
-    //   const newList = removeItemAtIndex(todoList, index);
-  
-    //   setTodoList(newList);
-    // };
+  // const index = todoList.findIndex((listItem) => listItem === item);
 
-    const addProps = useCallback(
-      ({ name, label, type = "text" }) => {
-        const setFieldValue = ({ target: { name, value } }) =>
-          setNewBill((item) => ({ ...item, [name]: value }));
-  
-        return {
-          label,
-          name,
-          type,
-          onChange: setFieldValue,
-          value: bill[name],
-        };
-      },
-      [bill]
-    );
+  // const editItemText = ({target: {value}}) => {
+  //   const newList = replaceItemAtIndex(todoList, index, {
+  //     ...item,
+  //     text: value,
+  //   });
 
-    const addOrder = useCallback(() => {
-        setBill((bills) => [...bills, bill]);
-    }, [bill, setBill]);
-  
-    return (
-      <>
+  //   setTodoList(newList);
+  // };
+
+  // const toggleItemCompletion = () => {
+  //   const newList = replaceItemAtIndex(todoList, index, {
+  //     ...item,
+  //     isComplete: !item.isComplete,
+  //   });
+
+  //   setTodoList(newList);
+  // };
+
+  // const deleteItem = () => {
+  //   const newList = removeItemAtIndex(todoList, index);
+
+  //   setTodoList(newList);
+  // };
+
+  const addProps = useCallback(
+    ({ name, label, type = "text" }) => {
+      const setFieldValue = ({ target: { name, value } }) =>
+        setNewBill((item) => ({ ...item, [name]: value }));
+
+      return {
+        label,
+        name,
+        type,
+        onChange: setFieldValue,
+        value: bill[name],
+      };
+    },
+    [bill]
+  );
+
+  const addOrder = useCallback(() => {
+    setBill((bills) => [...bills, bill]);
+  }, [bill, setBill]);
+
+  return (
+    <>
       {/* <div>
         <input type="text" value={item.text} onChange={editItemText} />
         <input
@@ -81,52 +87,65 @@ export function Bill() {
         <button onClick={deleteItem}>X</button>
       </div> */}
 
-<Paper sx={{p: "30px"}}>
-<Stack direction="row" gap={4}>
-  <Box sx={{ width: "500px" }}>
-    <TextField
-      fullWidth
-      {...addProps({ name: "dateRequest", label: "Date Requested" })}
-    />
-  </Box>
+      <Paper sx={{ p: "30px" }}>
+        <Stack direction="row" gap={4}>
+          <Box sx={{ width: "500px" }}>
+            <TextField
+              fullWidth
+              {...addProps({ name: "dateRequest", label: "Date Requested" })}
+            />
+          </Box>
 
-  <FormControl>
-    <FormLabel id="status">Site</FormLabel>
-   <div>date</div>
-   <div>type of bill  category , subcategory if there</div>
-  </FormControl>
-</Stack>
-<Stack direction="row"></Stack>
-<Box sx={{ width: "850px" }}>
-  <TextField fullWidth margin="normal" {...addProps({ name: "recipient", label: "Paid To" })} />
-</Box>
-<Box sx={{ width: "850px" }}>
-  <TextField fullWidth margin="normal" {...addProps({ name: "amountPaid", label: "Amount Paid" })} />
-</Box>
-<Stack direction="row" gap={4}>
-  <Box sx={{ width: "500px" }}>
-    <TextField
-      fullWidth
-      margin="normal"
-      {...addProps({ name: "datePaid", label: "datePaid", type: "number" })}
-    />
-  </Box>
-  
-</Stack>
+          <FormControl>
+            <FormLabel id="status">Site</FormLabel>
+            <div>date</div>
+            <div>
+              type of bill category , subcategory if there flooring painting
+              appliances snow lawn vehicle trash electric phones internet
+              contractors
+            </div>
+          </FormControl>
+        </Stack>
+        <Stack direction="row"></Stack>
+        <Box sx={{ width: "850px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "recipient", label: "Paid To" })}
+          />
+        </Box>
+        <Box sx={{ width: "850px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "amountPaid", label: "Amount Paid" })}
+          />
+        </Box>
+        <Stack direction="row" gap={4}>
+          <Box sx={{ width: "500px" }}>
+            <TextField
+              fullWidth
+              margin="normal"
+              {...addProps({
+                name: "datePaid",
+                label: "datePaid",
+                type: "number",
+              })}
+            />
+          </Box>
+        </Stack>
 
-{/* <Box display="flex" gap={7}> */}
- 
+        {/* <Box display="flex" gap={7}> */}
 
-  <FormControl>
-    <FormLabel id="site">billed to site if site</FormLabel>
-    <TextField
-      fullWidth
-      margin="normal"
-      {...addProps({ name: "site", label: "Site", type: "text" })}
-    />
-   
-  </FormControl>
-{/* </Box>
+        <FormControl>
+          <FormLabel id="site">billed to site if site</FormLabel>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "site", label: "Site", type: "text" })}
+          />
+        </FormControl>
+        {/* </Box>
 <Stack sx={{ border: "1px solid black", p: 1 }}>
 
   <Stack direction="row" gap={7}>
@@ -163,91 +182,18 @@ export function Bill() {
 
   </Stack> */}
 
-<button onClick={addOrder}>Add</button>
-<button>print</button>
+        <button onClick={addOrder}>Add</button>
+        <button>print</button>
 
-<div>
-       add contractor info/fees? and gl codes?? gl codes ids
-      enter vehicle maintenance maybe vehicle site ?
-      enter snow/ lawn care / snow or lawn
-     enter  Appliances / type of appliance
-     enter flooring / carpet or tile
-     other bills maybe? trash, electric, phone/internet
-
-     bills 
-     type of
-     category , subcategory if there
-     paid to 
-     amount paid
-     date paid
-     totals of category / sub if there
-bills categories
-</div>
-</Paper>
-</>
-    );
-  }
-
-
-
-
-
-
-
-
-
-export function BillView() {
-    return (
-      <>
-  
-        <div>Bill</div>
-        <div>date</div>
-        <div>type of bill  category , subcategory if there</div>
-        <div>paid to </div>
-        <div>amount paid</div>
-        <div>date paid</div>
-       
-
-      
-        </>
-        );
-        }
-
-        export function BillTable() {
-            return (
-<div>
-    <div>month or year to date</div>
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>category</TableCell>
-            <TableCell align="right">category</TableCell>
-            <TableCell align="right">paid to</TableCell>
-            <TableCell align="right">amount paid</TableCell>
-
-            <TableCell align="right">date</TableCell>
-            <TableCell align="right">total</TableCell>
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            <TableRow
-              key="key"
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-              category
-              </TableCell>
-              <TableCell align="right">company or contractor name</TableCell>
-              <TableCell align="right">$ amt paid</TableCell>
-              <TableCell align="right">date</TableCell>
-              <TableCell align="right">total to date?</TableCell>
-            </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-</div>
-            );
-        }
+        <div>
+          add contractor info/fees? and gl codes?? gl codes ids enter vehicle
+          maintenance maybe vehicle site ? enter snow/ lawn care / snow or lawn
+          enter Appliances / type of appliance enter flooring / carpet or tile
+          other bills maybe? trash, electric, phone/internet bills type of
+          category , subcategory if there paid to amount paid date paid totals
+          of category / sub if there bills categories
+        </div>
+      </Paper>
+    </>
+  );
+}

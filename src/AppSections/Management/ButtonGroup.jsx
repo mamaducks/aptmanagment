@@ -1,87 +1,36 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
-
-import {
-  Route,
-  Switch,
-  // Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
-import {managementLinks} from "../../routes"
-import { Tab, Tabs } from '@mui/material';
+import * as React from "react";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Box from "@mui/material/Box";
+import { RentOverview } from "./RentOverviewDialog";
+import { TenantOverview } from "./TenantOverviewDialog";
+import EmployeeDialog from "./Employees/EmployeesDialog";
+import { BillingOverview } from "./BillsOverviewDialog";
+import { SitesInfoDialog } from "./SitesInfoDialog";
+import { MaintenanceBillingDialog } from "./MaintenanceBilling";
 
 export default function VariantButtonGroup() {
-  const [value, setValue] = React.useState(0);
+  return (
+    <Box
+    sx={{
+      display: 'flex',
+      // flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 1,
+      '& > *': {
+        m: 1,
+      },
+    }}
+  >
+      {/* <ButtonGroup variant="outlined" aria-label="outlined button group"> */}
+        <BillingOverview />
+        <RentOverview />
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+        <MaintenanceBillingDialog />
+        <TenantOverview />
+        <SitesInfoDialog />
 
-  // let match = useRouteMatch();
-
-    return (
-      // <Box
-      //   sx={{
-      //     display: 'flex',
-      //     flexDirection: 'column',
-      //     alignItems: 'center',
-      //     '& > *': {
-      //       m: 1,
-      //     },
-      //   }}
-      // >
-      //   <ButtonGroup variant="outlined" aria-label="outlined button group">
-      //     {/* <Link to={`${match.url}/Bills`}> */}
-      //      <Button >bills overview</Button>
-
-      //     {/* </Link> */}
-         
-      //     <Button>RentRollSummary</Button>
-      //     <Button>tenants</Button>
-      //   </ButtonGroup>
-      //   <ButtonGroup variant="text" aria-label="text button group">
-      //   <Button>bills overview</Button>
-      //     <Button>RentRollSummary</Button>
-      //     <Button>tenants </Button>
-      //   </ButtonGroup>
-
-      //   {/* <Switch>
-      //   <Route exact path={path}>
-      //     <h3>the bills</h3>
-      //   </Route>
-      //   {/* <Route path={`${path}/:topicId`}>
-      //     <Topic />
-      //   </Route> 
-      // </Switch> */}
-      // </Box>
-
-<Box   sx={{
-         display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-         '& > *': {
-            m: 1,
-          },
-        }}>
-<Tabs
-  value={window.location.pathname}
-  onChange={handleChange}
-  aria-label="nav tabs example"
->
-  {/* {siteSections.map((item, index) => ( */}
-  {Object.values(managementLinks).map(({ link, label, index }) => (
-    <Tab
-      label={label}
-      href={link}
-      key={link}
-      component="a"
-      value={link}
-    />
-  ))}
-</Tabs>
-</Box>
-    );
-  }
+        <EmployeeDialog />
+      {/* </ButtonGroup> */}
+    </Box>
+  );
+}

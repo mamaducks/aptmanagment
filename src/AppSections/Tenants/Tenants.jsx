@@ -10,7 +10,6 @@ export function Tenants() {
       <div>move out: Tenants / transfer: tenant</div>
 <VariantButtonGroup />
 <DenseTable />
-<Tenant />
 <div>
 name info
 from applicant

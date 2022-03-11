@@ -1,13 +1,11 @@
 // Routes
 const routes = {
-    home: { link: "/", label: "Home"},
-    maintenance: { link: "/Maintenance", label: "Maintenance"},
-    tenants: { link: "/Tenants", label: "Tenants"},
-    applicants: { link: "/Applicants", label: "Applicants", icon: ""},
-    rents: { link: "/Rents", label: "Rents"},
-    management: { link: "/Management", label: "Management"},
-    employees: { link: "/Employees", label: "Employees"},
-  };
-  
-  
-  export default routes;
+  home: { link: "/", label: "Home" },
+  maintenance: { link: "/Maintenance", label: "Maintenance" },
+  tenants: { link: "/Tenants", label: "Tenants" },
+  applicants: { link: "/Applicants", label: "Applicants", icon: "" },
+  rents: { link: "/Rents", label: "Rents" },
+  management: { link: "/Management", label: "Management" },
+};
+
+export default routes;
