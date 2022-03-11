@@ -20,7 +20,7 @@ import {
 import { Parts } from "./Parts";
 import { WorkOrderHours } from "./WorkOrderHours";
 
-export function NewRequest() {
+export function EditableWorkOrder() {
   const [todoList, setTodoList] = useRecoilState(workOrderState);
   const [order, setOrder] = useState({});
 
@@ -136,18 +136,38 @@ export function NewRequest() {
             />
           </FormControl>
         </Box>
-        <div>want option to assign maintenance employee?</div>
+        <Stack sx={{ border: "1px solid black", p: 1 }}>
+          <Stack direction="row" gap={7}>
+            <FormControl margin="dense">
+              <FormLabel id="familySize">Parts</FormLabel>
+              <div>add part</div>
+              <Parts />
+            </FormControl>
+          </Stack>
+
+          <FormControl margin="dense">
+            <FormLabel id="familySize">Hours</FormLabel>
+            <div>add hours</div>
+            <WorkOrderHours />
+          </FormControl>
+        </Stack>
+        <Stack sx={{ border: "1px solid black", p: 1 }}>
+          <FormControl>
+            <FormLabel id="prefer">employee</FormLabel>
+            <FormGroup row>
+              <div>employees that worked</div>
+            </FormGroup>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel id="accomodate">employee hours</FormLabel>
+
+            <div>hours worked</div>
+          </FormControl>
+        </Stack>
         <button onClick={addOrder}>Add</button>
         <button>print</button>
       </Paper>
     </>
   );
-}
-
-function replaceItemAtIndex(arr, index, newValue) {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
-
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
 }

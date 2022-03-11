@@ -23,16 +23,3 @@ export function Employees() {
   );
 }
 
-export const EmployeeStuff = () => {
-  return (
-    <>
-      <div>Admin</div>
-      <div>Maintenance</div>
-      <div>other</div>
-      <div>office manager</div>
-      <div>site manager</div>
-      <div>checkboxes for sites managing</div>
-      <div>maintenance manager</div>
-    </>
-  );
-};

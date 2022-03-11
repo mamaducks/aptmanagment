@@ -7,10 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
+import { EditableWorkOrderList } from "./EditableWorkOrder";
 
-import SitesTable from "../../App/Property/SitesTable";
-
-export function SitesInfoDialog() {
+export default function OrderTableEditDialog() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,18 +23,12 @@ export function SitesInfoDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Company Sites 
+        Work Orders
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Sites</DialogTitle>
-
-    
+        <DialogTitle>Work Orders</DialogTitle>
         <DialogContent>
-          Site List Table
-          <SitesTable />
-          click site for info
-          takes to unit Information
-        
+          <EditableWorkOrderList />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

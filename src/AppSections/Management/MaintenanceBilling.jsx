@@ -28,17 +28,16 @@ export function MaintenanceBillingDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Maintenance
+        Maintenance
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Maintenance Billing</DialogTitle>
 
-    
         <DialogContent>
-          Each Employee
-      <EmployeeWorkHoursTable />
-      Site Maintenance Overview each site 
-      <MaintenanceOrderCosts />
+          <EmployeeWorkHoursTable />
+          Site Maintenance Overview each site
+          <MaintenanceOrderCosts />
+          Maintenance Parts List and cost - list or table
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

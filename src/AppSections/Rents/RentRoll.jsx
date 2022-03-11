@@ -35,12 +35,7 @@ export function RentRoll() {
         </div>
         <div>upload deposit slip copy</div>
         </>
-<div>
-   
-view tenants 
-tenant table by site with unit and credit/delinquent
- current statement and renew date 
-</div>
+
 
 
 <TableContainer component={Paper}>

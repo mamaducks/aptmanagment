@@ -6,18 +6,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import OrderTableEditDialog from "./OrderTableEditDialog";
 
-export function WorkOrderTable() {
+export function EditableWorkOrderList() {
   return (
     <>
-      <div>total maintenance hours billed : WorkHoursBill</div>
       <div>Maintenance Work Orders Table</div>
-      by date
+      by date and show current can see employeeId ones at top of table clickable
+      row to work order edit (newrequest) or one with parts/hours editable
+      showing and have newrequest without parts/hours showing can have completed
+      checkbox at bottom under parts hours?
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell>site</TableCell>
+
               <TableCell align="right">work order #</TableCell>
               <TableCell align="right">hours billed</TableCell>
               <TableCell align="right">parts total</TableCell>
@@ -44,6 +48,8 @@ export function WorkOrderTable() {
           </TableBody>
         </Table>
       </TableContainer>
+      <div>after clicked tablerow takes to editable form</div>
+      <OrderTableEditDialog />
     </>
   );
 }

@@ -6,6 +6,8 @@ import { WorkOrderView } from "./WorkOrderView";
 import { Bill } from "./EnterBill";
 import { SiteWorkOrderTable } from "./SiteWorkOrders";
 import { BillTable } from "./BillTable";
+import { Parts } from "./NewWorkOrder/Parts";
+import { AllParts } from "./PartsList";
 
 export const GLCodes = () => {
   return (
@@ -34,14 +36,19 @@ export function Maintenence() {
       </div>
       <div>work order employee id parts cost site/and if unit date</div>
       <VariantButtonGroup />
+      <div>
+        parts list
+        <AllParts />
+      </div>
       <div>Work Order Table</div>
       clickable rows take to workorder view
       <WorkOrderTable />
       <SiteWorkOrderTable />
-      <WorkOrderView />
       edit work order user that edits cost and parts / maintenance employee id
-      <div>view bills by contractor/company, category sort by newest or oldest </div>
-      bills month or year to date (can view month)
+      <div>
+        view bills by contractor/company, category sort by newest or oldest{" "}
+      </div>
+      bills month or year to date (can view by month)?
       <BillTable />
       to do list has some totals stuff
       <TodoList />

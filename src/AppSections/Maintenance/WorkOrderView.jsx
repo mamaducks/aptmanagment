@@ -5,6 +5,7 @@ export function WorkOrderView() {
   return (
     <>
       <div>Work order view</div>
+      <div>use date or site to search maybe order # too</div>
       <Paper sx={{ p: "30px" }}>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
@@ -23,8 +24,8 @@ export function WorkOrderView() {
           </Box>
         </Stack>
         <Box sx={{ width: "500px" }}>
-            <Typography>Tenant</Typography>
-          </Box>
+          <Typography>Tenant</Typography>
+        </Box>
         <Box sx={{ width: "500px" }}>
           <Typography>work requested</Typography>
         </Box>
@@ -45,16 +46,13 @@ export function WorkOrderView() {
           </Box>
         </Stack>
         <Box sx={{ width: "500px" }}>
-            <Typography>totals</Typography>
-          </Box>
-          <Box sx={{ width: "500px" }}>
-            <Typography>enter Remarks</Typography>
-          </Box>
-          <div>print</div>
+          <Typography>totals</Typography>
+        </Box>
+        <Box sx={{ width: "500px" }}>
+          <Typography>enter Remarks</Typography>
+        </Box>
+        <div>print</div>
       </Paper>
-
-    
-    
 
       <>
         <div>Site 12</div>

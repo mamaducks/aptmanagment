@@ -23,22 +23,13 @@ function createData(name, calories, fat, carbs, protein) {
 
 export function RentRollSummary() {
     return (
-        <>
+       <> 
+        <div>rent roll summary</div>
+       
+   
+       
 
-<>
-        <div>rent roll list</div>
-        <div>site</div>
-      
-        <div>upload deposit slip copy</div>
-        </>
-<div>
-   show six months need 1 cell for month equal to 3 cells  table header
-</div>
-<div>
-            site name
-        TENANT																			
-  APT. #	LAST NAME		JAN		FEB		MAR		APR		MAY		JUN		JUL		AUG		SEP	
-        </div>
+
 
 <TableContainer component={Paper}>
 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
