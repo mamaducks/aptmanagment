@@ -6,6 +6,7 @@ import NewWorkRequestDialog from "./NewWorkOrder/WorkOrderDialog";
 import AddBillDialog from "./EnterBillDialog";
 import WorkOrdersDialog from "./WorkOrderViewDialog";
 import BillsDialog from "./BillViewDialog";
+import OrderTableEditDialog from "./EditableWorkOrderDialog"
 
 export default function VariantButtonGroup() {
   return (
@@ -21,7 +22,7 @@ export default function VariantButtonGroup() {
     >
       <ButtonGroup variant="outlined" aria-label="outlined button group">
         <NewWorkRequestDialog />
-        <Button>Edit Work Order</Button>
+        <OrderTableEditDialog />
         <WorkOrdersDialog />
         <AddBillDialog />
         <BillsDialog />

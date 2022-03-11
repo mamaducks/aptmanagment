@@ -1,0 +1,40 @@
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+export function RentRollOverview() {
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>site</TableCell>
+            <TableCell align="right">total paid</TableCell>
+            <TableCell align="right">total credit</TableCell>
+            <TableCell align="right">total delinquent</TableCell>
+            <TableCell align="right">total summary</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow
+            key="key"
+            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
+            <TableCell component="th" scope="row">
+              site name
+            </TableCell>
+            <TableCell align="right">paid $</TableCell>
+            <TableCell align="right">credit $</TableCell>
+            <TableCell align="right">delinquent $</TableCell>
+            <TableCell align="right">summary $</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}

@@ -1,26 +1,17 @@
 import VariantButtonGroup from "./ButtonGroup";
-import DenseTable from "./Table";
-import {Tenant} from "./TenantMoveIn"
+import TenantTable from "./Table";
+import RenewTable from "./TenantRenewals";
 
 export function Tenants() {
   return (
     <>
+      <VariantButtonGroup />
       <div>header: Tenants</div>
-      <div>move in: new Tenants</div>
-      <div>move out: Tenants / transfer: tenant</div>
-<VariantButtonGroup />
-<DenseTable />
-<div>
-name info
-from applicant
-date lease
-renewal date
-rent start/rent current? maybe from rent roll
-move in/out/transfer
-site unit
-</div>
-      <div>tenant list</div>
-      <div>site name move in date move out date maintenance request </div>
+      By Site
+      <TenantTable />
+      
+      <div>tenants renewing soon update tenant</div>
+      <RenewTable />
     </>
   );
 }

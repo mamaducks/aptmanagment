@@ -7,11 +7,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
-import { Tenant } from './MoveInTenant';
-import MoveInApplicant from '../Applicants/MoveInApplicant';
+import { RentRoll } from './RentRoll';
+import { RentRollSummary } from './RentRollSummary';
+import DepositsTotalsTable from './DepositsTotalTable';
+import DepositsList from './DepositsList';
+import RentsTotalsList from './DepositsTotalList';
 
 
-export default function NewTenantDialog() {
+export default function RentRollDialog() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,14 +28,14 @@ export default function NewTenantDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Move In Tenant
+       View Rent Roll
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Enter Tenant Information</DialogTitle>
+        <DialogTitle>Rent Information</DialogTitle>
         <DialogContent>
-        <MoveInApplicant />
-        or start new tenant info
-        <Tenant />
+            <RentRollSummary />
+            <DepositsList />
+            <RentsTotalsList/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

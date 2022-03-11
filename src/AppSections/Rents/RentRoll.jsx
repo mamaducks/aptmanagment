@@ -43,10 +43,11 @@ export function RentRoll() {
   <TableHead>
     <TableRow>
       <TableCell>site</TableCell>
-      <TableCell align="right">total paid</TableCell>
+      <TableCell align="right">total rent paid</TableCell>
+      <TableCell align="right">total deposits</TableCell>
       <TableCell align="right">total credit</TableCell>
       <TableCell align="right">total delinquent</TableCell>
-      <TableCell align="right">total summary</TableCell>
+      {/* <TableCell align="right">total summary</TableCell> */}
     </TableRow>
   </TableHead>
   <TableBody>
@@ -59,9 +60,10 @@ export function RentRoll() {
           site name
         </TableCell>
         <TableCell align="right">paid $</TableCell>
+        <TableCell align="right">deposits $</TableCell>
         <TableCell align="right">credit $</TableCell>
         <TableCell align="right">delinquent $</TableCell>
-        <TableCell align="right">summary $</TableCell>
+        {/* <TableCell align="right">summary $</TableCell> */}
       </TableRow>
  
   </TableBody>

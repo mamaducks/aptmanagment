@@ -1,13 +1,16 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
-import { EditableWorkOrder } from "./EditableWorkOrderForm";
+import { EditTenant } from './EditTenant';
 
-export default function OrderTableEditDialog() {
+
+export default function EditTenantDialog() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -21,13 +24,12 @@ export default function OrderTableEditDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Edit Work Order
+       Edit Tenant
       </Button>
-
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Work Orders clicked from table list has autofilled info</DialogTitle>
+        <DialogTitle>Tenant Information</DialogTitle>
         <DialogContent>
-          <EditableWorkOrder />
+        <EditTenant />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

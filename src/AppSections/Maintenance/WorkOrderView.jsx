@@ -6,6 +6,8 @@ export function WorkOrderView() {
     <>
       <div>Work order view</div>
       <div>use date or site to search maybe order # too</div>
+      <div>checkboxes maybe in workorders choose to print click print takes to preview</div>
+
       <Paper sx={{ p: "30px" }}>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>

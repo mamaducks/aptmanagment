@@ -28,23 +28,24 @@ export const GLCodes = () => {
 export function Maintenence() {
   return (
     <>
-      <div>header: Maintenance</div>
-      <div>display WorkOrdersTable</div>
-      <div>edit work order</div>
+      
       <div>
-        print work order send work order multiple recipient cancel work order
+        print work order/ print bill list? send work order multiple recipient cancel work order
       </div>
-      <div>work order employee id parts cost site/and if unit date</div>
+      
       <VariantButtonGroup />
+
+      <div>can see work order by employee id ?  site ?</div>
       <div>
         parts list
         <AllParts />
       </div>
+      <div>display WorkOrdersTable</div>
       <div>Work Order Table</div>
       clickable rows take to workorder view
       <WorkOrderTable />
       <SiteWorkOrderTable />
-      edit work order user that edits cost and parts / maintenance employee id
+      <br/>
       <div>
         view bills by contractor/company, category sort by newest or oldest{" "}
       </div>

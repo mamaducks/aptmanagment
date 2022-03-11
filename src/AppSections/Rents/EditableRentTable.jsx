@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TenantInfoDialog from "./TenantInfoDialog";
+import { Rent } from './RentSheet';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -20,18 +20,19 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TenantTable() {
+export default function EditRentsTable() {
   return (
-    <>
+      <>
+      make a list instead of table?
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>tenant name</TableCell>
-            <TableCell align="right">move in</TableCell>
-            <TableCell align="right">lease date</TableCell>
-            <TableCell align="right">renewal date</TableCell>
-            <TableCell align="right">view tenant info</TableCell>
+            <TableCell>unit #</TableCell>
+
+            <TableCell align="right">last name</TableCell>
+            <TableCell align="right"> Amount Due</TableCell>
+            <TableCell align="right">Amount Paid</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,19 +42,17 @@ export default function TenantTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              tenant name
+                unit #
               </TableCell>
-              <TableCell align="right">move in date</TableCell>
-              <TableCell align="right">lease date</TableCell>
-              <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right">view tenant info</TableCell>
+              <TableCell align="right">lastname</TableCell>
+              <TableCell align="right">editable Amount Due</TableCell>
+              <TableCell align="right">editable Amount Paid</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    clickable from tenant info table
-    <TenantInfoDialog />
+    <Rent />
     </>
   );
 }

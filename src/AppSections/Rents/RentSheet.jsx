@@ -66,17 +66,8 @@ import {
   
     return (
       <Paper sx={{ p: "30px" }}>
-        <div>user employee id</div>
-        <div>current month</div>
-        <div>by site</div>
-        <div>table that is editable</div>
-        <div>unit</div>
-
-          <div>tenant id autofilled</div>
-          <div>amount due</div>
-          <div>amount paid</div>
-          <div>credit/delinquency auto filled</div>
-          <div>vacant</div>
+       
+       
 
         
           

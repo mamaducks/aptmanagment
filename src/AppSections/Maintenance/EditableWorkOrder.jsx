@@ -16,6 +16,7 @@ export function EditableWorkOrderList() {
       row to work order edit (newrequest) or one with parts/hours editable
       showing and have newrequest without parts/hours showing can have completed
       checkbox at bottom under parts hours?
+      edit work order user that edits cost and parts / maintenance employee id
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>

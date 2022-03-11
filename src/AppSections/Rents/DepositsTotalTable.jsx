@@ -6,7 +6,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TenantInfoDialog from "./TenantInfoDialog";
+import { Rents } from './Rents';
+import RentsTotalsList from './DepositsTotalList';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -20,18 +21,19 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TenantTable() {
+export default function DepositsTotalsTable() {
   return (
-    <>
+      <>
+      site
+      month
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>tenant name</TableCell>
-            <TableCell align="right">move in</TableCell>
-            <TableCell align="right">lease date</TableCell>
-            <TableCell align="right">renewal date</TableCell>
-            <TableCell align="right">view tenant info</TableCell>
+            <TableCell>date</TableCell>
+
+            <TableCell align="right">amount of deposit</TableCell>
+            {/* <TableCell align="right"> amount</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,19 +43,22 @@ export default function TenantTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              tenant name
+                date
               </TableCell>
-              <TableCell align="right">move in date</TableCell>
-              <TableCell align="right">lease date</TableCell>
-              <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right">view tenant info</TableCell>
+              <TableCell align="right">$$$</TableCell>
+              {/* <TableCell align="right">$$$</TableCell> */}
             </TableRow>
           ))}
+         
         </TableBody>
       </Table>
+      <RentsTotalsList />
     </TableContainer>
-    clickable from tenant info table
-    <TenantInfoDialog />
+
+    
+    <div>total amount deposits month to date</div>
+    <div>total rents entered month to date</div>
+    show red if different?
     </>
   );
 }

@@ -133,7 +133,7 @@ export function Employee() {
         <div>maintenance manager - bills all work orders stuff</div>
         <div>
           office manager - rent stuff bills stuff, applicant?, tenant move in
-          stuff, maybe work order stuff
+          stuff, add work order stuff
         </div>
         <div>
           site manager - rent stuff based on site choices, bills stuff?

@@ -9,9 +9,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
 import { Tenant } from './MoveInTenant';
 import MoveInApplicant from '../Applicants/MoveInApplicant';
+import { UpdateTenant } from './TenantUpdates';
 
 
-export default function NewTenantDialog() {
+export default function UpdateTenantDialog() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,14 +26,12 @@ export default function NewTenantDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Move In Tenant
+       Update Tenant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Enter Tenant Information</DialogTitle>
+        <DialogTitle> Tenant Information</DialogTitle>
         <DialogContent>
-        <MoveInApplicant />
-        or start new tenant info
-        <Tenant />
+       <UpdateTenant />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

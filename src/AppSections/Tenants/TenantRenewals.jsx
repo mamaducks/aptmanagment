@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TenantInfoDialog from "./TenantInfoDialog";
+import UpdateTenantDialog from './UpdateTenantDialog';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -20,7 +20,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TenantTable() {
+export default function RenewTable() {
   return (
     <>
     <TableContainer component={Paper}>
@@ -28,10 +28,8 @@ export default function TenantTable() {
         <TableHead>
           <TableRow>
             <TableCell>tenant name</TableCell>
-            <TableCell align="right">move in</TableCell>
-            <TableCell align="right">lease date</TableCell>
             <TableCell align="right">renewal date</TableCell>
-            <TableCell align="right">view tenant info</TableCell>
+            <TableCell align="right">update tenant</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,17 +41,15 @@ export default function TenantTable() {
               <TableCell component="th" scope="row">
               tenant name
               </TableCell>
-              <TableCell align="right">move in date</TableCell>
-              <TableCell align="right">lease date</TableCell>
               <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right">view tenant info</TableCell>
+              <TableCell align="right">update</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    clickable from tenant info table
-    <TenantInfoDialog />
+    clickable from tenant renewing table
+<UpdateTenantDialog />
     </>
   );
 }

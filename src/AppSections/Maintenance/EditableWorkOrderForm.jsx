@@ -1,4 +1,3 @@
-import { TodoList } from "../../../App/Todo/ToDo";
 import {
   RecoilRoot,
   atom,
@@ -6,7 +5,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { workOrderState } from "../../../data/workOrderAtoms";
+import { workOrderState } from "../../data/workOrderAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -17,8 +16,8 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { Parts } from "./Parts";
-import { WorkOrderHours } from "./WorkOrderHours";
+import { Parts } from "./NewWorkOrder/Parts";
+import { WorkOrderHours } from "./NewWorkOrder/WorkOrderHours";
 
 export function EditableWorkOrder() {
   const [todoList, setTodoList] = useRecoilState(workOrderState);

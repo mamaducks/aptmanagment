@@ -2,6 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import EnterRentsDialog from './EnterRentsDialog';
+import { RentRoll } from './RentRoll';
+import RentRollDialog from './RentRollDialog';
 
 export default function VariantButtonGroup() {
     return (
@@ -16,10 +19,10 @@ export default function VariantButtonGroup() {
         }}
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>enter rents</Button>
-          <Button>view rent roll</Button>
-          <Button>upload deposit slips</Button>
-          <Button>view deposit slips</Button>
+          <EnterRentsDialog />
+          <RentRollDialog />
+          
+          <Button>upload deposit slips ?</Button>
         </ButtonGroup>
       
       </Box>
