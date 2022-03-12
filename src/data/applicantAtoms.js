@@ -4,16 +4,19 @@ import { localStorageEffect } from "./localStorage";
 export const PENDING = "pending";
 export const ACCEPTED = "accepted";
 export const REJECTED = "rejected";
+export const WITHDRAWL = "withdrawl";
+
+
 
 export const applicantListState = atom({
   key: "applicantListState",
-  default: {
+  default: [{
     id: "1",
     dateApplied: "3/3/22",
     name: "dave smith",
     phone: "856-777-0098",
     familySize: "3",
-  },
+  }],
   effects_UNSTABLE: [localStorageEffect("applicantList", [])],
 });
 
@@ -35,6 +38,8 @@ export const filteredApplicantListState = selector({
         return list.filter((item) => item.isAccepted);
       case "Show Rejected":
         return list.filter((item) => !item.isRejected);
+        case "Show Withdrawl":
+          return list.filter((item) => !item.isWithdrawl);
       default:
         return list;
     }

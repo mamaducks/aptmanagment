@@ -1,8 +1,9 @@
-import { atom, selector, selectorFamily } from "recoil";
+import { selector, selectorFamily } from "recoil";
+import { app } from "./app";
 
-export const getAllSitesInfo = atom({
+export const getAllSitesInfo = selector({
   key: "getAllSitesInfo",
-  default: [],
+  get: ({ get }) => get(app).sites,
 });
 
 export const getSiteInfo = selectorFamily({

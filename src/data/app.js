@@ -5,4 +5,3 @@ export const app = atom({
   key: "app",
   default: data,
 });
-
