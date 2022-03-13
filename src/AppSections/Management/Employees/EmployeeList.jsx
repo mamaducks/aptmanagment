@@ -61,7 +61,10 @@ export function Employee() {
   );
 
   const addEmployee = useCallback(() => {
-    setEmployee((employees) => [...employees, item]);
+    setEmployee((employees) => [
+      ...employees,
+      { ...item, employeeId: employees.length + 1 },
+    ]);
   }, [item, setEmployee]);
 
   return (
@@ -100,33 +103,37 @@ export function Employee() {
       <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl margin="dense">
           <FormLabel id="employeeType">Employment Type</FormLabel>
-          <RadioGroup
+          <FormGroup
             row
             defaultValue=""
             {...addProps({ name: "employeeType", label: "employeeType" })}
           >
             <FormControlLabel
               value="maintenance"
-              control={<Radio />}
+              control={<Checkbox />}
               label="Maintenance"
             />
             <FormControlLabel
               value="siteManager"
-              control={<Radio />}
+              control={<Checkbox />}
               label="site manager"
             />
             <FormControlLabel
               value="maintenanceSupervisor"
-              control={<Radio />}
+              control={<Checkbox />}
               label="maintenance supervisor"
             />
             <FormControlLabel
               value="officeManager"
-              control={<Radio />}
+              control={<Checkbox />}
               label="office manager"
             />
-            <FormControlLabel value="admin" control={<Radio />} label="admin" />
-          </RadioGroup>
+            <FormControlLabel
+              value="admin"
+              control={<Checkbox />}
+              label="admin"
+            />
+          </FormGroup>
         </FormControl>
         <div>do permissions based on employment types</div>
         <div>

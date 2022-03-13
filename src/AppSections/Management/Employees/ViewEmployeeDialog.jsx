@@ -12,12 +12,10 @@ import { EmployeeSheet } from "./EmployeeSheet";
 
 import { getEmployeeInfo } from "../../../data/employeesAtoms";
 import { EditEmployee } from "./EditEmployee";
-
+import EmployeeSheetNew from "./EmployeeSheetNew";
+import { Box, Divider } from "@mui/material";
 
 export function ViewEmployeeDialog({ employeeId }) {
-
-
-
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -30,14 +28,15 @@ export function ViewEmployeeDialog({ employeeId }) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         View Employee
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Employee</DialogTitle>
+        <EmployeeSheetNew employeeId={employeeId} />
+        <Divider variant="middle" />
+        <EditEmployee employeeId={employeeId} />
 
-       <EmployeeSheet  employeeId={employeeId}/>
-       <EditEmployee employeeId={employeeId} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>

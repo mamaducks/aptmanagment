@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -11,6 +12,7 @@ import {
   RadioGroup,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import {
   RecoilRoot,
@@ -73,9 +75,14 @@ export function EditEmployee({ employeeId }) {
   }, [item, index, setEmployees]);
 
   return (
-    <Paper sx={{ p: "30px" }}>
+    // <Paper sx={{ p: "30px" }}>
+    <Box sx={{ px: "30px", py: "5px" }}>
+      <Typography variant="h5" textAlign="center">
+        Edit Current Employee
+      </Typography>
       <Box sx={{ width: "500px" }}>
         <TextField
+          margin="dense"
           fullWidth
           {...addProps({ name: "dateHired", label: "Date Hired" })}
         />
@@ -86,14 +93,14 @@ export function EditEmployee({ employeeId }) {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "firstName", label: "Name" })}
+            {...addProps({ name: "firstName", label: "First Name" })}
           />
         </Box>
         <Box sx={{ width: "850px" }}>
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "lastName", label: "lastName" })}
+            {...addProps({ name: "lastName", label: "Last Name" })}
           />
         </Box>
 
@@ -110,56 +117,55 @@ export function EditEmployee({ employeeId }) {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "endDate", label: "End Date" })}
+            {...addProps({ name: "rate", label: "Rate" })}
           />
         </Box>
         <Box sx={{ width: "850px" }}>
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "rate", label: "rate" })}
-          />
-        </Box>
-
-        <Box sx={{ width: "500px" }}>
-          <TextField
-            fullWidth
-            margin="normal"
-            {...addProps({ name: "phone", label: "Phone", type: "number" })}
+            {...addProps({ name: "endDate", label: "End Date" })}
           />
         </Box>
       </Stack>
 
-      <Stack sx={{ border: "1px solid black", p: 1 }}>
+      <Stack sx={{ border: "1px solid black", mt: 2 }}>
         <FormControl margin="dense">
-          <FormLabel id="employeeType">Employment Type</FormLabel>
-          <RadioGroup
+          <Typography variant="h6" textAlign="center">
+            Employment Type
+          </Typography>
+          <FormGroup
+            sx={{ justifyContent: "center" }}
             row
             defaultValue=""
             {...addProps({ name: "employeeType", label: "employeeType" })}
           >
             <FormControlLabel
               value="maintenance"
-              control={<Radio />}
+              control={<Checkbox />}
               label="Maintenance"
             />
             <FormControlLabel
               value="siteManager"
-              control={<Radio />}
+              control={<Checkbox />}
               label="site manager"
             />
             <FormControlLabel
               value="maintenanceSupervisor"
-              control={<Radio />}
+              control={<Checkbox />}
               label="maintenance supervisor"
             />
             <FormControlLabel
               value="officeManager"
-              control={<Radio />}
+              control={<Checkbox />}
               label="office manager"
             />
-            <FormControlLabel value="admin" control={<Radio />} label="admin" />
-          </RadioGroup>
+            <FormControlLabel
+              value="admin"
+              control={<Checkbox />}
+              label="admin"
+            />
+          </FormGroup>
         </FormControl>
         <div>do permissions based on employment types</div>
         <div>
@@ -182,8 +188,11 @@ export function EditEmployee({ employeeId }) {
         <div>checkboxes for sites managing</div>
         <div>maintenance supervisor - all work order stuff</div>
       </Stack>
-
-      <button onClick={updateEmployee}>Add</button>
-    </Paper>
+      <Box display="flex" justifyContent="center" pt={1}>
+        <Button size="large" variant="contained" onClick={updateEmployee}>
+          Update Employee
+        </Button>
+      </Box>
+    </Box>
   );
 }

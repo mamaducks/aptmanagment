@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 
 import { getEmployeeInfo } from "../../../data/employeesAtoms";
 import EditEmployeeDialog from "./EditEmployeeDialog";
+import { EditEmployee } from "./EditEmployee";
 
 export function EmployeeSheet({ employeeId }) {
   const employee = useRecoilValue(getEmployeeInfo(employeeId));
@@ -39,6 +40,9 @@ export function EmployeeSheet({ employeeId }) {
           </Box>
         </Stack>
         <Box sx={{ width: "500px" }}>
+            <Typography>{employee.employeeType}</Typography>
+          </Box>
+        <Box sx={{ width: "500px" }}>
           <Typography>lease date</Typography>
         </Box>
         <Box sx={{ width: "500px" }}>
@@ -60,7 +64,7 @@ export function EmployeeSheet({ employeeId }) {
             <Typography>table of rents stuff info</Typography>
           </Box>
         </Stack>
-        <EditEmployeeDialog employeeId={employeeId} />
+        <EditEmployee employeeId={employeeId} />
 
         <div>print</div>
         <br />
