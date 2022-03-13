@@ -65,15 +65,15 @@ export function Bill() {
         name,
         type,
         onChange: setFieldValue,
-        value: bill[name],
+        value: newBill[name],
       };
     },
-    [bill]
+    [newBill]
   );
 
-  const addOrder = useCallback(() => {
-    setBill((bills) => [...bills, bill]);
-  }, [bill, setBill]);
+  const addBill = useCallback(() => {
+    setBill((bills) => [...bills, newBill]);
+  }, [newBill, setBill]);
 
   return (
     <>
@@ -97,12 +97,18 @@ export function Bill() {
           </Box>
 
           <FormControl>
-            <FormLabel id="status">Site</FormLabel>
+            <FormLabel id="site">Site</FormLabel>
             <div>date</div>
             <div>
               type of bill category , subcategory if there flooring painting
               appliances snow lawn vehicle trash electric phones internet
               contractors
+
+              <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "category", label: "Category" })}
+          />
             </div>
           </FormControl>
         </Stack>
@@ -182,7 +188,7 @@ export function Bill() {
 
   </Stack> */}
 
-        <button onClick={addOrder}>Add</button>
+        <button onClick={addBill}>Add</button>
         <button>print</button>
 
         <div>

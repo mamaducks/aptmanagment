@@ -4,7 +4,7 @@ const routes = {
   maintenance: { link: "/Maintenance", label: "Maintenance" },
   tenants: { link: "/Tenants", label: "Tenants" },
   applicants: { link: "/Applicants", label: "Applicants", icon: "" },
-  rents: { link: "/Rents", label: "Rents" },
+  rents: { link: "/Rents/:siteId", label: "Rents" },
   management: { link: "/Management", label: "Management" },
 };
 

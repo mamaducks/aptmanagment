@@ -10,7 +10,7 @@ import {
 
 import NavTabs from "./App/LinkTabs";
 import { Router } from "./Router";
-import { AllEmployees, CurrentUserInfo } from "./data/employeeAtoms";
+import { AllEmployees, CurrentUserInfo } from "./data/userAtoms";
 
 
 function App() {

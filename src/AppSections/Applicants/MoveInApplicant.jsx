@@ -6,7 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import { useRecoilValue } from "recoil";
+import { applicantListState } from "../../data/applicantAtoms";
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -20,6 +21,8 @@ import Paper from "@mui/material/Paper";
 // ];
 
 export default function MoveInApplicant() {
+  const applicantList = useRecoilValue(applicantListState);
+
   return (
     <>
       <div>search for applicant by name</div>
@@ -30,21 +33,21 @@ export default function MoveInApplicant() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-           =
               <TableCell align="right">Name</TableCell>
 
               <TableCell align="right">Phone #</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              key="key"
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-            
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Phone #</TableCell>
-            </TableRow>
+            {applicantList.map(({ dateApplied, name, phone }) => (
+              <TableRow
+                key="key"
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="right">{name}</TableCell>
+                <TableCell align="right">{phone}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

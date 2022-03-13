@@ -6,7 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import { useRecoilValue } from "recoil";
+import { applicantListState } from "../../data/applicantAtoms";
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -20,6 +21,8 @@ import Paper from "@mui/material/Paper";
 // ];
 
 export default function WaitingListTable() {
+  const applicantList = useRecoilValue(applicantListState);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -66,6 +69,30 @@ export default function WaitingListTable() {
             <TableCell align="right">Lease Date</TableCell>
             <TableCell align="right">Removal Date</TableCell>
           </TableRow>
+          {applicantList.map(({index, dateApplied, name, phone, status, gender, race, familySize, beds, incomeLevel, rentalAssistance }) => (
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {status}
+              </TableCell>
+              <TableCell align="right">{dateApplied}</TableCell>
+              <TableCell align="right">Time</TableCell>
+              <TableCell align="right">{name}</TableCell>
+              <TableCell align="right">{phone}</TableCell>
+              <TableCell align="right">{race}</TableCell>
+              <TableCell align="right">{familySize}</TableCell>
+              <TableCell align="right">{gender}</TableCell>
+              <TableCell align="right">D/P yes no</TableCell>
+              <TableCell align="right">{incomeLevel}</TableCell>
+              <TableCell align="right">{beds}</TableCell>
+              <TableCell align="right">{rentalAssistance}</TableCell>
+              <TableCell align="right">Occupancy Cont Date??</TableCell>
+              <TableCell align="right">Lease Date</TableCell>
+              <TableCell align="right">Removal Date</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

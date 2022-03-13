@@ -8,7 +8,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useParams} from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { getSiteInfo } from '../../data/siteAtoms';
+import { getAllSitesInfo } from '../../data/siteAtoms';
+import { app } from '../../data/app';
+
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -24,9 +26,7 @@ import { getSiteInfo } from '../../data/siteAtoms';
 // ];
 
 export default function SitesTable() {
-  // const { siteId } = useParams();
-  // const site = useRecoilValue(getSiteInfo(siteId));
-  
+  const sites = useRecoilValue(getAllSitesInfo);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -39,14 +39,14 @@ export default function SitesTable() {
             <TableCell align="right">More</TableCell>
           </TableRow>
         </TableHead>
-        {/* {site.map((item) => ( */}
+        {sites.map(({siteId, site}) => (
           <TableBody>
             <TableRow
-              key="key"
+              key={siteId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              site name
+              {site}
               </TableCell>
               <TableCell align="right"># units</TableCell>
               <TableCell align="right">current # vacant</TableCell>
@@ -54,7 +54,7 @@ export default function SitesTable() {
               <TableCell align="right">view More (UnitTable)</TableCell>
             </TableRow>
         </TableBody>
-        {/* ))} */}
+       ))} 
         
       </Table>
     </TableContainer>

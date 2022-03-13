@@ -22,13 +22,15 @@ import {
 import { applicantListState } from "../../data/applicantAtoms";
 import { useCallback, useState } from "react";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
+import { getAllSitesInfo } from "../../data/siteAtoms";
 
 export function Applicant() {
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
+  const sites = useRecoilValue(getAllSitesInfo);
   //const index = applicantList.findIndex((listItem) => listItem === item);
   const [item, setItem] = useState({});
 
-  console.log("item", applicantList, item);
+  console.log("item",  );
 
   // const toggleItemStatus = () => {
   //   const newList = replaceItemAtIndex(applicantList, index, {
@@ -185,7 +187,7 @@ export function Applicant() {
 
             <RadioGroup
               row
-              defaultValue="1"
+              defaultValue=""
               {...addProps({ name: "beds", label: "Beds" })}
             >
               <FormControlLabel value="1" control={<Radio />} label="1 bed" />
@@ -200,7 +202,7 @@ export function Applicant() {
           <RadioGroup
             row
             defaultValue=""
-            {...addProps({ name: "familySize", label: "Family Size" })}
+            {...addProps({ name: "incomeLevel", label: "Family Size" })}
           >
             <FormControlLabel value="veryLow" control={<Radio />} label="VL" />
             <FormControlLabel value="Low" control={<Radio />} label="L" />
@@ -216,7 +218,7 @@ export function Applicant() {
       <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl>
           <FormLabel id="prefer">Preferences</FormLabel>
-          <FormGroup row>
+          <FormGroup row  {...addProps({ name: "stories"})}>
             <FormControlLabel
               id="2floor"
               control={<Checkbox />}
@@ -251,20 +253,31 @@ export function Applicant() {
         <FormControl>
 
         <FormLabel id="sites">Sites Applying For</FormLabel>
+        {/* <SiteCheckboxes /> */}
+           <FormGroup row>
+{sites.map((item) => (
 
-        <SiteCheckboxes />
-        
-          <FormGroup row>
             <FormControlLabel
+            key={item.siteId}
               id="siteList"
-              control={<Checkbox />}
+              control={
+
+
+              <Checkbox 
+              type="checkbox"
+              name={item.site}
+              // onChange={handleStateChange}
+              />}
+              label= {item.site}
               {...addProps({
                 name: "siteList",
                 label: "SiteList",
               })}
             />
+            ))}  
             </FormGroup>
-
+         
+      
 
         </FormControl>
       </Stack>

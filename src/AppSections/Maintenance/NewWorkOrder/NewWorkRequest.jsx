@@ -6,7 +6,6 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { workOrderState } from "../../../data/workOrderAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -19,36 +18,14 @@ import {
 } from "@mui/material";
 import { Parts } from "./Parts";
 import { WorkOrderHours } from "./WorkOrderHours";
+import { workOrderState } from "../../../data/workOrderAtoms";
 
 export function NewRequest() {
-  const [todoList, setTodoList] = useRecoilState(workOrderState);
+  const [workOrder, setWorkOrder] = useRecoilState(workOrderState);
+
   const [order, setOrder] = useState({});
 
-  // const index = todoList.findIndex((listItem) => listItem === item);
 
-  // const editItemText = ({target: {value}}) => {
-  //   const newList = replaceItemAtIndex(todoList, index, {
-  //     ...item,
-  //     text: value,
-  //   });
-
-  //   setTodoList(newList);
-  // };
-
-  // const toggleItemCompletion = () => {
-  //   const newList = replaceItemAtIndex(todoList, index, {
-  //     ...item,
-  //     isComplete: !item.isComplete,
-  //   });
-
-  //   setTodoList(newList);
-  // };
-
-  // const deleteItem = () => {
-  //   const newList = removeItemAtIndex(todoList, index);
-
-  //   setTodoList(newList);
-  // };
 
   const addProps = useCallback(
     ({ name, label, type = "text" }) => {
@@ -67,8 +44,8 @@ export function NewRequest() {
   );
 
   const addOrder = useCallback(() => {
-    setTodoList((orders) => [...orders, order]);
-  }, [order, setTodoList]);
+    setWorkOrder((orders) => [...orders, order]);
+  }, [order, setWorkOrder]);
 
   return (
     <>

@@ -14,8 +14,19 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { getAllBillsInfo } from "../../data/billAtoms";
+
 
 export function BillTable() {
+  const billList = useRecoilValue(getAllBillsInfo);
+
   return (
     <div>
       <div>month or year to date on maintenance page</div>
@@ -28,26 +39,28 @@ export function BillTable() {
           <TableHead>
             <TableRow>
               <TableCell>category</TableCell>
-              <TableCell align="right">paid to</TableCell>
+              <TableCell align="right">Paid to</TableCell>
               <TableCell align="right">amount paid</TableCell>
 
               <TableCell align="right">date</TableCell>
-              <TableCell align="right">total</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
+          {billList.map(({ category, recipient, amountPaid, datePaid, index }) => (
+
             <TableRow
-              key="key"
+              key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                category
+                {category}
               </TableCell>
-              <TableCell align="right">company or contractor name</TableCell>
-              <TableCell align="right">$ amt paid</TableCell>
-              <TableCell align="right">date</TableCell>
+              <TableCell align="right">{recipient}</TableCell>
+              <TableCell align="right">{amountPaid}</TableCell>
+              <TableCell align="right">{datePaid}</TableCell>
               {/* <TableCell align="right">total to date?</TableCell> */}
             </TableRow>
+          ))}
           </TableBody>
         </Table>
       </TableContainer>

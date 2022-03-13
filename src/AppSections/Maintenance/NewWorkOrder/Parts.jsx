@@ -79,7 +79,7 @@ export function Parts() {
         <TextField
           fullWidth
           margin="normal"
-          {...addProps({ name: "price", label: "Price" })}
+          {...addProps({ name: "partPrice", label: "Price" })}
         />
       </Box>
 

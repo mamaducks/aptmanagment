@@ -16,19 +16,28 @@ import {
   RecoilRoot,
   atom,
   selector,
+  useSetRecoilState,
   useRecoilState,
   useRecoilValue,
 } from "recoil";
 import { allEmployees } from "../../../data/employeesAtoms";
 import { useCallback, useState } from "react";
+import { getEmployeeInfo } from "../../../data/employeesAtoms";
 
-export function Employee() {
-  const [employee, setEmployee] = useRecoilState(allEmployees);
-  //const index = applicantList.findIndex((listItem) => listItem === item);
-  const [item, setItem] = useState({});
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
 
-  console.log("item", item);
+export function EditEmployee({ employeeId }) {
+  const [employees, setEmployees] = useRecoilState(allEmployees);
 
+  const oldEmployee = useRecoilValue(getEmployeeInfo(employeeId));
+  const index = employees.findIndex(
+    (listItem) => listItem.employeeId === employeeId
+  );
+  const [item, setItem] = useState(oldEmployee || {});
+
+  console.log("item", employees, item);
   // const toggleItemStatus = () => {
   //   const newList = replaceItemAtIndex(applicantList, index, {
   //     ...item,
@@ -43,7 +52,6 @@ export function Employee() {
 
   //   setApplicantList(newList);
   // };
-
   const addProps = useCallback(
     ({ name, label, type = "text" }) => {
       const setFieldValue = ({ target: { name, value } }) =>
@@ -60,9 +68,9 @@ export function Employee() {
     [item]
   );
 
-  const addEmployee = useCallback(() => {
-    setEmployee((employees) => [...employees, item]);
-  }, [item, setEmployee]);
+  const updateEmployee = useCallback(() => {
+    setEmployees((current) => replaceItemAtIndex(current, index, item));
+  }, [item, index, setEmployees]);
 
   return (
     <Paper sx={{ p: "30px" }}>
@@ -85,9 +93,34 @@ export function Employee() {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "lastName", label: "Name" })}
+            {...addProps({ name: "lastName", label: "lastName" })}
           />
         </Box>
+
+        <Box sx={{ width: "500px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "phone", label: "Phone" })}
+          />
+        </Box>
+      </Stack>
+      <Stack direction="row" gap={4}>
+        <Box sx={{ width: "850px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "endDate", label: "End Date" })}
+          />
+        </Box>
+        <Box sx={{ width: "850px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "rate", label: "rate" })}
+          />
+        </Box>
+
         <Box sx={{ width: "500px" }}>
           <TextField
             fullWidth
@@ -150,7 +183,7 @@ export function Employee() {
         <div>maintenance supervisor - all work order stuff</div>
       </Stack>
 
-      <button onClick={addEmployee}>Add</button>
+      <button onClick={updateEmployee}>Add</button>
     </Paper>
   );
 }

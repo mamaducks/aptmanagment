@@ -7,8 +7,23 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import OrderTableEditDialog from "./OrderTableEditDialog";
+import { workOrderState } from "../../data/workOrderAtoms";
+import {getAllHours} from "../../data/workOrderHoursAtoms";
+import {getAllParts} from "../../data/partsAtom";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+
 
 export function EditableWorkOrderList() {
+  const workOrderList = useRecoilValue(workOrderState);
+  const hours = useRecoilValue(getAllHours);
+  const partPrice = useRecoilValue(getAllParts);
+
   return (
     <>
       <div>Maintenance Work Orders Table</div>
@@ -32,20 +47,22 @@ export function EditableWorkOrderList() {
             </TableRow>
           </TableHead>
           <TableBody>
+          {workOrderList.map(({site, }) => (
             <TableRow
               key="key"
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                site name
+              {site}
               </TableCell>
               <TableCell align="right"># of order</TableCell>
-              <TableCell align="right">total hrs $</TableCell>
-              <TableCell align="right"> total partd $</TableCell>
-              <TableCell align="right">total</TableCell>
+              <TableCell align="right">{hours}</TableCell>
+              <TableCell align="right"> {partPrice}</TableCell>
+              <TableCell align="right">totalpartsandhours$</TableCell>
               <TableCell align="right">Current / Finished</TableCell>
               <TableCell align="right"> view order</TableCell>
             </TableRow>
+             ))}
           </TableBody>
         </Table>
       </TableContainer>
