@@ -27,11 +27,11 @@ export default function TenantTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>tenant name</TableCell>
-            <TableCell align="right">move in</TableCell>
-            <TableCell align="right">lease date</TableCell>
-            <TableCell align="right">renewal date</TableCell>
-            <TableCell align="right">view tenant info</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>tenant name</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>move in</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>lease date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>renewal date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>view tenant info</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

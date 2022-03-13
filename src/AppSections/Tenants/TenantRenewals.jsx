@@ -24,12 +24,12 @@ export default function RenewTable() {
   return (
     <>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>tenant name</TableCell>
-            <TableCell align="right">renewal date</TableCell>
-            <TableCell align="right">update tenant</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>tenant name</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>renewal date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>update tenant</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

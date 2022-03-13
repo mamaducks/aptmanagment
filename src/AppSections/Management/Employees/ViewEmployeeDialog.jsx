@@ -8,8 +8,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
 
-import { EmployeeSheet } from "./EmployeeSheet";
-
 import { getEmployeeInfo } from "../../../data/employeesAtoms";
 import { EditEmployee } from "./EditEmployee";
 import EmployeeSheetNew from "./EmployeeSheetNew";
@@ -32,14 +30,15 @@ export function ViewEmployeeDialog({ employeeId }) {
         View Employee
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Employee</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
         <EmployeeSheetNew employeeId={employeeId} />
         <Divider variant="middle" />
         <EditEmployee employeeId={employeeId} />
 
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

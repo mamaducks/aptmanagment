@@ -28,22 +28,22 @@ export default function WaitingListTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Status</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Time</TableCell>
-            <TableCell align="right">Name</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>Status</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>Date</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>Time</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Name</TableCell>
 
-            <TableCell align="right">Phone #</TableCell>
-            <TableCell align="right">Race</TableCell>
-            <TableCell align="right">Family Size</TableCell>
-            <TableCell align="right">M/F</TableCell>
-            <TableCell align="right">D/P</TableCell>
-            <TableCell align="right">Income Level</TableCell>
-            <TableCell align="right">Unit Size</TableCell>
-            <TableCell align="right">Rental Assistance</TableCell>
-            <TableCell align="right">Occupancy Cont Date??</TableCell>
-            <TableCell align="right">Lease Date</TableCell>
-            <TableCell align="right">Removal Date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Phone #</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Race</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Family Size</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>M/F</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>D/P</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Income Level</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Unit Size</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Rental Assistance</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Lease Date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Removal Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

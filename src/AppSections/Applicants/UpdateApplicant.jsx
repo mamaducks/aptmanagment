@@ -35,12 +35,12 @@ export default function UpdateApplicant() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>Status</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Time</TableCell>
-              <TableCell align="right">Name</TableCell>
+              <TableCell sx={{fontWeight: "bolder"}}>Status</TableCell>
+              <TableCell sx={{fontWeight: "bolder"}}>Date</TableCell>
+              <TableCell sx={{fontWeight: "bolder"}}>Time</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>Name</TableCell>
 
-              <TableCell align="right">Phone #</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>Phone #</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -148,22 +148,22 @@ export function EditEmployee({ employeeId }) {
             <FormControlLabel
               value="siteManager"
               control={<Checkbox />}
-              label="site manager"
+              label="Site Manager"
             />
             <FormControlLabel
               value="maintenanceSupervisor"
               control={<Checkbox />}
-              label="maintenance supervisor"
+              label="Maintenance Supervisor"
             />
             <FormControlLabel
               value="officeManager"
               control={<Checkbox />}
-              label="office manager"
+              label="Office Manager"
             />
             <FormControlLabel
               value="admin"
               control={<Checkbox />}
-              label="admin"
+              label="Admin"
             />
           </FormGroup>
         </FormControl>

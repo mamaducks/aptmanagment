@@ -34,12 +34,12 @@ export function SiteWorkOrderTable() {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>work order #</TableCell>
-                <TableCell align="right">hours billed</TableCell>
-                <TableCell align="right">parts total</TableCell>
-                <TableCell align="right">total billed</TableCell>
-                <TableCell align="right">Current or Finished</TableCell>
-                <TableCell align="right">view</TableCell>
+                <TableCell sx={{fontWeight: "bolder"}}>work order #</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>hours billed</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>parts total</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>total billed</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>Current or Finished</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>view</TableCell>
 
               </TableRow>
             </TableHead>

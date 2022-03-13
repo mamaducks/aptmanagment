@@ -38,9 +38,9 @@ export function BillTable() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>category</TableCell>
-              <TableCell align="right">Paid to</TableCell>
-              <TableCell align="right">amount paid</TableCell>
+              <TableCell sx={{fontWeight: "bolder"}}>category</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>Paid to</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>amount paid</TableCell>
 
               <TableCell align="right">date</TableCell>
             </TableRow>

@@ -17,10 +17,10 @@ export function EmployeeWorkHoursTable() {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>employee</TableCell>
-                <TableCell align="right">site</TableCell>
-                <TableCell align="right">hours billed</TableCell>
-                <TableCell align="right">view work orders by employee</TableCell>
+                <TableCell sx={{fontWeight: "bolder"}}>employee</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>site</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>hours billed</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>view work orders by employee</TableCell>
 
               </TableRow>
             </TableHead>

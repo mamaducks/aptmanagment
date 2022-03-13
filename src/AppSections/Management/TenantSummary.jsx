@@ -36,11 +36,11 @@ totals by site
 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
   <TableHead>
     <TableRow>
-      <TableCell>unit</TableCell>
-      <TableCell align="right">name</TableCell>
-      <TableCell align="right">move in date</TableCell>
-      <TableCell align="right">total credit/delinquent</TableCell>
-      <TableCell align="right">renew lease date</TableCell>
+      <TableCell sx={{fontWeight: "bolder"}}>unit</TableCell>
+      <TableCell align="right" sx={{fontWeight: "bolder"}}>name</TableCell>
+      <TableCell align="right" sx={{fontWeight: "bolder"}}>move in date</TableCell>
+      <TableCell align="right" sx={{fontWeight: "bolder"}}>total credit/delinquent</TableCell>
+      <TableCell align="right" sx={{fontWeight: "bolder"}}>renew lease date</TableCell>
     </TableRow>
   </TableHead>
   <TableBody>

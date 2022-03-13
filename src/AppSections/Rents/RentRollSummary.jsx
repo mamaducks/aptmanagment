@@ -16,16 +16,16 @@ export function RentRollSummary() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={2}>
+              <TableCell align="center" colSpan={2} sx={{fontWeight: "bolder"}}>
                 Unit Information
               </TableCell>
-              <TableCell align="center" colSpan={4}>
+              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
                 January
               </TableCell>
-              <TableCell align="center" colSpan={4}>
+              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
                 February
               </TableCell>
-              <TableCell align="center" colSpan={4}>
+              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
                 March
               </TableCell>
             </TableRow>

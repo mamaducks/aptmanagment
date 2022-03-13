@@ -36,10 +36,10 @@ export function RentRoll() {
           <TableHead>
             <TableRow>
               <TableCell>site</TableCell>
-              <TableCell align="right">total rent paid</TableCell>
-              <TableCell align="right">total deposits</TableCell>
-              <TableCell align="right">total credit</TableCell>
-              <TableCell align="right">total delinquent</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>total rent paid</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>total deposits</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>total credit</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>total delinquent</TableCell>
               {/* <TableCell align="right">total summary</TableCell> */}
             </TableRow>
           </TableHead>

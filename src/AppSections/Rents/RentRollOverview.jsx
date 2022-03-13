@@ -13,11 +13,11 @@ export function RentRollOverview() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>site</TableCell>
-            <TableCell align="right">total paid</TableCell>
-            <TableCell align="right">total credit</TableCell>
-            <TableCell align="right">total delinquent</TableCell>
-            <TableCell align="right">total summary</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>site</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>total paid</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>total credit</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>total delinquent</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>total summary</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

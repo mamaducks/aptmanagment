@@ -39,8 +39,8 @@ export default function EmployeeSheetNew({ employeeId }) {
           </ListSubheader>
         }
       >
-        <ListItem >
-          <ListItemText  id="fullName" primary="Employee Name" />
+        <ListItem>
+          <ListItemText id="fullName" primary="Employee Name" />
           <ListItemText
             id="name"
             primary={fullName}
@@ -62,7 +62,7 @@ export default function EmployeeSheetNew({ employeeId }) {
           <ListItemText id="startDate" primary="Start Date" />
           <ListItemText
             id="startDate"
-            primary={employee.startDate}
+            primary={employee.dateHired}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           />
         </ListItem>

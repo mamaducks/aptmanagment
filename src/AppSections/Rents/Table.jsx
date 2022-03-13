@@ -25,11 +25,11 @@ export default function RentsTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>apt #</TableCell>
-            <TableCell align="right">last name</TableCell>
-            <TableCell align="right">month</TableCell>
-            <TableCell align="right">month</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>apt #</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>last name</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>month</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>month</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

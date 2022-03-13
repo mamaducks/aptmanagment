@@ -29,12 +29,12 @@ export function BillSummary() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>flooring</TableCell>
-              <TableCell align="right">painting</TableCell>
-              <TableCell align="right">appliances</TableCell>
-              <TableCell align="right">snow</TableCell>
-              <TableCell align="right">lawn</TableCell>
-              <TableCell align="right">vehicle</TableCell>
+              <TableCell sx={{fontWeight: "bolder"}}>flooring</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>painting</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>appliances</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>snow</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>lawn</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>vehicle</TableCell>
               <TableCell>trash</TableCell>
             </TableRow>
           </TableHead>

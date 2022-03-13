@@ -30,9 +30,9 @@ export default function DepositsTotalsTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>date</TableCell>
+            <TableCell sx={{fontWeight: "bolder"}}>date</TableCell>
 
-            <TableCell align="right">amount of deposit</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>amount of deposit</TableCell>
             {/* <TableCell align="right"> amount</TableCell> */}
           </TableRow>
         </TableHead>

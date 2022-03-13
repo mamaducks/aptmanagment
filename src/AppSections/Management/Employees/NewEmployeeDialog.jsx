@@ -1,14 +1,13 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { Employee } from './EmployeeList';
-
+import { Employee } from "./EmployeeList";
 
 export default function NewEmployeeDialog() {
   const [open, setOpen] = useState(false);
@@ -23,13 +22,13 @@ export default function NewEmployeeDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-       Add New Employee
+      <Button variant="contained" onClick={handleClickOpen}>
+        Add New Employee
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Enter Employee Information</DialogTitle>
         <DialogContent>
-        <Employee />
+          <Employee />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

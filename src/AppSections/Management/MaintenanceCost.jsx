@@ -17,12 +17,12 @@ export function MaintenanceOrderCosts() {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>site</TableCell>
-                <TableCell align="right">supplies</TableCell>
-                <TableCell align="right">painting supplies</TableCell>
-                <TableCell align="right">snow supplies</TableCell>
-                <TableCell align="right">appliance supplies</TableCell>
-                <TableCell align="right">maintenance hours billed</TableCell>
+                <TableCell sx={{fontWeight: "bolder"}}>site</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>supplies</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>painting supplies</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>snow supplies</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>appliance supplies</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>maintenance hours billed</TableCell>
 
 
               </TableRow>
