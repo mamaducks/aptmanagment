@@ -24,7 +24,7 @@ export default function BillsDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
         View Bills
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

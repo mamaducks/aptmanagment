@@ -24,7 +24,7 @@ export default function NewTenantDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        Move In Tenant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

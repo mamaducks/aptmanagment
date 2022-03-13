@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -290,7 +291,7 @@ export function Applicant() {
       />
 
       <button onClick={deleteItem}>X</button> */}
-      <button onClick={addApplicate}>Add</button>
+      <Button size="large" variant="contained" onClick={addApplicate}>Add</Button>
     </Paper>
   );
 }

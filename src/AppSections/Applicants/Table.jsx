@@ -41,13 +41,13 @@ export default function WaitingListTable() {
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Income Level</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Unit Size</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Rental Assistance</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
+            {/* <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Lease Date</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Removal Date</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>Removal Date</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow
+          {/* <TableRow
             key="key"
             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
           >
@@ -55,20 +55,20 @@ export default function WaitingListTable() {
               Status pending reject approve
             </TableCell>
             <TableCell align="right">Date applied</TableCell>
-            <TableCell align="right">Time</TableCell>
+            <TableCell align="right" >Time</TableCell>
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Phone #</TableCell>
-            <TableCell align="right">Race code</TableCell>
+            <TableCell align="right" >Race code</TableCell>
             <TableCell align="right">Family Size #</TableCell>
             <TableCell align="right">M/F</TableCell>
             <TableCell align="right">D/P yes no</TableCell>
-            <TableCell align="right">Income Level code</TableCell>
+            <TableCell align="right" >Income Level code</TableCell>
             <TableCell align="right">Unit Size 1 2</TableCell>
-            <TableCell align="right">Rental Assistance yes no</TableCell>
-            <TableCell align="right">Occupancy Cont Date??</TableCell>
+            <TableCell align="right" >Rental Assistance yes no</TableCell>
+            {/* <TableCell align="right">Occupancy Cont Date??</TableCell>
             <TableCell align="right">Lease Date</TableCell>
-            <TableCell align="right">Removal Date</TableCell>
-          </TableRow>
+            <TableCell align="right">Removal Date</TableCell> 
+          </TableRow> */}
           {applicantList.map(({index, dateApplied, name, phone, status, gender, race, familySize, beds, incomeLevel, rentalAssistance }) => (
             <TableRow
               key={index}
@@ -88,9 +88,9 @@ export default function WaitingListTable() {
               <TableCell align="right">{incomeLevel}</TableCell>
               <TableCell align="right">{beds}</TableCell>
               <TableCell align="right">{rentalAssistance}</TableCell>
-              <TableCell align="right">Occupancy Cont Date??</TableCell>
+              {/* <TableCell align="right">Occupancy Cont Date??</TableCell>
               <TableCell align="right">Lease Date</TableCell>
-              <TableCell align="right">Removal Date</TableCell>
+              <TableCell align="right">Removal Date</TableCell> */}
             </TableRow>
           ))}
         </TableBody>

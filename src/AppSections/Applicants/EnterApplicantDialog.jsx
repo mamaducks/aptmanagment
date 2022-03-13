@@ -27,7 +27,7 @@ export default function NewApplicantDialog() {
        Add New Applicant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Enter Applicant Information</DialogTitle>
+        <DialogTitle sx={{textAlign: "center"}}>Enter Applicant Information</DialogTitle>
         <DialogContent>
         <Applicant />
         </DialogContent>

@@ -23,7 +23,7 @@ export default function NewWorkRequestDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        Add Work Order
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

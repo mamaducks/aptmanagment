@@ -24,7 +24,7 @@ export default function WorkOrdersDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        View Work Orders
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

@@ -20,7 +20,7 @@ export default function OrderTableEditDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
         Edit Work Order
       </Button>
 

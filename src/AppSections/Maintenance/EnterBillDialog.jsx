@@ -23,7 +23,7 @@ export default function AddBillDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        Enter New Bill
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

@@ -23,7 +23,7 @@ export default function EditTenantDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        Edit Tenant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

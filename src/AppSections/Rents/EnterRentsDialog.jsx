@@ -25,7 +25,7 @@ export default function EnterRentsDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        Enter Rents
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

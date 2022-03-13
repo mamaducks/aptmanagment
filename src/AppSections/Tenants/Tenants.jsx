@@ -1,11 +1,33 @@
-import VariantButtonGroup from "./ButtonGroup";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Box from "@mui/material/Box";
+import NewTenantDialog from "./MoveInDialog";
+import EditTenantDialog from "./EditTenantDialog";
+import SearchTenantDialog from "./SearchTenantDialog";
+
 import TenantTable from "./Table";
 import RenewTable from "./TenantRenewals";
 
 export function Tenants() {
   return (
     <>
-      <VariantButtonGroup />
+      <Box
+      sx={{
+        display: "flex",
+        // flexDirection: 'column',
+        justifyContent: "center",
+        "& > *": {
+          m: 1,
+        },
+      }}
+    >
+      {/* <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{gap: 3}}> */}
+      <NewTenantDialog />
+      <EditTenantDialog />
+      <SearchTenantDialog />
+      {/* </ButtonGroup> */}
+    </Box>
       <div>header: Tenants</div>
       By Site
       <TenantTable />

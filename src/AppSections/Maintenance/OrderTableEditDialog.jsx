@@ -22,7 +22,7 @@ export default function OrderTableEditDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
         Work Orders
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

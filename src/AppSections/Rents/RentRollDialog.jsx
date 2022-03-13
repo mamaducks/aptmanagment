@@ -27,7 +27,7 @@ export default function RentRollDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        View Rent Roll
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>

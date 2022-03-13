@@ -24,7 +24,7 @@ export default function SearchTenantDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  onClick={handleClickOpen}>
        View Tenant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
