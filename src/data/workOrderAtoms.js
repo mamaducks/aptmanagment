@@ -2,6 +2,7 @@ import {
     RecoilRoot,
     atom,
     selector,
+    selectorFamily,
     useRecoilState,
     useRecoilValue,
   } from 'recoil';
@@ -9,6 +10,15 @@ import {
   export const workOrderState = atom({
     key: 'workOrderState',
     default: [],
+  });
+
+  export const getWorkOrderInfo = selectorFamily({
+    key: "getWorkOrderInfo",
+    get:
+      (workOrderId) =>
+      ({ get }) => {
+        return get(workOrderState).find((item) => item.workOrderId === workOrderId);
+      },
   });
 
   export const workOrderFilterState = atom({

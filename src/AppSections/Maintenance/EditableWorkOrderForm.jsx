@@ -5,7 +5,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { workOrderState } from "../../data/workOrderAtoms";
+import { getWorkOrderInfo } from "../../data/workOrderAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -18,10 +18,17 @@ import {
 } from "@mui/material";
 import { Parts } from "./NewWorkOrder/Parts";
 import { WorkOrderHours } from "./NewWorkOrder/WorkOrderHours";
+import {workOrderState} from "../../data/workOrderAtoms"
 
-export function EditableWorkOrder() {
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+export function EditableWorkOrder({workOrderId}) {
   const [todoList, setTodoList] = useRecoilState(workOrderState);
   const [order, setOrder] = useState({});
+
+  const oldEmployee = useRecoilValue(getWorkOrderInfo(workOrderId));
 
   // const index = todoList.findIndex((listItem) => listItem === item);
 
@@ -81,7 +88,7 @@ export function EditableWorkOrder() {
         <button onClick={deleteItem}>X</button>
       </div> */}
 
-      <Paper sx={{ p: "30px" }}>
+      <Paper sx={{ p: "30px" }} key="workOrderId">
         user supervisor id user employee id
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>

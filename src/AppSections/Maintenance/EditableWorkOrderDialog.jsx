@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
 import { EditableWorkOrder } from "./EditableWorkOrderForm";
 
-export default function OrderTableEditDialog() {
+export default function OrderTableEditDialog({workOrderId}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -27,7 +27,7 @@ export default function OrderTableEditDialog() {
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Work Orders clicked from table list has autofilled info</DialogTitle>
         <DialogContent>
-          <EditableWorkOrder />
+          <EditableWorkOrder workOrderId={workOrderId}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

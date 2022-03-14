@@ -1,17 +1,16 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import {useParams} from "react-router-dom";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { getAllSitesInfo } from '../../data/siteAtoms';
-import { app } from '../../data/app';
-
-
+import { getAllSitesInfo } from "../../data/siteAtoms";
+import { app } from "../../data/app";
+import UnitsDialog from "./UnitsTableDialog";
 
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
@@ -32,30 +31,31 @@ export default function SitesTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Site</TableCell>
-            <TableCell align="right"># units</TableCell>
-            <TableCell align="right">current # vacant</TableCell>
-            <TableCell align="right"># filled</TableCell>
-            <TableCell align="right">More</TableCell>
+            <TableCell  sx={{fontWeight: "bolder"}}>Site</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}># Units</TableCell>
+            <TableCell align="right"  sx={{fontWeight: "bolder"}}>Current # vacant</TableCell>
+            <TableCell align="right"  sx={{fontWeight: "bolder"}}># filled</TableCell>
+            <TableCell align="center"  sx={{fontWeight: "bolder"}}>Units Info</TableCell>
           </TableRow>
         </TableHead>
-        {sites.map(({siteId, site}) => (
+        {sites.map(({ siteId, site }) => (
           <TableBody>
             <TableRow
               key={siteId}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              {site}
+                {site}
               </TableCell>
               <TableCell align="right"># units</TableCell>
               <TableCell align="right">current # vacant</TableCell>
               <TableCell align="right"># filled</TableCell>
-              <TableCell align="right">view More (UnitTable)</TableCell>
+              <TableCell align="center">
+                <UnitsDialog siteId={siteId} siteName={site} />
+              </TableCell>
             </TableRow>
-        </TableBody>
-       ))} 
-        
+          </TableBody>
+        ))}
       </Table>
     </TableContainer>
   );
@@ -63,20 +63,11 @@ export default function SitesTable() {
 
 export const SiteList = () => {
   return (
-<div>
-ROYOAKS Royal Oaks
-FOXHOL	Fox Hollow		
-MTEAST	Monroe Towne East		
-HM1	Hayes Mill I		
-GARDENS1	Edgewood Gardens I		
-GARDENS2	Edgewood Gardens II		
-HM2	Hayes Mill II		
-ACRES4	Edgewood Acres IV		
-ACRES	Edgewood Acres		
-ACRES3	Edgewood Acres III		
-MT1	Monroe Towne I		
-MT2	Monroe Towne II		
-ROCKWEL	Rockwell Gardens
-</div>
+    <div>
+      ROYOAKS Royal Oaks FOXHOL Fox Hollow MTEAST Monroe Towne East HM1 Hayes
+      Mill I GARDENS1 Edgewood Gardens I GARDENS2 Edgewood Gardens II HM2 Hayes
+      Mill II ACRES4 Edgewood Acres IV ACRES Edgewood Acres ACRES3 Edgewood
+      Acres III MT1 Monroe Towne I MT2 Monroe Towne II ROCKWEL Rockwell Gardens
+    </div>
   );
-}
+};

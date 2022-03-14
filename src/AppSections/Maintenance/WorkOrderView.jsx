@@ -1,7 +1,17 @@
 import { Paper, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { getWorkOrderInfo } from "../../data/workOrderAtoms";
 
-export function WorkOrderView() {
+
+export function WorkOrderView({workOrderId}) {
+  const workOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
   return (
     <>
       <div>Work order view</div>
@@ -11,25 +21,28 @@ export function WorkOrderView() {
       <Paper sx={{ p: "30px" }}>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
-            <Typography>date</Typography>
+            <Typography>{workOrder.dateRequest}</Typography>
           </Box>
           <Box sx={{ width: "500px" }}>
-            <Typography>order #</Typography>
+            <Typography>{workOrder.workOrderId}</Typography>
           </Box>
         </Stack>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
-            <Typography>site</Typography>
+            <Typography>{workOrder.site}</Typography>
           </Box>
           <Box sx={{ width: "500px" }}>
-            <Typography>unit #</Typography>
+            <Typography>{workOrder.unit}</Typography>
+          </Box>
+          <Box sx={{ width: "500px" }}>
+            <Typography>{workOrder.phone}</Typography>
           </Box>
         </Stack>
         <Box sx={{ width: "500px" }}>
-          <Typography>Tenant</Typography>
+          <Typography>{workOrder.tenant}</Typography>
         </Box>
         <Box sx={{ width: "500px" }}>
-          <Typography>work requested</Typography>
+          <Typography>{workOrder.request}</Typography>
         </Box>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>

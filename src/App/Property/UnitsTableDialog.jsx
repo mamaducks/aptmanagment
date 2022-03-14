@@ -7,11 +7,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
+import UnitsTable from "./UnitsTable";
+import { useRecoilValue } from "recoil";
+import { getSiteInfo } from "../../data/siteAtoms";
 
-import SitesTable from "../../App/Property/SitesTable";
-import { Box } from "@mui/material";
-
-export function SitesInfoDialog() {
+export default function UnitsDialog({ siteId, siteName }) {
+    // const siteName = useRecoilValue(getSiteInfo(siteId))
+    // {siteName.map((item) => ())}
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,18 +26,12 @@ export function SitesInfoDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-       Company Sites 
-      </Button>
+      <Button onClick={handleClickOpen}>View Units Info</Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle textAlign="center">Sites</DialogTitle>
-
-    
+            <DialogTitle sx={{ textAlign: "center" }}>{siteName} Information</DialogTitle>   
+       
         <DialogContent>
-          <Box>Employees names with access</Box>
-          <SitesTable />
-         
-        
+          <UnitsTable siteId={siteId} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

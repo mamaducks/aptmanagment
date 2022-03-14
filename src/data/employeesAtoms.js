@@ -11,7 +11,7 @@ import { app } from "./app";
 import { data } from "./data";
 import { localStorageEffect } from "./localStorage";
 const tableOfUsers = [
-  { name: "Dave", dateHired: "", phoneNumber: "", employmentType: "" },
+  { name: "Dave", dateHired: "", phoneNumber: "", employmentType: "", userId: "", employeeId: "", userPassword: "" },
   { name: "Leona" },
   { name: "Lilli" },
   { name: "Abby" },

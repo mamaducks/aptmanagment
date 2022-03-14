@@ -63,6 +63,10 @@ export function NewRequest() {
         user supervisor id user employee id
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
+          <TextField
+              fullWidth
+              {...addProps({ name: "workOrderId", label: "work order id" })}
+            />
             <TextField
               fullWidth
               {...addProps({ name: "dateRequest", label: "Date Requested" })}

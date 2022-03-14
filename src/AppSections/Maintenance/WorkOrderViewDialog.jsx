@@ -11,7 +11,7 @@ import { Bill } from './EnterBill';
 import { WorkOrderView } from './WorkOrderView';
 
 
-export default function WorkOrdersDialog() {
+export default function WorkOrdersDialog({workOrderId}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,7 +25,7 @@ export default function WorkOrdersDialog() {
   return (
     <div>
       <Button  onClick={handleClickOpen}>
-       View Work Orders
+       View Work Order
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
            <DialogActions>
@@ -34,7 +34,7 @@ export default function WorkOrdersDialog() {
         </DialogActions>
         <DialogTitle>Work Orders</DialogTitle>
         <DialogContent>
-       < WorkOrderView />
+       < WorkOrderView workOrderId={workOrderId} />
         </DialogContent>
        
       </Dialog>

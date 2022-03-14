@@ -29,6 +29,7 @@ export function Bill() {
   const [bill, setBill] = useRecoilState(getAllBillsInfo);
   const [newBill, setNewBill] = useState({});
 
+  
   // const index = todoList.findIndex((listItem) => listItem === item);
 
   // const editItemText = ({target: {value}}) => {

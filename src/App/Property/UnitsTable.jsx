@@ -6,6 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+
+import { tenantListState } from "../../data/tenantAtoms";
+import { getUnitsInfo } from "../../data/unitsAtom";
+import { useRecoilValue } from "recoil";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,35 +24,49 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-export default function UnitsTable() {
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Unit</TableCell>
-            <TableCell align="right">tenant name</TableCell>
-            <TableCell align="right">vacant</TableCell>
+// const vacancy = tenant.value = null
+// const vacant = checkboxIcon
 
-            <TableCell align="right">lease date</TableCell>
-            <TableCell align="right">view maintenance to unit</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow
-            key="key"
-            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              unit #
-            </TableCell>
-            <TableCell align="right">tenant name</TableCell>
-            <TableCell align="right">vacant has checkbox icon</TableCell>
-            <TableCell align="right">lease date</TableCell>
-            <TableCell align="right">view maintenance to unit</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+export default function UnitsTable({ siteId }) {
+  const site = useRecoilValue(getUnitsInfo(siteId));
+  console.log("r", siteId, site);
+  const unit = {};
+  return (
+    <>
+      <Typography>{unit.siteId}</Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Unit</TableCell>
+              <TableCell align="right">tenant name</TableCell>
+              <TableCell align="right">vacant</TableCell>
+
+              <TableCell align="right">lease date</TableCell>
+              <TableCell align="right">renewal date</TableCell>
+              <TableCell align="right">view maintenance to unit</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {site.units.map((item) => (
+              <TableRow
+                key="key"
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {item.number}
+                </TableCell>
+                <TableCell align="right">tenant name</TableCell>
+                <TableCell align="right">vacant has checkbox icon</TableCell>
+                <TableCell align="right">lease date</TableCell>
+                <TableCell align="right">renewal date</TableCell>
+
+                <TableCell align="right">view maintenance to unit</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

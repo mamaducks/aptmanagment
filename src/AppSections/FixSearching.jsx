@@ -76,8 +76,8 @@ export function SearchFilter({ filter, setFilter }) {
     }));
 
   return (
-    <div className={classes.root}>
-      <div className={classes.locationBox}>
+    <div >
+      <div >
         <TextField
           label="Location"
           name="location"
@@ -87,7 +87,9 @@ export function SearchFilter({ filter, setFilter }) {
           className={classes.location}
         />
       </div>
-      <div className={classes.searchBar}>
+
+
+      <div >
         <SelectInput
           label="Min Price"
           name="minPrice"
@@ -259,67 +261,143 @@ export function SelectInput({ label, ...props }) {
 
 sorting
 
+export const ALL_STATUS = [ PENDING, APPROVED, REJECTED, WITHDRAWL ];
+
+
+export const PENDING = "Pending";
+export const APPROVED = "Approved";
+export const REJECTED = "Rejected";
+export const WITHDRAWL = "Withdrawl";
+
+export const filteredStatusTypes = atom({
+  key: "filteredStatusTypes",
+  default: ALL_STATUS,
+});
+
+
+
 
 export const ALL_SORT_VALUES = [
-  ["launchDate", true, "Launch Date Newest to Oldest"],
-  ["launchDate", false, " Launch Date Oldest to Newest"],
-  ["title", true, "Title A-Z"],
-  ["title", false, "Title Z-A"],
+  ["dateApplied", true, " Date Applied Newest to Oldest"],
+  ["dateApplied", false, " Date Applied Oldest to Newest"],
+  // ["title", true, "Title A-Z"],
+  // ["title", false, "Title Z-A"],
 ];
 
 import { MenuItem, OutlinedInput, Select } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { ALL_SORT_VALUES, sortedTelescopesState } from "../data/telescope";
+import { ALL_SORT_VALUES, sortedApplicantState } from "../data/applicantAtoms";
 
 
 
 
 export function SortSelect() {
-  const [sortType, setSortType] = useRecoilState(sortedTelescopesState);
+  const [sortType, setSortType] = useRecoilState(filteredStatusTypes);
 
 
   return (
-    <Select
-      variant="outlined"
+    <FormGroup
       onChange={(e, b) => {
         setSortType(e.target.value);
       }}
       value={sortType}
-      input={
-        <OutlinedInput
-          sx={{
-            borderRadius: "5px",
-            mr: 1,
-            mt: 3
-          }}
-        />
-      }
-    >
-      {ALL_SORT_VALUES.map((item, index) => (
-        <MenuItem key={index} value={item}>
-          {item[2]}
-        </MenuItem>
-      ))}
-    </Select>
+      control={[{ALL_STATUS.map((item, index) => (
+        <Checkbox
+        type="checkbox"
+        name={item}
+        checked={sortType.includes(item)}
+        />)
+      }]}
+      />
+
+
+       
+//       {ALL_STATUS.map((item, index) => (
+//         <MenuItem key={index} value={item}>
+//           {item[2]}
+//         </MenuItem> 
+        
+//         <Checkbox
+//   type="checkbox"
+//   name={item}
+//   onChange={(e, b) => {
+//     setSortType(e.target.value);
+//   }}
+//   checked={checkedTypes.includes(item)}
+// />
+
+
+
+
+
+
+
+
+<FormGroup row="true">
+{[
+  [ADMIN, "Admin"],
+  [MAINTENANCE, "Maintenance"],
+  [SITEMANAGER, "Site Manager"],
+  [MAINTENANCESUPER, "Maintenance Supervisor"],
+  [OFFICE, "Office"],
+].map(([name, label]) => (
+
+  <FormControlLabel
+  key={name}
+  control={
+    <Checkbox
+      type="checkbox"
+      name={name}
+      onChange={handleTypeChange}
+      checked={checkedTypes.includes(name)}
+    />
+  }
+  label={label}
+/>
+))}
+</FormGroup>
   );
 }
 
 filtering
 
+export const sortedApplicantState = atom({
+  key: "sortedApplicantState",
+  default: ALL_SORT_VALUES[0],
+});
 
-export const ACTIVE = "active";
-export const INACTIVE = "past";
-export const FUTURE = "planned";
 
-export const FLYBY = "flyby";
-export const ORBITAL = "orbital";
-export const OBSERVE = "observatory";
-export const LANDER = "lander";
-export const ROVER = "rover";
-export const OTHER = "other";
 
-export const ALL_STATES = [ACTIVE, INACTIVE, FUTURE];
-export const ALL_TYPES = [FLYBY, ORBITAL, OBSERVE, ROVER];
+// export const ACTIVE = "active";
+// export const INACTIVE = "past";
+// export const FUTURE = "planned";
+
+// export const FLYBY = "flyby";
+// export const ORBITAL = "orbital";
+// export const OBSERVE = "observatory";
+// export const LANDER = "lander";
+// export const ROVER = "rover";
+// export const OTHER = "other";
+
+export const ALL_TYPES = [MAINTENANCE, SITEMANAGER, MAINTENANCESUPER, OFFICE, ADMIN ];
+
+
+// export const ALL_TYPES = [FLYBY, ORBITAL, OBSERVE, ROVER];
+
+export const MAINTENANCE = "maintenance";
+export const SITEMANAGER = "site manager";
+export const MAINTENANCESUPER = "maintenance supervisor";
+export const OFFICE = "office manager";
+export const ADMIN = "admin";
+
+export const filteredEmploymentTypes = atom({
+  key: "filteredEmploymentTypes",
+  default: ALL_TYPES,
+});
+
+
+
+
 
 
 export const filteredTelescopesStates = atom({
@@ -332,10 +410,12 @@ export const filteredTelescopesTypes = atom({
   default: ALL_TYPES,
 });
 
-export const sortedTelescopesState = atom({
-  key: "sortedTelescopesState",
-  default: ALL_SORT_VALUES[0],
-});
+// export const sortedTelescopesState = atom({
+//   key: "sortedTelescopesState",
+//   default: ALL_SORT_VALUES[0],
+// });
+
+
 
 
 import { Box, Button, FormGroup } from "@mui/material";
@@ -344,87 +424,86 @@ import CheckIcon from "@mui/icons-material/Check";
 import { Header } from "../Styles/Header";
 import { useRecoilState } from "recoil";
 import {
-  ACTIVE,
-  ALL_STATES,
+  MAINTENANCE,
+  SITEMANAGER,
+  MAINTENANCESUPER,
+  OFFICE,
+  ADMIN,
+  filteredEmploymentTypes,
   ALL_TYPES,
-  filteredTelescopesStates,
-  filteredTelescopesTypes,
-  FUTURE,
-  INACTIVE,
-} from "../data/telescope";
-import { FormCheckboxes } from "./FormCheckboxes";
-import { FormHeader } from "./FormHeader";
-export function StatusCheckboxesData() {
-  const [checkedStates, setCheckedStates] = useRecoilState(
-    filteredTelescopesStates
-  );
 
+  // ACTIVE,
+  // ALL_STATES,
+  // ALL_TYPES,
+  // filteredTelescopesStates,
+  // filteredTelescopesTypes,
+  // FUTURE,
+  // INACTIVE,
+} from "../data/applicantAtoms";
+// import { FormCheckboxes } from "./FormCheckboxes";
+// import { FormHeader } from "./FormHeader";
+
+export function EmployeeTypeCheckboxesData() {
   const [checkedTypes, setCheckedTypes] = useRecoilState(
-    filteredTelescopesTypes
+    filteredEmploymentTypes
   );
 
-  const handleStateChange = (event, value) => {
+  // const [checkedTypes, setCheckedTypes] = useRecoilState(
+  //   filteredTelescopesTypes
+  // );
+
+  const handleTypeChange = (event, value) => {
     const name = event.target.name.toLowerCase();
 
-    setCheckedStates(
+    setCheckedTypes(
       value === true
-        ? [...checkedStates, name]
-        : checkedStates.filter((item) => item !== name)
+        ? [...checkedTypes, name]
+        : checkedTypes.filter((item) => item !== name)
     );
   };
 
-  const handleSelectAll = () => {
-    setCheckedStates(ALL_STATES);
-    setCheckedTypes(ALL_TYPES);
-  };
+  // const handleSelectAll = () => {
+  //   // setCheckedStates(ALL_STATES);
+  //   setCheckedTypes(ALL_TYPES);
+  // };
 
-  const allSelected =
-    checkedStates.length === ALL_STATES.length &&
-    checkedTypes.length === ALL_TYPES.length;
+  // const allSelected =
+  //   // checkedStates.length === ALL_STATES.length &&
+  //   checkedTypes.length === ALL_TYPES.length;
 
   useEffect(() => {
-    if (checkedStates.length === 0) {
-      setCheckedStates([ACTIVE]);
+    if (checkedTypes.length === 0) {
+      setCheckedTypes([ADMIN]);
     }
-  }, [checkedStates, setCheckedStates]);
+  }, [checkedTypes, setCheckedTypes]);
 
   return (
     <>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        sx={{ height: 45, width: 255 }}
-      >
-        <Header title="Filter Missions" />
+      
 
-        {!allSelected && (
-          <Button
-            variant="contained"
-            startIcon={<CheckIcon />}
-            sx={{ py: 1 }}
-            onClick={handleSelectAll}
-          >
-            All
-          </Button>
-        )}
-      </Box>
-
-      <FormHeader title="Status:">
         <FormGroup row="true">
           {[
-            [ACTIVE, "Active"],
-            [INACTIVE, "Inactive"],
-            [FUTURE, "Planned"],
+            [ADMIN, "Admin"],
+            [MAINTENANCE, "Maintenance"],
+            [SITEMANAGER, "Site Manager"],
+            [MAINTENANCESUPER, "Maintenance Supervisor"],
+            [OFFICE, "Office"],
           ].map(([name, label]) => (
-            <FormCheckboxes
-              name={name}
-              onChange={handleStateChange}
-              checked={checkedStates.includes(name)}
-              label={label}
-            />
+
+            <FormControlLabel
+            key={name}
+            control={
+              <Checkbox
+                type="checkbox"
+                name={name}
+                onChange={handleTypeChange}
+                checked={checkedTypes.includes(name)}
+              />
+            }
+            label={label}
+          />
           ))}
         </FormGroup>
-      </FormHeader>
     </>
   );
 }

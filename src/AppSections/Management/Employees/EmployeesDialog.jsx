@@ -24,12 +24,12 @@ export default function EmployeeDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button onClick={handleClickOpen}>
         Employees
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogActions sx={{ gap: 1, mr: 2 }}>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button onClick={handleClose}>
             Go Back
           </Button>
           <NewEmployeeDialog />

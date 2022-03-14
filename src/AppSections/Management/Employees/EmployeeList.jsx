@@ -135,6 +135,7 @@ export function Employee() {
             />
           </FormGroup>
         </FormControl>
+        <div>sitePermissions</div>
         <div>do permissions based on employment types</div>
         <div>
           when you choose employment types permissions box under with options
