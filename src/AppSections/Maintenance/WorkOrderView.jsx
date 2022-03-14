@@ -10,7 +10,7 @@ import {
 import { getWorkOrderInfo } from "../../data/workOrderAtoms";
 
 
-export function WorkOrderView({workOrderId}) {
+export function WorkOrderView({workOrderId, siteId}) {
   const workOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
   return (
     <>

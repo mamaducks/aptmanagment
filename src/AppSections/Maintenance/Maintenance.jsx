@@ -16,6 +16,8 @@ import AddBillDialog from "./EnterBillDialog";
 import WorkOrdersDialog from "./WorkOrderViewDialog";
 import BillsDialog from "./BillViewDialog";
 import OrderTableEditDialog from "./EditableWorkOrderDialog";
+import { EditableWorkOrderList } from "./EditableWorkOrder";
+
 export const GLCodes = () => {
   return (
     <>
@@ -39,6 +41,13 @@ export function Maintenence() {
         print work order/ print bill list? send work order multiple recipient
         cancel work order
       </div>
+      <div>current work order table, all orders current by site update work order</div>
+      can see all sites or current site by employee loggedin
+      take to editable work order
+      <div>finished work order table, all work orders summary table sorted by site than date view work order</div>
+      can see all sites or current site by employee loggedin
+      take to work order view
+
       <Box
         sx={{
           display: "flex",
@@ -67,6 +76,7 @@ export function Maintenence() {
       clickable rows take to workorder view
       <WorkOrderTable />
       <SiteWorkOrderTable />
+     < EditableWorkOrderList />
       <br />
       <div>
         view bills by contractor/company, category sort by newest or oldest{" "}

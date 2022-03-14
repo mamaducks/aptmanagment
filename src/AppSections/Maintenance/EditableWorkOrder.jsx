@@ -47,7 +47,7 @@ export function EditableWorkOrderList() {
             </TableRow>
           </TableHead>
           <TableBody>
-          {workOrderList.map(({site, }) => (
+          {workOrderList.map(({site, workOrderId}) => (
             <TableRow
               key="key"
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -55,12 +55,12 @@ export function EditableWorkOrderList() {
               <TableCell component="th" scope="row">
               {site}
               </TableCell>
-              <TableCell align="right"># of order</TableCell>
+              <TableCell align="right">{workOrderId}</TableCell>
               <TableCell align="right">{hours}</TableCell>
               <TableCell align="right"> {partPrice}</TableCell>
               <TableCell align="right">totalpartsandhours$</TableCell>
               <TableCell align="right">Current / Finished</TableCell>
-              <TableCell align="right"> view order</TableCell>
+              <TableCell align="right"><OrderTableEditDialog workOrderId={workOrderId} /></TableCell>
             </TableRow>
              ))}
           </TableBody>

@@ -16,6 +16,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import WorkOrdersDialog from "./WorkOrderViewDialog";
 
 export function SiteWorkOrderTable() {
   const workOrderList = useRecoilValue(workOrderState);
@@ -27,7 +28,7 @@ export function SiteWorkOrderTable() {
         <div>total maintenance hours billed : WorkHoursBill</div>
   
         <div>Maintenance Work Orders </div>
-        
+        <div>categorized by site</div>
         <div>choose site start typing or choose from dropdown </div>
         <div>have view all current month / recent months</div>
         <TableContainer component={Paper}>
@@ -38,25 +39,25 @@ export function SiteWorkOrderTable() {
                 <TableCell align="right" sx={{fontWeight: "bolder"}}>hours billed</TableCell>
                 <TableCell align="right" sx={{fontWeight: "bolder"}}>parts total</TableCell>
                 <TableCell align="right" sx={{fontWeight: "bolder"}}>total billed</TableCell>
-                <TableCell align="right" sx={{fontWeight: "bolder"}}>Current or Finished</TableCell>
+                <TableCell align="right" sx={{fontWeight: "bolder"}}>Current</TableCell>
                 <TableCell align="right" sx={{fontWeight: "bolder"}}>view</TableCell>
 
               </TableRow>
             </TableHead>
             <TableBody>
-            {workOrderList.map(({site, }) => (
+            {workOrderList.map(({site, workOrderId, }) => (
               <TableRow
-                key="key"
+                key={site}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                # of order
+                {workOrderId}
                 </TableCell>
                 <TableCell align="right">{hours}</TableCell>
                 <TableCell align="right"> {partPrice}</TableCell>
                 <TableCell align="right">totalhoursandPrice</TableCell>
                 <TableCell align="right">Current / Finished</TableCell>
-                <TableCell align="right"> view order</TableCell>
+                <TableCell align="right"> <WorkOrdersDialog /> </TableCell>
               </TableRow>
             ))}
             </TableBody>

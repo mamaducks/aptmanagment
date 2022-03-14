@@ -28,7 +28,12 @@ export function EditableWorkOrder({workOrderId}) {
   const [todoList, setTodoList] = useRecoilState(workOrderState);
   const [order, setOrder] = useState({});
 
-  const oldEmployee = useRecoilValue(getWorkOrderInfo(workOrderId));
+  const oldOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
+const index = todoList.findIndex(
+  (listItem) => listItem.workOrderId === workOrderId
+);
+
+const [item, setItem] = useState(oldOrder || {});
 
   // const index = todoList.findIndex((listItem) => listItem === item);
 
@@ -72,9 +77,9 @@ export function EditableWorkOrder({workOrderId}) {
     [order]
   );
 
-  const addOrder = useCallback(() => {
-    setTodoList((orders) => [...orders, order]);
-  }, [order, setTodoList]);
+  const updateOrder = useCallback(() => {
+    setTodoList((current) => replaceItemAtIndex(current, index, item));
+  }, [item, index, setTodoList]);
 
   return (
     <>
@@ -171,7 +176,7 @@ export function EditableWorkOrder({workOrderId}) {
             <div>hours worked</div>
           </FormControl>
         </Stack>
-        <button onClick={addOrder}>Add</button>
+        <button onClick={updateOrder}>Add</button>
         <button>print</button>
       </Paper>
     </>

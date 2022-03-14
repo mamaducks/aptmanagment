@@ -21,7 +21,7 @@ import {
 import { WorkOrderView } from "./WorkOrderView";
 import WorkOrdersDialog from "./WorkOrderViewDialog";
 
-
+//finished work orders
 export function WorkOrderTable() {
   const workOrderList = useRecoilValue(workOrderState);
   const hours = useRecoilValue(getAllHours);
@@ -29,6 +29,7 @@ export function WorkOrderTable() {
 
   return (
     <>
+    finished work order table
       <div>total maintenance hours billed : WorkHoursBill</div>
       <div>Maintenance Work Orders Table</div>
       by date
@@ -44,12 +45,12 @@ export function WorkOrderTable() {
               <TableCell align="right" sx={{fontWeight: "bolder"}}>hours billed</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>parts total</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>total billed</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>Current or Finished</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}> Finished</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>view</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {workOrderList.map(({site, workOrderId, dateRequest }) => (
+            {workOrderList.map(({siteId, site,  workOrderId, dateRequest }) => (
    <TableRow
               key={workOrderId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -65,7 +66,7 @@ export function WorkOrderTable() {
               <TableCell align="right"> {partPrice}</TableCell>
               <TableCell align="right">total parts and hours $</TableCell>
               <TableCell align="right">Current / Finished</TableCell>
-              <TableCell align="right"><WorkOrdersDialog  workOrderId={workOrderId}/></TableCell>
+              <TableCell align="right"><WorkOrdersDialog  siteId={siteId}/></TableCell>
             </TableRow>
 
             ))}
