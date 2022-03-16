@@ -6,7 +6,7 @@ import { WorkOrderView } from "./SummaryWorkOrders/WorkOrderView";
 // import { SiteWorkOrderTable } from "./SiteWorkOrders";
 import { BillTable } from "./Billing/BillTable";
 import { Parts } from "./NewWorkOrder/Parts";
-import { AllParts } from "./Parts/PartsList";
+import AllPartsList, { AllParts } from "./Parts/PartsList";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -66,6 +66,8 @@ export function Maintenence() {
       <div>can see work order by employee id ? site ?</div>
       <div>
         parts list
+        <AllPartsList />
+        
         <AllParts />
       </div>
       <div>display WorkOrdersTable</div>

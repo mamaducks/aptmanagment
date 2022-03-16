@@ -80,11 +80,16 @@ export function Tenant() {
       </Stack>
 
       <Box sx={{ width: "850px" }}>
-        <TextField
-          fullWidth
-          margin="normal"
-          {...addProps({ name: "name", label: "Name" })}
-        />
+      <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "firstName", label: "First Name" })}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "lastName", label: "Last Name" })}
+          />
       </Box>
       <Stack direction="row" gap={4}>
         <Box sx={{ width: "500px" }}>

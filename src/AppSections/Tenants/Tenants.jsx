@@ -8,6 +8,7 @@ import SearchTenantDialog from "./SearchTenantDialog";
 
 import TenantTable from "./Table";
 import RenewTable from "./TenantRenewals";
+import { EnterTenant } from "./TenantfromApplicant";
 
 export function Tenants() {
   return (
@@ -31,6 +32,7 @@ export function Tenants() {
       <div>header: Tenants</div>
       By Site
       <TenantTable />
+
       
       <div>tenants renewing soon update tenant</div>
       <RenewTable />

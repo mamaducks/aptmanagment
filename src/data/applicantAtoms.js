@@ -8,6 +8,8 @@ export const WITHDRAWL = "withdrawl";
 
 
 
+
+
 export const applicantListState = atom({
   key: "applicantListState",
   default: [{
@@ -19,6 +21,7 @@ export const applicantListState = atom({
   }],
   effects_UNSTABLE: [localStorageEffect("applicantList", [])],
 });
+
 
 export const applicantListFilterState = atom({
   key: "applicantListFilterState",

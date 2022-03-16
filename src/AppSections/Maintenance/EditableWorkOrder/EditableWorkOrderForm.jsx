@@ -154,6 +154,7 @@ const [item, setItem] = useState(oldOrder || {});
             <FormControl margin="dense">
               <FormLabel id="familySize">Parts</FormLabel>
               <div>add part</div>
+              <PartWorkOrderListItem workOrderId={workOrderId}/>
               <Parts workOrderId={workOrderId}/>
             </FormControl>
           </Stack>
