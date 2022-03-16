@@ -7,7 +7,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getWorkOrderInfo } from "../../data/workOrderAtoms";
+import { getWorkOrderInfo } from "../../../data/workOrderAtoms";
 
 
 export function WorkOrderView({workOrderId, siteId}) {
@@ -20,11 +20,12 @@ export function WorkOrderView({workOrderId, siteId}) {
 
       <Paper sx={{ p: "30px" }}>
         <Stack direction="row" gap={4}>
+      
+          {/* <Box sx={{ width: "500px" }}>
+            <Typography>{workOrder.workOrderId}</Typography>
+          </Box> */}
           <Box sx={{ width: "500px" }}>
             <Typography>{workOrder.dateRequest}</Typography>
-          </Box>
-          <Box sx={{ width: "500px" }}>
-            <Typography>{workOrder.workOrderId}</Typography>
           </Box>
         </Stack>
         <Stack direction="row" gap={4}>

@@ -1,5 +1,6 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { localStorageEffect } from "./localStorage";
+import { app } from "./app";
 
 //categorize part types?
 export const UPCOMING = "upcoming";
@@ -9,22 +10,31 @@ export const UPCOMING = "upcoming";
 
 export const getAllParts = atom({
   key: "getAllParts",
-  default: {
-    id: "1",
-    partName: "spoon",
-    price: "26",
-
-   
-  },
-  effects_UNSTABLE: [localStorageEffect("partList", [])],
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("getAllParts", [])],
 });
 
-export const getPartState = selectorFamily({
-  key: "getPartState",
+export const getWorkOrderParts = selector({
+  key: "getWorkOrderParts",
+  get: ({ get }) => 
+  get(app).parts.map((item) => ({
+    ...item,
+    parts: (item.parts || [])
+    .map((part) => ({
+      ...part,
+      partName: item.partName,
+      partPrice: item.partPrice,
+    })),
+  })),
+});
+
+
+export const getPartsInfo = selectorFamily({
+  key: "getPartsInfo",
   get:
-    (siteId) =>
+    (partId) =>
     ({ get }) => {
-      return get(getAllParts).find((item) => item.id === siteId);
+      return get(getAllParts).find((item) => item.id === partId);
     },
 });
 

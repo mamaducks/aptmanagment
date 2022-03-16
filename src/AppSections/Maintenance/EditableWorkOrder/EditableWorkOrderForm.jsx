@@ -5,7 +5,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getWorkOrderInfo } from "../../data/workOrderAtoms";
+import { getWorkOrderInfo } from "../../../data/workOrderAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -16,17 +16,18 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { Parts } from "./NewWorkOrder/Parts";
-import { WorkOrderHours } from "./NewWorkOrder/WorkOrderHours";
-import {workOrderState} from "../../data/workOrderAtoms"
+import { Parts } from "../NewWorkOrder/Parts";
+import { WorkOrderHours } from "../NewWorkOrder/WorkOrderHours";
+import {allWorkOrders} from "../../../data/workOrderAtoms"
+import PartWorkOrderListItem from "../Parts/PartWorkOrderListItem";
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 }
 
 export function EditableWorkOrder({workOrderId}) {
-  const [todoList, setTodoList] = useRecoilState(workOrderState);
-  const [order, setOrder] = useState({});
+  const [todoList, setTodoList] = useRecoilState(allWorkOrders);
+  // const [order, setOrder] = useState({});
 
   const oldOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
 const index = todoList.findIndex(
@@ -64,17 +65,17 @@ const [item, setItem] = useState(oldOrder || {});
   const addProps = useCallback(
     ({ name, label, type = "text" }) => {
       const setFieldValue = ({ target: { name, value } }) =>
-        setOrder((item) => ({ ...item, [name]: value }));
+      setItem((item) => ({ ...item, [name]: value }));
 
       return {
         label,
         name,
         type,
         onChange: setFieldValue,
-        value: order[name],
+        value: item[name],
       };
     },
-    [order]
+    [item]
   );
 
   const updateOrder = useCallback(() => {
@@ -149,10 +150,11 @@ const [item, setItem] = useState(oldOrder || {});
         </Box>
         <Stack sx={{ border: "1px solid black", p: 1 }}>
           <Stack direction="row" gap={7}>
+          {/* <PartWorkOrderListItem workOrderId={workOrderId}/> */}
             <FormControl margin="dense">
               <FormLabel id="familySize">Parts</FormLabel>
               <div>add part</div>
-              <Parts />
+              <Parts workOrderId={workOrderId}/>
             </FormControl>
           </Stack>
 

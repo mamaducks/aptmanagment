@@ -11,7 +11,7 @@ import { TenantSummary } from "./TenantSummary";
 import { EmployeeWorkHoursTable } from "./WorkHoursBill";
 import { MaintenanceOrderCosts } from "./MaintenanceCost";
 import { BillSummary } from "./BillsSummary";
-import { BillTable } from "../Maintenance/BillTable";
+import { BillTable } from "../Maintenance/Billing/BillTable";
 
 export function BillingOverview() {
   const [open, setOpen] = useState(false);

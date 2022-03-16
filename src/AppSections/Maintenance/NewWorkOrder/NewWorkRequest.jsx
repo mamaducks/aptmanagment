@@ -18,10 +18,10 @@ import {
 } from "@mui/material";
 import { Parts } from "./Parts";
 import { WorkOrderHours } from "./WorkOrderHours";
-import { workOrderState } from "../../../data/workOrderAtoms";
+import { allWorkOrders } from "../../../data/workOrderAtoms";
 
 export function NewRequest() {
-  const [workOrder, setWorkOrder] = useRecoilState(workOrderState);
+  const [workOrder, setWorkOrder] = useRecoilState(allWorkOrders);
 
   const [order, setOrder] = useState({});
 

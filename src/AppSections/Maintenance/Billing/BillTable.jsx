@@ -21,7 +21,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getAllBillsInfo } from "../../data/billAtoms";
+import { getAllBillsInfo } from "../../../data/billAtoms";
 
 
 export function BillTable() {
@@ -35,7 +35,7 @@ export function BillTable() {
       </div>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table" >
           <TableHead>
             <TableRow>
               <TableCell sx={{fontWeight: "bolder"}}>category</TableCell>
@@ -52,12 +52,12 @@ export function BillTable() {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" key={index}>
                 {category}
               </TableCell>
-              <TableCell align="right">{recipient}</TableCell>
-              <TableCell align="right">{amountPaid}</TableCell>
-              <TableCell align="right">{datePaid}</TableCell>
+              <TableCell align="right" key={index}>{recipient}</TableCell>
+              <TableCell align="right" key={index}>{amountPaid}</TableCell>
+              <TableCell align="right" key={index}>{datePaid}</TableCell>
               {/* <TableCell align="right">total to date?</TableCell> */}
             </TableRow>
           ))}

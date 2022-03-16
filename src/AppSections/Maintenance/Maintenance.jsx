@@ -1,22 +1,22 @@
 import { NewRequest } from "./NewWorkOrder/NewWorkRequest";
 import { TodoList } from "../../App/Todo/ToDo";
-import { WorkOrderTable } from "./WorkOrderTable";
-import { WorkOrderView } from "./WorkOrderView";
-import { Bill } from "./EnterBill";
-import { SiteWorkOrderTable } from "./SiteWorkOrders";
-import { BillTable } from "./BillTable";
+import { WorkOrderTable } from "./SummaryWorkOrders/WorkOrderTable";
+import { WorkOrderView } from "./SummaryWorkOrders/WorkOrderView";
+// import { Bill } from "./EnterBill";
+// import { SiteWorkOrderTable } from "./SiteWorkOrders";
+import { BillTable } from "./Billing/BillTable";
 import { Parts } from "./NewWorkOrder/Parts";
-import { AllParts } from "./PartsList";
+import { AllParts } from "./Parts/PartsList";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import NewWorkRequestDialog from "./NewWorkOrder/WorkOrderDialog";
-import AddBillDialog from "./EnterBillDialog";
-import WorkOrdersDialog from "./WorkOrderViewDialog";
-import BillsDialog from "./BillViewDialog";
-import OrderTableEditDialog from "./EditableWorkOrderDialog";
-import { EditableWorkOrderList } from "./EditableWorkOrder";
+import AddBillDialog from "./Billing/EnterBillDialog";
+import WorkOrdersDialog from "./SummaryWorkOrders/WorkOrderViewDialog";
+import BillsDialog from "./Billing/BillViewDialog";
+import OrderTableEditDialog from "./EditableWorkOrder/TableEditableWorkOrderDialog";
+import { EditableWorkOrderList } from "./EditableWorkOrder/EditableWorkOrderList";
 
 export const GLCodes = () => {
   return (
@@ -41,13 +41,10 @@ export function Maintenence() {
         print work order/ print bill list? send work order multiple recipient
         cancel work order
       </div>
-      <div>current work order table, all orders current by site update work order</div>
-      can see all sites or current site by employee loggedin
-      take to editable work order
-      <div>finished work order table, all work orders summary table sorted by site than date view work order</div>
-      can see all sites or current site by employee loggedin
-      take to work order view
-
+      <div>
+        Company level completed work orders summary all sites. can view all work
+        orders same way as site level completed work orders
+      </div>
       <Box
         sx={{
           display: "flex",
@@ -60,8 +57,8 @@ export function Maintenence() {
       >
         <ButtonGroup aria-label="maintenance-buttons">
           <NewWorkRequestDialog />
-          <OrderTableEditDialog />
-          <WorkOrdersDialog />
+          {/* <OrderTableEditDialog /> */}
+          {/* <WorkOrdersDialog /> */}
           <AddBillDialog />
           <BillsDialog />
         </ButtonGroup>
@@ -74,9 +71,11 @@ export function Maintenence() {
       <div>display WorkOrdersTable</div>
       <div>Work Order Table</div>
       clickable rows take to workorder view
-      <WorkOrderTable />
-      <SiteWorkOrderTable />
-     < EditableWorkOrderList />
+      <WorkOrderTable />{" "}
+      {/* company level finished by date requested view single work order read only  with print */}
+      {/* <SiteWorkOrderTable /> current work orders site level by date requested newest to oldest with editable work order for maintenance */}
+      <EditableWorkOrderList />{" "}
+      {/* current work orders by site level view  editable work order for managers?*/}
       <br />
       <div>
         view bills by contractor/company, category sort by newest or oldest{" "}

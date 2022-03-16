@@ -13,7 +13,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getAllBillsInfo } from "../../data/billAtoms";
+import { getAllBillsInfo } from "../../../data/billAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,

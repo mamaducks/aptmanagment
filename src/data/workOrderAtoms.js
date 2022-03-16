@@ -6,18 +6,25 @@ import {
     useRecoilState,
     useRecoilValue,
   } from 'recoil';
+  import { localStorageEffect } from "./localStorage";
 
-  export const workOrderState = atom({
-    key: 'workOrderState',
+
+  export const allWorkOrders = atom({
+    key: 'allWorkOrders',
     default: [],
+    effects_UNSTABLE: [localStorageEffect("allWorkOrders", [])],
   });
+
+  
+
+
 
   export const getWorkOrderInfo = selectorFamily({
     key: "getWorkOrderInfo",
     get:
       (workOrderId) =>
       ({ get }) => {
-        return get(workOrderState).find((item) => item.workOrderId === workOrderId);
+        return get(allWorkOrders).find((item) => item.id === workOrderId);
       },
   });
 
@@ -30,7 +37,7 @@ import {
     key: 'filteredWorkOrderListState',
     get: ({get}) => {
       const filter = get(workOrderFilterState);
-      const list = get(workOrderState);
+      const list = get(allWorkOrders);
   
       switch (filter) {
         case 'Show Completed':
@@ -46,7 +53,7 @@ import {
   export const workOrderStatsState = selector({
     key: 'workOrderStatsState',
     get: ({get}) => {
-      const todoList = get(workOrderState);
+      const todoList = get(allWorkOrders);
       const totalNum = todoList.length;
       const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
       const totalUncompletedNum = totalNum - totalCompletedNum;

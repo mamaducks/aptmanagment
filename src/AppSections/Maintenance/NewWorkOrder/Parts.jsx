@@ -21,11 +21,25 @@ import {
 } from "recoil";
 import { getAllParts } from "../../../data/partsAtom";
 import { useCallback, useState } from "react";
+import { getPartsInfo } from "../../../data/partsAtom"
 
-export function Parts() {
+
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+export function Parts( { partId} ) {
   const [partsList, setPartsList] = useRecoilState(getAllParts);
   //const index = applicantList.findIndex((listItem) => listItem === item);
   const [part, setPart] = useState({});
+
+
+
+    const oldPartsList = useRecoilValue(getPartsInfo(partId));
+    const index = partsList.findIndex(
+      (listItem) => listItem.partId === partId
+    );
+    const [item, setItem] = useState(oldPartsList || {});
 
   console.log("item", partsList, part);
 
@@ -54,18 +68,18 @@ export function Parts() {
         name,
         type,
         onChange: setFieldValue,
-        value: part[name],
+        value: part[name] || '',
       };
     },
     [part]
   );
 
   const addPart = useCallback(() => {
-    setPartsList((parts) => [...parts, part]);
-  }, [part, setPartsList]);
+  setPartsList((current) => replaceItemAtIndex(current, index, item));
+}, [item, index, setPartsList]);
 
   return (
-    <Paper sx={{ p: "30px" }}>
+    <Paper sx={{ p: "30px" }}  >
       <Stack direction="row" gap={4}>
         <Box sx={{ width: "500px" }}>
           <TextField

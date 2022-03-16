@@ -7,9 +7,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import OrderTableEditDialog from "./OrderTableEditDialog";
-import { workOrderState } from "../../data/workOrderAtoms";
-import {getAllHours} from "../../data/workOrderHoursAtoms";
-import {getAllParts} from "../../data/partsAtom";
+import { allWorkOrders } from "../../../data/workOrderAtoms";
+import {getAllHours} from "../../../data/workOrderHoursAtoms";
+import {getAllParts} from "../../../data/partsAtom";
 import {
   RecoilRoot,
   atom,
@@ -20,18 +20,24 @@ import {
 
 
 export function EditableWorkOrderList() {
-  const workOrderList = useRecoilValue(workOrderState);
+  const workOrderList = useRecoilValue(allWorkOrders);
   const hours = useRecoilValue(getAllHours);
   const partPrice = useRecoilValue(getAllParts);
 
   return (
     <>
       <div>Maintenance Work Orders Table</div>
+      for maintenance to update work orders enter parts and hours
       by date and show current can see employeeId ones at top of table clickable
-      row to work order edit (newrequest) or one with parts/hours editable
-      showing and have newrequest without parts/hours showing can have completed
-      checkbox at bottom under parts hours?
+      
       edit work order user that edits cost and parts / maintenance employee id
+
+      Table view can open editable work orders at site level. Can see based on site permissions 
+Work orders employee level can see editable work orders same as site level 
+
+<div>current work order table, all orders current by site update work order</div>
+      can see all sites or current site by employee loggedin
+      take to editable work order
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
@@ -53,14 +59,18 @@ export function EditableWorkOrderList() {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              {site}
+              {/* {site} */}site
               </TableCell>
-              <TableCell align="right">{workOrderId}</TableCell>
-              <TableCell align="right">{hours}</TableCell>
-              <TableCell align="right"> {partPrice}</TableCell>
+              <TableCell align="right">
+                {/* {workOrderId} */} order Id
+                </TableCell>
+              <TableCell align="right">hours</TableCell>
+              <TableCell align="right">prices</TableCell>
               <TableCell align="right">totalpartsandhours$</TableCell>
               <TableCell align="right">Current / Finished</TableCell>
-              <TableCell align="right"><OrderTableEditDialog workOrderId={workOrderId} /></TableCell>
+              <TableCell align="right">
+                {/* <OrderTableEditDialog workOrderId={workOrderId} /> */}
+                </TableCell>
             </TableRow>
              ))}
           </TableBody>

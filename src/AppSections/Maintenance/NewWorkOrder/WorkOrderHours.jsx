@@ -21,10 +21,21 @@ import {
 } from "recoil";
 import { getAllHours } from "../../../data/workOrderHoursAtoms";
 import { useCallback, useState } from "react";
+import { getWorkOrderInfo } from "../../../data/workOrderAtoms";
 
-export function WorkOrderHours() {
+
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+export function WorkOrderHours({workOrderId}) {
   const [hoursTotal, setHoursTotal] = useRecoilState(getAllHours);
   //const index = applicantList.findIndex((listItem) => listItem === item);
+  const oldOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
+  const index = hoursTotal.findIndex(
+    (listItem) => listItem.workOrderId === workOrderId
+  );
+ 
   const [hour, setHours] = useState({});
 
   console.log("item", hoursTotal, hour);
@@ -61,8 +72,8 @@ export function WorkOrderHours() {
   );
 
   const addHours = useCallback(() => {
-    setHoursTotal((hours) => [...hours, hour]);
-  }, [hour, setHoursTotal]);
+    setHoursTotal((current) => replaceItemAtIndex(current, index, hour));
+  }, [hour, index, setHoursTotal]);
 
   return (
     <Paper sx={{ p: "30px" }}>
