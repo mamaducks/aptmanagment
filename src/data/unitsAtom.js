@@ -23,3 +23,21 @@ export const getUnitsInfo = selectorFamily({
       return get(getAllUnitsInfo).find((item) => item.siteId === id);
     },
 });
+
+export const unitStatsState = selector({
+  key: 'unitStatsState',
+  get: ({get}) => {
+    const unitList = get(getAllUnitsInfo);
+    const totalNum = unitList.length;
+    const totalFilledNum = unitList.filter((item) => item.isTenant).length;
+    const totalVacantNum = totalNum - totalFilledNum;
+    const percentCompleted = totalNum === 0 ? 0 : totalFilledNum / totalNum * 100;
+
+    return {
+      totalNum,
+      totalFilledNum,
+      totalVacantNum,
+      percentCompleted,
+    };
+  },
+});

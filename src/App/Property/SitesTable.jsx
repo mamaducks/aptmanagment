@@ -11,7 +11,7 @@ import { useRecoilValue } from "recoil";
 import { getAllSitesInfo } from "../../data/siteAtoms";
 import { app } from "../../data/app";
 import UnitsDialog from "./UnitsTableDialog";
-
+import { unitStatsState } from "../../data/unitsAtom";
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -26,6 +26,13 @@ import UnitsDialog from "./UnitsTableDialog";
 
 export default function SitesTable() {
   const sites = useRecoilValue(getAllSitesInfo);
+
+  const {
+    totalNum,
+    totalFilledNum,
+    totalVacantNum,
+  } = useRecoilValue(unitStatsState);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -47,9 +54,9 @@ export default function SitesTable() {
               <TableCell component="th" scope="row">
                 {site}
               </TableCell>
-              <TableCell align="right"># units</TableCell>
-              <TableCell align="right">current # vacant</TableCell>
-              <TableCell align="right"># filled</TableCell>
+              <TableCell align="right">{totalNum}</TableCell>
+              <TableCell align="right">{totalVacantNum}</TableCell>
+              <TableCell align="right">{totalFilledNum}</TableCell>
               <TableCell align="center">
                 <UnitsDialog siteId={siteId} siteName={site} />
               </TableCell>

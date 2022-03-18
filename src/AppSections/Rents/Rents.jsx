@@ -17,21 +17,21 @@ export function Rents() {
       <div>header: Rents</div>
       <div>upload deposit slips</div>
       <Box
-      sx={{
-        display: 'flex',
-        // flexDirection: 'column',
-        justifyContent: 'center',
-        gap: 1,
-        '& > *': {
-          m: 1,
-        },
-      }}
+        sx={{
+          display: "flex",
+          // flexDirection: 'column',
+          justifyContent: "center",
+          gap: 1,
+          "& > *": {
+            m: 1,
+          },
+        }}
       >
         {/* <ButtonGroup aria-label="outlined button group"> */}
-          <EnterRentsDialog />
-          <RentRollDialog />
+        <EnterRentsDialog />
+        <RentRollDialog />
 
-          <Button>upload deposit slips ?</Button>
+        <Button>upload deposit slips ?</Button>
         {/* </ButtonGroup> */}
       </Box>
 

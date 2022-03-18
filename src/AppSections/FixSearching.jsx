@@ -417,7 +417,6 @@ export const filteredTelescopesTypes = atom({
 
 
 
-
 import { Box, Button, FormGroup } from "@mui/material";
 import { useEffect } from "react";
 import CheckIcon from "@mui/icons-material/Check";

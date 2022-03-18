@@ -11,6 +11,7 @@ export function SearchTenant() {
 <div>click table row to view tenant</div>
 
 <TenantInfoDialog />
+
 </>
     );
 }

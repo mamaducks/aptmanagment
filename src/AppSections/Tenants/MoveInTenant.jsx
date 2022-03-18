@@ -18,6 +18,7 @@ import { useCallback, useState } from "react";
 
 export function Tenant() {
   const [tenant, setTenant] = useRecoilState(tenantListState);
+  
   //const index = applicantList.findIndex((listItem) => listItem === item);
   const [item, setItem] = useState({});
   //   const applicant = useRecoilValue();
@@ -80,16 +81,16 @@ export function Tenant() {
       </Stack>
 
       <Box sx={{ width: "850px" }}>
-      <TextField
-            fullWidth
-            margin="normal"
-            {...addProps({ name: "firstName", label: "First Name" })}
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            {...addProps({ name: "lastName", label: "Last Name" })}
-          />
+        <TextField
+          fullWidth
+          margin="normal"
+          {...addProps({ name: "firstName", label: "First Name" })}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          {...addProps({ name: "lastName", label: "Last Name" })}
+        />
       </Box>
       <Stack direction="row" gap={4}>
         <Box sx={{ width: "500px" }}>
@@ -119,7 +120,7 @@ export function Tenant() {
       </Stack>
       <Box sx={{ width: "500px" }}>
         <TextField
-        fullWidth
+          fullWidth
           margin="normal"
           {...addProps({ name: "site", label: "Site", type: "text" })}
         />
@@ -127,7 +128,7 @@ export function Tenant() {
 
       <Box sx={{ width: "500px" }}>
         <TextField
-        fullWidth
+          fullWidth
           margin="normal"
           {...addProps({ name: "unit", label: "Unit", type: "string" })}
         />

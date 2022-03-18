@@ -1,31 +1,40 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { localStorageEffect } from "./localStorage";
+// import { useDispatch, useSelector } from "react-redux";
 
-export const PENDING = "pending";
-export const ACCEPTED = "accepted";
-export const REJECTED = "rejected";
-export const WITHDRAWL = "withdrawl";
+import { getAllSitesInfo } from "./siteAtoms";
 
+export const PENDING = "Pending";
+export const APPROVED = "Approved";
+export const REJECTED = "Rejected";
+export const WITHDRAWL = "Withdrawl";
 
+export const ALL_STATUS = [PENDING, APPROVED, REJECTED, WITHDRAWL];
 
-
+export const filteredStatusTypes = atom({
+  key: "filteredStatusTypes",
+  default: ALL_STATUS,
+});
 
 export const applicantListState = atom({
   key: "applicantListState",
-  default: [{
-    id: "1",
-    dateApplied: "3/3/22",
-    name: "dave smith",
-    phone: "856-777-0098",
-    familySize: "3",
-  }],
+  default: [],
   effects_UNSTABLE: [localStorageEffect("applicantList", [])],
 });
-
 
 export const applicantListFilterState = atom({
   key: "applicantListFilterState",
   default: "Show All",
+});
+
+export const getAllApplicantData = selector({
+  key: "getAllApplicantData",
+  get:
+    (siteId) =>
+    ({ get }) =>
+      !siteId
+        ? get(applicantListState)
+        : get(getAllSitesInfo).filter((item) => item.siteId === siteId),
 });
 
 export const filteredApplicantListState = selector({
@@ -41,8 +50,8 @@ export const filteredApplicantListState = selector({
         return list.filter((item) => item.isAccepted);
       case "Show Rejected":
         return list.filter((item) => !item.isRejected);
-        case "Show Withdrawl":
-          return list.filter((item) => !item.isWithdrawl);
+      case "Show Withdrawl":
+        return list.filter((item) => !item.isWithdrawl);
       default:
         return list;
     }
@@ -89,6 +98,6 @@ export const getApplicantInfo = selectorFamily({
   get:
     (applicantId) =>
     ({ get }) => {
-      return get(getApplicantInfo).find((item) => item.id === applicantId);
+      return get(applicantListState).find((item) => item.id === applicantId);
     },
 });

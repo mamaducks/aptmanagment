@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { Applicant } from './ApplicantList';
-import UpdateApplicant from './UpdateApplicant';
+import { Applicant } from "./ApplicantList";
+import UpdateApplicant from "./UpdateApplicant";
+import { EditApplicant } from "./EditApplicant";
 
-
-export default function UpdateApplicantDialog() {
+export default function UpdateApplicantDialog({ applicantId }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,12 +25,13 @@ export default function UpdateApplicantDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-       Update Applicant
+        Update Applicant
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Applicants</DialogTitle>
         <DialogContent>
-        <UpdateApplicant />
+          {/* <UpdateApplicant name={name}/> */}
+          <EditApplicant applicantId={applicantId} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

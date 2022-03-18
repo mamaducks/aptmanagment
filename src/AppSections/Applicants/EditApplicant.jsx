@@ -20,20 +20,37 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { applicantListState, APPROVED, PENDING, REJECTED, WITHDRAWL } from "../../data/applicantAtoms";
+import {
+  applicantListState,
+  APPROVED,
+  PENDING,
+  REJECTED,
+  WITHDRAWL,
+  getApplicantInfo,
+} from "../../data/applicantAtoms";
 import { useCallback, useState } from "react";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
 import { getAllSitesInfo } from "../../data/siteAtoms";
 
-export function Applicant() {
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+export function EditApplicant({ applicantId }) {
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
   const sites = useRecoilValue(getAllSitesInfo);
   //const index = applicantList.findIndex((listItem) => listItem === item);
-  const [item, setItem] = useState({});
 
-  console.log("item");
+  const oldApplicant = useRecoilValue(getApplicantInfo(applicantId));
+  const index = applicantList.findIndex(
+    (listItem) => listItem.id === applicantId
+  );
+  const [item, setItem] = useState(oldApplicant || { selectedSites: {} });
 
   const selectedSites = item.selectedSites || {};
+
+  console.log("item", item);
+
   // const toggleItemStatus = () => {
   //   const newList = replaceItemAtIndex(applicantList, index, {
   //     ...item,
@@ -85,9 +102,9 @@ export function Applicant() {
     [item, selectedSites]
   );
 
-  const addApplicate = useCallback(() => {
-    setApplicantList((applicants) => [...applicants, item]);
-  }, [item, setApplicantList]);
+  const updateApplicate = useCallback(() => {
+    setApplicantList((current) => replaceItemAtIndex(current, index, item));
+  }, [item, index, setApplicantList]);
 
   return (
     <Box sx={{ p: "30px" }}>
@@ -116,7 +133,7 @@ export function Applicant() {
               control={<Radio />}
               label="Approved"
             />
-             <FormControlLabel
+            <FormControlLabel
               value={WITHDRAWL}
               control={<Radio />}
               label="Withdrawn"
@@ -165,20 +182,20 @@ export function Applicant() {
 
       <Box display="flex" gap={7}>
         {/* <FormControl>
-          <FormLabel id="gender">Gender</FormLabel>
-
-          <RadioGroup
-            defaultValue=""
-            {...addProps({ name: "gender", label: "Gender" })}
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-          </RadioGroup>
-        </FormControl> */}
+            <FormLabel id="gender">Gender</FormLabel>
+  
+            <RadioGroup
+              defaultValue=""
+              {...addProps({ name: "gender", label: "Gender" })}
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Female"
+              />
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+            </RadioGroup>
+          </FormControl> */}
 
         <FormControl>
           <FormLabel id="race">Race</FormLabel>
@@ -193,25 +210,17 @@ export function Applicant() {
             <FormControlLabel value="3" control={<Radio />} label="Asian" />
             <FormControlLabel value="4" control={<Radio />} label="LatinX" />
           </RadioGroup>
-{/* 
-          1 american indian or alaskan native
-          2 asian
-          3 black or african american
-          4 native hawiian or pacific islander
-          5 White
-
-          ethnicity
-          a hispanic latino
-          b non hispanic latino */}
-
           <RadioGroup
             row
             defaultValue=""
             {...addProps({ name: "raceNumber", label: "Race" })}
           >
- 
             <FormControlLabel value="1" control={<Radio />} label="LatinX" />
-            <FormControlLabel value="2" control={<Radio />} label="Non Hispanic or Latino" />
+            <FormControlLabel
+              value="2"
+              control={<Radio />}
+              label="Non Hispanic or Latino"
+            />
           </RadioGroup>
         </FormControl>
       </Box>
@@ -260,8 +269,8 @@ export function Applicant() {
         </FormControl>
       </Stack>
       {/* <TextField
-        {...addProps({ name: "incomeLevel", label: "Income Level" })}
-      /> */}
+          {...addProps({ name: "incomeLevel", label: "Income Level" })}
+        /> */}
 
       <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl>
@@ -298,16 +307,16 @@ export function Applicant() {
             />
           </FormGroup>
         </FormControl>
-        </Stack>
-        <Stack sx={{ border: "1px solid black", p: 1 }}>
+      </Stack>
+      <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl>
           <FormLabel id="sites">Sites Applying For</FormLabel>
           {/* <SiteCheckboxes /> */}
+
           <FormGroup row>
             {sites.map((item) => (
               <FormControlLabel
                 key={item.siteId}
-                id="siteList"
                 control={
                   <Checkbox
                     {...addCheckProps({
@@ -323,20 +332,15 @@ export function Applicant() {
           </FormGroup>
         </FormControl>
       </Stack>
-  <Box display="flex" justifyContent="center" mt={2}>
-    <Button  size="large" variant="contained" onClick={addApplicate}>
-        Add
-      </Button>
-  </Box>
-      
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Button size="large" variant="contained" onClick={updateApplicate}>
+          Update
+        </Button>
+      </Box>
     </Box>
   );
 }
 
-function replaceItemAtIndex(arr, index, newValue) {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
-
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}
+//   function removeItemAtIndex(arr, index) {
+//     return [...arr.slice(0, index), ...arr.slice(index + 1)];
+//   }

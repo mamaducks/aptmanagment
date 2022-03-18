@@ -6,26 +6,45 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
-
+import { useRecoilValue } from "recoil";
+import { getAllSitesRentTotals } from "../../data/rentsAtom";
 
 export function RentRollSummary() {
+  const t = useRecoilValue(getAllSitesRentTotals);
+
+  console.log("totla", t);
   return (
     <>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={2} sx={{fontWeight: "bolder"}}>
+              <TableCell
+                align="center"
+                colSpan={2}
+                sx={{ fontWeight: "bolder" }}
+              >
                 Unit Information
               </TableCell>
-              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
+              <TableCell
+                align="center"
+                colSpan={4}
+                sx={{ fontWeight: "bolder" }}
+              >
                 January
               </TableCell>
-              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
+              <TableCell
+                align="center"
+                colSpan={4}
+                sx={{ fontWeight: "bolder" }}
+              >
                 February
               </TableCell>
-              <TableCell align="center" colSpan={4} sx={{fontWeight: "bolder"}}>
+              <TableCell
+                align="center"
+                colSpan={4}
+                sx={{ fontWeight: "bolder" }}
+              >
                 March
               </TableCell>
             </TableRow>

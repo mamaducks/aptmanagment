@@ -14,3 +14,14 @@ export const getSiteInfo = selectorFamily({
       return get(getAllSitesInfo).find((item) => item.id === siteId);
     },
 });
+
+
+
+export const getAllApplicantsSiteInfo = selector({
+  key: "getAllApplicantsSiteInfo",
+  get: ({ get }) =>
+    get(app).sites.map((item) => ({
+      ...item,
+    
+    })),
+});

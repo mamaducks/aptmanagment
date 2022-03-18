@@ -8,6 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useRecoilValue } from "recoil";
 import { applicantListState } from "../../data/applicantAtoms";
+import UpdateApplicantStatusDialog, {
+  StatusCheckboxesData,
+} from "./StatusButton";
+import UpdateApplicantDialog from "./UpdateApplicantDialog";
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -28,19 +32,40 @@ export default function WaitingListTable() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{fontWeight: "bolder"}}>Status</TableCell>
-            <TableCell sx={{fontWeight: "bolder"}}>Date</TableCell>
-            <TableCell sx={{fontWeight: "bolder"}}>Time</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Name</TableCell>
+            <TableCell sx={{ fontWeight: "bolder" }}>Status</TableCell>
+            <TableCell sx={{ fontWeight: "bolder" }}>Date</TableCell>
+            <TableCell sx={{ fontWeight: "bolder" }}>Time</TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Name
+            </TableCell>
 
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Phone #</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Race</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Family Size</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>M/F</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>D/P</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Income Level</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Unit Size</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>Rental Assistance</TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Phone #
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Race
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Family Size
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              M/F
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              D/P
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Income Level
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Unit Size
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Rental Assistance
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              update applicant or all row clickable
+            </TableCell>
             {/* <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Lease Date</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Removal Date</TableCell> */}
@@ -69,30 +94,51 @@ export default function WaitingListTable() {
             <TableCell align="right">Lease Date</TableCell>
             <TableCell align="right">Removal Date</TableCell> 
           </TableRow> */}
-          {applicantList.map(({index, dateApplied, name, phone, status, gender, race, familySize, beds, incomeLevel, rentalAssistance }) => (
-            <TableRow
-              key={index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {status}
-              </TableCell>
-              <TableCell align="right">{dateApplied}</TableCell>
-              <TableCell align="right">Time</TableCell>
-              <TableCell align="right">{name}</TableCell>
-              <TableCell align="right">{phone}</TableCell>
-              <TableCell align="right">{race}</TableCell>
-              <TableCell align="right">{familySize}</TableCell>
-              <TableCell align="right">{gender}</TableCell>
-              <TableCell align="right">D/P yes no</TableCell>
-              <TableCell align="right">{incomeLevel}</TableCell>
-              <TableCell align="right">{beds}</TableCell>
-              <TableCell align="right">{rentalAssistance}</TableCell>
-              {/* <TableCell align="right">Occupancy Cont Date??</TableCell>
+          {applicantList.map(
+            ({
+              id,
+              dateApplied,
+              name,
+              phone,
+              status,
+              gender,
+              race,
+              familySize,
+              beds,
+              incomeLevel,
+              rentalAssistance,
+            }) => (
+              <TableRow
+                key={id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {status}
+                  <UpdateApplicantStatusDialog />
+                </TableCell>
+                <TableCell align="right">{dateApplied}</TableCell>
+                <TableCell align="right">Time</TableCell>
+                <TableCell align="right">{name}</TableCell>
+                <TableCell align="right">{phone}</TableCell>
+                <TableCell align="right">{race}</TableCell>
+                <TableCell align="right">{gender}</TableCell>
+
+                <TableCell align="right">{familySize}</TableCell>
+                {/* <TableCell align="right">{gender}</TableCell> */}
+                <TableCell align="right">D/P yes no</TableCell>
+                <TableCell align="right">{incomeLevel}</TableCell>
+                <TableCell align="right">{beds}</TableCell>
+                <TableCell align="right">{rentalAssistance}</TableCell>
+                <TableCell align="right">
+                  <UpdateApplicantDialog applicantId={id} />
+                </TableCell>
+
+                {/* <TableCell align="right">Occupancy Cont Date??</TableCell>
               <TableCell align="right">Lease Date</TableCell>
               <TableCell align="right">Removal Date</TableCell> */}
-            </TableRow>
-          ))}
+              </TableRow>
+            )
+          )}
         </TableBody>
       </Table>
     </TableContainer>
