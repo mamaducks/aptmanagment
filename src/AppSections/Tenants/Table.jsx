@@ -53,8 +53,7 @@ export default function TenantTable() {
         </TableBody>
       </Table>
     </TableContainer>
-    clickable from tenant info table
-    <TenantInfoDialog />
+   
     </>
   );
 }

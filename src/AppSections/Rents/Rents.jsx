@@ -2,13 +2,12 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import EnterRentsDialog from "./EnterRentsDialog";
-import { RentRoll } from "./RentRoll";
+import EnterRentsDialog from "./EnterRents/EnterRentsDialog";
+import { RentRollDeposits } from "./RentRoll";
 import RentRollDialog from "./RentRollDialog";
-import RentsTable from "./Table";
-import { Rent } from "./RentSheet";
+import { Rent } from "./EnterRents/RentSheet";
 import { RentRollSummary } from "./RentRollSummary";
-import { RentRollOverview } from "./RentRollOverview";
+import { RentRollOverview } from "../../unused/RentRollOverview";
 
 export function Rents() {
   return (
@@ -36,11 +35,13 @@ export function Rents() {
       </Box>
 
       <div>rent roll site totals</div>
-      <RentRollOverview />
-      <RentRoll />
+      {/* <RentRollOverview /> */}
+      <RentRollDeposits />
       <div>show 3 months rent roll</div>
       <RentRollSummary />
       {/* <EnterRentsList /> */}
+     
+
     </>
   );
 }

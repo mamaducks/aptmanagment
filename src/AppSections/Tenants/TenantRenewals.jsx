@@ -42,14 +42,13 @@ export default function RenewTable() {
               tenant name
               </TableCell>
               <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right">update</TableCell>
+              <TableCell align="right"><UpdateTenantDialog /></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    clickable from tenant renewing table
-<UpdateTenantDialog />
+    
     </>
   );
 }

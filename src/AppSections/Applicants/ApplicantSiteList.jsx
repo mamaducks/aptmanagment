@@ -1,11 +1,16 @@
 import { MenuItem, OutlinedInput, Select } from "@mui/material";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {  getAllSitesInfo } from "../../data/siteAtoms";
+import { useCallback, useState } from "react";
+
 
 export function SortSelect() {
   const [sortType, setSortType] = useRecoilState(getAllSitesInfo);
-const sites = useRecoilValue(getAllSitesInfo)
+// const sites = useRecoilValue(getAllSitesInfo)
   
+const [item, setItem] = useState( { selectedSites: {} });
+
+// const selectedSites = item.selectedSites || {};
 
   return (
     <Select
@@ -24,7 +29,7 @@ const sites = useRecoilValue(getAllSitesInfo)
         />
       }
     >
-      {sites.map((item, index) => (
+      {sortType.map((item, index) => (
         <MenuItem key={index} value={item.site}>
           {item.site[2]}
         </MenuItem>

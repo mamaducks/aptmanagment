@@ -6,6 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { RentSiteOverview } from "../Management/Rents/RentSiteDetailsDialog";
+
+import { useRecoilValue } from "recoil";
+import { getAllSitesRentTotals } from "../../data/rentsAtom";
+import { RentRollSummary } from "../Rents/RentRollSummary";
+import { RentOverview } from "../Management/Rents/RentOverviewDialog";
+import { RentRollSummaryDialog } from "./RentRollSummaryDialog";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,16 +26,14 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-export function RentRoll() {
+export function RentRollDeposits() {
+  const rentTotals = useRecoilValue(getAllSitesRentTotals);
   return (
     <>
       <>
-        <div>rent roll list</div>
+        <div>rent roll overview</div>
         <div>site</div>
-        <div>
-          site name TENANT APT. # LAST NAME JAN FEB MAR APR MAY JUN JUL AUG SEP
-        </div>
-        <div>upload deposit slip copy</div>
+       
       </>
 
       <TableContainer component={Paper}>
@@ -40,24 +45,32 @@ export function RentRoll() {
               <TableCell align="right" sx={{fontWeight: "bolder"}}>total deposits</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>total credit</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>total delinquent</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}>view details</TableCell>
+
+
               {/* <TableCell align="right">total summary</TableCell> */}
             </TableRow>
           </TableHead>
           
           <TableBody>
+          {rentTotals.map(({ siteId, site, rentTotals}) => (
             <TableRow
-              key="key"
+              key={siteId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                site name
+              {site}
               </TableCell>
-              <TableCell align="right">paid $</TableCell>
+              <TableCell align="right">{rentTotals.paymentsTotal}</TableCell>
               <TableCell align="right">deposits $</TableCell>
-              <TableCell align="right">credit $</TableCell>
-              <TableCell align="right">delinquent $</TableCell>
-              {/* <TableCell align="right">summary $</TableCell> */}
+              <TableCell align="right">{rentTotals.creditsTotal}</TableCell>
+              <TableCell align="right">{rentTotals.delinquentTotal}</TableCell>
+              <TableCell align="right">
+                <RentRollSummaryDialog siteId={siteId}/>
+                {/* <RentRollSummary siteId={siteId}/> */}
+                </TableCell>
             </TableRow>
+          ))}
           </TableBody>
         </Table>
       </TableContainer>

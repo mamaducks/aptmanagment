@@ -6,6 +6,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { getBillsInfo, getBillsInfoNew } from "../../data/billAtoms";
+import { useRecoilValue } from "recoil";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  Typography,
+} from "@mui/material";
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
@@ -18,69 +27,74 @@ import Paper from "@mui/material/Paper";
 //   //   createData('Cupcake', 305, 3.7, 67, 4.3),
 //   //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 //   // ];
-
-export function BillSummary() {
+/*
+billType: "company"
+categoryId: "electric"
+desc: "Electric Bills"
+total: 223.54
+*/
+export function BillTable() {
+  // const bills = useRecoilValue(getBillsInfo);
+  const billInfo = useRecoilValue(getBillsInfoNew);
+  console.log("BillTable", billInfo);
   return (
     <>
-      <div>total maintenance hours billed : WorkHoursBill</div>
+      {billInfo.map((item) => (
+        <Paper>
+          <Typography>{item.billType}</Typography>
 
-      <div>Maintenance Bills</div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{fontWeight: "bolder"}}>flooring</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>painting</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>appliances</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>snow</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>lawn</TableCell>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>vehicle</TableCell>
-              <TableCell>trash</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow
-              key="key"
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 650 }}
+              size="small"
+              aria-label="a dense table"
             >
-              <TableCell component="th" scope="row">
-                $ flooring
-              </TableCell>
-              <TableCell align="right">$ painting</TableCell>
-              <TableCell align="right">$ appliances</TableCell>
-              <TableCell align="right"> $ snow</TableCell>
-              <TableCell align="right">$ lawn</TableCell>
-              <TableCell align="right"> $ vehicle</TableCell>
-              <TableCell align="right"> $ trash</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      Year overview
-      <div>Company Bills</div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>electric</TableCell>
-              <TableCell align="right">phones/internet</TableCell>
-              <TableCell align="right">contractors</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow
-              key="key"
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                $ electric
-              </TableCell>
-              <TableCell align="right">$ phones/internet</TableCell>
-              <TableCell align="right">$ contractors</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+              <TableHead>
+                <TableRow>
+                  {item.categories.map((item) => (
+                    <TableCell component="th" scope="row">
+                      {item.desc}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+                <TableRow
+                  key="key"
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  {item.categories.map((item) => (
+                    <TableCell component="th" scope="row">
+                      ${(item.total || 0).toLocaleString()}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      ))}
     </>
+  );
+}
+export function BillSummary() {
+  const bills = useRecoilValue(getBillsInfo);
+  console.log("bills", bills);
+  return (
+    <>
+      <BillTable />
+    </>
+  );
+}
+
+export function BillsList() {
+  return (
+    <List>
+      <ListSubheader>bill</ListSubheader>
+      <ListItem>
+        <ListItemText primary="bill cat" secondary="bill amt" />
+      </ListItem>
+    </List>
   );
 }

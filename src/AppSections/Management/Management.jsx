@@ -1,7 +1,7 @@
 import * as React from "react";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import { RentOverview } from "./RentOverviewDialog";
+import { RentOverview } from "./Rents/RentOverviewDialog";
 import { TenantOverview } from "./TenantOverviewDialog";
 import EmployeeDialog from "./Employees/EmployeesDialog";
 import { BillingOverview } from "./BillsOverviewDialog";

@@ -42,7 +42,7 @@ export default function UpdateApplicant() {
           textAlign: "center",
           alignSelf: "center",
         }}
-        subheader={<ListSubheader>Deposits</ListSubheader>}
+        subheader={<ListSubheader>Applicants</ListSubheader>}
       >
         <ListItem>
           <ListItemText id="Status" primary="Status" />

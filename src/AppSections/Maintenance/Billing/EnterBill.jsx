@@ -13,7 +13,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getAllBillsInfo } from "../../../data/billAtoms";
+import { getBillsInfo } from "../../../data/billAtoms";
 import { useCallback, useState } from "react";
 import {
   Box,
@@ -26,10 +26,9 @@ import {
 } from "@mui/material";
 
 export function Bill() {
-  const [bill, setBill] = useRecoilState(getAllBillsInfo);
+  const [bill, setBill] = useRecoilState(getBillsInfo);
   const [newBill, setNewBill] = useState({});
 
-  
   // const index = todoList.findIndex((listItem) => listItem === item);
 
   // const editItemText = ({target: {value}}) => {
@@ -93,23 +92,22 @@ export function Bill() {
           <Box sx={{ width: "500px" }}>
             <TextField
               fullWidth
-              {...addProps({ name: "dateRequest", label: "Date Requested" })}
+              {...addProps({ name: "billDate", label: "Date Requested" })}
             />
           </Box>
 
           <FormControl>
-            <FormLabel id="site">Site</FormLabel>
+            <FormLabel id="siteId">Site</FormLabel>
             <div>date</div>
             <div>
               type of bill category , subcategory if there flooring painting
               appliances snow lawn vehicle trash electric phones internet
               contractors
-
               <TextField
-            fullWidth
-            margin="normal"
-            {...addProps({ name: "category", label: "Category" })}
-          />
+                fullWidth
+                margin="normal"
+                {...addProps({ name: "categoryId", label: "Category" })}
+              />
             </div>
           </FormControl>
         </Stack>
@@ -149,7 +147,7 @@ export function Bill() {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "site", label: "Site", type: "text" })}
+            {...addProps({ name: "siteId", label: "Site", type: "text" })}
           />
         </FormControl>
         {/* </Box>

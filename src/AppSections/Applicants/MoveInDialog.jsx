@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 import { Applicant } from './ApplicantList';
 import UpdateApplicant from './UpdateApplicant';
 import MoveInApplicant from './MoveInApplicant';
+import { Tenant } from '../Tenants/MoveInTenant';
 
 
 export default function MoveInDialog() {
@@ -31,7 +32,7 @@ export default function MoveInDialog() {
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Applicants</DialogTitle>
         <DialogContent>
-        <MoveInApplicant />
+        <Tenant />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

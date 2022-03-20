@@ -10,6 +10,7 @@ import NewApplicantDialog from "./EnterApplicantDialog";
 import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
 import { SortSelect } from "./ApplicantSiteList";
+import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
 export function Applicants() {
   return (
     <>
@@ -29,17 +30,14 @@ export function Applicants() {
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <NewApplicantDialog />
-          <UpdateApplicantDialog />
-          <MoveInDialog />
+          <div>search for applicant by name</div>
+          {/* <UpdateApplicantDialog /> */}
+          {/* <MoveInDialog /> */}
+          <div>choose site to view waiting list</div>
+          <SortSelect />
         </ButtonGroup>
       </Box>
 
-      <div>
-        applicants name info date added make tenant status: accept/reject sites
-        applying for
-      </div>
-      <SortSelect />
-      <div>applications waiting list</div>
       <WaitingListTable />
       <div>filter table</div>
       <div>current waiting</div>

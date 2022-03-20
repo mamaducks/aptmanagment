@@ -8,9 +8,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
 import { RentRollSummary } from "./RentRollSummary";
-import { TenantSummary } from "./TenantSummary";
+// import { TenantSummary } from "./TenantSummary";
 
-export function RentOverview() {
+export function RentRollSummaryDialog({siteId}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,12 +24,12 @@ export function RentOverview() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Rents Overview
+        Rents Site Overview
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogTitle>Rents Summary</DialogTitle>
+        <DialogTitle>Rents </DialogTitle>
         <DialogContent>
-          <RentRollSummary />
+        <RentRollSummary siteId={siteId}/>
          
         </DialogContent>
         <DialogActions>

@@ -15,12 +15,40 @@ import {
 import { useRecoilState, useRecoilValue } from "recoil";
 import { tenantListState } from "../../data/tenantAtoms";
 import { useCallback, useState } from "react";
+import { getAllSitesInfo } from "../../data/siteAtoms";
+import {
+  applicantListState,
+  APPROVED,
+  PENDING,
+  REJECTED,
+  WITHDRAWL,
+  getApplicantInfo,
+} from "../../data/applicantAtoms";
+import { SortSelect } from "../Applicants/ApplicantSiteList";
 
-export function Tenant() {
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+export function Tenant({ applicantId }) {
   const [tenant, setTenant] = useRecoilState(tenantListState);
   
+  const [applicantList, setApplicantList] = useRecoilState(applicantListState);
+
+  const sites = useRecoilValue(getAllSitesInfo);
+
+
+  const oldApplicant = useRecoilValue(getApplicantInfo(applicantId));
+  const index = applicantList.findIndex(
+    (listItem) => listItem.id === applicantId
+  );
+
+const [item, setItem] = useState({});
+
+  const selectedSites = item.selectedSites || {};
+
   //const index = applicantList.findIndex((listItem) => listItem === item);
-  const [item, setItem] = useState({});
+  
   //   const applicant = useRecoilValue();
   console.log("item", tenant, item);
 
@@ -55,9 +83,11 @@ export function Tenant() {
     [item]
   );
 
-  const addTenant = useCallback(() => {
-    setTenant((tenants) => [...tenants, item]);
-  }, [item, setTenant]);
+
+  const updateTenant = useCallback(() => {
+    setTenant((current) => replaceItemAtIndex(current, index, item));
+  }, [item, index, setTenant]);
+  
 
   return (
     <Paper sx={{ p: "30px" }}>
@@ -125,6 +155,7 @@ export function Tenant() {
           {...addProps({ name: "site", label: "Site", type: "text" })}
         />
       </Box>
+      <SortSelect />
 
       <Box sx={{ width: "500px" }}>
         <TextField
@@ -212,7 +243,7 @@ export function Tenant() {
         />
   
         <button onClick={deleteItem}>X</button> */}
-      <button onClick={addTenant}>Add</button>
+      <button onClick={updateTenant}>Add</button>
     </Paper>
   );
 }

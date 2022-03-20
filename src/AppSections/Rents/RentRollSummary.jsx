@@ -9,12 +9,18 @@ import Paper from "@mui/material/Paper";
 import { useRecoilValue } from "recoil";
 import { getAllSitesRentTotals } from "../../data/rentsAtom";
 
-export function RentRollSummary() {
+export function RentRollSummary(siteId) {
   const t = useRecoilValue(getAllSitesRentTotals);
 
   console.log("totla", t);
   return (
     <>
+            <div>rent roll list</div>
+        <div>site</div>
+        <div>
+          site name TENANT APT. # LAST NAME JAN FEB MAR APR MAY JUN JUL AUG SEP
+        </div>
+        <div>upload deposit slip copy</div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
@@ -28,65 +34,101 @@ export function RentRollSummary() {
               </TableCell>
               <TableCell
                 align="center"
-                colSpan={4}
+                colSpan={1}
+                sx={{ fontWeight: "bolder" }}
+              >
+                carry over balance
+              </TableCell>
+              <TableCell
+                align="center"
+                colSpan={3}
                 sx={{ fontWeight: "bolder" }}
               >
                 January
               </TableCell>
               <TableCell
                 align="center"
-                colSpan={4}
+                colSpan={3}
                 sx={{ fontWeight: "bolder" }}
               >
                 February
               </TableCell>
               <TableCell
                 align="center"
-                colSpan={4}
+                colSpan={3}
                 sx={{ fontWeight: "bolder" }}
               >
                 March
               </TableCell>
             </TableRow>
+       
             <TableRow>
               <TableCell>unit #</TableCell>
               <TableCell align="right">Tenant last Name</TableCell>
-              <TableCell align="right"> paid</TableCell>
-              <TableCell align="right"> credit</TableCell>
-              <TableCell align="right">delinquent</TableCell>
               <TableCell align="right">balance $</TableCell>
+              <TableCell align="right"> due</TableCell>
+
               <TableCell align="right"> paid</TableCell>
-              <TableCell align="right"> credit</TableCell>
-              <TableCell align="right">delinquent</TableCell>
+              {/* <TableCell align="right"> credit</TableCell>
+              <TableCell align="right">delinquent</TableCell> */}
               <TableCell align="right">balance $</TableCell>
+
+              <TableCell align="right"> due</TableCell>
+              <TableCell align="right"> paid</TableCell>
+              {/* <TableCell align="right"> credit</TableCell>
+              <TableCell align="right">delinquent</TableCell> */}
+              <TableCell align="right">balance $</TableCell>
+
+              <TableCell align="right"> due</TableCell>
               <TableCell align="right">paid</TableCell>
-              <TableCell align="right">credit</TableCell>
-              <TableCell align="right">delinquent</TableCell>
+              {/* <TableCell align="right">credit</TableCell>
+              <TableCell align="right">delinquent</TableCell> */}
               <TableCell align="right">balance $</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              key="key"
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                unit #
-              </TableCell>
-              <TableCell align="right">Tenant last Name</TableCell>
-              <TableCell align="right">paid $</TableCell>
-              <TableCell align="right">credit $</TableCell>
-              <TableCell align="right">delinquent $</TableCell>
-              <TableCell align="right">balance $</TableCell>
-              <TableCell align="right">paid $</TableCell>
-              <TableCell align="right">credit $</TableCell>
-              <TableCell align="right">delinquent $</TableCell>
-              <TableCell align="right">balance $</TableCell>
-              <TableCell align="right">paid $</TableCell>
-              <TableCell align="right">credit $</TableCell>
-              <TableCell align="right">delinquent $</TableCell>
-              <TableCell align="right">balance $</TableCell>
-            </TableRow>
+          {t.map(({ siteId, unitId, amount, tenantId, site, rentTotals}) => (
+ <TableRow
+ key={siteId}
+ sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+>
+ <TableCell component="th" scope="row">
+ {unitId}
+ </TableCell>
+ <TableCell align="right">{tenantId}</TableCell>
+ <TableCell align="right">balance $</TableCell>
+ <TableCell align="right"> due</TableCell>
+ <TableCell align="right">{amount}</TableCell>
+ {/* <TableCell align="right">credit $</TableCell>
+ <TableCell align="right">delinquent $</TableCell> */}
+ <TableCell align="right">balance $</TableCell>
+ <TableCell align="right"> due</TableCell>
+ <TableCell align="right">paid $</TableCell>
+ {/* <TableCell align="right">credit $</TableCell>
+ <TableCell align="right">delinquent $</TableCell> */}
+ <TableCell align="right">balance $</TableCell>
+ <TableCell align="right"> due</TableCell>
+ <TableCell align="right">paid $</TableCell>
+ {/* <TableCell align="right">credit $</TableCell>
+ <TableCell align="right">delinquent $</TableCell> */}
+ <TableCell align="right">balance $</TableCell>
+</TableRow>
+
+))}
+<TableRow>
+<TableCell align="right"   colSpan={2}>Totals</TableCell>
+<TableCell align="right">balance $</TableCell>
+<TableCell align="right"> due</TableCell>
+ <TableCell align="right" >paid $</TableCell>
+ <TableCell align="right">balance $</TableCell>
+ <TableCell align="right"> due</TableCell>
+ <TableCell align="right">paid $</TableCell>
+ <TableCell align="right">balance $</TableCell>
+ <TableCell align="right"> due</TableCell>
+ <TableCell align="right">paid $</TableCell>
+</TableRow>
+
+           
           </TableBody>
         </Table>
       </TableContainer>

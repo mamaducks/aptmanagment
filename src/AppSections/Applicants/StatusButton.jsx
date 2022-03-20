@@ -7,7 +7,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
@@ -22,9 +23,6 @@ import {
   WITHDRAWL,
   ALL_STATUS,
 } from "../../data/applicantAtoms";
-
-
-
 
 export default function UpdateApplicantStatusDialog() {
   const [open, setOpen] = useState(false);
@@ -65,6 +63,7 @@ export function StatusButtons() {
 
   return (
     <ToggleButtonGroup
+    sx={{px: 1}}
       value={status}
       exclusive
       onChange={handleStatus}
@@ -86,3 +85,44 @@ export function StatusButtons() {
   );
 }
 
+export function StatusMenu() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+       update Status
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+        
+      >
+        <StatusButtons />
+        {/* <MenuItem onClick={handleClose}>Pending</MenuItem>
+
+        <MenuItem onClick={handleClose}>Approved</MenuItem>
+        <MenuItem onClick={handleClose}>Rejected</MenuItem>
+        <MenuItem onClick={handleClose}>Withdrawn</MenuItem> */}
+      </Menu>
+    </div>
+  );
+}

@@ -9,9 +9,10 @@ import Paper from "@mui/material/Paper";
 import { useRecoilValue } from "recoil";
 import { applicantListState } from "../../data/applicantAtoms";
 import UpdateApplicantStatusDialog, {
-  StatusCheckboxesData,
+  StatusCheckboxesData, StatusMenu,
 } from "./StatusButton";
 import UpdateApplicantDialog from "./UpdateApplicantDialog";
+import MoveInDialog from "./MoveInDialog";
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -66,6 +67,9 @@ export default function WaitingListTable() {
             <TableCell align="right" sx={{ fontWeight: "bolder" }}>
               update applicant or all row clickable
             </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+             move in
+            </TableCell>
             {/* <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Lease Date</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Removal Date</TableCell> */}
@@ -114,6 +118,7 @@ export default function WaitingListTable() {
               >
                 <TableCell component="th" scope="row">
                   {status}
+                  <StatusMenu />
                   <UpdateApplicantStatusDialog />
                 </TableCell>
                 <TableCell align="right">{dateApplied}</TableCell>
@@ -131,6 +136,9 @@ export default function WaitingListTable() {
                 <TableCell align="right">{rentalAssistance}</TableCell>
                 <TableCell align="right">
                   <UpdateApplicantDialog applicantId={id} />
+                </TableCell>
+                <TableCell align="right">
+                  <MoveInDialog applicantId={id} />
                 </TableCell>
 
                 {/* <TableCell align="right">Occupancy Cont Date??</TableCell>

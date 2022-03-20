@@ -19,7 +19,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { allEmployees } from "../../data/employeesAtoms";
+import { allEmployees } from "../../../data/employeesAtoms";
 import { useCallback, useState } from "react";
 
 export function Rent() {

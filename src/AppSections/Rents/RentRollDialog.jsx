@@ -8,10 +8,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
 import { RentRoll } from './RentRoll';
-import { RentRollSummary } from './RentRollSummary';
-import DepositsTotalsTable from './DepositsTotalTable';
-import DepositsList from './DepositsList';
-import RentsTotalsList from './DepositsTotalList';
+import { RentRollSummary } from '../Rents/RentRollSummary';
+import DepositsList from './Deposits/DepositsList';
+import RentsTotalsList from './Deposits/DepositsTotalList';
 
 
 export default function RentRollDialog() {
