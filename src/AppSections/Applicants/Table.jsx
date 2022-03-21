@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { applicantListState } from "../../data/applicantAtoms";
 import UpdateApplicantStatusDialog, {
   StatusCheckboxesData, StatusMenu,
@@ -25,8 +25,11 @@ import MoveInDialog from "./MoveInDialog";
 //   createData("Gingerbread", 356, 16.0, 49, 3.9),
 // ];
 
-export default function WaitingListTable() {
+export default function WaitingListTable({status}) {
   const applicantList = useRecoilValue(applicantListState);
+
+  // const [statusUpdate, setStatusUpdate] = useRecoilState({status});
+
 
   return (
     <TableContainer component={Paper}>
@@ -117,9 +120,9 @@ export default function WaitingListTable() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {status}
-                  <StatusMenu />
-                  <UpdateApplicantStatusDialog />
+                  {/* {status} */}
+                  <StatusMenu applicantId={id} />
+                  {/* <UpdateApplicantStatusDialog /> */}
                 </TableCell>
                 <TableCell align="right">{dateApplied}</TableCell>
                 <TableCell align="right">Time</TableCell>

@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import OrderTableEditDialog from "./OrderTableEditDialog";
-import { allWorkOrders } from "../../../data/workOrderAtoms";
+import { allWorkOrderBills } from "../../../data/workOrderAtoms";
 import {getAllHours} from "../../../data/workOrderHoursAtoms";
 import {getAllParts} from "../../../data/partsAtom";
 import {
@@ -17,12 +17,14 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import {  allWorkOrders } from "../../../data/workOrderAtoms";
 
 
 export function EditableWorkOrderList() {
-  const workOrderList = useRecoilValue(allWorkOrders);
+  const workOrderList = useRecoilValue(allWorkOrderBills);
   const hours = useRecoilValue(getAllHours);
   const partPrice = useRecoilValue(getAllParts);
+  const openWorkOrders = useRecoilValue(allWorkOrders)
 
   return (
     <>
@@ -43,6 +45,7 @@ Work orders employee level can see editable work orders same as site level
           <TableHead>
             <TableRow>
               <TableCell sx={{fontWeight: "bolder"}}>site</TableCell>
+              <TableCell align="right" sx={{fontWeight: "bolder"}}> date</TableCell>
 
               <TableCell align="right" sx={{fontWeight: "bolder"}}>work order #</TableCell>
               <TableCell align="right" sx={{fontWeight: "bolder"}}>hours billed</TableCell>
@@ -53,31 +56,33 @@ Work orders employee level can see editable work orders same as site level
             </TableRow>
           </TableHead>
           <TableBody>
-          {workOrderList.map(({site, workOrderId}) => (
+          {openWorkOrders.map(({ siteId, site, workOrderId, dateRequest, totalHours, totalPartPrice, totalPartsHours, workStatus }) => (
             <TableRow
-              key="key"
+              key={siteId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              {/* {site} */}site
+              {/* {site} */}{site}
               </TableCell>
               <TableCell align="right">
-                {/* {workOrderId} */} order Id
+                {dateRequest} 
                 </TableCell>
-              <TableCell align="right">hours</TableCell>
-              <TableCell align="right">prices</TableCell>
-              <TableCell align="right">totalpartsandhours$</TableCell>
-              <TableCell align="right">Current / Finished</TableCell>
               <TableCell align="right">
-                {/* <OrderTableEditDialog workOrderId={workOrderId} /> */}
+                {workOrderId} 
+                </TableCell>
+              <TableCell align="right">{totalHours}</TableCell>
+              <TableCell align="right">{totalPartPrice}</TableCell>
+              <TableCell align="right">{totalPartsHours}</TableCell>
+              <TableCell align="right">{workStatus}</TableCell>
+              <TableCell align="right">
+                <OrderTableEditDialog  />
                 </TableCell>
             </TableRow>
              ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <div>after clicked tablerow takes to editable form</div>
-      <OrderTableEditDialog />
+     
     </>
   );
 }

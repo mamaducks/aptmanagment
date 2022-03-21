@@ -31,7 +31,7 @@ function replaceItemAtIndex(arr, index, newValue) {
 export function Parts( { partId} ) {
   const [partsList, setPartsList] = useRecoilState(getAllParts);
   //const index = applicantList.findIndex((listItem) => listItem === item);
-  const [part, setPart] = useState({});
+  // const [part, setPart] = useState({});
 
 
 
@@ -41,7 +41,7 @@ export function Parts( { partId} ) {
     );
     const [item, setItem] = useState(oldPartsList || {});
 
-  console.log("item", partsList, part);
+  console.log("item", partsList, item);
 
   // const toggleItemStatus = () => {
   //   const newList = replaceItemAtIndex(applicantList, index, {
@@ -61,17 +61,17 @@ export function Parts( { partId} ) {
   const addProps = useCallback(
     ({ name, label, type = "text" }) => {
       const setFieldValue = ({ target: { name, value } }) =>
-        setPart((item) => ({ ...item, [name]: value }));
+      setItem((item) => ({ ...item, [name]: value }));
 
       return {
         label,
         name,
         type,
         onChange: setFieldValue,
-        value: part[name] || '',
+        value: item[name] || '',
       };
     },
-    [part]
+    [item]
   );
 
   const addPart = useCallback(() => {
@@ -79,7 +79,33 @@ export function Parts( { partId} ) {
 }, [item, index, setPartsList]);
 
   return (
-    <Paper sx={{ p: "30px" }}  >
+    <>
+ <Paper sx={{ p: "30px" }}  >
+
+ <Stack direction="row" gap={4}>
+   <Box sx={{ width: "500px" }}>
+     <TextField
+       fullWidth
+       {...addProps({ name: "partName", label: "Part" })}
+     />
+   </Box>
+ </Stack>
+ <Stack direction="row"></Stack>
+ <Box sx={{ width: "850px" }}>
+   <TextField
+     fullWidth
+     margin="normal"
+     {...addProps({ name: "partPrice", label: "Price" })}
+   />
+ </Box>
+
+ <button onClick={addPart}>Submit</button>
+ <br />
+ <div> entered parts list</div>
+</Paper>
+
+    {/* <Paper sx={{ p: "30px" }}  >
+
       <Stack direction="row" gap={4}>
         <Box sx={{ width: "500px" }}>
           <TextField
@@ -100,6 +126,8 @@ export function Parts( { partId} ) {
       <button onClick={addPart}>Submit</button>
       <br />
       <div> entered parts list</div>
-    </Paper>
+    </Paper> */}
+
+    </>
   );
 }

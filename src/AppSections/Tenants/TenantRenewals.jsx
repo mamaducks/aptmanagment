@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpdateTenantDialog from './UpdateTenantDialog';
+import { useRecoilValue } from 'recoil';
+import { tenantList } from "../../data/tenantAtoms"
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -21,8 +23,12 @@ const rows = [
 ];
 
 export default function RenewTable() {
+const tenants = useRecoilValue(tenantList)
+
   return (
     <>
+
+    
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
         <TableHead>
@@ -33,16 +39,16 @@ export default function RenewTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+        {tenants.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              tenant name
+              {item.tenantName}
               </TableCell>
-              <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right"><UpdateTenantDialog /></TableCell>
+              <TableCell align="right">{item.renewalDate}</TableCell>
+              <TableCell align="right"><UpdateTenantDialog tenantId={item.id} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

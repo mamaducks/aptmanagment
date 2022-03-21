@@ -15,10 +15,11 @@ import {
   Paper,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Parts } from "../NewWorkOrder/Parts";
-import { WorkOrderHours } from "../NewWorkOrder/WorkOrderHours";
-import {allWorkOrders} from "../../../data/workOrderAtoms"
+import { WorkHoursList, WorkOrderHours } from "../NewWorkOrder/WorkOrderHours";
+import {allWorkOrderBills, allWorkOrders} from "../../../data/workOrderAtoms"
 import PartWorkOrderListItem from "../Parts/PartWorkOrderListItem";
 
 function replaceItemAtIndex(arr, index, newValue) {
@@ -28,6 +29,8 @@ function replaceItemAtIndex(arr, index, newValue) {
 export function EditableWorkOrder({workOrderId}) {
   const [todoList, setTodoList] = useRecoilState(allWorkOrders);
   // const [order, setOrder] = useState({});
+  const workOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
+
 
   const oldOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
 const index = todoList.findIndex(
@@ -96,6 +99,40 @@ const [item, setItem] = useState(oldOrder || {});
 
       <Paper sx={{ p: "30px" }} key="workOrderId">
         user supervisor id user employee id
+
+        
+<div>
+
+   <Stack direction="row" gap={4}>
+      
+      {/* <Box sx={{ width: "500px" }}>
+        <Typography>{workOrder.workOrderId}</Typography>
+      </Box> */}
+      <Box sx={{ width: "500px" }}>
+        <Typography>{workOrder.dateRequest}</Typography>
+      </Box>
+    </Stack>
+    <Stack direction="row" gap={4}>
+      <Box sx={{ width: "500px" }}>
+        <Typography>{workOrder.siteId}</Typography>
+      </Box>
+      <Box sx={{ width: "500px" }}>
+        <Typography>{workOrder.unitId}</Typography>
+      </Box>
+      <Box sx={{ width: "500px" }}>
+        <Typography>{workOrder.phone}</Typography>
+      </Box>
+    </Stack>
+    <Box sx={{ width: "500px" }}>
+      <Typography>{workOrder.tenant}</Typography>
+    </Box>
+    <Box sx={{ width: "500px" }}>
+      <Typography>{workOrder.workRequest}</Typography>
+    </Box>
+</div>
+       
+
+
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
             <TextField
@@ -162,6 +199,7 @@ const [item, setItem] = useState(oldOrder || {});
           <FormControl margin="dense">
             <FormLabel id="familySize">Hours</FormLabel>
             <div>add hours</div>
+            <WorkHoursList />
             <WorkOrderHours />
           </FormControl>
         </Stack>

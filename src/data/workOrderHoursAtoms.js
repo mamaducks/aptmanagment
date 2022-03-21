@@ -6,6 +6,35 @@ export const UPCOMING = "upcoming";
 // export const ACCEPTED = "accepted";
 // export const REJECTED = "rejected";
 
+export const maintenanceHours = [
+  {
+    employeeId: "3",
+    employeeName: "mike k",
+    siteId: "edgewoodAcres",
+   hoursBilled: 32,
+   billType: "maintenanceHours",
+   workOrderId: "3"
+  },
+  {
+    employeeId: "5",
+    employeeName: "joe reed",
+    siteId: "edgewoodAcresIII",
+   hoursBilled: 38,
+   billType: "maintenanceHours",
+   workOrderId: "3"
+   
+  },
+
+];
+
+export const allHours = atom({
+  key: "allHours",
+  default: maintenanceHours,
+  //effects_UNSTABLE: [localStorageEffect("allBills", [])],
+});
+
+
+
 export const getAllHours = atom({
   key: "getAllHours",
   default: {
@@ -16,8 +45,19 @@ export const getAllHours = atom({
   effects_UNSTABLE: [localStorageEffect("hoursList", [])],
 });
 
+// export const getSiteHours = selector({
+//   key: "",
+//   get: ({ get }) => {
+//    const hoursWithSite = get(allHours).map((item) => {
+//       const site = 
+//       get(getSiteHours)
+//     })
+//   }
+// })
+
+
 export const getHoursState = selectorFamily({
-  key: "getPartState",
+  key: "getHoursState",
   get:
     (siteId) =>
     ({ get }) => {

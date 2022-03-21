@@ -5,19 +5,25 @@ export const UPCOMING = "upcoming";
 // export const ACCEPTED = "accepted";
 // export const REJECTED = "rejected";
 
-export const tenantListState = atom({
-  key: "tenantListState",
-  default: {
+export const tenants = [
+  {
     id: "1",
+    tenantName: "friendally",
+    moveInDate: "2/28/2019",
     dateLease: "3/3/22",
     name: "dave smith",
     phone: "856-777-0098",
     familySize: "3",
-    renewsOn: "year",
-    site: "royal",
+    renewalDate: "3/3/23",
+    siteId: "edgewoodAcres",
     unit: "46"
   },
-  effects_UNSTABLE: [localStorageEffect("tenantList", [])],
+]
+
+export const tenantList = atom({
+  key: "tenantList",
+  default: tenants
+  // effects_UNSTABLE: [localStorageEffect("tenantList", [])],
 });
 
 export const tenantListFilterState = atom({
@@ -29,7 +35,7 @@ export const filteredTenantListState = selector({
   key: "filteredTenantListState",
   get: ({ get }) => {
     const filter = get(tenantListFilterState);
-    const list = get(tenantListState);
+    const list = get(tenantList);
 
     switch (filter) {
       case "Show Upcoming Renewals":

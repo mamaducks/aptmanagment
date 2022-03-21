@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { tenantListState } from "../../data/tenantAtoms";
+import { tenantList } from "../../data/tenantAtoms";
 import { useCallback, useState } from "react";
 import { getAllSitesInfo } from "../../data/siteAtoms";
 import {
@@ -24,14 +24,14 @@ import {
   WITHDRAWL,
   getApplicantInfo,
 } from "../../data/applicantAtoms";
-import { SortSelect } from "../Applicants/ApplicantSiteList";
+import { SiteSelect } from "../Applicants/ApplicantSiteList";
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 }
 
 export function Tenant({ applicantId }) {
-  const [tenant, setTenant] = useRecoilState(tenantListState);
+  const [tenant, setTenant] = useRecoilState(tenantList);
   
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
 
@@ -155,7 +155,7 @@ const [item, setItem] = useState({});
           {...addProps({ name: "site", label: "Site", type: "text" })}
         />
       </Box>
-      <SortSelect />
+      <SiteSelect />
 
       <Box sx={{ width: "500px" }}>
         <TextField

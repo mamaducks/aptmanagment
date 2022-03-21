@@ -38,7 +38,7 @@ export default function EnterRentsDialog() {
             <div>tenant name</div>
             </DialogContentText>
         <DialogContent>
-        <Rent />
+        {/* <Rent /> */}
         <EnterRentList />
        < NewDepositList />
         </DialogContent>

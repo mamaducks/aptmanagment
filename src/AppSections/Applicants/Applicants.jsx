@@ -9,8 +9,9 @@ import Box from "@mui/material/Box";
 import NewApplicantDialog from "./EnterApplicantDialog";
 import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
-import { SortSelect } from "./ApplicantSiteList";
+import { SiteSelect } from "./ApplicantSiteList";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
+
 export function Applicants() {
   return (
     <>
@@ -34,7 +35,7 @@ export function Applicants() {
           {/* <UpdateApplicantDialog /> */}
           {/* <MoveInDialog /> */}
           <div>choose site to view waiting list</div>
-          <SortSelect />
+          <SiteSelect />
         </ButtonGroup>
       </Box>
 

@@ -1,6 +1,7 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { localStorageEffect } from "./localStorage";
 import { app } from "./app";
+import {parts} from "./parts";
 
 //categorize part types?
 export const UPCOMING = "upcoming";
@@ -10,8 +11,8 @@ export const UPCOMING = "upcoming";
 
 export const getAllParts = atom({
   key: "getAllParts",
-  default: [],
-  effects_UNSTABLE: [localStorageEffect("getAllParts", [])],
+  default: parts,
+  // effects_UNSTABLE: [localStorageEffect("getAllParts", [])],
 });
 
 export const getWorkOrderParts = selector({

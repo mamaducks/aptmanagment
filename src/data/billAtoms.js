@@ -59,7 +59,7 @@ export const getBillsInfoNew = selector({
           const { category } = groupedTypedBills[categoryId][0];
 
           return {
-            total: sumBy(groupedTypedBills[categoryId], "amount"),
+            total: sumBy(groupedTypedBills[categoryId], "amountPaid"),
             ...category,
           };
         }),

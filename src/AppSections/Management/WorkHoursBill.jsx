@@ -6,8 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useRecoilValue } from "recoil";
+import { allHours } from "../../data/workOrderHoursAtoms";
 
 export function EmployeeWorkHoursTable() {
+  const hours = useRecoilValue(allHours)
     return (
       <>
         <div>total maintenance hours billed : WorkHoursBill</div>
@@ -25,18 +28,21 @@ export function EmployeeWorkHoursTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow
-                key="key"
+              {hours.map((item) => (
+                 <TableRow
+                key={item.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  employee name
+                  {item.employeeId}
                 </TableCell>
-                <TableCell align="right">site worked</TableCell>
-                <TableCell align="right">hrs $</TableCell>
+                <TableCell align="right">{item.siteId}</TableCell>
+                <TableCell align="right">{item.hoursBilled}</TableCell>
                 <TableCell align="right"> view work orders</TableCell>
                
               </TableRow>
+              ))}
+             
             </TableBody>
           </Table>
         </TableContainer>

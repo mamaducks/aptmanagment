@@ -17,6 +17,7 @@ import WorkOrdersDialog from "./SummaryWorkOrders/WorkOrderViewDialog";
 import BillsDialog from "./Billing/BillViewDialog";
 import OrderTableEditDialog from "./EditableWorkOrder/TableEditableWorkOrderDialog";
 import { EditableWorkOrderList } from "./EditableWorkOrder/EditableWorkOrderList";
+import { PartsDialog } from "./Parts/PartsDialog";
 
 export const GLCodes = () => {
   return (
@@ -59,17 +60,13 @@ export function Maintenence() {
           <NewWorkRequestDialog />
           {/* <OrderTableEditDialog /> */}
           {/* <WorkOrdersDialog /> */}
+          <PartsDialog />
           <AddBillDialog />
           <BillsDialog />
         </ButtonGroup>
       </Box>
       <div>can see work order by employee id ? site ?</div>
-      <div>
-        parts list
-        <AllPartsList />
-        
-        <AllParts />
-      </div>
+   
       <div>display WorkOrdersTable</div>
       <div>Work Order Table</div>
       clickable rows take to workorder view

@@ -14,43 +14,61 @@ import {
 import { getWorkOrderInfo } from "../../../data/workOrderAtoms";
 import { getAllParts } from "../../../data/partsAtom";
 
-import { Box, Button, Container, DialogActions } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  DialogActions,
+  ListItemButton,
+} from "@mui/material";
+import { Parts } from "../NewWorkOrder/Parts";
 
 export default function AllPartsList() {
   const part = useRecoilValue(getAllParts);
 
-//   const workOrderParts =  useRecoilValue(getWorkOrderParts)
+  //   const workOrderParts =  useRecoilValue(getWorkOrderParts)
   //   console.log(employee, employeeId);
   //   const [imageList, setImageList] = useState([]);
 
-  const item = {}
+  const item = {};
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <List
-      key="workOrderId"
+        key="workOrderId"
         sx={{
           bgcolor: "background.paper",
           width: "100%",
           fontSize: "larger",
           pl: 3,
           textAlign: "center",
-
         }}
         subheader={
-          <ListSubheader sx={{ fontSize: "larger" }}>
-            Parts Information
-          </ListSubheader>
+          <Box display="flex" justifyContent="space-evenly">
+            <ListSubheader  sx={{ fontSize: "larger" }}>
+              Parts Information
+            </ListSubheader>
+            <Button>Add New</Button>
+          </Box>
         }
       >
         {part.map((item) => (
-          <ListItem>
-            <ListItemText id="partName" primary={item.partName} />
-            <ListItemText
+          <ListItem
+            key={item.id}
+            secondaryAction={
+              <Box display="flex">
+                <ListItemButton>Edit</ListItemButton>
+                <ListItemButton>Delete</ListItemButton>
+              </Box>
+            }
+          >
+            <ListItemText id="partName" primary={item.partName} secondary={item.partPrice}/>
+            {/* <ListItemText
               id="name"
               primary={item.partPrice}
-              sx={{ display: "flex", justifyContent: "flex-end" }}
-            />
+              // sx={{ display: "flex", justifyContent: "flex-end" }}
+            /> */}
+           
           </ListItem>
         ))}
       </List>
@@ -59,11 +77,13 @@ export default function AllPartsList() {
 }
 
 export function AllParts() {
-    return (
-<div>
-    <div>sorted alphabetically</div>
-    All entered parts as list and prices 
-    <div>remove or edit</div>
-</div>
-    );
+  return (
+    <div>
+      <div>sorted alphabetically</div>
+      All entered parts as list and prices
+      <div>remove or edit</div>
+      <Parts />
+      <AllPartsList />
+    </div>
+  );
 }

@@ -13,11 +13,11 @@ import {
     TextField,
   } from "@mui/material";
   import { useRecoilState, useRecoilValue } from "recoil";
-  import { tenantListState } from "../../data/tenantAtoms";
+  import { tenantList } from "../../data/tenantAtoms";
   import { useCallback, useState } from "react";
   
   export function UpdateTenant() {
-    const [tenant, setTenant] = useRecoilState(tenantListState);
+    const [tenant, setTenant] = useRecoilState(tenantList);
     //const index = applicantList.findIndex((listItem) => listItem === item);
     const [item, setItem] = useState({});
     //   const applicant = useRecoilValue();
@@ -69,7 +69,7 @@ import {
             <div>autoFill with lease date entry 1 year out but editable</div>
             <TextField
               fullWidth
-              {...addProps({ name: "renewsOn", label: "Renewal Date" })}
+              {...addProps({ name: "renewalDate", label: "Renewal Date" })}
             />
           </Box>
   
@@ -83,7 +83,7 @@ import {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "name", label: "Name" })}
+            {...addProps({ name: "tenantName", label: "Name" })}
           />
         </Box>
         <Stack direction="row" gap={4}>
@@ -116,7 +116,7 @@ import {
           <TextField
           fullWidth
             margin="normal"
-            {...addProps({ name: "site", label: "Site", type: "text" })}
+            {...addProps({ name: "siteId", label: "Site", type: "text" })}
           />
         </Box>
   
@@ -194,10 +194,10 @@ import {
           </Stack>
         </Stack>
         <TextField
-            {...addProps({ name: "leaseDate", label: "Current Lease Date" })}
+            {...addProps({ name: "dateLease", label: "Current Lease Date" })}
           />
                 <TextField
-            {...addProps({ name: "newLeaseDate", label: "Update Lease Date" })}
+            {...addProps({ name: "renewalDate", label: "Update Lease Date" })}
           />
   
         {/* <input type="text" value={item.text} onChange={editItemText} />

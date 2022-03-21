@@ -1,11 +1,16 @@
 import {
   Box,
   Checkbox,
+  Container,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
   Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
   Paper,
   Radio,
   RadioGroup,
@@ -21,7 +26,44 @@ import {
 } from "recoil";
 import { getAllHours } from "../../../data/workOrderHoursAtoms";
 import { useCallback, useState } from "react";
-import { getWorkOrderInfo } from "../../../data/workOrderAtoms";
+import {  allHours, getHoursState } from "../../../data/workOrderHoursAtoms";
+
+
+export function WorkHoursList() {
+  const workOrderHours =  useRecoilValue(allHours)
+
+  return (
+<Container maxWidth="sm">
+      <List
+      key="workOrderId"
+        sx={{
+          bgcolor: "background.paper",
+          width: "100%",
+          fontSize: "larger",
+          pl: 3,
+          textAlign: "center",
+
+        }}
+        subheader={
+          <ListSubheader sx={{ fontSize: "larger" }}>
+            Hours Information
+          </ListSubheader>
+        }
+      >
+        {workOrderHours.map((item) => (
+          <ListItem>
+            <ListItemText id="partName" primary={item.employeeName} />
+            <ListItemText
+              id="name"
+              primary={item.hoursBilled}
+              // sx={{ display: "flex", justifyContent: "flex-end" }}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Container>
+  );
+}
 
 
 function replaceItemAtIndex(arr, index, newValue) {
@@ -29,9 +71,9 @@ function replaceItemAtIndex(arr, index, newValue) {
 }
 
 export function WorkOrderHours({workOrderId}) {
-  const [hoursTotal, setHoursTotal] = useRecoilState(getAllHours);
+  const [hoursTotal, setHoursTotal] = useRecoilState(allHours);
   //const index = applicantList.findIndex((listItem) => listItem === item);
-  const oldOrder = useRecoilValue(getWorkOrderInfo(workOrderId));
+  const oldOrder = useRecoilValue(getHoursState(workOrderId));
   const index = hoursTotal.findIndex(
     (listItem) => listItem.workOrderId === workOrderId
   );
@@ -39,6 +81,8 @@ export function WorkOrderHours({workOrderId}) {
   const [hour, setHours] = useState({});
 
   console.log("item", hoursTotal, hour);
+
+  
 
   // const toggleItemStatus = () => {
   //   const newList = replaceItemAtIndex(applicantList, index, {
@@ -77,6 +121,9 @@ export function WorkOrderHours({workOrderId}) {
 
   return (
     <Paper sx={{ p: "30px" }}>
+
+
+
       <Stack direction="row" gap={4}>
         <Box sx={{ width: "500px" }}>
           <TextField

@@ -1,39 +1,39 @@
-import { MenuItem, OutlinedInput, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+} from "@mui/material";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {  getAllSitesInfo } from "../../data/siteAtoms";
+import { getAllSitesInfo } from "../../data/siteAtoms";
 import { useCallback, useState } from "react";
 
+export function SiteSelect() {
+  const [siteList, setSiteList] = useRecoilState(getAllSitesInfo);
+  // const sites = useRecoilValue(getAllSitesInfo)
 
-export function SortSelect() {
-  const [sortType, setSortType] = useRecoilState(getAllSitesInfo);
-// const sites = useRecoilValue(getAllSitesInfo)
-  
-const [item, setItem] = useState( { selectedSites: {} });
+  const [item, setItem] = useState({ selectedSites: {} });
 
-// const selectedSites = item.selectedSites || {};
+  // const selectedSites = item.selectedSites || {};
 
+  const handleChange = (event) => {
+    setSiteList(event.target.value);
+  };
   return (
-    <Select
-      variant="outlined"
-      onChange={(e, b) => {
-        setSortType(e.target.value);
-      }}
-      value={sortType}
-      input={
-        <OutlinedInput
-          sx={{
-            borderRadius: "5px",
-            mr: 1,
-            mt: 3
-          }}
-        />
-      }
-    >
-      {sortType.map((item, index) => (
-        <MenuItem key={index} value={item.site}>
-          {item.site[2]}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl fullWidth>
+      <InputLabel id="siteSelectMenu">Site List</InputLabel>
+      <Select
+        labelId="site-select"
+        id="siteSelect"
+        value={item.siteId}
+        label="Site"
+        onChange={handleChange}
+      >
+        {siteList.map((item) => (
+          <MenuItem key={item.site} value={item.site}>{item.site}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }

@@ -7,6 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import { useRecoilValue } from 'recoil';
+import { tenantList } from "../../data/tenantAtoms";
+
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
@@ -22,6 +25,7 @@ import Paper from '@mui/material/Paper';
 
 
 export function TenantSummary() {
+  const tenants = useRecoilValue(tenantList)
     return (
         <>
 <div>
@@ -35,6 +39,7 @@ totals by site
 <TableContainer component={Paper}>
 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
   <TableHead>
+    
     <TableRow>
       <TableCell sx={{fontWeight: "bolder"}}>unit</TableCell>
       <TableCell align="right" sx={{fontWeight: "bolder"}}>name</TableCell>
@@ -44,20 +49,20 @@ totals by site
     </TableRow>
   </TableHead>
   <TableBody>
-    
+  {tenants.map((item) => (
       <TableRow
         key="key"
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-        unit #
+        {item.unit}
         </TableCell>
-        <TableCell align="right">tenant name</TableCell>
-        <TableCell align="right">move in date</TableCell>
+        <TableCell align="right">{item.tenantName}</TableCell>
+        <TableCell align="right">{item.moveInDate}</TableCell>
         <TableCell align="right">delinquent or credit $</TableCell>
-        <TableCell align="right">renew lease date</TableCell>
+        <TableCell align="right">{item.renewalDate}</TableCell>
       </TableRow>
- 
+   ))}
   </TableBody>
 </Table>
 </TableContainer>

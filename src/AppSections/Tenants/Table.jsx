@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TenantInfoDialog from "./TenantInfoDialog";
+import { useRecoilValue } from 'recoil';
+import { tenantList } from "../../data/tenantAtoms";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -20,7 +22,8 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TenantTable() {
+export default function TenantTable(tenantId) {
+  const tenants = useRecoilValue(tenantList)
   
   return (
     <>
@@ -36,18 +39,18 @@ export default function TenantTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {tenants.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.tenantName}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              tenant name
+              {item.tenantName}
               </TableCell>
-              <TableCell align="right">move in date</TableCell>
-              <TableCell align="right">lease date</TableCell>
-              <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right"><TenantInfoDialog  />view tenant info</TableCell>
+              <TableCell align="right">{item.moveInDate}</TableCell>
+              <TableCell align="right">{item.dateLease}</TableCell>
+              <TableCell align="right">{item.renewalDate}</TableCell>
+              <TableCell align="right"><TenantInfoDialog tenantId={tenantId} />view tenant info</TableCell>
             </TableRow>
           ))}
         </TableBody>

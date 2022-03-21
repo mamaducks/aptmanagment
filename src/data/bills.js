@@ -1,7 +1,7 @@
 export const billCategories = [
   {
     categoryId: "flooring",
-    desc: "Flooring related items",
+    desc: "Flooring",
     billType: 'maintenance'
   },
   {

@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { SiteCheckboxes } from "../../../App/Property/SiteCheckboxes";
-import { allWorkOrders } from "../../../data/workOrderAtoms";
+import { allWorkOrderBills, allWorkOrders } from "../../../data/workOrderAtoms";
 import { getAllHours } from "../../../data/workOrderHoursAtoms";
 import { getAllParts, getPartsInfo, getWorkOrderParts } from "../../../data/partsAtom";
 
@@ -23,9 +23,10 @@ import WorkOrdersDialog from "./WorkOrderViewDialog";
 
 //finished work orders
 export function WorkOrderTable({partsId}) {
-  const workOrderList = useRecoilValue(allWorkOrders);
-  const hours = useRecoilValue(getAllHours);
-  const partPrice = useRecoilValue(getAllParts);
+  // const workOrderList = useRecoilValue(allWorkOrderBills);
+  // const hours = useRecoilValue(getAllHours);
+  // const partPrice = useRecoilValue(getAllParts);
+  const workOrder = useRecoilValue(allWorkOrders);
 
   return (
     <>
@@ -38,6 +39,7 @@ Company level current and complete work orders list
       take to work order view
       <div>total maintenance hours billed : WorkHoursBill</div>
       <div>Maintenance Work Orders Table</div>
+      all complete
       by date
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -59,17 +61,17 @@ Company level current and complete work orders list
               <TableCell align="right" sx={{ fontWeight: "bolder" }}>
                 total billed
               </TableCell>
-              <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              {/* <TableCell align="right" sx={{ fontWeight: "bolder" }}>
                 {" "}
                 Finished
-              </TableCell>
+              </TableCell> */}
               <TableCell align="right" sx={{ fontWeight: "bolder" }}>
                 view
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {workOrderList.map(({ siteId, site, workOrderId, dateRequest }) => (
+            {workOrder.map(({ siteId, site, workOrderId, dateRequest, totalHours, totalPartPrice, totalPartsHours, workStatus }) => (
               <TableRow
                 key={workOrderId}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -77,12 +79,12 @@ Company level current and complete work orders list
                 <TableCell component="th" scope="row">
                   {dateRequest}
                 </TableCell>
-                <TableCell align="right">{site}</TableCell>
+                <TableCell align="right">{siteId}</TableCell>
                 <TableCell align="right">{workOrderId}</TableCell>
-                <TableCell align="right">part hours</TableCell>
-                <TableCell align="right"> part price</TableCell>
-                <TableCell align="right">total parts and hours $</TableCell>
-                <TableCell align="right">Current / Finished</TableCell>
+                <TableCell align="right">{totalHours}</TableCell>
+                <TableCell align="right"> {totalPartPrice}</TableCell>
+                <TableCell align="right">{totalPartsHours}</TableCell>
+                {/* <TableCell align="right">{workStatus}</TableCell> */}
                 <TableCell align="right">
                   <WorkOrdersDialog siteId={siteId} />
                 </TableCell>
