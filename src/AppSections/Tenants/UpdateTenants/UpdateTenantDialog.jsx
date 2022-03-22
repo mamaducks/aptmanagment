@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 // import { Tenant } from '../Applicants/ApplicantForms/MoveInTenant';
 // import MoveInApplicant from '../../unused/MoveInApplicant';
 import { UpdateTenant } from '../UpdateTenants/TenantUpdates';
+import { TenantSheet } from '../TenantSheet';
 
 
 export default function UpdateTenantDialog(tenantId) {
@@ -31,6 +32,7 @@ export default function UpdateTenantDialog(tenantId) {
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle> Tenant Information</DialogTitle>
         <DialogContent>
+        <TenantSheet  tenantId={tenantId}/>
        <UpdateTenant tenantId={tenantId}/>
         </DialogContent>
         <DialogActions>

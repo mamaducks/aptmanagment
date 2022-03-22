@@ -8,6 +8,7 @@ import SearchTenantDialog from "./SearchTenantDialog";
 
 // import TenantTable from "./Table";
 import RenewTable from "./UpdateTenants/TenantRenewals";
+import { TenantSheet } from "./TenantSheet";
 // import { EnterTenant } from "./TenantfromApplicant";
 
 export function Tenants() {

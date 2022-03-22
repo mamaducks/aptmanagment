@@ -10,7 +10,7 @@ import { RentSiteOverview } from "../Management/Rents/RentSiteDetailsDialog";
 
 import { useRecoilValue } from "recoil";
 import { getAllSitesRentTotals } from "../../data/rentsAtom";
-import { RentRollSummary } from "../Rents/RentRollSummary";
+import { RentRollSummary } from "../../unused/RentRollSummary";
 import { RentOverview } from "../Management/Rents/RentOverviewDialog";
 import { RentRollSummaryDialog } from "./RentRollSummaryDialog";
 

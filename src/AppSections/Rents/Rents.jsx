@@ -6,7 +6,7 @@ import EnterRentsDialog from "./EnterRents/EnterRentsDialog";
 import { RentRollDeposits } from "./RentRoll";
 import RentRollDialog from "./RentRollDialog";
 import { Rent } from "./EnterRents/RentSheet";
-import { RentRollSummary } from "./RentRollSummary";
+// import { RentRollSummary } from "./RentRollSummary";
 import { RentRollOverview } from "../../unused/RentRollOverview";
 
 export function Rents() {

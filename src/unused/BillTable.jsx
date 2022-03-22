@@ -21,7 +21,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { getBillsInfo } from "../../../data/billAtoms";
+import { getBillsInfo } from "../data/billAtoms";
 
 export function BillTable() {
   const billList = []; //useRecoilValue(getBillsInfo);

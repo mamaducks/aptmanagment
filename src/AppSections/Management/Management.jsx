@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { RentOverview } from "./Rents/RentOverviewDialog";
 import { TenantOverview } from "./TenantOverviewDialog";
 import EmployeeDialog from "./Employees/EmployeesDialog";
-import { BillingOverview } from "./BillsOverviewDialog";
+import { BillingOverview } from "./Bills/BillsOverviewDialog";
 import { SitesInfoDialog } from "./SitesInfoDialog";
 import { MaintenanceBillingDialog } from "./MaintenanceBilling";
 

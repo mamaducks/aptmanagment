@@ -7,8 +7,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { Bill } from "./EnterBill";
-import { WorkOrderView } from "../SummaryWorkOrders/WorkOrderView";
+import { Bill } from "../AppSections/Maintenance/Billing/EnterBill";
+import { WorkOrderView } from "../AppSections/Maintenance/SummaryWorkOrders/WorkOrderView";
 import { BillTable } from "./BillTable";
 
 export default function BillsDialog() {

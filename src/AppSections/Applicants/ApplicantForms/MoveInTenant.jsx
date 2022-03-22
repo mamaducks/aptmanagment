@@ -35,7 +35,7 @@ export function Tenant({ applicantId }) {
 
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
 
-  const appplicantInfo = useRecoilValue(getApplicantInfo(applicantId));
+  const applicantInfo = useRecoilValue(getApplicantInfo(applicantId));
   const existingTenantIndex = tenants.findIndex(
     (listItem) => listItem.applicantId === applicantId
   );
@@ -106,7 +106,7 @@ export function Tenant({ applicantId }) {
           fullWidth
           disabled
           margin="normal"
-          value={appplicantInfo?.name}
+          value={applicantInfo?.name}
         />
         {/* <TextField
           fullWidth

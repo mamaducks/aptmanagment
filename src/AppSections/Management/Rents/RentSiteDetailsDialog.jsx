@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
 import { RentRollSummary } from "./RentRollSummary";
 // import { TenantSummary } from "./TenantSummary";
-import { RentRollDetails } from "./RentDetailsOverview";
+import { RentRollDetails } from "../../../unused/RentDetailsOverview";
 
 export function RentSiteOverview() {
   const [open, setOpen] = useState(false);

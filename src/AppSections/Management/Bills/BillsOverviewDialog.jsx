@@ -7,11 +7,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { TenantSummary } from "./TenantSummary";
-import { EmployeeWorkHoursTable } from "./WorkHoursBill";
-import { MaintenanceOrderCosts } from "./MaintenanceCost";
+import { TenantSummary } from "../TenantSummary";
+import { EmployeeWorkHoursTable } from "../WorkHoursBill";
+import { MaintenanceOrderCosts } from "../MaintenanceCost";
 import { BillSummary } from "./BillsSummary";
-import { BillTable } from "../Maintenance/Billing/BillTable";
+import { BillTable } from "../../../unused/BillTable";
 
 export function BillingOverview() {
   const [open, setOpen] = useState(false);
@@ -43,11 +43,11 @@ export function BillingOverview() {
         </>
         <DialogContent>
           Year overview
-          <BillTable />
+          {/* <BillTable /> */}
           Bills Table
-          <BillSummary />
+          {/* <BillSummary /> */}
          Site Maintenance Overview each site or all sites total??
-          <MaintenanceOrderCosts />
+          {/* <MaintenanceOrderCosts /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

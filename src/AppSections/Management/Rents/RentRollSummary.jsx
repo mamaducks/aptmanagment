@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { RentRollDetails } from "./RentDetailsOverview";
+import { RentRollDetails } from "../../../unused/RentDetailsOverview";
 import { RentSiteOverview } from "./RentSiteDetailsDialog";
 import { useRecoilValue } from "recoil";
 import { getAllSitesRentTotals } from "../../../data/rentsAtom";

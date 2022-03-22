@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { RentRollSummary } from "./RentRollSummary";
+import { RentRollSummary } from "../../unused/RentRollSummary";
 // import { TenantSummary } from "./TenantSummary";
 
 export function RentRollSummaryDialog({siteId}) {

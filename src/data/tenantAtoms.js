@@ -13,6 +13,7 @@ export const tenants = [
     moveInDate: "2/28/2019",
     dateLease: "3/3/22",
     renewalDate: "3/3/23",
+
   },
   {
     applicantId: 4,
@@ -29,6 +30,16 @@ export const tenantList = atom({
   default: tenants,
   effects_UNSTABLE: [localStorageEffect("tenantList", [])],
 });
+
+export const getTenantInfo = selectorFamily({
+  key: "getTenantInfo",
+  get:
+    (applicanId) =>
+    ({ get }) => {
+      return get(tenantList).find((item) => item.applicantId === applicanId);
+    },
+});
+
 
 export const tenantListFilterState = atom({
   key: "tenantListFilterState",

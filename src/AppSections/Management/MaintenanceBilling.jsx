@@ -36,7 +36,7 @@ export function MaintenanceBillingDialog() {
         <DialogContent>
           <EmployeeWorkHoursTable />
           Site Maintenance Overview each site
-          <MaintenanceOrderCosts />
+          {/* <MaintenanceOrderCosts /> */}
           Maintenance Parts List and cost - list or table
         </DialogContent>
         <DialogActions>

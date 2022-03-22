@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { EditableWorkOrder } from "./EditableWorkOrderForm";
+import { EditableWorkOrder } from "../AppSections/Maintenance/EditableWorkOrder/EditableWorkOrderForm";
 
 export default function OrderTableEditDialog({workOrderId}) {
   const [open, setOpen] = useState(false);

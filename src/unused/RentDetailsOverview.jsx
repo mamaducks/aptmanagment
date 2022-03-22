@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import { useRecoilValue } from "recoil";
-import { getAllSitesRentTotals } from "../../../data/rentsAtom";
+import { getAllSitesRentTotals } from "../data/rentsAtom";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -136,7 +136,7 @@ export function RentRollDetails() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {/* {units} */}
+                  {units}
                   unit
                 </TableCell>
                 <TableCell align="right">tenant</TableCell>

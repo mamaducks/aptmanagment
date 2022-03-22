@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
 import { RentRoll } from './RentRoll';
-import { RentRollSummary } from '../Rents/RentRollSummary';
+// import { RentRollSummary } from '../Rents/RentRollSummary';
 import DepositsList from './Deposits/DepositsList';
 import RentsTotalsList from './Deposits/DepositsTotalList';
 
@@ -32,7 +32,7 @@ export default function RentRollDialog() {
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Rent Information</DialogTitle>
         <DialogContent>
-            <RentRollSummary />
+            {/* <RentRollSummary /> */}
             <DepositsList />
             <RentsTotalsList/>
         </DialogContent>

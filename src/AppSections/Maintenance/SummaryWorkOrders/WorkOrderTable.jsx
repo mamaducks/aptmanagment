@@ -73,7 +73,7 @@ Company level current and complete work orders list
           <TableBody>
             {workOrder.map(({ siteId, site, workOrderId, dateRequest, totalHours, totalPartPrice, totalPartsHours, workStatus }) => (
               <TableRow
-                key={workOrderId}
+                key={siteId}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">

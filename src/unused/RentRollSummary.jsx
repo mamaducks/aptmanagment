@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useRecoilValue } from "recoil";
-import { getAllUnitRentTotals } from "../../data/rentsAtom";
+import { getAllUnitRentTotals } from "../data/rentsAtom";
 
 export function RentRollSummary({ siteId }) {
   const units = useRecoilValue(getAllUnitRentTotals(siteId));
@@ -110,7 +110,7 @@ export function RentRollSummary({ siteId }) {
                   {/* <TableCell align="right">credit $</TableCell>
  <TableCell align="right">delinquent $</TableCell> */}
                   <TableCell align="right">balance $</TableCell>
-                  <TableCell align="right"> due</TableCell>
+                  <TableCell align="right"> {rentsTotal}</TableCell>
                   <TableCell align="right">paid $</TableCell>
                   {/* <TableCell align="right">credit $</TableCell>
  <TableCell align="right">delinquent $</TableCell> */}
