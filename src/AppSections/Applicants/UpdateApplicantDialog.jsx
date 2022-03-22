@@ -7,9 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { Applicant } from "./ApplicantList";
-import UpdateApplicant from "./UpdateApplicant";
-import { EditApplicant } from "./EditApplicant";
+import { Applicant } from "./ApplicantForms/ApplicantList";
+import UpdateApplicant from "../../unused/UpdateApplicant";
+import { EditApplicant } from "./ApplicantForms/EditApplicant";
 
 export default function UpdateApplicantDialog({ applicantId }) {
   const [open, setOpen] = useState(false);
@@ -30,7 +30,6 @@ export default function UpdateApplicantDialog({ applicantId }) {
       <Dialog open={open} onClose={handleClose} fullScreen>
         <DialogTitle>Applicants</DialogTitle>
         <DialogContent>
-          {/* <UpdateApplicant name={name}/> */}
           <EditApplicant applicantId={applicantId} />
         </DialogContent>
         <DialogActions>

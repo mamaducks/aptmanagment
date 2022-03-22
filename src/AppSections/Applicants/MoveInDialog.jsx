@@ -7,10 +7,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-import { Applicant } from "./ApplicantList";
-import UpdateApplicant from "./UpdateApplicant";
-import MoveInApplicant from "./MoveInApplicant";
-import { Tenant } from "../Tenants/MoveInTenant";
+import { Applicant } from "./ApplicantForms/ApplicantList";
+import UpdateApplicant from "../../unused/UpdateApplicant";
+import MoveInApplicant from "../../unused/MoveInApplicant";
+import { Tenant } from "./ApplicantForms/MoveInTenant";
 
 export default function MoveInDialog({ applicantId }) {
   const [open, setOpen] = useState(false);

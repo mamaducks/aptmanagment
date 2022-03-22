@@ -1,7 +1,6 @@
-import { Applicant } from "./ApplicantList";
-import DenseTable from "./Table";
-import DataGridDemo from "./ApplicantTableGrid";
-import WaitingListTable from "./Table";
+import { Applicant } from "./ApplicantForms/ApplicantList";
+import DenseTable from "./WaitingListTable";
+import WaitingListTable from "./WaitingListTable";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -9,7 +8,7 @@ import Box from "@mui/material/Box";
 import NewApplicantDialog from "./EnterApplicantDialog";
 import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
-import { SiteSelect } from "./ApplicantSiteList";
+import { SiteSelect } from "./ApplicantSiteSelect";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
 
 export function Applicants() {

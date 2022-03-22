@@ -2,13 +2,13 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import NewTenantDialog from "./MoveInDialog";
-import EditTenantDialog from "./EditTenantDialog";
+// import NewTenantDialog from "../../unused/MoveInDialog";
+import EditTenantDialog from "./UpdateTenants/EditTenantDialog";
 import SearchTenantDialog from "./SearchTenantDialog";
 
-import TenantTable from "./Table";
-import RenewTable from "./TenantRenewals";
-import { EnterTenant } from "./TenantfromApplicant";
+// import TenantTable from "./Table";
+import RenewTable from "./UpdateTenants/TenantRenewals";
+// import { EnterTenant } from "./TenantfromApplicant";
 
 export function Tenants() {
   return (
@@ -24,14 +24,14 @@ export function Tenants() {
       }}
     >
       {/* <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{gap: 3}}> */}
-      <NewTenantDialog />
+      {/* <NewTenantDialog /> */}
       <EditTenantDialog />
       <SearchTenantDialog />
       {/* </ButtonGroup> */}
     </Box>
       <div>header: Tenants</div>
       By Site
-      <TenantTable />
+      {/* <TenantTable /> */}
 
       
       <div>tenants renewing soon update tenant</div>

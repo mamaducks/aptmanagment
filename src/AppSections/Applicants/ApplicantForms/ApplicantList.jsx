@@ -26,10 +26,10 @@ import {
   PENDING,
   REJECTED,
   WITHDRAWL,
-} from "../../data/applicantAtoms";
+} from "../../../data/applicantAtoms";
 import { useCallback, useState } from "react";
-import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
-import { getAllSitesInfo } from "../../data/siteAtoms";
+import { SiteCheckboxes } from "../../../App/Property/SiteCheckboxes";
+import { getAllSitesInfo } from "../../../data/siteAtoms";
 
 export function Applicant() {
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);

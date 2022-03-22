@@ -13,7 +13,7 @@ import {
     TextField,
   } from "@mui/material";
   import { useRecoilState, useRecoilValue } from "recoil";
-  import { tenantList } from "../../data/tenantAtoms";
+  import { tenantList } from "../../../data/tenantAtoms";
   import { useCallback, useState } from "react";
   
   export function UpdateTenant() {

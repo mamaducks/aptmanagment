@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useRecoilValue } from "recoil";
-import { applicantListState } from "../../data/applicantAtoms";
+import { applicantListState } from "../data/applicantAtoms";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -45,7 +45,7 @@ export default function UpdateApplicant() {
         subheader={<ListSubheader>Applicants</ListSubheader>}
       >
         <ListItem>
-          <ListItemText id="Status" primary="Status" />
+          <ListItemText id="status" primary="Status" />
           <ListItemText
             id="Date"
             primary="Date"
@@ -53,9 +53,9 @@ export default function UpdateApplicant() {
           />
         </ListItem>
         <ListItem>
-          <ListItemText id="Time" primary="Time" />
+          <ListItemText id="time" primary="Time" />
           <ListItemText
-            id="Name"
+            id="name"
             primary= "Name"
             sx={{ justifyContent: "end", display: "flex" }}
           />

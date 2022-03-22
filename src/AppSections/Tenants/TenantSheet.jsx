@@ -1,6 +1,6 @@
 import { Paper, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import UpdateTenantDialog from "./UpdateTenantDialog";
+// import UpdateTenantDialog from "./UpdateTenantDialog";
 
 export function TenantSheet() {
   return (
@@ -48,7 +48,7 @@ export function TenantSheet() {
         
         <div>print</div>
         <br />
-        <UpdateTenantDialog />
+        {/* <UpdateTenantDialog /> */}
       </Paper>
 
    

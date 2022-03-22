@@ -13,9 +13,9 @@ import {
   TextField,
 } from "@mui/material";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { tenantList } from "../../data/tenantAtoms";
+import { tenantList } from "../../../data/tenantAtoms";
 import { useCallback, useState } from "react";
-import { getAllSitesInfo } from "../../data/siteAtoms";
+import { getAllSitesInfo } from "../../../data/siteAtoms";
 import {
   applicantListState,
   APPROVED,
@@ -23,8 +23,8 @@ import {
   REJECTED,
   WITHDRAWL,
   getApplicantInfo,
-} from "../../data/applicantAtoms";
-import { SiteSelect } from "../Applicants/ApplicantSiteList";
+} from "../../../data/applicantAtoms";
+import { SiteSelect } from "../ApplicantSiteSelect";
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];

@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
-import { Applicant } from './ApplicantList';
+import { Applicant } from './ApplicantForms/ApplicantList';
 
 
 export default function NewApplicantDialog() {

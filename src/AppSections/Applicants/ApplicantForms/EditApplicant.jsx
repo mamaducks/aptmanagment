@@ -27,10 +27,10 @@ import {
   REJECTED,
   WITHDRAWL,
   getApplicantInfo,
-} from "../../data/applicantAtoms";
+} from "../../../data/applicantAtoms";
 import { useCallback, useState } from "react";
-import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
-import { getAllSitesInfo } from "../../data/siteAtoms";
+import { SiteCheckboxes } from "../../../App/Property/SiteCheckboxes";
+import { getAllSitesInfo } from "../../../data/siteAtoms";
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];

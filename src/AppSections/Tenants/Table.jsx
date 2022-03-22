@@ -41,11 +41,11 @@ export default function TenantTable(tenantId) {
         <TableBody>
           {tenants.map((item) => (
             <TableRow
-              key={item.tenantName}
+              key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              {item.tenantName}
+              {item.name}
               </TableCell>
               <TableCell align="right">{item.moveInDate}</TableCell>
               <TableCell align="right">{item.dateLease}</TableCell>

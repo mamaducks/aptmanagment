@@ -6,10 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useRecoilValue } from "recoil";
-
-import TenantInfoDialog from "./TenantInfoDialog";
-import { applicantListState } from '../../data/applicantAtoms';
+import UpdateTenantDialog from './UpdateTenantDialog';
+import { useRecoilValue } from 'recoil';
+import { tenantList } from "../../../data/tenantAtoms"
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -23,43 +22,39 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TenantTable() {
-    const applicants = useRecoilValue(applicantListState);
+export default function RenewTable() {
+const tenants = useRecoilValue(tenantList)
 
-  
   return (
     <>
+
+    
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell sx={{fontWeight: "bolder"}}>tenant name</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>move in</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>lease date</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>renewal date</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}>view tenant info</TableCell>
+            <TableCell align="right" sx={{fontWeight: "bolder"}}>update tenant</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {applicants.map((item) => (
+        {tenants.map((item) => (
             <TableRow
-              key={item.name}
+              key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              {item.name}
+              {item.tenantName}
               </TableCell>
-              <TableCell align="right">{item.phone}</TableCell>
-              <TableCell align="right">lease date</TableCell>
-              <TableCell align="right">renewal date</TableCell>
-              <TableCell align="right"><TenantInfoDialog  />view tenant info</TableCell>
+              <TableCell align="right">{item.renewalDate}</TableCell>
+              <TableCell align="right"><UpdateTenantDialog tenantId={item.id} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    clickable from tenant info table
-    <TenantInfoDialog />
+    
     </>
   );
 }
