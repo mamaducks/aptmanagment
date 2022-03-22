@@ -20,7 +20,13 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { applicantListState, APPROVED, PENDING, REJECTED, WITHDRAWL } from "../../data/applicantAtoms";
+import {
+  applicantListState,
+  APPROVED,
+  PENDING,
+  REJECTED,
+  WITHDRAWL,
+} from "../../data/applicantAtoms";
 import { useCallback, useState } from "react";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
 import { getAllSitesInfo } from "../../data/siteAtoms";
@@ -116,7 +122,7 @@ export function Applicant() {
               control={<Radio />}
               label="Approved"
             />
-             <FormControlLabel
+            <FormControlLabel
               value={WITHDRAWL}
               control={<Radio />}
               label="Withdrawn"
@@ -193,7 +199,7 @@ export function Applicant() {
             <FormControlLabel value="3" control={<Radio />} label="Asian" />
             <FormControlLabel value="4" control={<Radio />} label="LatinX" />
           </RadioGroup>
-{/* 
+          {/* 
           1 american indian or alaskan native
           2 asian
           3 black or african american
@@ -209,9 +215,12 @@ export function Applicant() {
             defaultValue=""
             {...addProps({ name: "raceNumber", label: "Race" })}
           >
- 
             <FormControlLabel value="1" control={<Radio />} label="LatinX" />
-            <FormControlLabel value="2" control={<Radio />} label="Non Hispanic or Latino" />
+            <FormControlLabel
+              value="2"
+              control={<Radio />}
+              label="Non Hispanic or Latino"
+            />
           </RadioGroup>
         </FormControl>
       </Box>
@@ -298,8 +307,8 @@ export function Applicant() {
             />
           </FormGroup>
         </FormControl>
-        </Stack>
-        <Stack sx={{ border: "1px solid black", p: 1 }}>
+      </Stack>
+      <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl>
           <FormLabel id="sites">Sites Applying For</FormLabel>
           {/* <SiteCheckboxes /> */}
@@ -323,12 +332,11 @@ export function Applicant() {
           </FormGroup>
         </FormControl>
       </Stack>
-  <Box display="flex" justifyContent="center" mt={2}>
-    <Button  size="large" variant="contained" onClick={addApplicate}>
-        Add
-      </Button>
-  </Box>
-      
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Button size="large" variant="contained" onClick={addApplicate}>
+          Add
+        </Button>
+      </Box>
     </Box>
   );
 }

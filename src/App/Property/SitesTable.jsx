@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { getAllSitesInfo } from "../../data/siteAtoms";
+import { getAllUnitsInfo } from "../../data/unitsAtom";
 import { app } from "../../data/app";
 import UnitsDialog from "./UnitsTableDialog";
 import { unitStatsState } from "../../data/unitsAtom";
@@ -25,44 +25,52 @@ import { unitStatsState } from "../../data/unitsAtom";
 // ];
 
 export default function SitesTable() {
-  const sites = useRecoilValue(getAllSitesInfo);
-
-  const {
-    totalNum,
-    totalFilledNum,
-    totalVacantNum,
-  } = useRecoilValue(unitStatsState);
+  const sites = useRecoilValue(getAllUnitsInfo);
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell  sx={{fontWeight: "bolder"}}>Site</TableCell>
-            <TableCell align="right" sx={{fontWeight: "bolder"}}># Units</TableCell>
-            <TableCell align="right"  sx={{fontWeight: "bolder"}}>Current # vacant</TableCell>
-            <TableCell align="right"  sx={{fontWeight: "bolder"}}># filled</TableCell>
-            <TableCell align="center"  sx={{fontWeight: "bolder"}}>Units Info</TableCell>
+            <TableCell sx={{ fontWeight: "bolder" }}>Site</TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              # Units
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              Current # vacant
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+              # filled
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bolder" }}>
+              Units Info
+            </TableCell>
           </TableRow>
         </TableHead>
-        {sites.map(({ siteId, site }) => (
-          <TableBody>
-            <TableRow
-              key={siteId}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {site}
-              </TableCell>
-              <TableCell align="right">{totalNum}</TableCell>
-              <TableCell align="right">{totalVacantNum}</TableCell>
-              <TableCell align="right">{totalFilledNum}</TableCell>
-              <TableCell align="center">
-                <UnitsDialog siteId={siteId} siteName={site} />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        ))}
+        {sites.map(
+          ({
+            siteId,
+            site,
+            unitInfo: { totalNum, totalVacantNum, totalFilledNum },
+          }) => (
+            <TableBody>
+              <TableRow
+                key={siteId}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {site}
+                </TableCell>
+                <TableCell align="right">{totalNum}</TableCell>
+                <TableCell align="right">{totalVacantNum}</TableCell>
+                <TableCell align="right">{totalFilledNum}</TableCell>
+                <TableCell align="center">
+                  <UnitsDialog siteId={siteId} siteName={site} />
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          )
+        )}
       </Table>
     </TableContainer>
   );

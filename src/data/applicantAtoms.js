@@ -3,6 +3,7 @@ import { localStorageEffect } from "./localStorage";
 // import { useDispatch, useSelector } from "react-redux";
 
 import { getAllSitesInfo } from "./siteAtoms";
+import { tenantList } from "./tenantAtoms";
 
 export const PENDING = "Pending";
 export const APPROVED = "Approved";
@@ -22,6 +23,16 @@ export const applicantListState = atom({
   effects_UNSTABLE: [localStorageEffect("applicantList", [])],
 });
 
+export const waitingApplicants = selector({
+  key: "waitingApplicants",
+  get: ({ get }) => {
+    const tenantIds = get(tenantList).map((item) => item.applicantId);
+
+    return get(applicantListState).filter(
+      (item) => !tenantIds.includes(item.id)
+    );
+  },
+});
 export const applicantListFilterState = atom({
   key: "applicantListFilterState",
   default: "Show All",

@@ -7,9 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { applicantListState } from "../../data/applicantAtoms";
+import { waitingApplicants } from "../../data/applicantAtoms";
 import UpdateApplicantStatusDialog, {
-  StatusCheckboxesData, StatusMenu,
+  StatusCheckboxesData,
+  StatusMenu,
 } from "./StatusButton";
 import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
@@ -25,11 +26,10 @@ import MoveInDialog from "./MoveInDialog";
 //   createData("Gingerbread", 356, 16.0, 49, 3.9),
 // ];
 
-export default function WaitingListTable({status}) {
-  const applicantList = useRecoilValue(applicantListState);
+export default function WaitingListTable({ status }) {
+  const applicantList = useRecoilValue(waitingApplicants);
 
   // const [statusUpdate, setStatusUpdate] = useRecoilState({status});
-
 
   return (
     <TableContainer component={Paper}>
@@ -71,7 +71,7 @@ export default function WaitingListTable({status}) {
               update applicant or all row clickable
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bolder" }}>
-             move in
+              move in
             </TableCell>
             {/* <TableCell align="right" sx={{fontWeight: "bolder"}}>Occupancy Cont Date??</TableCell>
             <TableCell align="right" sx={{fontWeight: "bolder"}}>Lease Date</TableCell>
@@ -140,6 +140,7 @@ export default function WaitingListTable({status}) {
                 <TableCell align="right">
                   <UpdateApplicantDialog applicantId={id} />
                 </TableCell>
+
                 <TableCell align="right">
                   <MoveInDialog applicantId={id} />
                 </TableCell>

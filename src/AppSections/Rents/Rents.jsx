@@ -38,7 +38,7 @@ export function Rents() {
       {/* <RentRollOverview /> */}
       <RentRollDeposits />
       <div>show 3 months rent roll</div>
-      <RentRollSummary />
+      {/* <RentRollSummary /> */}
       {/* <EnterRentsList /> */}
      
 

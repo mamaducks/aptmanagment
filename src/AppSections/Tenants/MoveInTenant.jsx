@@ -31,41 +31,20 @@ function replaceItemAtIndex(arr, index, newValue) {
 }
 
 export function Tenant({ applicantId }) {
-  const [tenant, setTenant] = useRecoilState(tenantList);
-  
+  const [tenants, setTenants] = useRecoilState(tenantList);
+
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
 
-  const sites = useRecoilValue(getAllSitesInfo);
-
-
-  const oldApplicant = useRecoilValue(getApplicantInfo(applicantId));
-  const index = applicantList.findIndex(
-    (listItem) => listItem.id === applicantId
+  const appplicantInfo = useRecoilValue(getApplicantInfo(applicantId));
+  const existingTenantIndex = tenants.findIndex(
+    (listItem) => listItem.applicantId === applicantId
   );
+  const existingTenant = tenants[existingTenantIndex];
 
-const [item, setItem] = useState({});
+  const [item, setItem] = useState({ applicantId, ...existingTenant });
 
-  const selectedSites = item.selectedSites || {};
-
-  //const index = applicantList.findIndex((listItem) => listItem === item);
-  
   //   const applicant = useRecoilValue();
-  console.log("item", tenant, item);
-
-  // const toggleItemStatus = () => {
-  //   const newList = replaceItemAtIndex(applicantList, index, {
-  //     ...item,
-  //     isPending: !item.isPending,
-  //   });
-
-  //   setApplicantList(newList);
-  // };
-
-  // const deleteItem = () => {
-  //   const newList = removeItemAtIndex(applicantList, index);
-
-  //   setApplicantList(newList);
-  // };
+  console.log("item", tenants, item);
 
   const addProps = useCallback(
     ({ name, label, type = "text" }) => {
@@ -83,11 +62,15 @@ const [item, setItem] = useState({});
     [item]
   );
 
-
   const updateTenant = useCallback(() => {
-    setTenant((current) => replaceItemAtIndex(current, index, item));
-  }, [item, index, setTenant]);
-  
+    if (existingTenant) {
+      setTenants((current) =>
+        replaceItemAtIndex(current, existingTenantIndex, item)
+      );
+    } else {
+      setTenants((current) => [...current, item]);
+    }
+  }, [item, existingTenantIndex, setTenants]);
 
   return (
     <Paper sx={{ p: "30px" }}>
@@ -97,15 +80,23 @@ const [item, setItem] = useState({});
             fullWidth
             {...addProps({ name: "dateLease", label: "Lease Date" })}
           />
-          <div>autoFill with lease date entry 1 year out but editable</div>
+
           <TextField
             fullWidth
-            {...addProps({ name: "renewsOn", label: "Renewal Date" })}
+            {...addProps({ name: "moveInDate", label: "Move In Date" })}
+          />
+
+          <div>autoFill with lease date entry 1 year out but editable</div>
+
+          <TextField
+            fullWidth
+            {...addProps({ name: "renewalDate", label: "Renewal Date" })}
           />
         </Box>
 
         <FormControl>
           <div>autoFilled</div>
+
           <FormLabel id="status">Tenant Info</FormLabel>
         </FormControl>
       </Stack>
@@ -113,25 +104,33 @@ const [item, setItem] = useState({});
       <Box sx={{ width: "850px" }}>
         <TextField
           fullWidth
+          disabled
+          margin="normal"
+          value={appplicantInfo?.name}
+        />
+        {/* <TextField
+          fullWidth
           margin="normal"
           {...addProps({ name: "firstName", label: "First Name" })}
         />
+
         <TextField
           fullWidth
           margin="normal"
           {...addProps({ name: "lastName", label: "Last Name" })}
-        />
+        /> */}
       </Box>
+
       <Stack direction="row" gap={4}>
-        <Box sx={{ width: "500px" }}>
+        {/* <Box sx={{ width: "500px" }}>
           <TextField
             fullWidth
             margin="normal"
             {...addProps({ name: "phone", label: "Phone", type: "number" })}
           />
-        </Box>
+        </Box> */}
 
-        <FormControl margin="normal">
+        {/* <FormControl margin="normal">
           <FormLabel id="gender">Gender</FormLabel>
           <div>autoFilled</div>
           <RadioGroup
@@ -146,25 +145,18 @@ const [item, setItem] = useState({});
             />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
-        </FormControl>
+        </FormControl> */}
       </Stack>
-      <Box sx={{ width: "500px" }}>
-        <TextField
-          fullWidth
-          margin="normal"
-          {...addProps({ name: "site", label: "Site", type: "text" })}
-        />
-      </Box>
-      <SiteSelect />
 
-      <Box sx={{ width: "500px" }}>
-        <TextField
-          fullWidth
-          margin="normal"
-          {...addProps({ name: "unit", label: "Unit", type: "string" })}
-        />
-      </Box>
-      <Box display="flex" gap={7}>
+      <SiteSelect
+        selectedSite={item.siteId}
+        selectedUnit={item.unitId}
+        onSiteChange={(newSite, newUnit) =>
+          setItem((item) => ({ ...item, siteId: newSite, unitId: newUnit }))
+        }
+      />
+
+      {/* <Box display="flex" gap={7}>
         <FormControl>
           <FormLabel id="race">Race</FormLabel>
           <div>autoFilled</div>
@@ -180,6 +172,7 @@ const [item, setItem] = useState({});
           </RadioGroup>
         </FormControl>
       </Box>
+
       <FormControl margin="dense">
         <FormLabel id="familySize">Income Level</FormLabel>
         <RadioGroup
@@ -192,7 +185,9 @@ const [item, setItem] = useState({});
           <FormControlLabel value="Median" control={<Radio />} label="M" />
           <FormControlLabel value="High" control={<Radio />} label="H" />
         </RadioGroup>
-      </FormControl>
+      </FormControl> */}
+
+      {/*       
       <Stack sx={{ border: "1px solid black", p: 1 }}>
         <FormControl>
           <FormLabel id="accomodate"> Rental Assistance</FormLabel>
@@ -207,16 +202,16 @@ const [item, setItem] = useState({});
             />
           </FormGroup>
         </FormControl>
-      </Stack>
+      </Stack> */}
 
-      <Stack sx={{ border: "1px solid black", p: 1 }}>
+      {/* <Stack sx={{ border: "1px solid black", p: 1 }}>
         <Stack direction="row" gap={7}>
           <FormControl margin="dense">
             <FormLabel id="familySize">Add co-tenants</FormLabel>
             <div>other occupants moving in</div>
           </FormControl>
 
-          {/* <FormControl margin="dense">
+          <FormControl margin="dense">
               <FormLabel id="occupancy">Occupancy</FormLabel>
   
               <RadioGroup
@@ -227,9 +222,9 @@ const [item, setItem] = useState({});
                 <FormControlLabel value="1" control={<Radio />} label="1 bed" />
                 <FormControlLabel value="2" control={<Radio />} label="2 bed" />
               </RadioGroup>
-            </FormControl> */}
+            </FormControl> 
         </Stack>
-      </Stack>
+      </Stack> */}
       {/* <TextField
           {...addProps({ name: "incomeLevel", label: "Income Level" })}
         /> */}

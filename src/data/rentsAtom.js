@@ -2,6 +2,7 @@ import { atom, selector, selectorFamily } from "recoil";
 import { localStorageEffect } from "./localStorage";
 import { sum, sumBy } from "lodash";
 import { getAllSitesInfo } from "./siteAtoms";
+import { getUnitsInfo } from "./unitsAtom";
 // const rents = {
 //     employeeId: "",
 //     siteId: "",
@@ -55,62 +56,116 @@ export const rentListState = atom({
     {
       employeeId: "1",
       siteId: "edgewoodAcres",
-      unitId: "A01",
+      unitId: "A02",
       amount: 234,
       type: "rent",
       timestamp: 1647571370628,
-      tenantId: "smith",
+      applicantId: 0,
     },
     {
       employeeId: "1",
       siteId: "edgewoodAcres",
-      unitId: "A01",
-      amount: 523,
+      unitId: "A02",
+      amount: 423,
       type: "payment",
       timestamp: 1647571470628,
-      tenantId: "smith",
+      applicantId: 0,
     },
     {
       employeeId: "1",
       siteId: "edgewoodAcres",
-      unitId: "A01",
+      unitId: "A02",
       amount: 34,
       type: "payment",
       timestamp: 1647572370628,
-      tenantId: "smith",
+      applicantId: 0,
     },
   ],
   effects_UNSTABLE: [localStorageEffect("rentListState", [])],
 });
 
+function getTotals(items = []) {
+  const rents = items.filter((item) => item.type === "rent");
+  const payments = items.filter((item) => item.type === "payment");
+
+  const rentsTotal = sumBy(rents, "amount");
+  const paymentsTotal = sumBy(payments, "amount");
+  const creditsTotal = Math.max(0, paymentsTotal - rentsTotal);
+  const delinquentTotal = Math.max(0, (paymentsTotal - rentsTotal) * -1);
+
+  return {
+    rentsTotal,
+    paymentsTotal,
+    creditsTotal,
+    delinquentTotal,
+    totalSummary: creditsTotal - delinquentTotal,
+  };
+}
+
 export const getSiteRentTotals = selectorFamily({
   key: "getSiteRentTotals",
   get:
     (siteId) =>
+    ({ get }) =>
+      getTotals(
+        get(rentListState).filter((item) => item.siteId === siteId) || []
+      ),
+});
+
+export const getUnitRentTotals = selectorFamily({
+  key: "getUnitRentTotals",
+  get:
+    (siteId, unitId, applicantId) =>
     ({ get }) => {
-      console.log(" get(rentListState)", get(rentListState));
+      const filtered = get(rentListState).filter(
+        (item) =>
+          item.siteId === siteId &&
+          item.unitId === unitId &&
+          item.applicantId === applicantId
+      );
+      console.log(
+        "getUnitRentTotals",
+        siteId,
+        unitId,
+        applicantId,
+        get(rentListState),
+        filtered
+      );
+      return getTotals(filtered);
+    },
+});
 
-      const items = get(rentListState).filter((item) => item.siteId === siteId);
-      const rents = items.filter((item) => item.type === "rent");
-      const payments = items.filter((item) => item.type === "payment");
+export const getAllUnitRentTotals = selectorFamily({
+  key: "getAllUnitRentTotals",
+  get:
+    (siteId) =>
+    ({ get }) => {
+      const unitsInfo = get(getUnitsInfo(siteId));
 
-      const rentsTotal = sumBy(rents, "amount");
-      const paymentsTotal = sumBy(payments, "amount");
-      const creditsTotal = Math.max(0, paymentsTotal - rentsTotal);
-      const delinquentTotal = Math.max(0, (paymentsTotal - rentsTotal) * -1);
+      return (
+        (unitsInfo?.units || []).map((item) => {
+          const { siteId, id, tenant } = item;
+         
+          const unitTotals = getTotals(
+            get(rentListState).filter(
+              (item) =>
+                item.siteId === siteId &&
+                item.unitId === id &&
+                item.applicantId === tenant?.applicantId
+            )
+          );
 
-      return {
-        rentsTotal,
-        paymentsTotal,
-        creditsTotal,
-        delinquentTotal,
-        totalSummary: creditsTotal - delinquentTotal,
-      };
+          return {
+            ...item,
+            totals: unitTotals,
+          };
+        }) || []
+      );
     },
 });
 
 export const getAllSitesRentTotals = selector({
-  key: "getSiteRentTotals",
+  key: "getAllSitesRentTotals",
   get: ({ get }) => {
     const allSites = get(getAllSitesInfo);
 

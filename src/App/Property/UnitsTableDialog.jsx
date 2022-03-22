@@ -12,8 +12,8 @@ import { useRecoilValue } from "recoil";
 import { getSiteInfo } from "../../data/siteAtoms";
 
 export default function UnitsDialog({ siteId, siteName }) {
-    // const siteName = useRecoilValue(getSiteInfo(siteId))
-    // {siteName.map((item) => ())}
+  // const siteName = useRecoilValue(getSiteInfo(siteId))
+  // {siteName.map((item) => ())}
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -28,11 +28,14 @@ export default function UnitsDialog({ siteId, siteName }) {
     <div>
       <Button onClick={handleClickOpen}>View Units Info</Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
-            <DialogTitle sx={{ textAlign: "center" }}>{siteName} Information</DialogTitle>   
-       
+        <DialogTitle sx={{ textAlign: "center" }}>
+          {siteName} Information
+        </DialogTitle>
+
         <DialogContent>
           <UnitsTable siteId={siteId} />
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>

@@ -33,11 +33,16 @@ export default function MoveInApplicant() {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>Name</TableCell>
+              <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+                Name
+              </TableCell>
 
-              <TableCell align="right" sx={{fontWeight: "bolder"}}>Phone #</TableCell>
+              <TableCell align="right" sx={{ fontWeight: "bolder" }}>
+                Phone #
+              </TableCell>
             </TableRow>
           </TableHead>
+          
           <TableBody>
             {applicantList.map(({ dateApplied, name, phone }) => (
               <TableRow

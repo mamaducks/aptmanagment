@@ -47,19 +47,20 @@ export default function UnitsTable({ siteId }) {
               <TableCell align="right">view maintenance to unit</TableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
-            {site.units.map((item) => (
+            {site.units.map(({ id, tenant }) => (
               <TableRow
                 key="key"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {item.number}
+                  {id}
                 </TableCell>
-                <TableCell align="right">tenant name</TableCell>
-                <TableCell align="right">vacant has checkbox icon</TableCell>
-                <TableCell align="right">lease date</TableCell>
-                <TableCell align="right">renewal date</TableCell>
+                <TableCell align="right">{tenant?.name}</TableCell>
+                <TableCell align="right">{!tenant ? "Yes" : "No"}</TableCell>
+                <TableCell align="right">{tenant?.dateLease}</TableCell>
+                <TableCell align="right">{tenant?.renewalDate}</TableCell>
 
                 <TableCell align="right">view maintenance to unit</TableCell>
               </TableRow>
