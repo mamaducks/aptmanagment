@@ -10,6 +10,7 @@ import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
 import { SiteSelect } from "./ApplicantSiteSelect";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
+import { WaitingListGrid } from "../Tenants/WaitingListGrid";
 
 export function Applicants() {
   return (
@@ -30,7 +31,7 @@ export function Applicants() {
       >
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <NewApplicantDialog />
-          <div>search for applicant by name</div>
+          {/* <div>search for applicant by name</div> */}
           {/* <UpdateApplicantDialog /> */}
           {/* <MoveInDialog /> */}
           <div>choose site to view waiting list</div>
@@ -38,7 +39,9 @@ export function Applicants() {
         </ButtonGroup>
       </Box>
 
-      <WaitingListTable />
+      {/* <WaitingListTable /> */}
+
+      <WaitingListGrid />
       <div>filter table</div>
       <div>current waiting</div>
       <div>rejected</div>

@@ -10,6 +10,8 @@ import { useCallback, useState } from "react";
 
 import SitesTable from "../../App/Property/SitesTable";
 import { Box } from "@mui/material";
+import { SitesGrid } from "../../App/Property/SitesGrid";
+import { UnitsGrid } from "../../App/Property/UnitsGrid";
 
 export function SitesInfoDialog() {
   const [open, setOpen] = useState(false);
@@ -34,6 +36,8 @@ export function SitesInfoDialog() {
         <DialogContent>
           <Box>Employees names with access</Box>
           <SitesTable />
+          <SitesGrid />
+          {/* <UnitsGrid /> */}
          
         
         </DialogContent>

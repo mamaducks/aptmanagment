@@ -6,10 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import OrderTableEditDialog from "./OrderTableEditDialog";
-import { allWorkOrderBills } from "../../../data/workOrderAtoms";
-import {getAllHours} from "../../../data/workOrderHoursAtoms";
-import {getAllParts} from "../../../data/partsAtom";
+import OrderTableEditDialog from "../AppSections/Maintenance/EditableWorkOrder/OrderTableEditDialog";
+import { allWorkOrderBills } from "../data/workOrderAtoms";
+import {getAllHours} from "../data/workOrderHoursAtoms";
+import {getAllParts} from "../data/partsAtom";
 import {
   RecoilRoot,
   atom,
@@ -17,7 +17,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import {  allWorkOrders } from "../../../data/workOrderAtoms";
+import {  allWorkOrders } from "../data/workOrderAtoms";
 
 
 export function EditableWorkOrderList() {

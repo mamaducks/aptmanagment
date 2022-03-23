@@ -15,25 +15,25 @@ export const maintenanceHours = [
     employeeId: "2",
     siteId: "edgewoodAcres",
     regHours: 170.0,
-    overtimeHours: 19,
+    // overtimeHours: 19,
   },
   {
     employeeId: "4",
     siteId: "edgewoodAcresII",
     regHours: 220.0,
-    overtimeHours: 9,
+    // overtimeHours: 9,
   },
   {
     employeeId: "2",
     siteId: "edgewoodAcresIV",
     regHours: 170.0,
-    overtimeHours: 16,
+    // overtimeHours: 16,
   },
   {
     employeeId: "1",
     siteId: "edgewoodAcres",
     regHours: 220.0,
-    overtimeHours: 4,
+    // overtimeHours: 4,
   },
 ];
 

@@ -13,6 +13,8 @@ export const tenants = [
     moveInDate: "2/28/2019",
     dateLease: "3/3/22",
     renewalDate: "3/3/23",
+    firstName: "tone",
+    lastName: "thom"
 
   },
   {
@@ -22,6 +24,8 @@ export const tenants = [
     renewalDate: "3/3/23",
     siteId: "edgewoodAcresIV",
     unit: "1607",
+    firstName: "Mona",
+    lastName: "thorn"
   },
 ];
 
@@ -30,6 +34,8 @@ export const tenantList = atom({
   default: tenants,
   effects_UNSTABLE: [localStorageEffect("tenantList", [])],
 });
+
+
 
 export const getTenantInfo = selectorFamily({
   key: "getTenantInfo",

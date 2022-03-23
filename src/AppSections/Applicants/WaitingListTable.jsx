@@ -105,6 +105,7 @@ export default function WaitingListTable({ status }) {
             ({
               id,
               dateApplied,
+              timeApplied,
               name,
               phone,
               status,
@@ -120,12 +121,12 @@ export default function WaitingListTable({ status }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {/* {status} */}
-                  <StatusMenu applicantId={id} />
+                  {status}
+                  {/* <StatusMenu applicantId={id} /> */}
                   {/* <UpdateApplicantStatusDialog /> */}
                 </TableCell>
                 <TableCell align="right">{dateApplied}</TableCell>
-                <TableCell align="right">Time</TableCell>
+                <TableCell align="right">{timeApplied}</TableCell>
                 <TableCell align="right">{name}</TableCell>
                 <TableCell align="right">{phone}</TableCell>
                 <TableCell align="right">{race}</TableCell>

@@ -140,7 +140,14 @@ export function Applicant() {
         <TextField
           fullWidth
           margin="normal"
-          {...addProps({ name: "name", label: "Name" })}
+          {...addProps({ name: "firstName", label: "First Name" })}
+        />
+      </Box>
+      <Box sx={{ width: "850px" }}>
+        <TextField
+          fullWidth
+          margin="normal"
+          {...addProps({ name: "lastName", label: "Last Name" })}
         />
       </Box>
       <Stack direction="row" gap={4}>

@@ -91,8 +91,10 @@ export function RentRollSummary({ siteId }) {
               ({
                 siteId,
                 unitId,
+                number,
                 amount,
                 tenantId,
+                tenant,
                 site,
                 totals: { rentsTotal, creditsTotal, delinquentTotal },
               }) => (
@@ -101,7 +103,7 @@ export function RentRollSummary({ siteId }) {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {unitId}
+                    {number}
                   </TableCell>
                   <TableCell align="right">{tenantId}</TableCell>
                   <TableCell align="right">{creditsTotal}</TableCell>

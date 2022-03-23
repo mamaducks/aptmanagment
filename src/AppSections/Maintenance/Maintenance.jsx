@@ -1,7 +1,7 @@
 import { NewRequest } from "./NewWorkOrder/NewWorkRequest";
 import { TodoList } from "../../App/Todo/ToDo";
-import { WorkOrderTable } from "./SummaryWorkOrders/WorkOrderTable";
-import { WorkOrderView } from "./SummaryWorkOrders/WorkOrderView";
+// import { WorkOrderTable } from "./SummaryWorkOrders/WorkOrderTable";
+// import { WorkOrderView } from "./SummaryWorkOrders/WorkOrderView";
 // import { Bill } from "./EnterBill";
 // import { SiteWorkOrderTable } from "./SiteWorkOrders";
 import { BillTable } from "../../unused/BillTable";
@@ -16,8 +16,9 @@ import AddBillDialog from "./Billing/EnterBillDialog";
 import WorkOrdersDialog from "./SummaryWorkOrders/WorkOrderViewDialog";
 import BillsDialog from "../../unused/BillViewDialog";
 // import OrderTableEditDialog from "./EditableWorkOrder/TableEditableWorkOrderDialog";
-import { EditableWorkOrderList } from "./EditableWorkOrder/EditableWorkOrderList";
+import { EditableWorkOrderList } from "../../unused/EditableWorkOrderList";
 import { PartsDialog } from "./Parts/PartsDialog";
+import { WorkOrderGrid } from "./EditableWorkOrder/EditableWorkOrdersGrid";
 
 export const GLCodes = () => {
   return (
@@ -70,10 +71,10 @@ export function Maintenence() {
       <div>display WorkOrdersTable</div>
       <div>Work Order Table</div>
       clickable rows take to workorder view
-      <WorkOrderTable />{" "}
+      {/* <WorkOrderTable />{" "} */}
       {/* company level finished by date requested view single work order read only  with print */}
       {/* <SiteWorkOrderTable /> current work orders site level by date requested newest to oldest with editable work order for maintenance */}
-      <EditableWorkOrderList />{" "}
+      {/* <EditableWorkOrderList />{" "} */}
       {/* current work orders by site level view  editable work order for managers?*/}
       <br />
       <div>
@@ -83,6 +84,8 @@ export function Maintenence() {
       {/* <BillTable /> */}
       to do list has some totals stuff
       <TodoList />
+
+      <WorkOrderGrid />
     </>
   );
 }

@@ -71,7 +71,7 @@ export function WorkOrderView({workOrderId, siteId}) {
       </Paper>
 
       <>
-        <div>Site 12</div>
+        {/* <div>Site 12</div>
         <div>Unit 449</div>
         <div>Creator 5</div>
         <div>Assignee 6</div>
@@ -79,7 +79,7 @@ export function WorkOrderView({workOrderId, siteId}) {
         <div>Work requested * Fix something</div>
         <div>Remarks</div>
         <div>3 Gloves 3 Painting Supplies</div>
-        <div>print</div>
+        <div>print</div> */}
       </>
     </>
   );

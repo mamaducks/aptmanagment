@@ -34,7 +34,7 @@ export default function UpdateApplicantDialog({ applicantId }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          {/* <Button onClick={handleClose}>Subscribe</Button> */}
         </DialogActions>
       </Dialog>
     </div>

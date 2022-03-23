@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useCallback, useState } from "react";
-import { EditTenant } from './EditTenant';
+import { EditTenant } from '../../../unused/EditTenant';
 
 
 export default function EditTenantDialog() {

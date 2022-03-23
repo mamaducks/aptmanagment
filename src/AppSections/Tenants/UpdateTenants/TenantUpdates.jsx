@@ -175,7 +175,7 @@ import {
         <Stack sx={{ border: "1px solid black", p: 1 }}>
           <Stack direction="row" gap={7}>
             <FormControl margin="dense">
-              <FormLabel id="familySize">Add co-tenants</FormLabel>
+              <FormLabel id="remarks">Add co-tenants</FormLabel>
               <div>other occupants moving in</div>
             </FormControl>
   

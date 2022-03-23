@@ -8,6 +8,7 @@ import RentRollDialog from "./RentRollDialog";
 import { Rent } from "./EnterRents/RentSheet";
 // import { RentRollSummary } from "./RentRollSummary";
 import { RentRollOverview } from "../../unused/RentRollOverview";
+import { RentRollGrid } from "./RentsRollGrid";
 
 export function Rents() {
   return (
@@ -29,19 +30,18 @@ export function Rents() {
         {/* <ButtonGroup aria-label="outlined button group"> */}
         <EnterRentsDialog />
         <RentRollDialog />
-
+      
         <Button>upload deposit slips ?</Button>
         {/* </ButtonGroup> */}
       </Box>
 
       <div>rent roll site totals</div>
-      {/* <RentRollOverview /> */}
-      <RentRollDeposits />
-      <div>show 3 months rent roll</div>
+      {/* <RentRollOverview /> */} 
+       <RentRollGrid />
+      {/* <RentRollDeposits /> */}
+      {/* <div>show 3 months rent roll</div> */}
       {/* <RentRollSummary /> */}
       {/* <EnterRentsList /> */}
-     
-
     </>
   );
 }

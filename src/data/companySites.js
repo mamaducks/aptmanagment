@@ -92,7 +92,7 @@ export const sites = [
   },
 
   {
-    siteId: "edgewoodAcresIII",
+    siteId: "AcresIII",
     site: "Edgewood Acres III",
     // address: "439 Church Rd",
     // city: "Sicklerville",
@@ -140,7 +140,7 @@ export const sites = [
   },
 
   {
-    siteId: "edgewoodAcresIV",
+    siteId: "AcresIV",
     site: "Edgewood Acres IV",
     // address: "439 Church Rd",
     // city: "Sicklerville",
@@ -281,7 +281,7 @@ export const sites = [
     ],
   },
   {
-    siteId: "hayesMill1",
+    siteId: "hayesMill",
     site: "Hayes Mills Estates",
     // address: "187 Hayes Mill Road",
     // city: "Atco",
@@ -318,7 +318,7 @@ export const sites = [
     ],
   },
   {
-    siteId: "hayesMill2",
+    siteId: "hayes2",
     site: "Hayes Mill II",
     address: "207 Hayes Mill Road",
     city: "Atco",

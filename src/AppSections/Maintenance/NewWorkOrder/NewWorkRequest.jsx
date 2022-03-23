@@ -74,7 +74,7 @@ export function NewRequest() {
           </Box>
 
           <FormControl>
-            <FormLabel id="status">Site</FormLabel>
+            <FormLabel id="site">Site</FormLabel>
             <div>site</div>
             <div>unit</div>
           </FormControl>
@@ -94,6 +94,13 @@ export function NewRequest() {
             {...addProps({ name: "unit", label: "Unit" })}
           />
         </Box>
+        <Box sx={{ width: "850px" }}>
+          <TextField
+            fullWidth
+            margin="normal"
+            {...addProps({ name: "tenant", label: "Tenant" })}
+          />
+        </Box>
         <Stack direction="row" gap={4}>
           <Box sx={{ width: "500px" }}>
             <TextField
@@ -106,6 +113,20 @@ export function NewRequest() {
         <Box display="flex" gap={7}>
           <FormControl>
             <FormLabel id="request">Request</FormLabel>
+            <TextField
+              fullWidth
+              margin="normal"
+              {...addProps({
+                name: "request",
+                label: "Work Requested",
+                type: "text",
+              })}
+            />
+          </FormControl>
+        </Box>
+        <Box display="flex" gap={7}>
+          <FormControl>
+            <FormLabel id="remarks">Remarks</FormLabel>
             <TextField
               fullWidth
               margin="normal"

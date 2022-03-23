@@ -1,4 +1,4 @@
-import TenantTable from "../Table";
+import TenantTable from "./Table";
 
 export function EditTenant() {
   return (

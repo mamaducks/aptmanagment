@@ -142,6 +142,7 @@ export function TenantSheet({ tenantId }) {
           </ListItem>
         </List>
         <div>maintenance to unit since move in date rent stuff for teneant</div>
+        <div>update link or form here</div>
       </Container>
     </>
   );

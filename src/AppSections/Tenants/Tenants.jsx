@@ -4,11 +4,12 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 // import NewTenantDialog from "../../unused/MoveInDialog";
 import EditTenantDialog from "./UpdateTenants/EditTenantDialog";
-import SearchTenantDialog from "./SearchTenantDialog";
 
 // import TenantTable from "./Table";
-import RenewTable from "./UpdateTenants/TenantRenewals";
+import RenewTable from "../../unused/TenantRenewals";
 import { TenantSheet } from "./TenantSheet";
+import TenantTable from "../../unused/Table";
+import { TenantGrid } from "./TenantGrid"
 // import { EnterTenant } from "./TenantfromApplicant";
 
 export function Tenants() {
@@ -26,17 +27,20 @@ export function Tenants() {
     >
       {/* <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{gap: 3}}> */}
       {/* <NewTenantDialog /> */}
-      <EditTenantDialog />
-      <SearchTenantDialog />
+      {/* <EditTenantDialog /> */}
+      {/* <SearchTenantDialog /> */}
       {/* </ButtonGroup> */}
     </Box>
       <div>header: Tenants</div>
       By Site
+      sorted by renewal date
       {/* <TenantTable /> */}
+
+      <TenantGrid />
 
       
       <div>tenants renewing soon update tenant</div>
-      <RenewTable />
+      {/* <RenewTable /> */}
     </>
   );
 }

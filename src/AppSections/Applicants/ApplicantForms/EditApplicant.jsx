@@ -115,6 +115,12 @@ export function EditApplicant({ applicantId }) {
             {...addProps({ name: "dateApplied", label: "Date Applied" })}
           />
         </Box>
+        <Box sx={{ width: "500px" }}>
+          <TextField
+            fullWidth
+            {...addProps({ name: "timeApplied", label: "Time Applied" })}
+          />
+        </Box>
 
         <FormControl>
           <FormLabel id="status">Approval Status</FormLabel>
@@ -159,7 +165,7 @@ export function EditApplicant({ applicantId }) {
           <TextField
             fullWidth
             margin="normal"
-            {...addProps({ name: "phone", label: "Phone", type: "number" })}
+            {...addProps({ name: "phone", label: "Phone",  })}
           />
         </Box>
         <FormControl margin="normal">
