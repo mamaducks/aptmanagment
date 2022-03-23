@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { allWorkOrders } from "../../../data/workOrderAtoms";
+import { allWorkOrders } from "../../data/workOrderAtoms";
 
 export const columns = [
 //   { field: 'siteId', headerName: 'number', width: 130 },

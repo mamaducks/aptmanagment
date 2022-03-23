@@ -7,9 +7,9 @@ import EditTenantDialog from "./UpdateTenants/EditTenantDialog";
 
 // import TenantTable from "./Table";
 import RenewTable from "../../unused/TenantRenewals";
-import { TenantSheet } from "./TenantSheet";
+import { TenantSheet } from "../../App/ViewSheets/TenantSheet";
 import TenantTable from "../../unused/Table";
-import { TenantGrid } from "./TenantGrid"
+import { TenantGrid } from "../../App/Grids/TenantGrid"
 // import { EnterTenant } from "./TenantfromApplicant";
 
 export function Tenants() {
@@ -38,7 +38,7 @@ export function Tenants() {
 
       <TenantGrid />
 
-      
+      <TenantSheet />
       <div>tenants renewing soon update tenant</div>
       {/* <RenewTable /> */}
     </>

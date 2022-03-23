@@ -12,16 +12,19 @@ import NavTabs from "./App/LinkTabs";
 import { Router } from "./Router";
 import { AllEmployees, CurrentUserInfo } from "./data/userAtoms";
 import { ThemeProvider } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <RecoilRoot>
-        <NavTabs />
-        <CurrentUserInfo />
-        <Router />
-      </RecoilRoot>
-    </div>
+    <BrowserRouter>
+      <div>
+        <RecoilRoot>
+          <NavTabs />
+          <CurrentUserInfo />
+          <Router />
+        </RecoilRoot>
+      </div>
+    </BrowserRouter>
   );
 }
 

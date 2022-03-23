@@ -1,3 +1,4 @@
+import EmployeeSheet from "../../../App/ViewSheets/EmployeeSheet";
 import VariantButtonGroup from "./ButtonGroup";
 import { Employee } from "./EmployeeList";
 import DataGridDemo from "./EmployeeTableGrid";
@@ -19,6 +20,7 @@ export function Employees() {
       <div>employees name info start date end date rate? type of employee</div>
       <NewEmployeeDialog />
       <Employee />
+      <EmployeeSheet />
     </>
   );
 }

@@ -10,7 +10,7 @@ import UpdateApplicantDialog from "./UpdateApplicantDialog";
 import MoveInDialog from "./MoveInDialog";
 import { SiteSelect } from "./ApplicantSiteSelect";
 import { SiteCheckboxes } from "../../App/Property/SiteCheckboxes";
-import { WaitingListGrid } from "../Tenants/WaitingListGrid";
+import { WaitingListGrid } from "../../App/Grids/WaitingListGrid";
 
 export function Applicants() {
   return (

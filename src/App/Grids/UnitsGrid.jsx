@@ -2,9 +2,11 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getUnitsInfo } from "../../data/unitsAtom";
+import { useParams } from "react-router-dom";
 
 
 const handleClick = (e, cellValues ) => {
+  
     console.log(cellValues.row);
 }
 
@@ -48,7 +50,9 @@ export const columns = [
 
 
 export function UnitsGrid() {
-  const rowData = useRecoilValue(getUnitsInfo);
+  const { siteId } = useParams();
+
+  const rowData = useRecoilValue(getUnitsInfo(siteId));
 
   return (
     <div style={{ height: 700, width: "100%" }}>

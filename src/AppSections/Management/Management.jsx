@@ -7,6 +7,7 @@ import EmployeeDialog from "./Employees/EmployeesDialog";
 import { BillingOverview } from "./Bills/BillsOverviewDialog";
 import { SitesInfoDialog } from "./SitesInfoDialog";
 import { MaintenanceBillingDialog } from "./MaintenanceBilling";
+import { EmployeeWorkHoursGrid } from "../../App/Grids/WorkHoursGrid";
 
 export function Management() {
   return (
@@ -31,6 +32,7 @@ export function Management() {
         <SitesInfoDialog />
 
         <EmployeeDialog />
+        
       {/* </ButtonGroup> */}
     </Box>
       <div>header: Management</div>
@@ -48,6 +50,7 @@ export function Management() {
       <div>
         total maintenance hours billed : WorkHoursBill year to date or monthly
       </div>
+      <EmployeeWorkHoursGrid />
       
       Year overview
     </>

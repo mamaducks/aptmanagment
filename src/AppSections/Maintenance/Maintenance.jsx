@@ -18,7 +18,7 @@ import BillsDialog from "../../unused/BillViewDialog";
 // import OrderTableEditDialog from "./EditableWorkOrder/TableEditableWorkOrderDialog";
 import { EditableWorkOrderList } from "../../unused/EditableWorkOrderList";
 import { PartsDialog } from "./Parts/PartsDialog";
-import { WorkOrderGrid } from "./EditableWorkOrder/EditableWorkOrdersGrid";
+import { WorkOrderGrid } from "../../App/Grids/EditableWorkOrdersGrid";
 
 export const GLCodes = () => {
   return (

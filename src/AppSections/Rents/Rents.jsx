@@ -8,7 +8,7 @@ import RentRollDialog from "./RentRollDialog";
 import { Rent } from "./EnterRents/RentSheet";
 // import { RentRollSummary } from "./RentRollSummary";
 import { RentRollOverview } from "../../unused/RentRollOverview";
-import { RentRollGrid } from "./RentsRollGrid";
+import { RentRollGrid } from "../../App/Grids/RentsRollGrid";
 
 export function Rents() {
   return (

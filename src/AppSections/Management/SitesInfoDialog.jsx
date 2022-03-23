@@ -10,8 +10,8 @@ import { useCallback, useState } from "react";
 
 import SitesTable from "../../App/Property/SitesTable";
 import { Box } from "@mui/material";
-import { SitesGrid } from "../../App/Property/SitesGrid";
-import { UnitsGrid } from "../../App/Property/UnitsGrid";
+import { SitesGrid } from "../../App/Grids/SitesGrid";
+import { UnitsGrid } from "../../App/Grids/UnitsGrid";
 
 export function SitesInfoDialog() {
   const [open, setOpen] = useState(false);
