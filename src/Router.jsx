@@ -9,7 +9,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Maintenence } from "./AppSections/Maintenance/Maintenance";
 import { Tenants } from "./AppSections/Tenants/Tenants";
 import { Rents } from "./AppSections/Rents/Rents";
-import { Applicants } from "./AppSections/Applicants/Applicants";
 // import { Management } from "./AppSections/Management/Management";
 import { HomePage } from "./AppSections/HomePage.jsx";
 import { ManagementSites } from "./management/ManagementSites.jsx";
@@ -20,6 +19,8 @@ import { ManagementUnitRents } from "./App/Grids/RentRollSummaryGrid.jsx";
 import { SiteRents } from "./site/SiteRents.jsx";
 import { ManagementEmployees } from "./management/ManagementEmployees.jsx";
 import { Employee } from "./management/Employee";
+import { Applicants } from "./applicants/Applicants.jsx";
+// import {ManagementBills} from "./App/Grids/ManagementBills"
 
 export function Router() {
   return (
@@ -29,7 +30,7 @@ export function Router() {
         <Route path="/site/:siteId/rents" element={<SiteRents />} />
         <Route path="/site/:siteId/units" element={<SiteUnits />} />
         {/* <Route path="/Tenants" element={<Tenants />} /> */}
-        {/* <Route path="/Applicants" element={<Applicants />} /> */}
+        <Route path="/Applicants" element={<Applicants />} />
         {/* <Route path="/Rents" element={<Rents />} /> */}
         {/* <Route path="/Management/:siteId/units" element={<ManagementUnitRents />} /> */}
         Employee
@@ -37,6 +38,7 @@ export function Router() {
         <Route path="/Management/sites" element={<ManagementSites />} />
         <Route path="/Management/employees" element={<ManagementEmployees />} />
         <Route path="/Management/employees/:employeeId" element={<Employee />} />
+        {/* <Route path="/Management/bills" element={<ManagementBills />} /> */}
 
         <Route path="/Management" element={<Management />} />
         <Route exact path="/" element={<HomePage />} />
