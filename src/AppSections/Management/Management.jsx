@@ -12,18 +12,18 @@ import { EmployeeWorkHoursGrid } from "../../App/Grids/WorkHoursGrid";
 export function Management() {
   return (
     <>
-     <Box
-    sx={{
-      display: 'flex',
-      // flexDirection: 'column',
-      justifyContent: 'center',
-      gap: 1,
-      '& > *': {
-        m: 1,
-      },
-    }}
-  >
-      {/* <ButtonGroup variant="outlined" aria-label="outlined button group"> */}
+      <Box
+        sx={{
+          display: "flex",
+          // flexDirection: 'column',
+          justifyContent: "center",
+          gap: 1,
+          "& > *": {
+            m: 1,
+          },
+        }}
+      >
+        {/* <ButtonGroup variant="outlined" aria-label="outlined button group"> */}
         <BillingOverview />
         <RentOverview />
 
@@ -32,9 +32,9 @@ export function Management() {
         <SitesInfoDialog />
 
         <EmployeeDialog />
-        
-      {/* </ButtonGroup> */}
-    </Box>
+
+        {/* </ButtonGroup> */}
+      </Box>
       <div>header: Management</div>
       <div>Year overview</div>
       <div>add sites</div>
@@ -51,7 +51,6 @@ export function Management() {
         total maintenance hours billed : WorkHoursBill year to date or monthly
       </div>
       <EmployeeWorkHoursGrid />
-      
       Year overview
     </>
   );

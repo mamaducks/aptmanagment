@@ -17,13 +17,11 @@ import { BrowserRouter } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <RecoilRoot>
-          <NavTabs />
-          <CurrentUserInfo />
-          <Router />
-        </RecoilRoot>
-      </div>
+      <RecoilRoot>
+        <NavTabs />
+        <CurrentUserInfo />
+        <Router />
+      </RecoilRoot>
     </BrowserRouter>
   );
 }
