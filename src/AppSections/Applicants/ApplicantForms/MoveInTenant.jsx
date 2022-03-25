@@ -24,13 +24,13 @@ import {
   WITHDRAWL,
   getApplicantInfo,
 } from "../../../data/applicantAtoms";
-import { SiteSelect } from "../ApplicantSiteSelect";
+import { SiteSelect } from "../../../applicants/ApplicantSiteSelect";
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 }
 
-export function Tenant({ applicantId }) {
+export function MoveTenant({ applicantId }) {
   const [tenants, setTenants] = useRecoilState(tenantList);
 
   const [applicantList, setApplicantList] = useRecoilState(applicantListState);
@@ -85,8 +85,10 @@ export function Tenant({ applicantId }) {
             fullWidth
             {...addProps({ name: "moveInDate", label: "Move In Date" })}
           />
-
-          <div>autoFill with lease date entry 1 year out but editable</div>
+         <TextField
+            fullWidth
+            {...addProps({ name: "dateLease", label: "Lease Date" })}
+          />
 
           <TextField
             fullWidth
@@ -108,6 +110,7 @@ export function Tenant({ applicantId }) {
           margin="normal"
           value={applicantInfo?.name}
         />
+        
         {/* <TextField
           fullWidth
           margin="normal"

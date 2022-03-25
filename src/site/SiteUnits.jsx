@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { getUnitsInfo } from "../data/unitsAtom";
+import { tenants } from "../state/tenants"
 
 export const columns = [
   { field: "id", headerName: "Unit", width: 320 },
@@ -14,23 +14,23 @@ export const columns = [
     width: 240,
   },
   {
-    field: "moveInDate",
+    field: "dateMoveIn",
     valueGetter: ({ row }) =>
-      `${row.tenant?.moveInDate || ""}`,
+      `${row.tenant?.dateMoveIn || ""}`,
     headerName: "Move In Date",
     width: 200,
   },
   {
-    field: "leaseDate",
+    field: "dateLease",
     valueGetter: ({ row }) =>
-      `${row.tenant?.leaseDate || ""}`,
+      `${row.tenant?.dateLease || ""}`,
     headerName: "Lease Date",
     width: 200,
   },
   {
-    field: "renewalDate",
+    field: "dateRenewal",
     valueGetter: ({ row }) =>
-      `${row.tenant?.renewalDate || ""}`,
+      `${row.tenant?.dateRenewal || ""}`,
     headerName: "Renewal Date",
     width: 200,
   },
@@ -39,9 +39,10 @@ export const columns = [
 export function SiteUnits() {
   const { siteId } = useParams();
 
-  const rowData = useRecoilValue(getUnitsInfo(siteId))?.units || [];
+  // const rowData = useRecoilValue(siteUnitTenantWithApplicantMap(siteId))?.units || [];
 
-  
+  const rowData = useRecoilValue(tenants(siteId))
+
 
   return (
     <div style={{ height: 600, width: "100%" }}>

@@ -1,25 +1,30 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { getAllUnitsInfo } from "../data/unitsAtom";
+import { getSiteTenantSummaryInfo } from "../state/sites";
 
 export const columns = [
-  { field: "site", headerName: "Site Name", width: 320 },
-
+  { field: "siteName", headerName: "Site Name", width: 320 },
   {
-    field: "totalNum",
-    valueGetter: ({ row }) => row.unitInfo.totalNum,
+    field: "totalNumberOfUnits",
     headerName: "# Units",
     width: 190,
   },
-
   {
-    field: "totalVacantNum",
-    valueGetter: ({ row }) => row.unitInfo.totalVacantNum,
+    field: "totalNumberOfOccupiedUnits",
+    headerName: "# Filled",
+    width: 190,
+  },
+  {
+    field: "totalNumberOfVacantUnits",
     headerName: "# Vacant",
     width: 130,
   },
-
+  {
+    field: "totalPercentOccupied",
+    headerName: "# Vacant",
+    width: 130,
+  },
   {
     field: "View Units Info",
     width: 300,
@@ -38,7 +43,7 @@ export const columns = [
 ];
 
 export function ManagementSites() {
-  const rowData = useRecoilValue(getAllUnitsInfo);
+  const rowData = useRecoilValue(getSiteTenantSummaryInfo);
 
   return (
     <div style={{ height: 600, width: "100%" }}>

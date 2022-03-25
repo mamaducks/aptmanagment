@@ -6,10 +6,12 @@ import { workOrderBills, workOrderCategories } from "./workOrderAtoms";
 import { maintenanceHours } from "./workOrderHoursAtoms";
 import { tenants } from "./tenantAtoms";
 import { workOrders } from "./workOrderAtoms";
+import { deposits } from "./deposits";
 
 export const data = {
   sites,
   employees,
+  deposits,
   bills,
   tenants,
   workOrders,

@@ -6,6 +6,11 @@ import ListSubheader from "@mui/material/ListSubheader";
 import { textAlign } from "@mui/system";
 import { TextField } from "@mui/material";
 
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { useRecoilValue } from "recoil";
+import { tenantList } from "../data/tenantAtoms";
+
 export default function EnterRentList() {
   return (
     <List
@@ -40,5 +45,48 @@ export default function EnterRentList() {
         /> */}
       </ListItem>
     </List>
+  );
+}
+
+export const columns = [
+  { field: "id", headerName: "Unit", width: 320 },
+
+  {
+    field: "tenantName",
+    valueGetter: ({ row }) =>
+      `${row.tenant?.firstName || ""} ${row.tenant?.lastName || ""}`,
+    headerName: "Tenant",
+    width: 240,
+  },
+  {
+    field: "View Site Rents",
+    width: 300,
+    renderCell: (cellValues) => {
+      return (
+        <TextField variant="contained" color="primary">
+          amount due
+        </TextField>
+      );
+    },
+  },
+
+  {
+    field: "View Site Rents",
+    width: 300,
+    renderCell: (cellValues) => {
+      return (
+        <TextField variant="contained" color="primary">
+          amount paid
+        </TextField>
+      );
+    },
+  },
+];
+
+export function EnterRents() {
+  return (
+    <div style={{ height: 300, width: "100%" }}>
+  <DataGrid getRowId={(item) => item.applicantId} rows={rowData} columns={columns} />
+</div>
   );
 }

@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { textAlign } from "@mui/system";
 
-export default function RentsTotalsList() {
+export function RentsTotalsList() {
   return (
     <List
       sx={{ width: "100%", maxWidth: 550, bgcolor: "background.paper", textAlign: "center", alignSelf: "center" }}

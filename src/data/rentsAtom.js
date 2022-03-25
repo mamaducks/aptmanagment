@@ -52,36 +52,8 @@ const cannedData = [
 
 export const rentListState = atom({
   key: "rentListState",
-  default: [
-    {
-      employeeId: "1",
-      siteId: "edgewoodAcres",
-      unitId: "A02",
-      amount: 234,
-      type: "rent",
-      timestamp: 1647571370628,
-      applicantId: 0,
-    },
-    {
-      employeeId: "1",
-      siteId: "edgewoodAcres",
-      unitId: "A02",
-      amount: 423,
-      type: "payment",
-      timestamp: 1647571470628,
-      applicantId: 0,
-    },
-    {
-      employeeId: "1",
-      siteId: "edgewoodAcres",
-      unitId: "A02",
-      amount: 34,
-      type: "payment",
-      timestamp: 1647572370628,
-      applicantId: 0,
-    },
-  ],
-  effects_UNSTABLE: [localStorageEffect("rentListState", [])],
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("rentList", [])],
 });
 
 function getTotals(items = []) {
@@ -145,7 +117,7 @@ export const getAllUnitRentTotals = selectorFamily({
       return (
         (unitsInfo?.units || []).map((item) => {
           const { siteId, id, tenant } = item;
-         
+
           const unitTotals = getTotals(
             get(rentListState).filter(
               (item) =>

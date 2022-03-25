@@ -16,22 +16,36 @@ export const columns = [
   { field: "incomeLevel", headerName: "Income Level", width: 120 },
   { field: "unitSize", headerName: "Unit Size", width: 80 },
   { field: "rentalAssistance", headerName: "Rental Assistance", width: 120 },
-  // {
-  //   field: "View Applicant Info",
-  //   width: 300,
-  //   renderCell: (cellValues) => {
-  //     return (
-  //       <Button
-  //         variant="contained"
-  //         color="primary"
-  //         // href={`/site/${cellValues.row.siteId}/units`}
-
-  //       >
-  //         View Info
-  //       </Button>
-  //     );
-  //   },
-  // },
+  {
+    field: "View Applicant Info",
+    width: 200,
+    renderCell: (cellValues) => {
+      return (
+        <Button
+          variant="contained"
+          color="primary"
+          href={`/Applicants/${cellValues.row.applicantId}`}
+        >
+          View Info
+        </Button>
+      );
+    },
+  },
+  {
+    field: "Move In Applicant",
+    width: 200,
+    renderCell: (cellValues) => {
+      return (
+        <Button
+          variant="contained"
+          color="primary"
+          href={`/Applicants/moveIn/${cellValues.row.applicantId}`}
+        >
+          Move In Applicant
+        </Button>
+      );
+    },
+  },
 ];
 
 export function WaitList() {

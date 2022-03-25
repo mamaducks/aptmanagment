@@ -6,7 +6,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import { useRecoilValue } from "recoil";
 import { useParams } from "react-router-dom";
 
-import { getEmployeeInfo } from "../data/employeesAtoms";
+import { getEmployeeInfo } from "../../data/employeesAtoms";
 import { Container } from "@mui/material";
 
 export function Employee() {

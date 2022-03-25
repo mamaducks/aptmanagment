@@ -6,7 +6,7 @@ import {
   Select,
 } from "@mui/material";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { getAllUnitsInfo } from "../../data/unitsAtom";
+import { getAllUnitsInfo } from "../data/unitsAtom";
 import { useCallback, useState } from "react";
 
 export function SiteSelect({ onSiteChange, selectedSite, selectedUnit }) {
