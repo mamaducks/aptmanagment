@@ -30,7 +30,6 @@ export const getEmployeeSummaryInfo = selector({
         allRoles: compact(
           employee.roles.map((roleId) => roleMap.get(roleId)?.displayName)
         ).join(", "),
-        hireDate: (new Date(employee.hireDate)).toLocaleDateString(),
       };
     });
   },

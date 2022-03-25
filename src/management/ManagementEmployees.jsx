@@ -1,6 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getEmployeeSummaryInfo } from "../state/employees";
+import { dateFormatter } from "../formatters/cellFormatters";
 
 export const columns = [
   {
@@ -18,6 +19,7 @@ export const columns = [
     field: "hireDate",
     headerName: "Start Date",
     width: 180,
+    valueFormatter: dateFormatter
   },
 ];
 
