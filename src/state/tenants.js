@@ -4,7 +4,6 @@ import { tenantsData } from "./data/tenants";
 import { compact } from "lodash";
 import { getTenantRentsMap } from "./rents";
 import { getTenantPaymentsMap } from "./payments";
-import { getSitesWithTenant } from "./sites";
 
 
 export const tenants = atom({

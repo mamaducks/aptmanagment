@@ -8,7 +8,6 @@ import {
   referenceFormatter,
   yesNoFormatter,
 } from "../formatters/cellFormatters";
-import { fullNameValueGetter } from "../formatters/valueGetters";
 import { applicantStatusData } from "../state/data/applicants";
 import { useParams } from "react-router-dom";
 import { getSiteWithApplicantsSummaryInfo } from "../state/sites";
@@ -16,19 +15,21 @@ import { useState } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SiteHeader } from "./SiteHeader";
+import { useColumns } from "../state/helpers/hooks";
+import { Box, Button } from "@mui/material";
 
 export const columns = [
   {
     field: "applicantStatus",
     headerName: "Status",
-    width: 120,
+    width: 100,
     valueFormatter: referenceFormatter(applicantStatusData),
   },
   {
     field: "dateApplied",
     headerName: "Date",
     valueFormatter: dateTimeFormatter,
-    width: 190,
+    width: 180,
   },
   {
     field: "applicantsName",
@@ -49,29 +50,29 @@ export const columns = [
       ).join(", "),
     width: 150,
   },
-  {
-    field: "race",
-    headerName: "Race",
-    valueGetter: ({ row: { applicants = [] } }) =>
-      applicants
-        .map(({ ethnicity, race }) => `${race || ""}${ethnicity || ""}`)
-        .join(", "),
-    valueFormatter: uppercaseFormatter,
-    width: 80,
-  },
+//   {
+//     field: "race",
+//     headerName: "Race",
+//     valueGetter: ({ row: { applicants = [] } }) =>
+//       applicants
+//         .map(({ ethnicity, race }) => `${race || ""}${ethnicity || ""}`)
+//         .join(", "),
+//     valueFormatter: uppercaseFormatter,
+//     width: 80,
+//   },
   {
     field: "familySize",
     headerName: "Family Size",
     width: 80,
   },
-  {
-    field: "gender",
-    headerName: "M/F",
-    valueGetter: ({ row: { applicants = [] } }) =>
-      applicants.map(({ gender }) => gender).join(", "),
-    valueFormatter: uppercaseFormatter,
-    width: 80,
-  },
+//   {
+//     field: "gender",
+//     headerName: "M/F",
+//     valueGetter: ({ row: { applicants = [] } }) =>
+//       applicants.map(({ gender }) => gender).join(", "),
+//     valueFormatter: uppercaseFormatter,
+//     width: 80,
+//   },
   {
     field: "incomeLevel",
     headerName: "Income Level",
@@ -103,17 +104,46 @@ export const columns = [
     valueFormatter: uppercaseFormatter,
     width: 200,
   },
+  {
+    field: "actions",
+    headerAlign: "center",
+    sortable: false,
+    disableColumnMenu: true,
+    headerName: "Actions",
+    width: 300,
+    renderCell: (cellValues) => {
+      return (
+        <Box display="flex" justifyContent="center" flexGrow={1}>
+        <Button
+          variant="contained"
+          color="primary"
+        //   href={`/sites/${cellValues.row.siteId}/units`}
+        >
+          Update
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+        //   href={`/sites/${cellValues.row.siteId}/units`}
+        >
+          Move In
+        </Button>
+        </Box>
+      );
+    },
+  },
 ];
 
 export function SiteApplicants() {
   const { siteId } = useParams();
+
   const [statusFilters, setStatusFilters] = useState(["a"]);
 
   const { applicants } = useRecoilValue(
     getSiteWithApplicantsSummaryInfo(siteId)
   );
 
-  console.log(applicants);
+  const columnsToUse = useColumns(columns);
 
   return (
     <div style={{ height: 600, width: "100%" }}>
@@ -137,7 +167,7 @@ export function SiteApplicants() {
         rows={applicants.filter((item) =>
           statusFilters.includes(item.applicantStatus)
         )}
-        columns={columns}
+        columns={columnsToUse}
       />
     </div>
   );

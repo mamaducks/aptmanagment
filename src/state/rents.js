@@ -34,6 +34,7 @@ export const getSiteRentsSummaryInfo = selector({
         .flat();
       const totals = getRentPaymentTotals(allRents, allPayments);
 
+     
       return {
         ...site,
         ...totals,

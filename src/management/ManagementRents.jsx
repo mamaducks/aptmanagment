@@ -2,39 +2,37 @@ import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getSiteRentsSummaryInfo } from "../state/rents";
-import { makeStyles } from "@mui/styles";
+import { useColumns } from "../state/helpers/hooks";
 
-const useStyles = makeStyles(() => ({
-  negative: { color: "red" },
-  positive: { color: "green" },
-}));
-
-export const getColumns = ({ negative, positive }) => [
+export const columns = [
   { field: "siteName", headerName: "Site", width: 320 },
   {
     field: "rentsTotal",
     headerName: "Rents Total",
+    description: "Total amount of rents due",
     width: 240,
   },
   {
     field: "paymentsTotal",
     headerName: "Payments Total",
+    description: "Total amount of payments made",
+
     width: 200,
   },
   {
-    field: "creditsTotal",
-    headerName: "Credits Total",
+    field: "pendingDepositsTotal",
+    headerName: "Pending Deposits",
+    description: "Payments collected awaiting deposit",
+
     width: 200,
   },
-  {
-    field: "delinquentTotal",
-    headerName: "Delinquencies Total",
-    width: 200,
-  },
+ 
   {
     field: "totalSummary",
-    headerName: "Total ",
-    cellClassName: ({ value }) => (value >= 0 ? positive : negative),
+    headerName: "Total Balance",
+    description: "Amount due not yet collected",
+
+    highlightPositiveNegative: true,
     width: 200,
   },
   {
@@ -50,7 +48,6 @@ export const getColumns = ({ negative, positive }) => [
           <Button
             variant="contained"
             color="primary"
-            alignSelf="center"
             href={`/sites/${cellValues.row.siteId}/rents`}
           >
             View Rents Info
@@ -62,8 +59,7 @@ export const getColumns = ({ negative, positive }) => [
 ];
 
 export function ManagementRents() {
-  const styles = useStyles();
-  const columns = getColumns(styles);
+  const columnsToUse = useColumns(columns);
   const rowData = useRecoilValue(getSiteRentsSummaryInfo);
 
   return (
@@ -71,7 +67,7 @@ export function ManagementRents() {
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}
-        columns={columns}
+        columns={columnsToUse}
       />
     </div>
   );

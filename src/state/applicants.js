@@ -8,7 +8,6 @@ import {
   applicantEthnicityData,
   applicantIncomeLevelData,
 } from "./data/applicants";
-import { getSiteTenantSummaryInfo } from "./sites";
 
 export const applicants = atom({
   key: "_applicants",

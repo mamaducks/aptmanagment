@@ -7,6 +7,8 @@ import {
 } from "../formatters/cellFormatters";
 import { employeeRoleData } from "../state/data/employees";
 import { fullNameValueGetter } from "../formatters/valueGetters";
+import { useColumns } from "../state/helpers/hooks";
+
 export const columns = [
   {
     field: "fullName",
@@ -16,13 +18,15 @@ export const columns = [
   },
   {
     field: "phoneNumber",
+    sortable: false,
+    disableColumnMenu: true,
     headerName: "Phone Number",
     width: 180,
   },
   {
     field: "roles",
     headerName: "Employee Roles",
-    width: 180,
+    width: 350,
     valueGetter: ({ row: { roles = [] } }) =>
       referenceArrayFormatter(employeeRoleData)({ value: roles }),
   },
@@ -35,6 +39,7 @@ export const columns = [
 ];
 
 export function ManagementEmployees() {
+  const columnsToUse = useColumns(columns);
   const rowData = useRecoilValue(getEmployeeSummaryInfo);
 
   return (
@@ -42,7 +47,7 @@ export function ManagementEmployees() {
       <DataGrid
         getRowId={(item) => item.employeeId}
         rows={rowData}
-        columns={columns}
+        columns={columnsToUse}
       />
     </div>
   );

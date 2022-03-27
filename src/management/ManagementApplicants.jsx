@@ -2,6 +2,8 @@ import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getSiteApplicantsSummaryInfo } from "../state/sites";
+import { useColumns } from "../state/helpers/hooks";
+
 
 export const columns = [
   { field: "siteName", headerName: "Site Name", width: 320 },
@@ -39,6 +41,7 @@ export const columns = [
 ];
 
 export function ManagementApplicants() {
+  const columnsToUse = useColumns(columns);
   const rowData = useRecoilValue(getSiteApplicantsSummaryInfo);
 
   return (
@@ -46,7 +49,7 @@ export function ManagementApplicants() {
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}
-        columns={columns}
+        columns={columnsToUse}
       />
     </div>
   );

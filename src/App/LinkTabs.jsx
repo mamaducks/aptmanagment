@@ -18,7 +18,7 @@ export default function NavTabs() {
         <LinkTab label="Sites" href="/sites" />
         <LinkTab label="Applicants" href="/applicants" />
         <LinkTab label="Employees" href="/employees" />
-        <LinkTab label="Tenants" href="/tenants" />
+        {/* <LinkTab label="Tenants" href="/tenants" /> */}
         {/* <LinkTab label="Management" href="/Management" /> */}
         {/* {/* <Tabs
         value={window.location.pathname}

@@ -1,6 +1,7 @@
 import { atom, selector } from "recoil";
 import { paymentsData } from "./data/payments";
 import { groupBy } from "lodash";
+
 export const payments = atom({
   key: "_payments",
   default: paymentsData,

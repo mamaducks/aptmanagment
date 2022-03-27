@@ -1,18 +1,17 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { useColumns } from "../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
-import { fullNameValueGetter } from "../formatters/valueGetters";
-
 import { SiteHeader } from "./SiteHeader";
 
 export const columns = [
-  { field: "unitId", headerName: "Unit", width: 320 },
+  { field: "unitId", headerName: "Unit", width: 140 },
 
   {
     field: "applicantsName",
     headerName: "Tenant",
-    width: 240,
+    width: 420,
   },
   {
     field: "rentsTotal",
@@ -28,13 +27,15 @@ export const columns = [
   {
     field: "totalSummary",
     headerName: "Total Summary",
+    description: "Carry Over Balance",
+    highlightPositiveNegative: true,
     width: 200,
   },
 ];
 
 export function SiteRents() {
   const { siteId } = useParams();
-
+  const columnsToUse = useColumns(columns);
   const rowData = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   return (
@@ -44,7 +45,7 @@ export function SiteRents() {
       <DataGrid
         getRowId={(item) => item.unitId}
         rows={rowData.units}
-        columns={columns}
+        columns={columnsToUse}
       />
     </div>
   );
