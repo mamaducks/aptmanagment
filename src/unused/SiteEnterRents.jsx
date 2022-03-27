@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getAllUnitsInfo } from "../data/unitsAtom";
+import { fullNameValueGetter } from "../formatters/valueGetters";
 
 export const columns = [
   { field: "site", headerName: "Site Name", width: 330 },
@@ -14,8 +15,8 @@ export const columns = [
   },
 
   {
-    field: "tenantName",
-    valueGetter: ({ row }) => row.unitInfo.tenantId,
+    field: "fullName",
+    valueGetter: fullNameValueGetter,
     headerName: "Tenant",
     width: 310,
   },

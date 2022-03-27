@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import { fullNameValueGetter } from "../formatters/valueGetters";
 import {
   applicantsData,
   applicantGendersData,
@@ -39,16 +40,25 @@ export const applicantStatus = atom({
   default: applicantStatusData,
 });
 
+export const getApplicantsWithName = selector({
+  key: "_getApplicantsWithName",
+  get: ({ get }) =>
+    new get(applicants).map((item) => ({
+      ...item,
+      applicantsName: (item.applicants || [])
+        .map((applicant) => fullNameValueGetter({ row: applicant }))
+        .join(", "),
+    })),
+});
+
 export const getApplicantsMap = selector({
   key: "_getApplicantsMap",
   get: ({ get }) =>
-    new Map(get(applicants).map((item) => [item.applicantId, item])),
+    new Map(get(getApplicantsWithName).map((item) => [item.applicantId, item])),
 });
 
 export const getWaitingApplicants = selector({
   key: "_getWaitingApplicants",
   get: ({ get }) =>
-    get(applicants).filter(({ applicantStatus }) => applicantStatus === "a"),
+    get(getApplicantsWithName).filter(({ applicantStatus }) => applicantStatus === "a"),
 });
-
-

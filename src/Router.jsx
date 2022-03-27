@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 // import { UnitsGrid } from "./App/Grids/UnitsGrid";
 import { Maintenence } from "./unused/Maintenance";
 import { Tenants } from "./tenants/Tenants";
-import { Rents } from "./rents/Rents";
+import { Rents } from "./unused/Rents";
 // import { Management } from "./AppSections/Management/Management";
 import { HomePage } from "./AppSections/HomePage";
 import { ManagementSites } from "./management/ManagementSites";
@@ -26,8 +26,8 @@ import { Employee } from "./unused/Management/Employee";
 // import ViewApplicant from "./applicants/ViewAppicant";
 // import { MoveInApplicant } from "./applicants/MoveInApplicant";
 import { TenantUpdate } from "./hereisthestuffyourgoingtouse/Tenants/TenantUpdates";
-import { EnterRents } from "./rents/EnterRents";
-import { EnterDeposits } from "./rents/EnterDeposits";
+// import { EnterRents } from "./rents/EnterRents";
+import { EnterDeposits } from "./hereisthestuffyourgoingtouse/EnterDeposits";
 import { ManagementApplicants } from "./management/ManagementApplicants.jsx";
 // import {ManagementBills} from "./App/Grids/ManagementBills"
 

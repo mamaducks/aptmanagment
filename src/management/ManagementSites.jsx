@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getSiteTenantSummaryInfo } from "../state/sites";
@@ -26,10 +26,15 @@ export const columns = [
     width: 130,
   },
   {
-    field: "View Units Info",
+    field: "actions",
+    headerAlign: "center",
+    sortable: false,
+    disableColumnMenu: true,
+    headerName: "Actions",
     width: 300,
     renderCell: (cellValues) => {
       return (
+        <Box display="flex" justifyContent="center" flexGrow={1}>
         <Button
           variant="contained"
           color="primary"
@@ -37,6 +42,7 @@ export const columns = [
         >
           View Units Info
         </Button>
+        </Box>
       );
     },
   },

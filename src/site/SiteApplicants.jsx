@@ -31,10 +31,8 @@ export const columns = [
     width: 190,
   },
   {
-    field: "name",
+    field: "applicantsName",
     headerName: "Name",
-    valueGetter: ({ row: { applicants = [] } }) =>
-      applicants.map((item) => fullNameValueGetter({ row: item })).join(", "),
     width: 240,
   },
   {

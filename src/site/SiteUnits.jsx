@@ -4,14 +4,15 @@ import { useRecoilValue } from "recoil";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { dateFormatter } from "../formatters/cellFormatters";
 import { SiteHeader } from "./SiteHeader";
+import { SiteAddress } from "./SiteAddress";
 
 export const columns = [
-  { field: "unitId", headerName: "Unit", width: 320 },
+  { field: "unitId", headerName: "Unit", width: 140 },
 
   {
-    field: "tenantFullName",
+    field: "applicantsName",
     headerName: "Tenant",
-    width: 240,
+    width: 300,
   },
   {
     field: "dateMoveIn",
@@ -47,6 +48,7 @@ export function SiteUnits() {
   return (
     <div style={{ height: 600, width: "100%" }}>
       <SiteHeader />
+      <SiteAddress />
 
       <DataGrid
         getRowId={(item) => item.unitId}

@@ -2,7 +2,7 @@ import { atom, selector, selectorFamily } from "recoil";
 import { sitesWithUnitsData } from "./data/sitesWithUnits";
 import { getSiteUnitTenantWithApplicantMap } from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
-import { applicants } from "./applicants";
+import { getApplicantsWithName } from "./applicants";
 
 const RENEWAL_DAYS = 1000 * 60 * 60 * 24 * 60;
 
@@ -21,7 +21,7 @@ export const getSitesMap = selector({
 export const getSitesWithApplicants = selector({
   key: "_getSitesWithApplicants",
   get: ({ get }) => {
-    const allApplicants = get(applicants);
+    const allApplicants = get(getApplicantsWithName);
 
     return get(sites).map((site) => {
       return {
@@ -152,14 +152,13 @@ export const getUpcomingRenewalTenantsSummaryInfo = selector({
       .flat(),
 });
 
-
 export const getSiteInfo = selectorFamily({
   key: "_getSiteInfo",
   get:
     (siteId) =>
-    ({ get }) => get(getSitesMap).get(siteId),
+    ({ get }) =>
+      get(getSitesMap).get(siteId),
 });
-
 
 export const getSiteWithTenantsSummaryInfo = selectorFamily({
   key: "_getSiteWithTenantsSummaryInfo",

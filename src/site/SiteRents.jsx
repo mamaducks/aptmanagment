@@ -2,13 +2,15 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
+import { fullNameValueGetter } from "../formatters/valueGetters";
+
 import { SiteHeader } from "./SiteHeader";
 
 export const columns = [
   { field: "unitId", headerName: "Unit", width: 320 },
 
   {
-    field: "tenantFullName",
+    field: "applicantsName",
     headerName: "Tenant",
     width: 240,
   },
