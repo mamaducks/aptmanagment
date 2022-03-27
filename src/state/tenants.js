@@ -1,27 +1,43 @@
 import { atom, selector } from "recoil";
-import { applicantsMap } from "./applicants";
+import { getApplicantsMap } from "./applicants";
 import { tenantsData } from "./data/tenants";
 import { compact } from "lodash";
+import { getTenantRentsMap } from "./rents";
+import { getTenantPaymentsMap } from "./payments";
+import { getSitesWithTenant } from "./sites";
+
 
 export const tenants = atom({
   key: "_tenants",
   default: tenantsData,
 });
 
-export const siteUnitTenantWithApplicantMap = selector({
-  key: "_siteUnitTenantMap",
+export const getTenantsWithId = selector({
+  key: "_getTenantsWithId",
+  get: ({ get }) =>
+    get(tenants).map((item) => ({
+      tenantId: `${item.siteId}-${item.unitId}-${item.applicantId}`,
+      ...item,
+    })),
+});
+//
+export const getSiteUnitTenantWithApplicantMap = selector({
+  key: "_getSiteUnitTenantWithApplicantMap",
   get: ({ get }) => {
-    const applicantsInfo = get(applicantsMap);
+    const applicantsInfo = get(getApplicantsMap);
 
     const tenantsWithApplicantInfo = compact(
-      get(tenants).map((item) => {
+      get(getTenantsWithId).map((item) => {
         const applicant = applicantsInfo.get(item.applicantId);
 
         if (!applicant) {
           return undefined;
         }
 
-        return { ...item, applicant };
+        const rents = get(getTenantRentsMap).get(item.tenantId) || [];
+        const payments = get(getTenantPaymentsMap).get(item.tenantId) || [];
+
+        return { ...item, ...applicant, payments, rents };
       })
     );
 
@@ -33,3 +49,4 @@ export const siteUnitTenantWithApplicantMap = selector({
     );
   },
 });
+

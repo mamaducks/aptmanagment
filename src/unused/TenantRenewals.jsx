@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import UpdateTenantDialog from '../AppSections/Tenants/UpdateTenants/UpdateTenantDialog';
+import UpdateTenantDialog from '../hereisthestuffyourgoingtouse/Tenants/UpdateTenants/UpdateTenantDialog';
 import { useRecoilValue } from 'recoil';
 import { tenantList } from "../data/tenantAtoms"
 

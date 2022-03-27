@@ -1,6 +1,5 @@
 import { atom, selector } from "recoil";
 import { employeesData, employeeRoleData } from "./data/employees";
-import { compact } from "lodash";
 
 export const employees = atom({
   key: "_employees",
@@ -15,21 +14,15 @@ export const employeeRoles = atom({
 export const employeeRoleDataMap = selector({
   key: "_employeeRoleDataMap",
   get: ({ get }) =>
-    new Map(get(employeeRoles).map((item) => [item.roleId, item])),
+    new Map(get(employeeRoles).map((item) => [item.value, item])),
 });
 
 export const getEmployeeSummaryInfo = selector({
   key: "_getEmployeeSummaryInfo",
   get: ({ get }) => {
-    const roleMap = get(employeeRoleDataMap);
-
     return get(employees).map((employee) => {
       return {
         ...employee,
-        fullName: `${employee.firstName || ""} ${employee.lastName || ""}`,
-        allRoles: compact(
-          employee.roles.map((roleId) => roleMap.get(roleId)?.displayName)
-        ).join(", "),
       };
     });
   },

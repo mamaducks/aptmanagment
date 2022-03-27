@@ -22,7 +22,7 @@ export const columns = [
   },
   {
     field: "totalPercentOccupied",
-    headerName: "# Vacant",
+    headerName: "% Occupancy",
     width: 130,
   },
   {
@@ -33,7 +33,7 @@ export const columns = [
         <Button
           variant="contained"
           color="primary"
-          href={`/site/${cellValues.row.siteId}/units`}
+          href={`/sites/${cellValues.row.siteId}/units`}
         >
           View Units Info
         </Button>

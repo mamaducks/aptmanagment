@@ -1,95 +1,49 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useRecoilValue } from "recoil";
-import { getAllUnitRentTotals } from "../data/rentsAtom";
 import { useParams } from "react-router-dom";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
-import { Box } from "@mui/material";
+import { useRecoilValue } from "recoil";
+import { getSiteWithTenantsSummaryInfo } from "../state/sites";
+import { SiteHeader } from "./SiteHeader";
 
 export const columns = [
+  { field: "unitId", headerName: "Unit", width: 320 },
+
   {
-    field: "id",
-    headerName: "Unit",
-    width: 180,
-  },
-  {
-    field: "tenant",
+    field: "tenantFullName",
     headerName: "Tenant",
-    width: 330,
-    valueGetter: ({ row }) =>
-      `${row.tenant?.firstName || ""} ${row.tenant?.lastName || ""}`,
+    width: 240,
   },
   {
-    field: "rent",
-    headerName: "Rent",
-    valueGetter: ({ row }) => row.totals.rentsTotal,
-    width: 180,
+    field: "rentsTotal",
+    headerName: "Rent Due",
+    width: 200,
   },
   {
-    field: "amount",
-    headerName: "Paid",
-    valueGetter: ({ row }) => row.totals.paymentsTotal,
-    width: 180,
+    field: "paymentsTotal",
+    headerName: "Rent Paid",
+    width: 200,
   },
+
   {
     field: "totalSummary",
-    valueGetter: ({ row }) => row.totals.totalSummary,
-    headerName: "Balance",
-    width: 180,
+    headerName: "Total Summary",
+    width: 200,
   },
 ];
 
 export function SiteRents() {
   const { siteId } = useParams();
 
-  const rowData = useRecoilValue(getAllUnitRentTotals(siteId));
+  const rowData = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   return (
-    <>
-      <div style={{ height: 300, width: "100%" }}>
-        <DataGrid
-          getRowId={(item) => item.id}
-          rows={rowData}
-          columns={columns}
-        />
-      </div>
-<Box display="flex" justifyContent="center">
+    <div style={{ height: 600, width: "100%" }}>
+      <SiteHeader />
 
-   <List
-        sx={{
-          width: "100%",
-          maxWidth: 550,
-          bgcolor: "background.paper",
-          textAlign: "center",
-          alignSelf: "center",
-        }}
-        subheader={<ListSubheader>{rowData.siteName}Site Totals</ListSubheader>}
-      >
-        <ListItem>
-          <ListItemText id="rentTotalLabel" primary="Total Rents Entered" />
-          <ListItemText
-            id="rent-total"
-            primary="$$"
-            sx={{ justifyContent: "end", display: "flex" }}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemText
-            id="depositTotalLabel"
-            primary="Total Deposits Entered"
-          />
-          <ListItemText
-            id="depositTotal"
-            primary="$$"
-            sx={{ justifyContent: "end", display: "flex" }}
-          />
-        </ListItem>
-      </List>
-
-</Box>
-     
-    </>
+      <DataGrid
+        getRowId={(item) => item.unitId}
+        rows={rowData.units}
+        columns={columns}
+      />
+    </div>
   );
 }

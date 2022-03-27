@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { dateFormatter } from "../formatters/cellFormatters";
+import { SiteHeader } from "./SiteHeader";
 
 export const columns = [
   { field: "unitId", headerName: "Unit", width: 320 },
@@ -30,18 +31,26 @@ export const columns = [
     valueFormatter: dateFormatter,
     width: 200,
   },
+  {
+    field: "dateMoveOut",
+    headerName: "Move Out Date",
+    valueFormatter: dateFormatter,
+    width: 200,
+  },
 ];
 
 export function SiteUnits() {
   const { siteId } = useParams();
 
-  const rowData = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
-  console.log(rowData);
+  const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
+
   return (
     <div style={{ height: 600, width: "100%" }}>
+      <SiteHeader />
+
       <DataGrid
         getRowId={(item) => item.unitId}
-        rows={rowData.units}
+        rows={siteWithUnits.units}
         columns={columns}
       />
     </div>

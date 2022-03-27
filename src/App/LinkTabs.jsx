@@ -13,11 +13,13 @@ export default function NavTabs() {
   return (
     <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
       <Tabs aria-label="nav-tabs">
-        <LinkTab label="Maintenance" href="/Maintenance" />
-        <LinkTab label="Rents" href="/Rents" />
-        <LinkTab label="Applicants" href="/Applicants" />
-        <LinkTab label="Tenants" href="/Tenants" />
-        <LinkTab label="Management" href="/Management" />
+        {/* <LinkTab label="Maintenance" href="/Maintenance" /> */}
+        <LinkTab label="Rents" href="/rents" />
+        <LinkTab label="Sites" href="/sites" />
+        <LinkTab label="Applicants" href="/applicants" />
+        <LinkTab label="Employees" href="/employees" />
+        <LinkTab label="Tenants" href="/tenants" />
+        {/* <LinkTab label="Management" href="/Management" /> */}
         {/* {/* <Tabs
         value={window.location.pathname}
         onChange={handleChange}

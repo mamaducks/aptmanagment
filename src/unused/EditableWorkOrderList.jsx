@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import OrderTableEditDialog from "../AppSections/Maintenance/EditableWorkOrder/OrderTableEditDialog";
+import OrderTableEditDialog from "../hereisthestuffyourgoingtouse/EditableWorkOrder/OrderTableEditDialog";
 import { allWorkOrderBills } from "../data/workOrderAtoms";
 import {getAllHours} from "../data/workOrderHoursAtoms";
 import {getAllParts} from "../data/partsAtom";

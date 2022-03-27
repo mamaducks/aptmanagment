@@ -5,8 +5,9 @@ import {
   applicantStatusData,
   applicantRaceData,
   applicantEthnicityData,
-  applicantIncomeData,
+  applicantIncomeLevelData,
 } from "./data/applicants";
+import { getSiteTenantSummaryInfo } from "./sites";
 
 export const applicants = atom({
   key: "_applicants",
@@ -28,9 +29,9 @@ export const applicantEthnicity = atom({
   default: applicantEthnicityData,
 });
 
-export const applicantIncome = atom({
-  key: "_applicantIncome",
-  default: applicantIncomeData,
+export const applicantIncomeLevel = atom({
+  key: "_applicantIncomeLevel",
+  default: applicantIncomeLevelData,
 });
 
 export const applicantStatus = atom({
@@ -38,8 +39,16 @@ export const applicantStatus = atom({
   default: applicantStatusData,
 });
 
-export const applicantsMap = selector({
-  key: "_applicantsMap",
+export const getApplicantsMap = selector({
+  key: "_getApplicantsMap",
   get: ({ get }) =>
     new Map(get(applicants).map((item) => [item.applicantId, item])),
 });
+
+export const getWaitingApplicants = selector({
+  key: "_getWaitingApplicants",
+  get: ({ get }) =>
+    get(applicants).filter(({ applicantStatus }) => applicantStatus === "a"),
+});
+
+

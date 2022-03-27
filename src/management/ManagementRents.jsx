@@ -1,29 +1,35 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { getAllSitesRentTotals } from "../data/rentsAtom";
+import { getSiteRentsSummaryInfo } from "../state/rents";
 
 export const columns = [
-  { field: "site", headerName: "site", width: 300 },
+  { field: "siteName", headerName: "Site", width: 320 },
+
+  {
+    field: "rentsTotal",
+    headerName: "Rents Total",
+    width: 240,
+  },
   {
     field: "paymentsTotal",
-    valueGetter: ({ row }) => row.rentTotals.paymentsTotal,
-    headerName: "Total Rent Paid",
-    width: 180,
+    headerName: "Payments Total",
+    width: 200,
   },
-  { field: "deposits", headerName: "Total Deposits", width: 180 },
   {
-    field: "rentTotals.creditsTotal",
-    valueGetter: ({ row }) => row.rentTotals.creditsTotal,
-    headerName: "Total Credit",
-    width: 180,
+    field: "creditsTotal",
+    headerName: "Credits Total",
+    width: 200,
   },
   {
     field: "delinquentTotal",
-    valueGetter: ({ row }) => row.rentTotals.delinquentTotal,
-
-    headerName: "Total Delinquent",
-    width: 180,
+    headerName: "Delinquencies Total",
+    width: 200,
+  },
+  {
+    field: "totalSummary",
+    headerName: "Total ",
+    width: 200,
   },
   {
     field: "View Site Rents",
@@ -33,7 +39,7 @@ export const columns = [
         <Button
           variant="contained"
           color="primary"
-          href={`/site/${cellValues.row.siteId}/rents`}
+          href={`/sites/${cellValues.row.siteId}/rents`}
         >
           View Rents Info
         </Button>
@@ -43,7 +49,7 @@ export const columns = [
 ];
 
 export function ManagementRents() {
-  const rowData = useRecoilValue(getAllSitesRentTotals);
+  const rowData = useRecoilValue(getSiteRentsSummaryInfo);
 
   return (
     <div style={{ height: 300, width: "100%" }}>

@@ -1,11 +1,11 @@
 import { Reference } from "./reference";
 
 export const employeeRoleData = [
-  { roleId: "admin", displayName: "Admin" },
-  { roleId: "maintenance", displayName: "Maintenance" },
-  { roleId: "siteManager", displayName: "Site Manager" },
-  { roleId: "maintenanceSupervisor", displayName: "Maintenance Supervisor" },
-  { roleId: "officeManager", displayName: "Office Manager" },
+  { value: "admin", label: "Admin" },
+  { value: "maintenance", label: "Maintenance" },
+  { value: "siteManager", label: "Site Manager" },
+  { value: "maintenanceSupervisor", label: "Maintenance Supervisor" },
+  { value: "officeManager", label: "Office Manager" },
 ];
 
 export const employeesData = [
@@ -16,11 +16,11 @@ export const employeesData = [
     phoneNumber: "(856) 232-1550",
     hireDate: Reference.dateTime,
     roles: [
-      employeeRoleData[0].roleId,
-      employeeRoleData[1].roleId,
-      employeeRoleData[2].roleId,
-      employeeRoleData[3].roleId,
-      employeeRoleData[4].roleId,
+      employeeRoleData[0].value,
+      employeeRoleData[1].value,
+      employeeRoleData[2].value,
+      employeeRoleData[3].value,
+      employeeRoleData[4].value,
     ],
   },
 ];
