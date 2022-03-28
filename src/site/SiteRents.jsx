@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { useColumns } from "../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { SiteHeader } from "./SiteHeader";
+import { currencyFormatter } from "../formatters/cellFormatters";
 
 export const columns = [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -16,11 +17,13 @@ export const columns = [
   {
     field: "rentsTotal",
     headerName: "Rent Due",
+    valueFormatter: currencyFormatter,
     width: 200,
   },
   {
     field: "paymentsTotal",
     headerName: "Rent Paid",
+    valueFormatter: currencyFormatter,
     width: 200,
   },
 
@@ -28,6 +31,7 @@ export const columns = [
     field: "totalSummary",
     headerName: "Total Summary",
     description: "Carry Over Balance",
+    valueFormatter: currencyFormatter,
     highlightPositiveNegative: true,
     width: 200,
   },

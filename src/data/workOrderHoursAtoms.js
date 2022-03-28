@@ -91,28 +91,28 @@ export const hoursListFilterState = atom({
 
 
 
-export const workOrderStatsState = selector({
-  key: 'workOrderStatsState',
-  get: ({get}) => {
-    const hoursList = get(getAllHours); //by employee and total site hours
+// export const workOrderStatsState = selector({
+//   key: 'workOrderStatsState',
+//   get: ({get}) => {
+//     const hoursList = get(getAllHours); //by employee and total site hours
 
-    const totalEmpolyeeWorkOrderHours = get()
+//     const totalEmpolyeeWorkOrderHours = get()
 
-    const totalNumHours = hoursList.length;
+//     const totalNumHours = hoursList.length;
 
-    // const totalEmployeeHoursBilled = maintenanceHours.length;
+//     // const totalEmployeeHoursBilled = maintenanceHours.length;
 
-    // const totalCompletedNum = hoursList.filter((item) => item.isComplete).length;
-    // const totalUncompletedNum = totalNum - totalCompletedNum;
-    // const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum * 100;
+//     // const totalCompletedNum = hoursList.filter((item) => item.isComplete).length;
+//     // const totalUncompletedNum = totalNum - totalCompletedNum;
+//     // const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum * 100;
 
-    return {
-      totalEmpolyeeWorkOrderHours,
-      totalNumHours,
+//     return {
+//       totalEmpolyeeWorkOrderHours,
+//       totalNumHours,
 
-      // totalEmployeeHoursBilled,
-      // totalUncompletedNum,
-      // percentCompleted,
-    };
-  },
-});
+//       // totalEmployeeHoursBilled,
+//       // totalUncompletedNum,
+//       // percentCompleted,
+//     };
+//   },
+// });

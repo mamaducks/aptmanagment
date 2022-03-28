@@ -4,7 +4,10 @@ import { tenantsData } from "./data/tenants";
 import { compact } from "lodash";
 import { getTenantRentsMap } from "./rents";
 import { getTenantPaymentsMap } from "./payments";
+import { getSitesWithTenant } from "./sites";
+import { DAY } from "./data/reference";
 
+const RENEWAL_DAYS = DAY * 60;
 
 export const tenants = atom({
   key: "_tenants",
@@ -19,7 +22,7 @@ export const getTenantsWithId = selector({
       ...item,
     })),
 });
-//
+
 export const getSiteUnitTenantWithApplicantMap = selector({
   key: "_getSiteUnitTenantWithApplicantMap",
   get: ({ get }) => {
@@ -49,3 +52,30 @@ export const getSiteUnitTenantWithApplicantMap = selector({
   },
 });
 
+export const getTenantsSummaryInfo = selector({
+  key: "_getTenantsSummaryInfo",
+  get: ({ get }) =>
+    get(getSitesWithTenant)
+      .map((site) => {
+        const { units } = site;
+
+        return units
+          .filter((item) => !!item.tenant)
+          .map((item) => ({
+            ...item.tenant,
+            siteName: item.siteName,
+            unitId: item.unitId,
+          }));
+      })
+      .flat(),
+});
+
+export const getUpcomingRenewalTenantsSummaryInfo = selector({
+  key: "_getUpcomingRenewalTenantsSummaryInfoo",
+  get: ({ get }) =>
+    get(getTenantsSummaryInfo)
+      .filter(
+        (tenantInfo) => tenantInfo?.dateRenewal < Date.now() + RENEWAL_DAYS
+      )
+      .flat(),
+});

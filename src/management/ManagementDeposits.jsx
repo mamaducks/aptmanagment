@@ -1,40 +1,36 @@
 import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { getSiteRentsSummaryInfo } from "../state/rents";
+import {
+  currencyFormatter,
+  dateTimeFormatter,
+} from "../formatters/cellFormatters";
+import { getSiteDepositsSummaryInfo } from "../state/deposits";
 import { useColumns } from "../state/helpers/hooks";
-import { currencyFormatter } from "../formatters/cellFormatters";
 
 export const columns = [
-  { field: "siteName", headerName: "Site", width: 320 },
+  { field: "siteName", headerName: "Site", width: 340 },
   {
-    field: "rentsTotal",
-    headerName: "Rents Total",
-    valueFormatter: currencyFormatter,
-    description: "Total amount of rents due",
-    width: 240,
+    field: "lastDepositDate",
+    headerName: "Date of Last Deposit",
+    valueFormatter: dateTimeFormatter,
+    width: 200,
   },
   {
-    field: "paymentsTotal",
-    headerName: "Payments Total",
+    field: "lastDepositAmount",
+    headerName: "Amount Last Deposited",
     valueFormatter: currencyFormatter,
-    description: "Total amount of payments made",
     width: 200,
   },
   {
     field: "pendingDepositsTotal",
-    headerName: "Pending Deposits",
+    headerName: "Pending Deposit Amount",
     valueFormatter: currencyFormatter,
-    description: "Payments collected awaiting deposit",
     width: 200,
   },
-
   {
-    field: "totalSummary",
-    headerName: "Total Balance",
-    valueFormatter: currencyFormatter,
-    description: "Amount due not yet collected",
-    highlightPositiveNegative: true,
+    field: "pendingPaymentsAmount",
+    headerName: "Pending Payments",
     width: 200,
   },
   {
@@ -43,16 +39,16 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions",
-    width: 300,
+    width: 260,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Button
             variant="contained"
             color="primary"
-            href={`/sites/${cellValues.row.siteId}/rents`}
+            href={`/sites/${cellValues.row.siteId}/deposits`}
           >
-            View Rents Info
+            Deposits
           </Button>
         </Box>
       );
@@ -60,12 +56,12 @@ export const columns = [
   },
 ];
 
-export function ManagementRents() {
+export function ManagementDeposits() {
   const columnsToUse = useColumns(columns);
-  const rowData = useRecoilValue(getSiteRentsSummaryInfo);
+  const rowData = useRecoilValue(getSiteDepositsSummaryInfo);
 
   return (
-    <div style={{ height: 300, width: "100%" }}>
+    <div style={{ height: 600, width: "100%" }}>
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}

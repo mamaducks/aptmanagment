@@ -3,12 +3,21 @@ import { sitesWithUnitsData } from "./data/sitesWithUnits";
 import { getSiteUnitTenantWithApplicantMap } from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { getApplicantsWithName } from "./applicants";
-
-const RENEWAL_DAYS = 1000 * 60 * 60 * 24 * 60;
+import { deposits, getSiteDepositsSummaryInfoMap } from "./deposits";
+import { sortBy } from "lodash";
+import { getTenantDepositedPaymentsMap } from "./payments";
 
 export const sites = atom({
   key: "_sites",
   default: sitesWithUnitsData,
+});
+
+export const getSiteInfo = selectorFamily({
+  key: "_getSiteInfo",
+  get:
+    (siteId) =>
+    ({ get }) =>
+      get(getSitesMap).get(siteId),
 });
 
 export const getSitesMap = selector({
@@ -39,6 +48,45 @@ export const getSitesWithApplicantsMap = selector({
   get: ({ get }) => {
     return new Map(
       get(getSitesWithApplicants).map((item) => [item.siteId, item])
+    );
+  },
+});
+
+export const getSitesWithDeposits = selector({
+  key: "_getSitesWithDeposits",
+  get: ({ get }) => {
+    const tenantDepositedPaymentsMap = get(getTenantDepositedPaymentsMap);
+
+    return get(sites).map((site) => {
+      const sortedDeposits = sortBy(
+        get(deposits).filter((item) => item.siteId === site.siteId),
+        "timestamp"
+      )
+        .reverse()
+        .map((deposit) => {
+          const payments =
+            tenantDepositedPaymentsMap.get(deposit.depositId) || [];
+
+          return {
+            ...deposit,
+            payments,
+            totalNumberOfPayments: payments.length,
+          };
+        });
+
+      return {
+        ...site,
+        deposits: sortedDeposits,
+      };
+    });
+  },
+});
+
+export const getSitesWithDepositsMap = selector({
+  key: "_getSitesWithDepositsMap",
+  get: ({ get }) => {
+    return new Map(
+      get(getSitesWithDeposits).map((item) => [item.siteId, item])
     );
   },
 });
@@ -124,42 +172,6 @@ export const getSiteApplicantsSummaryInfo = selector({
   },
 });
 
-export const getTenantsSummaryInfo = selector({
-  key: "_getTenantsSummaryInfo",
-  get: ({ get }) =>
-    get(getSitesWithTenant)
-      .map((site) => {
-        const { units } = site;
-
-        return units
-          .filter((item) => !!item.tenant)
-          .map((item) => ({
-            ...item.tenant,
-            siteName: item.siteName,
-            unitId: item.unitId,
-          }));
-      })
-      .flat(),
-});
-
-export const getUpcomingRenewalTenantsSummaryInfo = selector({
-  key: "_getUpcomingRenewalTenantsSummaryInfoo",
-  get: ({ get }) =>
-    get(getTenantsSummaryInfo)
-      .filter(
-        (tenantInfo) => tenantInfo?.dateRenewal < Date.now() + RENEWAL_DAYS
-      )
-      .flat(),
-});
-
-export const getSiteInfo = selectorFamily({
-  key: "_getSiteInfo",
-  get:
-    (siteId) =>
-    ({ get }) =>
-      get(getSitesMap).get(siteId),
-});
-
 export const getSiteWithTenantsSummaryInfo = selectorFamily({
   key: "_getSiteWithTenantsSummaryInfo",
   get:
@@ -200,4 +212,12 @@ export const getSiteWithApplicantsSummaryInfo = selectorFamily({
     (siteId) =>
     ({ get }) =>
       get(getSitesWithApplicantsMap).get(siteId),
+});
+
+export const getSiteWithDepositSummaryInfo = selectorFamily({
+  key: "_getSiteWithDepositSummaryInfo",
+  get:
+    (siteId) =>
+    ({ get }) =>
+      get(getSiteDepositsSummaryInfoMap).get(siteId),
 });

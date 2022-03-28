@@ -52,7 +52,6 @@ export const getBillsInfoNew = selector({
       const billsForThisType = groupedStuff[billType];
       const groupedTypedBills = groupBy(billsForThisType, "categoryId");
 
-      console.log("fff", groupedTypedBills);
       const billTypeItem = {
         billType: upperFirst(billType),
         categories: Object.keys(groupedTypedBills).map((categoryId) => {

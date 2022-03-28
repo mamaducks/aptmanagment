@@ -13,16 +13,20 @@ import { Router } from "./Router";
 import { AllEmployees, CurrentUserInfo } from "./data/userAtoms";
 import { ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 function App() {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <NavTabs />
-        <CurrentUserInfo />
-        <Router />
-      </RecoilRoot>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <BrowserRouter>
+        <RecoilRoot>
+          <NavTabs />
+          <CurrentUserInfo />
+          <Router />
+        </RecoilRoot>
+      </BrowserRouter>
+    </LocalizationProvider>
   );
 }
 

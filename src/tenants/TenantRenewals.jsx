@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { getUpcomingRenewalTenantsSummaryInfo } from "../state/sites";
+import { getUpcomingRenewalTenantsSummaryInfo } from "../state/tenants";
 import { dateFormatter } from "../formatters/cellFormatters";
 
 export const columns = [

@@ -19,3 +19,16 @@ export const getTenantPaymentsMap = selector({
       )
     ),
 });
+
+export const getTenantDepositedPaymentsMap = selector({
+  key: "_getTenantDepositedPaymentsMap",
+  get: ({ get }) =>
+    new Map(
+      Object.entries(
+        groupBy(
+          get(payments).filter((item) => !!item.depositId),
+          "depositId"
+        )
+      )
+    ),
+});

@@ -29,7 +29,10 @@ import { TenantUpdate } from "./hereisthestuffyourgoingtouse/Tenants/TenantUpdat
 // import { EnterRents } from "./rents/EnterRents";
 import { EnterDeposits } from "./hereisthestuffyourgoingtouse/EnterDeposits";
 import { ManagementApplicants } from "./management/ManagementApplicants.jsx";
+import { ManagementDeposits } from "./management/ManagementDeposits.jsx";
+import { SiteDeposits } from "./site/SiteDeposits.jsx";
 // import {ManagementBills} from "./App/Grids/ManagementBills"
+import { FormApplicant } from "./forms/FormApplicant.jsx";
 
 export function Router() {
   return (
@@ -47,14 +50,24 @@ export function Router() {
         {/* <Route path="Tenants/:tenantId" element={<TenantUpdate />} /> */}
         {/* <Route path="/Rents" element={<Rents />} /> */}
         {/* <Route path="/Rents/enterdeposits" element={<EnterDeposits />} /> */}
+        <Route
+          path="/forms/applicant/:applicantId"
+          element={<FormApplicant />}
+          st
+        />
+        <Route path="/forms/applicant" element={<FormApplicant />} />
+
         <Route path="/applicants" element={<ManagementApplicants />} />
         <Route path="/employees" element={<ManagementEmployees />} />
         <Route path="/rents" element={<ManagementRents />} />
+        <Route path="/deposits" element={<ManagementDeposits />} />
         <Route path="/sites" element={<ManagementSites />} />
         {/* <Route path="/tenants" element={<ManagementTenants />} /> */}
         <Route path="/sites/:siteId/applicants" element={<SiteApplicants />} />
         <Route path="/sites/:siteId/rents" element={<SiteRents />} />
         <Route path="/sites/:siteId/units" element={<SiteUnits />} />
+        <Route path="/sites/:siteId/deposits" element={<SiteDeposits />} />
+
         {/* <Route
           path="/employees/:employeeId"
           element={<Employee />}

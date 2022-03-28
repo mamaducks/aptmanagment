@@ -32,6 +32,7 @@ export const getSiteRentsSummaryInfo = selector({
       const allPayments = units
         .map((item) => item.tenant?.payments || [])
         .flat();
+        
       const totals = getRentPaymentTotals(allRents, allPayments);
 
      

@@ -4,7 +4,6 @@ import { useRecoilValue } from "recoil";
 import { getSiteApplicantsSummaryInfo } from "../state/sites";
 import { useColumns } from "../state/helpers/hooks";
 
-
 export const columns = [
   { field: "siteName", headerName: "Site Name", width: 320 },
   {
@@ -46,6 +45,10 @@ export function ManagementApplicants() {
 
   return (
     <div style={{ height: 600, width: "100%" }}>
+      <Button href="/forms/applicant/" variant="contained" color="primary">
+        Add New Applicant
+      </Button>
+
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}

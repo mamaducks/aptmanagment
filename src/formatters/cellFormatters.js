@@ -1,5 +1,10 @@
 import { compact } from "lodash";
 
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
 export const dateFormatter = ({ value }) => {
   if (!value) {
     return "";
@@ -14,6 +19,14 @@ export const dateTimeFormatter = ({ value }) => {
   }
 
   return new Date(value).toLocaleString();
+};
+
+export const currencyFormatter = ({ value }) => {
+  if (!value) {
+    return "";
+  }
+
+  return formatter.format(value);
 };
 
 export const timeFormatter = ({ value }) => {

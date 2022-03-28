@@ -15,6 +15,8 @@ export default function NavTabs() {
       <Tabs aria-label="nav-tabs">
         {/* <LinkTab label="Maintenance" href="/Maintenance" /> */}
         <LinkTab label="Rents" href="/rents" />
+        <LinkTab label="Deposits" href="/deposits" />
+
         <LinkTab label="Sites" href="/sites" />
         <LinkTab label="Applicants" href="/applicants" />
         <LinkTab label="Employees" href="/employees" />

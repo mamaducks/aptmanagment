@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { fullNameValueGetter } from "../formatters/valueGetters";
 import {
   applicantsData,
@@ -8,10 +8,13 @@ import {
   applicantEthnicityData,
   applicantIncomeLevelData,
 } from "./data/applicants";
+import { getId, updateState } from "./helpers/dataHelpers";
+import { localStorageEffect } from "./localStorageEffect";
 
 export const applicants = atom({
   key: "_applicants",
-  default: applicantsData,
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("_applicants", applicantsData)],
 });
 
 export const applicantGenders = atom({
@@ -59,5 +62,37 @@ export const getApplicantsMap = selector({
 export const getWaitingApplicants = selector({
   key: "_getWaitingApplicants",
   get: ({ get }) =>
-    get(getApplicantsWithName).filter(({ applicantStatus }) => applicantStatus === "a"),
+    get(getApplicantsWithName).filter(
+      ({ applicantStatus }) => applicantStatus === "a"
+    ),
+});
+
+export const getApplicantFormData = selectorFamily({
+  key: "_getApplicantFormData",
+  get:
+    (applicantId) =>
+    ({ get }) =>
+      get(getApplicantsMap).get(applicantId) || {
+        applicantId: getId(),
+        applicantStatus: get(applicantStatus)[0].value,
+        incomeLevel: get(applicantIncomeLevel)[0].value,
+        dateApplied: Date.now(),
+        rentalAssistance: false,
+        sitesAppliedFor: [],
+        unitSizes: [1, 2],
+        familySize: 1,
+        applicants: [],
+      },
+  set:
+    () =>
+    ({ get, set }, newItem) => {
+      const newState = updateState(
+        get(applicants),
+        (item) => item.applicantId === newItem.applicantId,
+        newItem,
+        false
+      );
+
+      set(applicants, newState);
+    },
 });

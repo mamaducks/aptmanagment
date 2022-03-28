@@ -50,29 +50,29 @@ export const columns = [
       ).join(", "),
     width: 150,
   },
-//   {
-//     field: "race",
-//     headerName: "Race",
-//     valueGetter: ({ row: { applicants = [] } }) =>
-//       applicants
-//         .map(({ ethnicity, race }) => `${race || ""}${ethnicity || ""}`)
-//         .join(", "),
-//     valueFormatter: uppercaseFormatter,
-//     width: 80,
-//   },
+  //   {
+  //     field: "race",
+  //     headerName: "Race",
+  //     valueGetter: ({ row: { applicants = [] } }) =>
+  //       applicants
+  //         .map(({ ethnicity, race }) => `${race || ""}${ethnicity || ""}`)
+  //         .join(", "),
+  //     valueFormatter: uppercaseFormatter,
+  //     width: 80,
+  //   },
   {
     field: "familySize",
     headerName: "Family Size",
     width: 80,
   },
-//   {
-//     field: "gender",
-//     headerName: "M/F",
-//     valueGetter: ({ row: { applicants = [] } }) =>
-//       applicants.map(({ gender }) => gender).join(", "),
-//     valueFormatter: uppercaseFormatter,
-//     width: 80,
-//   },
+  //   {
+  //     field: "gender",
+  //     headerName: "M/F",
+  //     valueGetter: ({ row: { applicants = [] } }) =>
+  //       applicants.map(({ gender }) => gender).join(", "),
+  //     valueFormatter: uppercaseFormatter,
+  //     width: 80,
+  //   },
   {
     field: "incomeLevel",
     headerName: "Income Level",
@@ -114,20 +114,17 @@ export const columns = [
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-        <Button
-          variant="contained"
-          color="primary"
-        //   href={`/sites/${cellValues.row.siteId}/units`}
-        >
-          Update
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-        //   href={`/sites/${cellValues.row.siteId}/units`}
-        >
-          Move In
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            href={`/forms/applicant/${cellValues.row.applicantId}`}
+          >
+            Update
+          </Button>
+
+          <Button variant="contained" color="primary">
+            Move In
+          </Button>
         </Box>
       );
     },
