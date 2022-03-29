@@ -12,11 +12,18 @@ import { applicantStatusData } from "../state/data/applicants";
 import { useParams } from "react-router-dom";
 import { getSiteWithApplicantsSummaryInfo } from "../state/sites";
 import { useState } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { SiteHeader } from "./SiteHeader";
 import { useColumns } from "../state/helpers/hooks";
-import { Box, Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 
 export const columns = [
   {
@@ -114,17 +121,11 @@ export const columns = [
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button
-            variant="contained"
-            color="primary"
-            href={`/forms/applicant/${cellValues.row.applicantId}`}
-          >
+          <Button href={`/forms/applicant/${cellValues.row.applicantId}`}>
             Update
           </Button>
 
-          <Button variant="contained" color="primary">
-            Move In
-          </Button>
+          <Button>Move In</Button>
         </Box>
       );
     },
@@ -144,20 +145,26 @@ export function SiteApplicants() {
 
   return (
     <div style={{ height: 600, width: "100%" }}>
-      <SiteHeader />
+      <Stack direction="column" m={2}>
+        <SiteHeader />
 
-      <ToggleButtonGroup
-        value={statusFilters}
-        onChange={(_, newStatus) => {
-          setStatusFilters(newStatus);
-        }}
-      >
-        {applicantStatusData.map(({ value, label }) => (
-          <ToggleButton key={value} value={value}>
-            {label}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+        <FormControl>
+          <FormLabel>Application Status</FormLabel>
+
+          <ToggleButtonGroup
+            value={statusFilters}
+            onChange={(_, newStatus) => {
+              setStatusFilters(newStatus);
+            }}
+          >
+            {applicantStatusData.map(({ value, label }) => (
+              <ToggleButton key={value} value={value}>
+                {label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
+      </Stack>
 
       <DataGrid
         getRowId={(item) => item.applicantId}

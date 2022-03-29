@@ -11,6 +11,14 @@ import {
 import { getId, updateState } from "./helpers/dataHelpers";
 import { localStorageEffect } from "./localStorageEffect";
 
+export const EMPTY_APPLICANT = {
+  firstName: "",
+  lastName: "",
+  gender: applicantGendersData[0].value,
+  race: applicantRaceData[0].value,
+  ethnicity: applicantEthnicityData[0].value,
+};
+
 export const applicants = atom({
   key: "_applicants",
   default: [],
@@ -81,7 +89,8 @@ export const getApplicantFormData = selectorFamily({
         sitesAppliedFor: [],
         unitSizes: [1, 2],
         familySize: 1,
-        applicants: [],
+        applicants: [{ ...EMPTY_APPLICANT }],
+        notes: "",
       },
   set:
     () =>

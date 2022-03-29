@@ -26,11 +26,7 @@ export const columns = [
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button
-            variant="contained"
-            color="primary"
-            href={`/sites/${cellValues.row.siteId}/applicants`}
-          >
+          <Button href={`/sites/${cellValues.row.siteId}/applicants`}>
             View Units Info
           </Button>
         </Box>
@@ -45,7 +41,7 @@ export function ManagementApplicants() {
 
   return (
     <div style={{ height: 600, width: "100%" }}>
-      <Button href="/forms/applicant/" variant="contained" color="primary">
+      <Button href="/forms/applicant/">
         Add New Applicant
       </Button>
 

@@ -1,6 +1,5 @@
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import {
-  Box,
   Button,
   FormControl,
   FormLabel,
@@ -29,7 +28,9 @@ import {
   replaceItemAtIndex,
 } from "../state/helpers/dataHelpers";
 import { sites } from "../state/sites";
-import { Delete } from "@mui/icons-material";
+import { Delete, Check } from "@mui/icons-material";
+import { EMPTY_APPLICANT } from "../state/applicants";
+
 export function FormOccupant({ item, index, onItemChange }) {
   const setFieldValue = useCallback(
     (name, value) => {
@@ -55,47 +56,38 @@ export function FormOccupant({ item, index, onItemChange }) {
   );
 
   return (
-    <Box alignSelf="center">
-      <Stack direction="row" gap={5}>
-        <FormControl margin="dense" sx={{ width: 680 }}>
+    <Stack direction="column" gap={4}>
+      <Stack>
+        <FormControl sx={{ flexGrow: 1 }}>
           <FormLabel>First Name</FormLabel>
 
-          <TextField fullWidth {...addProps({ name: "firstName" })} />
+          <TextField
+            autoFocus={index === 0}
+            {...addProps({ name: "firstName" })}
+          />
         </FormControl>
 
-        <FormControl margin="dense" sx={{ width: 680 }}>
+        <FormControl sx={{ flexGrow: 1 }}>
           <FormLabel>Last Name</FormLabel>
 
-          <TextField
-            fullWidth
-            margin="none"
-            {...addProps({ name: "lastName" })}
-          />
+          <TextField {...addProps({ name: "lastName" })} />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Phone Primary</FormLabel>
+
+          <TextField {...addProps({ name: "phonePrimary" })} />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Phone Secondary</FormLabel>
+
+          <TextField {...addProps({ name: "phoneSecondary" })} />
         </FormControl>
       </Stack>
 
-      <Stack direction="row" gap={5} mt={2}>
-        <FormControl margin="dense" sx={{ width: 500 }}>
-          <FormLabel>Phone Primary</FormLabel>
-
-          <TextField
-            fullWidth
-            margin="none"
-            {...addProps({ name: "phonePrimary" })}
-          />
-        </FormControl>
-
-        <FormControl margin="dense" sx={{ width: 500 }}>
-          <FormLabel>Phone Secondary</FormLabel>
-
-          <TextField
-            fullWidth
-            margin="none"
-            {...addProps({ name: "phoneSecondary" })}
-          />
-        </FormControl>
-
-        <FormControl margin="dense" sx={{ ml: 5, mt: 1, alignSelf: "center" }}>
+      <Stack>
+        <FormControl>
           <FormLabel>Gender</FormLabel>
 
           <ToggleButtonGroup
@@ -112,10 +104,8 @@ export function FormOccupant({ item, index, onItemChange }) {
             ))}
           </ToggleButtonGroup>
         </FormControl>
-      </Stack>
 
-      <Stack direction="row" gap={4}>
-        <FormControl margin="dense">
+        <FormControl>
           <FormLabel>Race</FormLabel>
 
           <ToggleButtonGroup
@@ -124,7 +114,6 @@ export function FormOccupant({ item, index, onItemChange }) {
             onChange={(_, newValue) => {
               setFieldValue("race", newValue);
             }}
-            sx={{ flexWrap: "wrap" }}
           >
             {applicantRaceData.map(({ value, label }) => (
               <ToggleButton key={value} value={value}>
@@ -134,7 +123,7 @@ export function FormOccupant({ item, index, onItemChange }) {
           </ToggleButtonGroup>
         </FormControl>
 
-        <FormControl margin="dense" sx={{ ml: 5 }}>
+        <FormControl>
           <FormLabel>Ethnicity</FormLabel>
 
           <ToggleButtonGroup
@@ -152,7 +141,7 @@ export function FormOccupant({ item, index, onItemChange }) {
           </ToggleButtonGroup>
         </FormControl>
       </Stack>
-    </Box>
+    </Stack>
   );
 }
 
@@ -170,6 +159,7 @@ export function FormApplicant() {
 
   const canRemoveCoApplicant = item.applicants?.length >= 2;
   const canSumbit = !!item.applicants?.length && !!item.sitesAppliedFor?.length;
+
   const setFieldValue = useCallback(
     (name, value) => {
       console.log(name, value);
@@ -185,11 +175,7 @@ export function FormApplicant() {
       applicants: [
         ...item.applicants,
         {
-          firstName: "",
-          lastName: "",
-          gender: applicantGendersData[0].value,
-          race: applicantRaceData[0].value,
-          ethnicity: applicantEthnicityData[0].value,
+          ...EMPTY_APPLICANT,
         },
       ],
     }));
@@ -222,62 +208,67 @@ export function FormApplicant() {
   }, [item, navigate, setApplicantInfo]);
 
   return (
-    <Box>
-      <Stack sx={{ m: 4 }}>
-        <Stack direction="row" justifyContent="space-around">
-          <FormControl margin="dense" fullWidth sx={{ width: "700px" }}>
-            <FormLabel>Date Applied</FormLabel>
+    <Stack direction="column" m={10}>
+      <Stack>
+        <FormControl>
+          <FormLabel>Date Applied</FormLabel>
 
-            <DateTimePicker
-              renderInput={(props) => <TextField {...props} />}
-              value={item.dateApplied}
-              onChange={(newValue) => {
-                setFieldValue("dateApplied", newValue.getTime());
-              }}
-            />
-          </FormControl>
+          <DateTimePicker
+            renderInput={(props) => <TextField {...props} />}
+            value={item.dateApplied}
+            onChange={(newValue) => {
+              setFieldValue("dateApplied", newValue.getTime());
+            }}
+          />
+        </FormControl>
 
-          <FormControl sx={{ alignSelf: "center", mr: 3 }}>
-            <FormLabel>Status</FormLabel>
+        <FormControl sx={{ alignSelf: "center", mr: 3 }}>
+          <FormLabel>Application Status</FormLabel>
 
-            <ToggleButtonGroup
-              value={item.applicantStatus}
-              exclusive
-              onChange={(_, newValue) => {
-                setFieldValue("applicantStatus", newValue);
-              }}
-              size="large"
-            >
-              {applicantStatusData.map(({ value, label }) => (
-                <ToggleButton key={value} value={value}>
-                  {label}
-                </ToggleButton>
-              ))}
-            </ToggleButtonGroup>
-          </FormControl>
-        </Stack>
+          <ToggleButtonGroup
+            value={item.applicantStatus}
+            exclusive
+            onChange={(_, newValue) => {
+              setFieldValue("applicantStatus", newValue);
+            }}
+            size="large"
+          >
+            {applicantStatusData.map(({ value, label }) => (
+              <ToggleButton key={value} value={value}>
+                {label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
       </Stack>
 
-      <Stack gap={8}>
+      <Stack direction="column">
         {item.applicants.map((item, index) => (
-          <Stack>
-            <Stack direction="row" alignItems="center" ml={30}>
+          <Stack
+            key={index}
+            direction="column"
+            p={5}
+            borderRadius={2}
+            border="solid 1px #e2e2e2"
+          >
+            <Stack justifyContent="flex-start" alignItems="center" gap={0}>
               <IconButton
-                variant="text"
-                color="primary"
                 disabled={!canRemoveCoApplicant}
+                color="warning"
                 onClick={() => handleRemoveOccupant(index)}
               >
                 <Delete />
               </IconButton>
 
-              <Typography variant="h6" mr={3}>
+              <Typography variant="h6" mr={2}>
                 Applicant {index + 1}
               </Typography>
 
-              {!index && <Button variant="outlined" onClick={handleAddOccupant}>
-                Add Co-Applicant
-              </Button>}
+              {!index && (
+                <Button variant="outlined" onClick={handleAddOccupant}>
+                  Add Co-Applicant
+                </Button>
+              )}
             </Stack>
 
             <FormOccupant
@@ -289,124 +280,99 @@ export function FormApplicant() {
         ))}
       </Stack>
 
-      <Stack direction="row" p={3} ml={5}>
-        <Stack flex="1 2" px={3}>
-          <Stack direction="row" gap={15}>
-            <FormControl margin="dense">
-              <FormLabel>Family Size</FormLabel>
+      <Stack>
+        <FormControl>
+          <FormLabel>Family Size</FormLabel>
 
-              <ToggleButtonGroup
-                value={item.familySize}
-                exclusive
-                onChange={(_, newValue) => {
-                  setFieldValue("familySize", newValue);
-                }}
-              >
-                {[1, 2, 3, 4, 5].map((value) => (
-                  <ToggleButton key={value} value={value} sx={{ width: 70 }}>
-                    {value}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </FormControl>
+          <ToggleButtonGroup
+            value={item.familySize}
+            exclusive
+            onChange={(_, newValue) => {
+              setFieldValue("familySize", newValue);
+            }}
+          >
+            {[1, 2, 3, 4, 5].map((value) => (
+              <ToggleButton key={value} value={value} sx={{ width: 70 }}>
+                {value}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
 
-            <FormControl margin="dense">
-              <FormLabel>Occupancy</FormLabel>
+        <FormControl>
+          <FormLabel>Occupancy</FormLabel>
 
-              <ToggleButtonGroup
-                value={item.unitSizes}
-                onChange={(_, newValue) => {
-                  setFieldValue("unitSizes", newValue);
-                }}
-              >
-                {[1, 2, 3].map((value) => (
-                  <ToggleButton key={value} value={value} sx={{ width: 70 }}>
-                    {`${value} BR`}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </FormControl>
-          </Stack>
+          <ToggleButtonGroup
+            value={item.unitSizes}
+            onChange={(_, newValue) => {
+              setFieldValue("unitSizes", newValue);
+            }}
+          >
+            {[1, 2, 3].map((value) => (
+              <ToggleButton key={value} value={value} sx={{ width: 70 }}>
+                {`${value} BR`}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
 
-          <Stack direction="row" gap={32}>
-            <FormControl margin="dense">
-              <FormLabel>Income Level</FormLabel>
+        <FormControl>
+          <FormLabel>Income Level</FormLabel>
 
-              <ToggleButtonGroup
-                value={item.incomeLevel}
-                exclusive
-                onChange={(_, newValue) => {
-                  setFieldValue("incomeLevel", newValue);
-                }}
-              >
-                {applicantIncomeLevelData.map(({ value, label }) => (
-                  <ToggleButton key={value} value={value}>
-                    {label}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </FormControl>
+          <ToggleButtonGroup
+            value={item.incomeLevel}
+            exclusive
+            onChange={(_, newValue) => {
+              setFieldValue("incomeLevel", newValue);
+            }}
+          >
+            {applicantIncomeLevelData.map(({ value, label }) => (
+              <ToggleButton key={value} value={value}>
+                {label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
 
-            <FormControl margin="dense">
-              <FormLabel>Rental Assistance</FormLabel>
+        <FormControl>
+          <FormLabel>Accomodations</FormLabel>
 
-              <ToggleButtonGroup
-                value={item.rentalAssistance}
-                exclusive
-                onChange={(_, newValue) => {
-                  setFieldValue("rentalAssistance", newValue);
-                }}
-              >
-                {Reference.yesNoOptions.map(({ value, label }) => (
-                  <ToggleButton key={value} value={value} sx={{ width: 70 }}>
-                    {label}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </FormControl>
-          </Stack>
+          <ToggleButtonGroup
+            value={item.accomodations}
+            onChange={(_, newValue) => {
+              setFieldValue("accomodations", newValue);
+            }}
+          >
+            {applicantAccomodationsData.map(({ value, label }) => (
+              <ToggleButton key={value} value={value}>
+                {label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
 
-          <Stack direction="row">
-            <FormControl margin="dense">
-              <FormLabel>Accomodations</FormLabel>
+        <FormControl>
+          <FormLabel>Rental Assistance</FormLabel>
 
-              <ToggleButtonGroup
-                value={item.accomodations}
-                onChange={(_, newValue) => {
-                  setFieldValue("accomodations", newValue);
-                }}
-              >
-                {applicantAccomodationsData.map(({ value, label }) => (
-                  <ToggleButton key={value} value={value}>
-                    {label}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </FormControl>
-          </Stack>
-        </Stack>
-
-        <Box flexGrow={1} mx={4}>
-          <FormControl fullWidth margin="dense">
-            <FormLabel>Notes</FormLabel>
-
-            <TextField
-              onChange={({ target: { value } }) =>
-                setFieldValue("notes", value)
-              }
-              multiline
-              rows={8}
-              variant="outlined"
-            />
-          </FormControl>
-        </Box>
+          <ToggleButtonGroup
+            value={item.rentalAssistance}
+            exclusive
+            onChange={(_, newValue) => {
+              setFieldValue("rentalAssistance", newValue);
+            }}
+          >
+            {Reference.yesNoOptions.map(({ value, label }) => (
+              <ToggleButton key={value} value={value} sx={{ width: 70 }}>
+                {label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </FormControl>
       </Stack>
 
-      <Stack p={2}>
+      <Stack direction="column">
         <FormControl>
-          <FormLabel sx={{ fontSize: "larger", mb: 2, textAlign: "center" }}>
-            Choose Sites Applying For
-          </FormLabel>
+          <FormLabel>Choose Sites Applying For</FormLabel>
 
           <ToggleButtonGroup
             value={item.sitesAppliedFor}
@@ -430,16 +396,32 @@ export function FormApplicant() {
                   borderColor: "gray !important",
                 }}
               >
-                {siteName}
+                <Stack gap={3}>
+                  {item.sitesAppliedFor?.includes(siteId) && <Check />}{" "}
+                  <Typography>{siteName}</Typography>
+                </Stack>
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
         </FormControl>
       </Stack>
 
-      <Box display="flex" justifyContent="center" mt={2} gap={3}>
+      <Stack direction="column">
+        <FormControl>
+          <FormLabel>Notes</FormLabel>
+
+          <TextField
+            onChange={({ target: { value } }) => setFieldValue("notes", value)}
+            multiline
+            rows={3}
+            variant="outlined"
+            value={item.notes}
+          />
+        </FormControl>
+      </Stack>
+
+      <Stack justifyContent="center">
         <Button
-          size="large"
           variant="contained"
           onClick={handleSubmit}
           disabled={!canSumbit}
@@ -447,10 +429,8 @@ export function FormApplicant() {
           {isNew ? "Add" : "Update"}
         </Button>
 
-        <Button size="large" variant="contained" href="/applicants">
-          Cancel
-        </Button>
-      </Box>
-    </Box>
+        <Button href="/applicants">Cancel</Button>
+      </Stack>
+    </Stack>
   );
 }
