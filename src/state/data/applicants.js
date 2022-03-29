@@ -1,5 +1,13 @@
+import { mapPropsToOptions } from "../helpers/dataHelpers";
 import { Reference } from "./reference";
 import { sitesWithUnitsData } from "./sitesWithUnits";
+
+export const APPLICANT_STATUS_MAP = {
+  Applied: "a",
+  Placed: "p",
+  Rejected: "r",
+  Withdrawn: "w",
+};
 
 export const applicantGendersData = [
   { value: "m", label: "Male" },
@@ -22,16 +30,11 @@ export const applicantEthnicityData = [
   { value: "b", label: "Non-Hispanic Latino" },
 ];
 
-export const applicantStatusData = [
-  { value: "a", label: "Applied" },
-  { value: "p", label: "Placed" },
-  { value: "r", label: "Rejected" },
-  { value: "w", label: "Withdrawn" },
-];
+export const applicantStatusData = mapPropsToOptions(APPLICANT_STATUS_MAP);
 
 export const applicantIncomeLevelData = [
-  { value: "l", label: "Low" },
   { value: "vl", label: "Very Low" },
+  { value: "l", label: "Low" },
   { value: "m", label: "Medium" },
   { value: "h", label: "High" },
 ];
@@ -64,7 +67,7 @@ export const applicantsData = [
         race: applicantRaceData[4].value,
       },
     ],
-    applicantStatus: applicantStatusData[0].value,
+    applicantStatus: APPLICANT_STATUS_MAP.Applied,
     accomodations: [...applicantAccomodationsData.map((item) => item.value)],
     dateApplied: Reference.dateTime,
     dateRemoved: undefined,

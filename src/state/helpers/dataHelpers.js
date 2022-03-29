@@ -32,3 +32,7 @@ export function updateState(items, rowFind, newItem, isRemove) {
 
   return replaceItemAtIndex(items, index, newItem);
 }
+
+export function mapPropsToOptions(obj) {
+  return Object.entries(obj).map(([label, value]) => ({ label, value }));
+}

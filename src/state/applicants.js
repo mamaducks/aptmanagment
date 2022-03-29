@@ -25,6 +25,12 @@ export const applicants = atom({
   effects_UNSTABLE: [localStorageEffect("_applicants", applicantsData)],
 });
 
+export const getApplicantsMap = selector({
+  key: "_getApplicantsMap",
+  get: ({ get }) =>
+    new Map(get(applicants).map((item) => [item.applicantId, item])),
+});
+
 export const applicantGenders = atom({
   key: "_applicantGenders",
   default: applicantGendersData,
@@ -61,8 +67,8 @@ export const getApplicantsWithName = selector({
     })),
 });
 
-export const getApplicantsMap = selector({
-  key: "_getApplicantsMap",
+export const getApplicantsWithNameMap = selector({
+  key: "getApplicantsWithNameMap",
   get: ({ get }) =>
     new Map(get(getApplicantsWithName).map((item) => [item.applicantId, item])),
 });
@@ -80,15 +86,16 @@ export const getApplicantFormData = selectorFamily({
   get:
     (applicantId) =>
     ({ get }) =>
-      get(getApplicantsMap).get(applicantId) || {
+      get(getApplicantsWithNameMap).get(applicantId) || {
         applicantId: getId(),
         applicantStatus: get(applicantStatus)[0].value,
         incomeLevel: get(applicantIncomeLevel)[0].value,
         dateApplied: Date.now(),
         rentalAssistance: false,
         sitesAppliedFor: [],
-        unitSizes: [1, 2],
+        unitSizes: 1,
         familySize: 1,
+        accomodations: ["down", "up"],
         applicants: [{ ...EMPTY_APPLICANT }],
         notes: "",
       },

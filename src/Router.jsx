@@ -33,6 +33,7 @@ import { ManagementDeposits } from "./management/ManagementDeposits.jsx";
 import { SiteDeposits } from "./site/SiteDeposits.jsx";
 // import {ManagementBills} from "./App/Grids/ManagementBills"
 import { FormApplicant } from "./forms/FormApplicant.jsx";
+import { DialogTenant } from "./dialogs/DialogTenant.jsx";
 
 export function Router() {
   return (
@@ -78,6 +79,8 @@ export function Router() {
         {/* <Route path={routes.management.link} element={<Management />} /> */}
         {/* <Route path={routes.applicants.link} element={<Applicants />} /> */}
       </Routes>
+
+      <DialogTenant />
     </ThemeProvider>
   );
 }

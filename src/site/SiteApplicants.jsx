@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { compact } from "lodash";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   dateTimeFormatter,
   phoneFormatter,
@@ -8,10 +8,13 @@ import {
   referenceFormatter,
   yesNoFormatter,
 } from "../formatters/cellFormatters";
-import { applicantStatusData } from "../state/data/applicants";
+import {
+  applicantStatusData,
+  APPLICANT_STATUS_MAP,
+} from "../state/data/applicants";
 import { useParams } from "react-router-dom";
 import { getSiteWithApplicantsSummaryInfo } from "../state/sites";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { useColumns } from "../state/helpers/hooks";
 import {
@@ -24,8 +27,9 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
+import { moveInDialogInfo } from "../state/dialogs";
 
-export const columns = [
+export const getColumns = ({ setMoveInDialogInfo }) => [
   {
     field: "applicantStatus",
     headerName: "Status",
@@ -118,14 +122,17 @@ export const columns = [
     disableColumnMenu: true,
     headerName: "Actions",
     width: 300,
-    renderCell: (cellValues) => {
+    renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button href={`/forms/applicant/${cellValues.row.applicantId}`}>
-            Update
-          </Button>
+          <Button href={`/forms/applicant/${row.applicantId}`}>Update</Button>
 
-          <Button>Move In</Button>
+          <Button
+            disabled={row.applicantStatus !== APPLICANT_STATUS_MAP.Applied}
+            onClick={() => setMoveInDialogInfo(row)}
+          >
+            Move In
+          </Button>
         </Box>
       );
     },
@@ -134,20 +141,31 @@ export const columns = [
 
 export function SiteApplicants() {
   const { siteId } = useParams();
+  const setMoveInDialogInfo = useSetRecoilState(moveInDialogInfo);
 
-  const [statusFilters, setStatusFilters] = useState(["a"]);
+  const [statusFilters, setStatusFilters] = useState([
+    APPLICANT_STATUS_MAP.Applied,
+  ]);
 
   const { applicants } = useRecoilValue(
     getSiteWithApplicantsSummaryInfo(siteId)
   );
 
-  const columnsToUse = useColumns(columns);
+  const columnsToUse = useColumns(
+    useMemo(
+      () => getColumns({ siteId, setMoveInDialogInfo }),
+      [setMoveInDialogInfo, siteId]
+    )
+  );
 
   return (
     <div style={{ height: 600, width: "100%" }}>
+      <Stack justifyContent="flex-end">
+        <Button href="/forms/applicant/">Add New Applicant</Button>
+      </Stack>
+
       <Stack direction="column" m={2}>
         <SiteHeader />
-
         <FormControl>
           <FormLabel>Application Status</FormLabel>
 
@@ -168,9 +186,9 @@ export function SiteApplicants() {
 
       <DataGrid
         getRowId={(item) => item.applicantId}
-        rows={applicants.filter((item) =>
-          statusFilters.includes(item.applicantStatus)
-        )}
+        rows={applicants
+          .map((item) => ({ ...item, siteId }))
+          .filter((item) => statusFilters.includes(item.applicantStatus))}
         columns={columnsToUse}
       />
     </div>
