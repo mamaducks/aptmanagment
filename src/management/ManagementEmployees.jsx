@@ -1,5 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getEmployeeSummaryInfo } from "../state/employees";
 import {
   dateFormatter,
@@ -8,8 +8,11 @@ import {
 import { employeeRoleData } from "../state/data/employees";
 import { fullNameValueGetter } from "../formatters/valueGetters";
 import { useColumns } from "../state/helpers/hooks";
+import { Box, Button } from "@mui/material";
+import { employeeDialogInfo } from "../state/dialogs";
+import { useMemo } from "react";
 
-export const columns = [
+export const getColumns = ({ setEmployeeDialogInfo }) => [
   {
     field: "fullName",
     headerName: "Employee Name",
@@ -36,19 +39,47 @@ export const columns = [
     width: 180,
     valueFormatter: dateFormatter,
   },
+
+  {
+    field: "actions",
+    headerAlign: "center",
+    sortable: false,
+    disableColumnMenu: true,
+    headerName: "Actions",
+    width: 420,
+    renderCell: ({ row }) => {
+      return (
+        <Box display="flex" justifyContent="center" flexGrow={1}>
+          <Button onClick={() => setEmployeeDialogInfo(row)}>
+            Update Employee
+          </Button>
+        </Box>
+      );
+    },
+  },
 ];
 
 export function ManagementEmployees() {
-  const columnsToUse = useColumns(columns);
+  const setEmployeeDialogInfo = useSetRecoilState(employeeDialogInfo);
+
+  const columnsToUse = useColumns(
+    useMemo(
+      () => getColumns({ setEmployeeDialogInfo }),
+      [setEmployeeDialogInfo]
+    )
+  );
   const rowData = useRecoilValue(getEmployeeSummaryInfo);
 
   return (
-    <div style={{ height: 300, width: "100%" }}>
-      <DataGrid
-        getRowId={(item) => item.employeeId}
-        rows={rowData}
-        columns={columnsToUse}
-      />
-    </div>
+    <>
+      <Button href="/forms/employee">Add New Employee</Button>
+      <div style={{ height: 300, width: "100%" }}>
+        <DataGrid
+          getRowId={(item) => item.employeeId}
+          rows={rowData}
+          columns={columnsToUse}
+        />
+      </div>
+    </>
   );
 }

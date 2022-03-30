@@ -68,12 +68,12 @@ export function MoveInApplicant({ applicantId }) {
 
   return (
     <Paper sx={{ p: "30px" }}>
-        <Stack direction="row" gap={4}>
+        <Stack  gap={4}>
           <div>autoFilled</div>
 
           <FormLabel>Tenant Info</FormLabel>
         </Stack>
-<Stack direction="row" gap={4} SX={{width: "100%"}}>
+<Stack  gap={4} SX={{width: "100%"}}>
         {/* <Box sx={{ width: "850px" }}> */}
           <TextField
             fullWidth

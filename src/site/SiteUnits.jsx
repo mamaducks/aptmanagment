@@ -1,15 +1,16 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { dateFormatter } from "../formatters/cellFormatters";
 import { SiteHeader } from "./SiteHeader";
 import { SiteAddress } from "./SiteAddress";
 import { useColumns } from "../state/helpers/hooks";
 import { Box, Button } from "@mui/material";
+import { tenantDialogInfo } from "../state/dialogs";
+import { useMemo } from "react";
 
-
-export const columns = [
+export const getColumns = ({ setTenantDialogInfo }) => [
   { field: "unitId", headerName: "Unit", width: 140 },
   {
     field: "applicantsName",
@@ -47,24 +48,21 @@ export const columns = [
     disableColumnMenu: true,
     headerName: "Actions",
     width: 420,
-    renderCell: (cellValues) => {
+    renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Button
-            variant="contained"
-            color="primary"
-            // href={`/sites/${cellValues.row.siteId}/rents`}
+          // href={`/sites/${cellValues.row.siteId}/rents`}
           >
             Move Out Transfer
           </Button>
+
           <Button
-            variant="contained"
-            color="primary"
-            // href={`/sites/${cellValues.row.siteId}/rents`}
+            disabled={!row.tenant}
+            onClick={() => setTenantDialogInfo(row)}
           >
             Update Tenant
           </Button>
-          
         </Box>
       );
     },
@@ -95,23 +93,22 @@ export const columns = [
 
 export function SiteUnits() {
   const { siteId } = useParams();
-  const columnsToUse = useColumns(columns);
+  const setTenantDialogInfo = useSetRecoilState(tenantDialogInfo);
+
+  const columnsToUse = useColumns(
+    useMemo(() => getColumns({ setTenantDialogInfo }), [setTenantDialogInfo])
+  );
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   return (
     <div style={{ height: 600, width: "100%" }}>
       <SiteHeader />
       <SiteAddress />
-      <Button
-          variant="contained"
-          color="primary"
-        >
-          Edit Site Info
-        </Button>
+      <Button>Edit Site Info</Button>
 
       <DataGrid
         getRowId={(item) => item.unitId}
-        rows={siteWithUnits.units}
+        rows={siteWithUnits.units.map((item) => ({ ...item, siteId }))}
         columns={columnsToUse}
       />
     </div>

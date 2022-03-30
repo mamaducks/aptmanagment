@@ -93,7 +93,7 @@ export const getApplicantFormData = selectorFamily({
         dateApplied: Date.now(),
         rentalAssistance: false,
         sitesAppliedFor: [],
-        unitSizes: 1,
+        unitSizes: [1],
         familySize: 1,
         accomodations: ["down", "up"],
         applicants: [{ ...EMPTY_APPLICANT }],

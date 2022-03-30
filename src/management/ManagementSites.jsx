@@ -37,8 +37,6 @@ export const columns = [
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
         <Button
-          variant="contained"
-          color="primary"
           href={`/sites/${cellValues.row.siteId}/units`}
         >
           View Units Info

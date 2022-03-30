@@ -34,6 +34,8 @@ import { SiteDeposits } from "./site/SiteDeposits.jsx";
 // import {ManagementBills} from "./App/Grids/ManagementBills"
 import { FormApplicant } from "./forms/FormApplicant.jsx";
 import { DialogTenant } from "./dialogs/DialogTenant.jsx";
+import { DialogEmployee } from "./dialogs/DialogEmployee.jsx";
+import { FormEmployee } from "./forms/FormEmployee.jsx";
 
 export function Router() {
   return (
@@ -54,9 +56,9 @@ export function Router() {
         <Route
           path="/forms/applicant/:applicantId"
           element={<FormApplicant />}
-          st
         />
         <Route path="/forms/applicant" element={<FormApplicant />} />
+        <Route path="/forms/employee" element={<FormEmployee />} />
 
         <Route path="/applicants" element={<ManagementApplicants />} />
         <Route path="/employees" element={<ManagementEmployees />} />
@@ -81,6 +83,7 @@ export function Router() {
       </Routes>
 
       <DialogTenant />
+      <DialogEmployee />
     </ThemeProvider>
   );
 }

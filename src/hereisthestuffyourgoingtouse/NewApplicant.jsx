@@ -73,7 +73,7 @@ export function NewApplicant() {
 
   return (
     <Box sx={{ p: "30px" }}>
-      <Stack direction="row" gap={4}>
+      <Stack gap={4}>
         <Box sx={{ width: "500px" }}>
           <TextField
             fullWidth
@@ -111,7 +111,6 @@ export function NewApplicant() {
           </RadioGroup>
         </FormControl>
       </Stack>
-      <Stack direction="row"></Stack>
       <Box sx={{ width: "850px" }}>
         <TextField
           fullWidth
@@ -126,7 +125,7 @@ export function NewApplicant() {
           {...addProps({ name: "lastName", label: "Last Name" })}
         />
       </Box>
-      <Stack direction="row" gap={4}>
+      <Stack gap={4}>
         <Box sx={{ width: "500px" }}>
           <TextField
             fullWidth
@@ -161,21 +160,36 @@ export function NewApplicant() {
             defaultValue=""
             {...addProps({ name: "raceLetter", label: "Race" })}
           >
-            <FormControlLabel value="1" control={<Radio />} label="American Indian or Alaskan Native" />
+            <FormControlLabel
+              value="1"
+              control={<Radio />}
+              label="American Indian or Alaskan Native"
+            />
             <FormControlLabel value="2" control={<Radio />} label="Asian" />
-            <FormControlLabel value="3" control={<Radio />} label="Black or African American" />
-            <FormControlLabel value="4" control={<Radio />} label="Native Hawiian or Pacific Islander" />
+            <FormControlLabel
+              value="3"
+              control={<Radio />}
+              label="Black or African American"
+            />
+            <FormControlLabel
+              value="4"
+              control={<Radio />}
+              label="Native Hawiian or Pacific Islander"
+            />
             <FormControlLabel value="4" control={<Radio />} label="White" />
-
           </RadioGroup>
-    
 
           <RadioGroup
             row
             defaultValue=""
             {...addProps({ name: "raceNumber", label: "Race" })}
           >
-            <FormControlLabel value="A" control={<Radio />} label="Hispanic Latino" />
+            <FormControlLabel
+              value="A"
+              control={<Radio />}
+              label="Hispanic Latino"
+            />
+
             <FormControlLabel
               value="B"
               control={<Radio />}
@@ -185,7 +199,7 @@ export function NewApplicant() {
         </FormControl>
       </Box>
       <Stack sx={{ border: "1px solid black", p: 1 }}>
-        <Stack direction="row" gap={7}>
+        <Stack>
           <FormControl margin="dense">
             <FormLabel id="familySize">Family Size</FormLabel>
             <RadioGroup
@@ -289,8 +303,7 @@ export function NewApplicant() {
         <Button size="large" variant="contained" onClick={addApplicate}>
           Add
         </Button>
-        <Button size="large" variant="contained" href="/Applicants"
-        >
+        <Button size="large" href="/Applicants">
           Cancel
         </Button>
       </Box>

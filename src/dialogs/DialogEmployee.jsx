@@ -1,11 +1,11 @@
 import { Dialog } from "@mui/material";
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
-import { tenantDialogInfo } from "../state/dialogs";
-import { FormTenant } from "../forms/FormTenant";
+import { employeeDialogInfo } from "../state/dialogs";
+import { FormEmployee } from "../forms/FormEmployee";
 
-export function DialogTenant() {
-  const [dialogInfo, setDialogInfo] = useRecoilState(tenantDialogInfo);
+export function DialogEmployee() {
+  const [dialogInfo, setDialogInfo] = useRecoilState(employeeDialogInfo);
 
   const onClose = useCallback(() => setDialogInfo(undefined), [setDialogInfo]);
 
@@ -15,7 +15,7 @@ export function DialogTenant() {
 
   return (
     <Dialog open onClose={onClose} fullWidth maxWidth="md">
-      <FormTenant {...dialogInfo} onClose={onClose} />
+      <FormEmployee {...dialogInfo} onClose={onClose} />
     </Dialog>
   );
 }

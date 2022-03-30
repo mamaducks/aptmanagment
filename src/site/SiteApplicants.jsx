@@ -27,9 +27,9 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import { moveInDialogInfo } from "../state/dialogs";
+import { tenantDialogInfo } from "../state/dialogs";
 
-export const getColumns = ({ setMoveInDialogInfo }) => [
+export const getColumns = ({ setTenantDialogInfo }) => [
   {
     field: "applicantStatus",
     headerName: "Status",
@@ -61,29 +61,13 @@ export const getColumns = ({ setMoveInDialogInfo }) => [
       ).join(", "),
     width: 150,
   },
-  //   {
-  //     field: "race",
-  //     headerName: "Race",
-  //     valueGetter: ({ row: { applicants = [] } }) =>
-  //       applicants
-  //         .map(({ ethnicity, race }) => `${race || ""}${ethnicity || ""}`)
-  //         .join(", "),
-  //     valueFormatter: uppercaseFormatter,
-  //     width: 80,
-  //   },
+
   {
     field: "familySize",
     headerName: "Family Size",
     width: 80,
   },
-  //   {
-  //     field: "gender",
-  //     headerName: "M/F",
-  //     valueGetter: ({ row: { applicants = [] } }) =>
-  //       applicants.map(({ gender }) => gender).join(", "),
-  //     valueFormatter: uppercaseFormatter,
-  //     width: 80,
-  //   },
+
   {
     field: "incomeLevel",
     headerName: "Income Level",
@@ -129,7 +113,7 @@ export const getColumns = ({ setMoveInDialogInfo }) => [
 
           <Button
             disabled={row.applicantStatus !== APPLICANT_STATUS_MAP.Applied}
-            onClick={() => setMoveInDialogInfo(row)}
+            onClick={() => setTenantDialogInfo(row)}
           >
             Move In
           </Button>
@@ -141,7 +125,7 @@ export const getColumns = ({ setMoveInDialogInfo }) => [
 
 export function SiteApplicants() {
   const { siteId } = useParams();
-  const setMoveInDialogInfo = useSetRecoilState(moveInDialogInfo);
+  const setTenantDialogInfo = useSetRecoilState(tenantDialogInfo);
 
   const [statusFilters, setStatusFilters] = useState([
     APPLICANT_STATUS_MAP.Applied,
@@ -152,10 +136,7 @@ export function SiteApplicants() {
   );
 
   const columnsToUse = useColumns(
-    useMemo(
-      () => getColumns({ siteId, setMoveInDialogInfo }),
-      [setMoveInDialogInfo, siteId]
-    )
+    useMemo(() => getColumns({ setTenantDialogInfo }), [setTenantDialogInfo])
   );
 
   return (

@@ -50,14 +50,12 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
 
   const [item, setItem] = useState(tenantInfo);
 
-  console.log({ applicantId }, tenantInfo);
-
   const canSumbit = true; // add validation
   const sitesMap = useRecoilValue(getSitesWithTenantMap);
 
   const allUnits = sitesMap
     .get(item.siteId)
-    .units.filter((item) => !item.tenant);
+    .units.filter((item) => (unitId ? true : !item.tenant));
 
   const setFieldValue = useCallback(
     (name, value) => {
@@ -94,6 +92,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
               <FormLabel>Site</FormLabel>
 
               <Select
+                disabled={!!unitId}
                 value={item.siteId}
                 onChange={({ target: { value } }) => updateSite(value)}
               >
@@ -109,7 +108,8 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
               <FormLabel>Unit</FormLabel>
 
               <Select
-                value={item.unitId || ''}
+                disabled={!!unitId}
+                value={item.unitId || ""}
                 onChange={({ target: { value } }) =>
                   setFieldValue("unitId", value)
                 }
