@@ -116,7 +116,7 @@ export const getTenantFormData = selectorFamily({
 
       const tenantId = getTenantId(newItem);
 
-      const newTenantState = updateState(
+      let newTenantState = updateState(
         get(tenants),
         (item) => getTenantId(item) === tenantId,
         newItem,
@@ -135,7 +135,10 @@ export const getTenantFormData = selectorFamily({
         !!newItem.dateMoveIn &&
         applicant.applicantStatus !== APPLICANT_STATUS_MAP.Placed
       ) {
+        // move applicant to placed
         applicant.applicantStatus = APPLICANT_STATUS_MAP.Placed;
+
+        // add note
         applicant.notes = `${applicant.notes || ""} PLACED ${newItem.siteId}-${
           newItem.unitId
         } on ${new Date(newItem.dateMoveIn).toLocaleDateString()}`;
@@ -143,7 +146,16 @@ export const getTenantFormData = selectorFamily({
         !newItem.dateMoveIn &&
         applicant.applicantStatus === APPLICANT_STATUS_MAP.Placed
       ) {
+        // set the applicant back to placed
         applicant.applicantStatus = APPLICANT_STATUS_MAP.Applied;
+
+        // remove from tenants
+        newTenantState = updateState(
+          get(tenants),
+          (item) => getTenantId(item) === tenantId,
+          newItem,
+          true
+        );
       }
 
       const newApplicantsState = updateState(

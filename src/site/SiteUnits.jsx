@@ -51,11 +51,7 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button
-          // href={`/sites/${cellValues.row.siteId}/rents`}
-          >
-            Move Out Transfer
-          </Button>
+         
 
           <Button
             disabled={!row.tenant}

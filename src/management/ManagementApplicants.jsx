@@ -41,9 +41,10 @@ export function ManagementApplicants() {
 
   return (
     <div style={{ height: 600, width: "100%" }}>
-      <Button href="/forms/applicant/">
-        Add New Applicant
-      </Button>
+      
+        <Button  href="/forms/applicant/">
+          Add New Applicant
+        </Button>
 
       <DataGrid
         getRowId={(item) => item.siteId}

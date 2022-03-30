@@ -279,7 +279,9 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 //   })
 // );
 
-const mainColor = "#5ba1b7";
+// const mainColor = "#5ba1b7";
+const mainColor = "#2f7b93";
+
 
 const theme = responsiveFontSizes(
   createTheme({
@@ -309,6 +311,7 @@ const theme = responsiveFontSizes(
           margin: "dense",
         },
       },
+   
 
       MuiToggleButton: {
         styleOverrides: {

@@ -1,44 +1,20 @@
-import DateTimePicker from "@mui/lab/DateTimePicker";
+import { DatePicker } from "@mui/lab";
 import {
   Button,
-  FormControl,
-  FormLabel,
-  IconButton,
-  Stack,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-  Select,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  FormLabel,
   MenuItem,
+  Select,
+  Stack,
+  TextField,
 } from "@mui/material";
 import { useCallback, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  getApplicantFormData,
-  getApplicantsWithNameMap,
-} from "../state/applicants";
-import {
-  applicantAccomodationsData,
-  applicantEthnicityData,
-  applicantGendersData,
-  applicantIncomeLevelData,
-  applicantRaceData,
-  applicantStatusData,
-} from "../state/data/applicants";
-import { Reference } from "../state/data/reference";
-import {
-  removeItemAtIndex,
-  replaceItemAtIndex,
-} from "../state/helpers/dataHelpers";
-import { getSitesMap, getSitesWithTenantMap } from "../state/sites";
-import { Delete, Check } from "@mui/icons-material";
-import { EMPTY_APPLICANT } from "../state/applicants";
-import { DatePicker } from "@mui/lab";
+import { getApplicantsWithNameMap } from "../state/applicants";
+import { getSitesWithTenantMap } from "../state/sites";
 import { getTenantFormData } from "../state/tenants";
 
 export function FormTenant({ applicantId, siteId, unitId, onClose }) {
@@ -74,6 +50,13 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
     },
     [setFieldValue]
   );
+
+  const handleUndoMoveIn = useCallback(() => {
+    debugger;
+    setTenantInfo({ ...item, dateMoveIn: "" });
+
+    onClose();
+  }, [item, onClose, setTenantInfo]);
 
   const handleSubmit = useCallback(() => {
     setTenantInfo(item);
@@ -131,7 +114,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
                 renderInput={(props) => <TextField {...props} />}
                 value={item.dateMoveIn}
                 onChange={(newValue) => {
-                  setFieldValue("dateMoveIn", newValue.getTime());
+                  setFieldValue("dateMoveIn", newValue?.getTime());
                 }}
               />
             </FormControl>
@@ -143,7 +126,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
                 renderInput={(props) => <TextField {...props} />}
                 value={item.dateLease}
                 onChange={(newValue) => {
-                  setFieldValue("dateLease", newValue.getTime());
+                  setFieldValue("dateLease", newValue?.getTime());
                 }}
               />
             </FormControl>
@@ -155,7 +138,19 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
                 renderInput={(props) => <TextField {...props} />}
                 value={item.dateRenewal}
                 onChange={(newValue) => {
-                  setFieldValue("dateRenewal", newValue.getTime());
+                  setFieldValue("dateRenewal", newValue?.getTime());
+                }}
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Move Out Date</FormLabel>
+
+              <DatePicker
+                renderInput={(props) => <TextField {...props} />}
+                value={item.dateMoveOut}
+                onChange={(newValue) => {
+                  setFieldValue("dateMoveOut", newValue?.getTime());
                 }}
               />
             </FormControl>
@@ -172,7 +167,9 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
           Submit
         </Button>
 
-        <Button onClick={onClose}>Cancel</Button>
+        {unitId && <Button onClick={handleUndoMoveIn}>Undo Move In</Button>}
+
+        <Button onClick={onClose}>Close</Button>
       </DialogActions>
     </>
   );

@@ -228,7 +228,7 @@ export function FormApplicant() {
             renderInput={(props) => <TextField {...props} />}
             value={item.dateApplied}
             onChange={(newValue) => {
-              setFieldValue("dateApplied", newValue.getTime());
+              setFieldValue("dateApplied", newValue?.getTime());
             }}
           />
         </FormControl>

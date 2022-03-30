@@ -8,7 +8,7 @@ export const tenantsData = [
     applicantId: applicantsData[0].applicantId,
     dateMoveIn: Reference.dateTime,
     dateLease: Reference.dateTime,
-    dateRenewal: Reference.dateTimePlusMonth,
+    dateRenewal: Reference.dateTimePlusYear,
     dateMoveOut: Reference.dateTime,
   },
 ];

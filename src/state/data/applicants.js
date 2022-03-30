@@ -67,7 +67,7 @@ export const applicantsData = [
         race: applicantRaceData[4].value,
       },
     ],
-    applicantStatus: APPLICANT_STATUS_MAP.Applied,
+    applicantStatus: APPLICANT_STATUS_MAP.Placed,
     accomodations: [...applicantAccomodationsData.map((item) => item.value)],
     dateApplied: Reference.dateTime,
     dateRemoved: undefined,

@@ -141,8 +141,8 @@ export function SiteApplicants() {
 
   return (
     <div style={{ height: 600, width: "100%" }}>
-      <Stack justifyContent="flex-end">
-        <Button href="/forms/applicant/">Add New Applicant</Button>
+      <Stack justifyContent="flex-end" mr={4}>
+        <Button size="large" href="/forms/applicant/" >Add New Applicant</Button>
       </Stack>
 
       <Stack direction="column" m={2}>

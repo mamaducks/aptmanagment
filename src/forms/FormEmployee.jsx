@@ -3,41 +3,21 @@ import {
   Button,
   FormControl,
   FormLabel,
-  IconButton,
   Stack,
   TextField,
   ToggleButton,
   ToggleButtonGroup,
-  Typography,
 } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { getApplicantFormData } from "../state/applicants";
-import {
-  applicantAccomodationsData,
-  applicantEthnicityData,
-  applicantGendersData,
-  applicantIncomeLevelData,
-  applicantRaceData,
-  applicantStatusData,
-} from "../state/data/applicants";
-import { employeeRoleData, EMPTY_EMPLOYEE } from "../state/data/employees";
-import { getEmployeeFormData, employeeRoleDataMap } from "../state/employees";
-import { Reference } from "../state/data/reference";
-import {
-  removeItemAtIndex,
-  replaceItemAtIndex,
-} from "../state/helpers/dataHelpers";
-import { sites } from "../state/sites";
-import { Delete, Check } from "@mui/icons-material";
-import { EMPTY_APPLICANT } from "../state/applicants";
+import { useRecoilState } from "recoil";
+import { employeeRoleData } from "../state/data/employees";
+import { getEmployeeFormData } from "../state/employees";
 
 export function FormEmployee() {
   const { employeeId } = useParams();
   const isNew = !employeeId;
   const navigate = useNavigate();
-  //   const allRoles = useRecoilValue(sites);
 
   const [employeeInfo, setEmployeeInfo] = useRecoilState(
     getEmployeeFormData(employeeId)
@@ -70,11 +50,12 @@ export function FormEmployee() {
   );
 
   const canSumbit = true;
-  const rolesMap = useRecoilValue(employeeRoleDataMap);
 
   const handleSubmit = useCallback(() => {
     setEmployeeInfo(item);
-  }, [item, setEmployeeInfo]);
+
+    navigate(-1);
+  }, [item, navigate, setEmployeeInfo]);
 
   return (
     <Stack direction="column" m={10}>
@@ -86,7 +67,7 @@ export function FormEmployee() {
             renderInput={(props) => <TextField {...props} />}
             value={item.hireDate}
             onChange={(newValue) => {
-              setFieldValue("hireDate", newValue.getTime());
+              setFieldValue("hireDate", newValue?.getTime());
             }}
           />
         </FormControl>
@@ -116,7 +97,6 @@ export function FormEmployee() {
 
           <ToggleButtonGroup
             value={item.roles}
-            exclusive
             onChange={(_, newValue) => {
               setFieldValue("roles", newValue);
             }}
