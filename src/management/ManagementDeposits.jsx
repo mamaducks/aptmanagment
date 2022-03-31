@@ -39,14 +39,14 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions",
-    width: 260,
+    width: 280,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Button
             href={`/sites/${cellValues.row.siteId}/deposits`}
           >
-            Deposits
+            Deposits Posted
           </Button>
         </Box>
       );

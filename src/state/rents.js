@@ -1,8 +1,9 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { rentsData } from "./data/rents";
 import { getSitesWithTenant } from "./sites";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { groupBy } from "lodash";
+import { getId, updateState } from "./helpers/dataHelpers";
 
 export const rents = atom({
   key: "_rents",
@@ -32,10 +33,9 @@ export const getSiteRentsSummaryInfo = selector({
       const allPayments = units
         .map((item) => item.tenant?.payments || [])
         .flat();
-        
+
       const totals = getRentPaymentTotals(allRents, allPayments);
 
-     
       return {
         ...site,
         ...totals,
@@ -51,4 +51,47 @@ export const getSiteRentsSummaryMap = selector({
         groupBy(get(getSiteRentsSummaryInfo), (item) => item.siteId)
       )
     ),
+});
+
+export const getRentsInfo = selector({
+  key: "_getRentsInfo",
+  get: ({ get }) => {
+    return get(rents).map((rent) => {
+      return {
+        ...rent,
+      };
+    });
+  },
+});
+
+export const getRentsMap = selector({
+  key: "getRentsMap",
+  get: ({ get }) =>
+    new Map(get(getRentsInfo).map((item) => [item.value, item])),
+});
+
+export const getRentFormData = selectorFamily({
+  key: "_getRentFormData",
+  get:
+    (applicantId) =>
+    ({ get }) =>
+      get(getRentsMap).get(applicantId) || {
+        applicantId: getId(),
+        siteId: getId(),
+        unitId: getId(),
+        timestamp: Date.now(),
+        amount: [],
+      },
+  set:
+    () =>
+    ({ get, set }, newItem) => {
+      const newState = updateState(
+        get(rents),
+        (item) => item.applicantId === newItem.applicantId,
+        newItem,
+        false
+      );
+
+      set(rents, newState);
+    },
 });

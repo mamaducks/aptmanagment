@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { getSiteRentsSummaryInfo } from "../state/rents";
 import { useColumns } from "../state/helpers/hooks";
 import { currencyFormatter } from "../formatters/cellFormatters";
+import { FormRent } from "../forms/FormRent";
 
 export const columns = [
   { field: "siteName", headerName: "Site", width: 320 },
@@ -43,14 +44,20 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions",
-    width: 300,
+    width: 450,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button
-            href={`/sites/${cellValues.row.siteId}/rents`}
-          >
-            View Rents Info
+          <Button href={`/sites/${cellValues.row.siteId}/rentroll`}>
+            Rent Roll
+          </Button>
+
+          <Button href={`/sites/${cellValues.row.siteId}/adddeposit`}>
+            New Deposit
+          </Button>
+
+          <Button href={`/sites/${cellValues.row.siteId}/addrents`}>
+            Enter Rents Due
           </Button>
         </Box>
       );

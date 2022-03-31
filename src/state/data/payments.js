@@ -31,14 +31,14 @@ export const paymentsData = [
     siteId: tenantsData[0].siteId,
     unitId: tenantsData[0].unitId,
     applicantId: tenantsData[0].applicantId,
-    timestamp: Reference.dateTimePlusDay,
+    timestamp: Reference.dateTimePlusDay + 1,
     amount: 5,
   },
   {
     siteId: tenantsData[0].siteId,
     unitId: tenantsData[0].unitId,
     applicantId: tenantsData[0].applicantId,
-    timestamp: Reference.dateTimePlusDay,
+    timestamp: Reference.dateTime + 1,
     amount: 2,
   },
 ];

@@ -1,33 +1,32 @@
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { compact } from "lodash";
+import { useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   dateTimeFormatter,
   phoneFormatter,
-  uppercaseFormatter,
   referenceFormatter,
+  uppercaseFormatter,
   yesNoFormatter,
 } from "../formatters/cellFormatters";
 import {
   applicantStatusData,
   APPLICANT_STATUS_MAP,
 } from "../state/data/applicants";
-import { useParams } from "react-router-dom";
-import { getSiteWithApplicantsSummaryInfo } from "../state/sites";
-import { useState, useMemo } from "react";
-import { SiteHeader } from "./SiteHeader";
-import { useColumns } from "../state/helpers/hooks";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
 import { tenantDialogInfo } from "../state/dialogs";
+import { useColumns } from "../state/helpers/hooks";
+import { getSiteWithApplicantsSummaryInfo } from "../state/sites";
+import { SiteHeader } from "./SiteHeader";
 
 export const getColumns = ({ setTenantDialogInfo }) => [
   {
@@ -113,7 +112,7 @@ export const getColumns = ({ setTenantDialogInfo }) => [
 
           <Button
             disabled={row.applicantStatus !== APPLICANT_STATUS_MAP.Applied}
-            onClick={() => setTenantDialogInfo(row)}
+            onClick={() => setTenantDialogInfo({ ...row, formType: "movein" })}
           >
             Move In
           </Button>
@@ -142,11 +141,14 @@ export function SiteApplicants() {
   return (
     <div style={{ height: 600, width: "100%" }}>
       <Stack justifyContent="flex-end" mr={4}>
-        <Button size="large" href="/forms/applicant/" >Add New Applicant</Button>
+        <Button size="large" href="/forms/applicant/">
+          Add New Applicant
+        </Button>
       </Stack>
 
       <Stack direction="column" m={2}>
         <SiteHeader />
+
         <FormControl>
           <FormLabel>Application Status</FormLabel>
 

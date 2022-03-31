@@ -50,7 +50,7 @@ export const getSiteUnitTenantWithApplicantMap = selector({
       get(getTenantsWithId).map((item) => {
         const applicant = applicantsInfo.get(item.applicantId);
 
-        if (!applicant) {
+        if (!applicant || item.dateMoveOut) {
           return undefined;
         }
 
@@ -115,6 +115,8 @@ export const getTenantFormData = selectorFamily({
       console.log("newItem", newItem);
 
       const tenantId = getTenantId(newItem);
+      const currentApplicant = get(getApplicantsMap).get(newItem.applicantId);
+      const currentTenant = get(getTenantsMap).get(tenantId);
 
       let newTenantState = updateState(
         get(tenants),
@@ -122,8 +124,6 @@ export const getTenantFormData = selectorFamily({
         newItem,
         false
       );
-
-      const currentApplicant = get(getApplicantsMap).get(newItem.applicantId);
 
       if (!currentApplicant) {
         console.error("Applicant not found", newItem);
@@ -156,6 +156,17 @@ export const getTenantFormData = selectorFamily({
           newItem,
           true
         );
+      } else if (
+        !currentTenant.dateMoveOut &&
+        newItem.dateMoveOut &&
+        applicant.applicantStatus === APPLICANT_STATUS_MAP.Placed
+      ) {
+        // add note
+        applicant.notes = `${applicant.notes || ""} MOVED OUT ${
+          newItem.siteId
+        }-${newItem.unitId} on ${new Date(
+          newItem.dateMoveIn
+        ).toLocaleDateString()}`;
       }
 
       const newApplicantsState = updateState(

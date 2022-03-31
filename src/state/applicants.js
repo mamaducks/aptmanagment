@@ -7,9 +7,11 @@ import {
   applicantRaceData,
   applicantEthnicityData,
   applicantIncomeLevelData,
+  APPLICANT_STATUS_MAP,
 } from "./data/applicants";
 import { getId, updateState } from "./helpers/dataHelpers";
 import { localStorageEffect } from "./localStorageEffect";
+import { getTenantId, tenants } from "./tenants";
 
 export const EMPTY_APPLICANT = {
   firstName: "",
@@ -108,6 +110,19 @@ export const getApplicantFormData = selectorFamily({
         newItem,
         false
       );
+
+      if (newItem.applicantStatus === APPLICANT_STATUS_MAP.Applied) {
+        // remove from tenants
+        const newTenantState = updateState(
+          get(tenants),
+          (item) =>
+            item.applicantId === newItem.applicantId && !item.dateMoveOut,
+          newItem,
+          true
+        );
+
+        set(tenants, newTenantState);
+      }
 
       set(applicants, newState);
     },

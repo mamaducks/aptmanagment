@@ -17,21 +17,25 @@ import { getApplicantsWithNameMap } from "../state/applicants";
 import { getSitesWithTenantMap } from "../state/sites";
 import { getTenantFormData } from "../state/tenants";
 
-export function FormTenant({ applicantId, siteId, unitId, onClose }) {
-  const appplicant = useRecoilValue(getApplicantsWithNameMap).get(applicantId);
+export function FormTenant({ applicantId, siteId, unitId, onClose, formType }) {
+  const applicant = useRecoilValue(getApplicantsWithNameMap).get(applicantId);
 
   const [tenantInfo, setTenantInfo] = useRecoilState(
     getTenantFormData({ siteId, unitId, applicantId })
   );
 
+  console.log(tenantInfo, applicant);
+
   const [item, setItem] = useState(tenantInfo);
 
-  const canSumbit = true; // add validation
+  const canSumbit = !!item.unitId;
   const sitesMap = useRecoilValue(getSitesWithTenantMap);
 
   const allUnits = sitesMap
     .get(item.siteId)
     .units.filter((item) => (unitId ? true : !item.tenant));
+
+  const isMoveOut = formType === "moveout";
 
   const setFieldValue = useCallback(
     (name, value) => {
@@ -52,7 +56,6 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
   );
 
   const handleUndoMoveIn = useCallback(() => {
-    debugger;
     setTenantInfo({ ...item, dateMoveIn: "" });
 
     onClose();
@@ -66,7 +69,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
 
   return (
     <>
-      <DialogTitle>Move In Applicant - {appplicant.applicantsName}</DialogTitle>
+      <DialogTitle>Tenant - {applicant.applicantsName}</DialogTitle>
 
       <DialogContent>
         <Stack direction="column" gap={4}>
@@ -87,7 +90,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
               </Select>
             </FormControl>
 
-            <FormControl fullWidth>
+            <FormControl fullWidth >
               <FormLabel>Unit</FormLabel>
 
               <Select
@@ -107,53 +110,59 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
           </Stack>
 
           <Stack>
-            <FormControl>
-              <FormLabel>Move In Date</FormLabel>
+            {!isMoveOut && (
+              <>
+                <FormControl>
+                  <FormLabel>Move In Date</FormLabel>
 
-              <DatePicker
-                renderInput={(props) => <TextField {...props} />}
-                value={item.dateMoveIn}
-                onChange={(newValue) => {
-                  setFieldValue("dateMoveIn", newValue?.getTime());
-                }}
-              />
-            </FormControl>
+                  <DatePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    value={item.dateMoveIn}
+                    onChange={(newValue) => {
+                      setFieldValue("dateMoveIn", newValue?.getTime());
+                    }}
+                  />
+                </FormControl>
 
-            <FormControl>
-              <FormLabel>Lease Date</FormLabel>
+                <FormControl>
+                  <FormLabel>Lease Date</FormLabel>
 
-              <DatePicker
-                renderInput={(props) => <TextField {...props} />}
-                value={item.dateLease}
-                onChange={(newValue) => {
-                  setFieldValue("dateLease", newValue?.getTime());
-                }}
-              />
-            </FormControl>
+                  <DatePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    value={item.dateLease}
+                    onChange={(newValue) => {
+                      setFieldValue("dateLease", newValue?.getTime());
+                    }}
+                  />
+                </FormControl>
 
-            <FormControl>
-              <FormLabel>Lease Renewal Date</FormLabel>
+                <FormControl>
+                  <FormLabel>Lease Renewal Date</FormLabel>
 
-              <DatePicker
-                renderInput={(props) => <TextField {...props} />}
-                value={item.dateRenewal}
-                onChange={(newValue) => {
-                  setFieldValue("dateRenewal", newValue?.getTime());
-                }}
-              />
-            </FormControl>
+                  <DatePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    value={item.dateRenewal}
+                    onChange={(newValue) => {
+                      setFieldValue("dateRenewal", newValue?.getTime());
+                    }}
+                  />
+                </FormControl>
+              </>
+            )}
 
-            <FormControl>
-              <FormLabel>Move Out Date</FormLabel>
+            {isMoveOut && (
+              <FormControl>
+                <FormLabel>Move Out Date</FormLabel>
 
-              <DatePicker
-                renderInput={(props) => <TextField {...props} />}
-                value={item.dateMoveOut}
-                onChange={(newValue) => {
-                  setFieldValue("dateMoveOut", newValue?.getTime());
-                }}
-              />
-            </FormControl>
+                <DatePicker
+                  renderInput={(props) => <TextField {...props} />}
+                  value={item.dateMoveOut || ""}
+                  onChange={(newValue) => {
+                    setFieldValue("dateMoveOut", newValue?.getTime());
+                  }}
+                />
+              </FormControl>
+            )}
           </Stack>
         </Stack>
       </DialogContent>
@@ -164,10 +173,12 @@ export function FormTenant({ applicantId, siteId, unitId, onClose }) {
           onClick={handleSubmit}
           disabled={!canSumbit}
         >
-          Submit
+          {isMoveOut ? "Move Out" : "Submit"}
         </Button>
 
-        {unitId && <Button onClick={handleUndoMoveIn}>Undo Move In</Button>}
+        {unitId && !isMoveOut && (
+          <Button onClick={handleUndoMoveIn}>Undo Move In</Button>
+        )}
 
         <Button onClick={onClose}>Close</Button>
       </DialogActions>

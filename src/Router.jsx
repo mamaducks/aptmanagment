@@ -16,7 +16,7 @@ import { Management } from "./management/Management";
 import { SiteUnits } from "./site/SiteUnits";
 import { ManagementRents } from "./management/ManagementRents";
 import { ManagementUnitRents } from "./App/Grids/RentRollSummaryGrid";
-import { SiteRents } from "./site/SiteRents";
+import { SiteRentRoll } from "./site/SiteRentRoll";
 import { SiteApplicants } from "./site/SiteApplicants";
 
 import { ManagementEmployees } from "./management/ManagementEmployees";
@@ -36,7 +36,11 @@ import { FormApplicant } from "./forms/FormApplicant.jsx";
 import { DialogTenant } from "./dialogs/DialogTenant.jsx";
 import { DialogEmployee } from "./dialogs/DialogEmployee.jsx";
 import { FormEmployee } from "./forms/FormEmployee.jsx";
-
+import { FormRent } from "./forms/FormRent.jsx";
+import { DialogPayment } from "./dialogs/DialogPayment";
+import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
+import { SitePendingDeposit } from "./site/SitePendingDeposit.jsx";
+import { SiteAddRentsDue } from "./site/SiteAddRentsDue";
 export function Router() {
   return (
     <ThemeProvider theme={theme}>
@@ -63,12 +67,18 @@ export function Router() {
         <Route path="/applicants" element={<ManagementApplicants />} />
         <Route path="/employees" element={<ManagementEmployees />} />
         <Route path="/rents" element={<ManagementRents />} />
+
         <Route path="/deposits" element={<ManagementDeposits />} />
         <Route path="/sites" element={<ManagementSites />} />
         {/* <Route path="/tenants" element={<ManagementTenants />} /> */}
         <Route path="/sites/:siteId/applicants" element={<SiteApplicants />} />
-        <Route path="/sites/:siteId/rents" element={<SiteRents />} />
+        <Route path="/sites/:siteId/rentroll" element={<SiteRentRoll />} />
+
+        <Route path="/sites/:siteId/addrents" element={<SiteAddRentsDue />} />
+
         <Route path="/sites/:siteId/units" element={<SiteUnits />} />
+        <Route path="/sites/:siteId/adddeposit" element={<SitePendingDeposit />} />
+        <Route path="/sites/:siteId/addrents" element={<FormRent />} />
         <Route path="/sites/:siteId/deposits" element={<SiteDeposits />} />
 
         {/* <Route
@@ -83,6 +93,11 @@ export function Router() {
       </Routes>
 
       <DialogTenant />
+
+      <DialogMoveOut />
+
+      <DialogPayment />
+
       <DialogEmployee />
     </ThemeProvider>
   );

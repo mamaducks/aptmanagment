@@ -1,14 +1,15 @@
+import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { dateFormatter } from "../formatters/cellFormatters";
-import { SiteHeader } from "./SiteHeader";
-import { SiteAddress } from "./SiteAddress";
-import { useColumns } from "../state/helpers/hooks";
-import { Box, Button } from "@mui/material";
 import { tenantDialogInfo } from "../state/dialogs";
-import { useMemo } from "react";
+import { useColumns } from "../state/helpers/hooks";
+import { getSiteWithTenantsSummaryInfo } from "../state/sites";
+import { SiteAddress } from "./SiteAddress";
+import { SiteHeader } from "./SiteHeader";
+
 
 export const getColumns = ({ setTenantDialogInfo }) => [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -35,12 +36,12 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     valueFormatter: dateFormatter,
     width: 180,
   },
-  {
-    field: "dateMoveOut",
-    headerName: "Move Out Date",
-    valueFormatter: dateFormatter,
-    width: 200,
-  },
+  // {
+  //   field: "dateMoveOut",
+  //   headerName: "Move Out Date",
+  //   valueFormatter: dateFormatter,
+  //   width: 200,
+  // },
   {
     field: "actions",
     headerAlign: "center",
@@ -51,13 +52,18 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-         
+          <Button
+            disabled={!row.tenant}
+            onClick={() => setTenantDialogInfo({ ...row, formType: "update" })}
+          >
+            Update Tenant
+          </Button>
 
           <Button
             disabled={!row.tenant}
-            onClick={() => setTenantDialogInfo(row)}
+            onClick={() => setTenantDialogInfo({ ...row, formType: "moveout" })}
           >
-            Update Tenant
+            Move Out
           </Button>
         </Box>
       );
@@ -94,12 +100,15 @@ export function SiteUnits() {
   const columnsToUse = useColumns(
     useMemo(() => getColumns({ setTenantDialogInfo }), [setTenantDialogInfo])
   );
+
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   return (
     <div style={{ height: 600, width: "100%" }}>
       <SiteHeader />
+
       <SiteAddress />
+
       <Button>Edit Site Info</Button>
 
       <DataGrid

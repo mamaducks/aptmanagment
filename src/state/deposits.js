@@ -1,11 +1,19 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { depositsData } from "./data/deposits";
+import { getId, updateState } from "./helpers/dataHelpers";
+import { localStorageEffect } from "./localStorageEffect";
+import { payments } from "./payments";
 import { getSiteRentsSummaryInfo } from "./rents";
-import { getSitesWithDepositsMap } from "./sites";
+import {
+  getSitesWithDepositsMap,
+  getSiteWithDepositSummaryInfo,
+} from "./sites";
+import { getTenantId } from "./tenants";
 
 export const deposits = atom({
   key: "_deposits",
-  default: depositsData,
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("_deposits", depositsData)],
 });
 
 export const getSiteDepositsSummaryInfo = selector({
@@ -36,4 +44,59 @@ export const getSiteDepositsSummaryInfoMap = selector({
       get(getSiteDepositsSummaryInfo).map((item) => [item.siteId, item])
     );
   },
+});
+
+export const getDepositFormData = selectorFamily({
+  key: "getDepositFormData",
+  get:
+    (siteId) =>
+    ({ get }) => {
+      const summaryInfo = get(getSiteWithDepositSummaryInfo(siteId));
+
+      return summaryInfo.pendingPayments.map((payment) => ({
+        ...payment,
+        id: `${getTenantId(payment)}-${payment.timestamp}`,
+      }));
+    },
+  set:
+    (siteId) =>
+    ({ get, set }, { depositDate, pendingTotal, selectedPayments }) => {
+      console.log("newItem", siteId, pendingTotal, selectedPayments);
+      debugger;
+
+      const depositId = getId();
+
+      const newDepositState = updateState(
+        get(deposits),
+        (item) => false,
+        {
+          depositId,
+          siteId,
+          timestamp: depositDate?.getTime() || Date.now().getTime(),
+          amount: pendingTotal,
+        },
+        false
+      );
+
+      set(deposits, newDepositState);
+
+      const finalPaymentsState = selectedPayments.reduce(
+        (acc, { id, ...payment }) => {
+          const newPaymentState = updateState(
+            acc,
+            (item) => id === `${getTenantId(item)}-${item.timestamp}`,
+            {
+              ...payment,
+              depositId,
+            },
+            false
+          );
+
+          return [...newPaymentState];
+        },
+        get(payments)
+      );
+
+      set(payments, finalPaymentsState);
+    },
 });

@@ -5,6 +5,16 @@ export const tenantDialogInfo = atom({
   default: undefined,
 });
 
+export const moveOutDialogInfo = atom({
+  key: "moveOutDialogInfo",
+  default: undefined,
+});
+
+export const paymentDialogInfo = atom({
+  key: "paymentDialogInfo",
+  default: undefined,
+});
+
 export const employeeDialogInfo = atom({
   key: "employeeDialogInfo",
   default: undefined,
