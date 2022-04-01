@@ -1,6 +1,7 @@
 import { sumBy } from "lodash";
 
-export function getRentPaymentTotals(rents = [], payments = []) {
+export function getRentPaymentTotals(rents = [], payments = [], deposits = []) {
+  const depositsTotal =  sumBy(deposits, "amount");
   const rentsTotal = sumBy(rents, "amount");
   const paymentsTotal = sumBy(payments, "amount");
   const pendingPayments = payments.filter((item) => !item.depositId);
@@ -10,6 +11,7 @@ export function getRentPaymentTotals(rents = [], payments = []) {
   const delinquentTotal = Math.max(0, (paymentsTotal - rentsTotal) * -1);
 
   return {
+    depositsTotal,
     rentsTotal,
     paymentsTotal,
     creditsTotal,

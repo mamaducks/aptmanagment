@@ -4,8 +4,10 @@ import { getSiteUnitTenantWithApplicantMap } from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { getApplicantsWithName } from "./applicants";
 import { deposits, getSiteDepositsSummaryInfoMap } from "./deposits";
-import { sortBy } from "lodash";
-import { getTenantDepositedPaymentsMap } from "./payments";
+import { groupBy, sortBy } from "lodash";
+import { getTenantDepositedPaymentsMap, payments } from "./payments";
+import { rents } from "./rents";
+import { getYearMonthDateMap } from "./helpers/dataHelpers";
 
 export const sites = atom({
   key: "_sites",
@@ -153,6 +155,15 @@ export const getSiteTenantSummaryInfo = selector({
     }),
 });
 
+export const getSitesTenantSummaryInfoMap = selector({
+  key: "getSitesTenantSummaryInfoMap",
+  get: ({ get }) => {
+    return new Map(
+      get(getSiteTenantSummaryInfo).map((item) => [item.siteId, item])
+    );
+  },
+});
+
 export const getSiteApplicantsSummaryInfo = selector({
   key: "_getSiteApplicantsSummaryInfo",
   get: ({ get }) => {
@@ -178,6 +189,7 @@ export const getSiteWithTenantsSummaryInfo = selectorFamily({
     (siteId) =>
     ({ get }) => {
       const siteInfo = get(getSitesWithTenantMap).get(siteId);
+      const siteSummary = get(getSitesTenantSummaryInfoMap).get(siteId);
 
       const unitSummary = siteInfo.units.map((unit) => {
         const { tenant } = unit;
@@ -201,6 +213,7 @@ export const getSiteWithTenantsSummaryInfo = selectorFamily({
 
       return {
         ...siteInfo,
+        siteSummary,
         units: unitSummary,
       };
     },
@@ -222,5 +235,66 @@ export const getSiteWithDepositSummaryInfo = selectorFamily({
       get(getSiteDepositsSummaryInfoMap).get(siteId),
 });
 
+export const getSiteLedgerSummaryInfo = selector({
+  key: "getSiteLedgerSummaryInfo",
 
+  get: ({ get }) => {
+    const allDeposits = get(deposits).map((item) => ({
+      ...item,
+      type: "deposits",
+    }));
 
+    const allPayments = get(payments).map((item) => ({
+      ...item,
+      type: "payments",
+    }));
+
+    const allRents = get(rents).map((item) => ({
+      ...item,
+      type: "rents",
+    }));
+
+    const allRentsAndPayments = [...allDeposits, ...allPayments, ...allRents];
+
+    const sitesLedgerInfo = Object.entries(
+      groupBy(allRentsAndPayments, "siteId")
+    ).map(([site, siteItems]) => {
+      const yearMonthMap = getYearMonthDateMap(
+        siteItems,
+        (item) => item?.timestamp
+      );
+
+      Object.keys(yearMonthMap).forEach((year) => {
+        Object.entries(yearMonthMap[year]).forEach(([month, values]) => {
+          const groupedItems = {
+            deposits: [],
+            payments: [],
+            rents: [],
+            ...groupBy(values, "type"),
+          };
+
+          const rentTotals = getRentPaymentTotals(
+            groupedItems.rents,
+            groupedItems.payments,
+            groupedItems.deposits
+          );
+
+          yearMonthMap[year][month] = { ...groupedItems, rentTotals };
+        });
+      });
+
+      return { siteId: site, ledgerInfo: yearMonthMap };
+    });
+
+    return sitesLedgerInfo;
+  },
+});
+
+export const getSiteLedgerSummaryInfoMap = selector({
+  key: "getSiteLedgerSummaryInfoMap",
+  get: ({ get }) => {
+    return new Map(
+      get(getSiteLedgerSummaryInfo).map((item) => [item.siteId, item])
+    );
+  },
+});

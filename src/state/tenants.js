@@ -89,7 +89,7 @@ export const getTenantsSummaryInfo = selector({
 });
 
 export const getUpcomingRenewalTenantsSummaryInfo = selector({
-  key: "_getUpcomingRenewalTenantsSummaryInfoo",
+  key: "_getUpcomingRenewalTenantsSummaryInfo",
   get: ({ get }) =>
     get(getTenantsSummaryInfo)
       .filter(

@@ -90,7 +90,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose, formType }) {
               </Select>
             </FormControl>
 
-            <FormControl fullWidth >
+            <FormControl fullWidth>
               <FormLabel>Unit</FormLabel>
 
               <Select
@@ -113,11 +113,11 @@ export function FormTenant({ applicantId, siteId, unitId, onClose, formType }) {
             {!isMoveOut && (
               <>
                 <FormControl>
-                  <FormLabel>Move In Date</FormLabel>
+                  <FormLabel>Occupancy Date</FormLabel>
 
                   <DatePicker
                     renderInput={(props) => <TextField {...props} />}
-                    value={item.dateMoveIn}
+                    value={item.dateMoveIn || ""}
                     onChange={(newValue) => {
                       setFieldValue("dateMoveIn", newValue?.getTime());
                     }}
@@ -129,7 +129,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose, formType }) {
 
                   <DatePicker
                     renderInput={(props) => <TextField {...props} />}
-                    value={item.dateLease}
+                    value={item.dateLease || ""}
                     onChange={(newValue) => {
                       setFieldValue("dateLease", newValue?.getTime());
                     }}
@@ -141,7 +141,7 @@ export function FormTenant({ applicantId, siteId, unitId, onClose, formType }) {
 
                   <DatePicker
                     renderInput={(props) => <TextField {...props} />}
-                    value={item.dateRenewal}
+                    value={item.dateRenewal || ""}
                     onChange={(newValue) => {
                       setFieldValue("dateRenewal", newValue?.getTime());
                     }}

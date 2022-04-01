@@ -83,10 +83,12 @@ export function FormPayment() {
     <Box display="flex" justifyContent="center">
       <Stack direction="column" m={10}>
         <Stack>
+
           {/* <SiteHeader /> */}
           <div>sitename</div>
           <div>{item.timestamp}</div>
         </Stack>
+        
 
         <Stack>
           {/* <FormControl sx={{ flexGrow: 1 }}>
@@ -146,10 +148,10 @@ export function FormPayment() {
                 onChange={({ target: { value } }) =>
                   setFieldValue("amount", value)
                 }
-                label="Rent Paid"
+                label="amount recieved"
                 value={currencyFormatter(item.amount)}
               >
-                rent paid
+                amount recieved
               </TextField>
             </FormControl>
           </Stack>

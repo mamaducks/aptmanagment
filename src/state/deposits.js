@@ -61,9 +61,6 @@ export const getDepositFormData = selectorFamily({
   set:
     (siteId) =>
     ({ get, set }, { depositDate, pendingTotal, selectedPayments }) => {
-      console.log("newItem", siteId, pendingTotal, selectedPayments);
-      debugger;
-
       const depositId = getId();
 
       const newDepositState = updateState(

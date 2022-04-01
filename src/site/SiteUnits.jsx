@@ -7,9 +7,8 @@ import { dateFormatter } from "../formatters/cellFormatters";
 import { tenantDialogInfo } from "../state/dialogs";
 import { useColumns } from "../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
-import { SiteAddress } from "./SiteAddress";
-import { SiteHeader } from "./SiteHeader";
 
+import { SiteUnitSummary } from "./SiteUnitSummary";
 
 export const getColumns = ({ setTenantDialogInfo }) => [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -103,17 +102,15 @@ export function SiteUnits() {
 
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
+  const rowData = siteWithUnits.units.map((item) => ({ ...item, siteId }));
+  console.log(rowData);
   return (
     <div style={{ height: 600, width: "100%" }}>
-      <SiteHeader />
-
-      <SiteAddress />
-
-      <Button>Edit Site Info</Button>
+      <SiteUnitSummary />
 
       <DataGrid
         getRowId={(item) => item.unitId}
-        rows={siteWithUnits.units.map((item) => ({ ...item, siteId }))}
+        rows={rowData}
         columns={columnsToUse}
       />
     </div>

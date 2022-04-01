@@ -19,7 +19,10 @@ export const getTenantPaymentsMap = selector({
           get(payments),
           (item) => `${item.siteId}-${item.unitId}-${item.applicantId}`
         )
-      )
+      ).map(([item, value]) => [
+        item,
+        value.sort((a, b) => b.timestamp - a.timestamp),
+      ])
     ),
 });
 

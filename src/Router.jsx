@@ -41,6 +41,7 @@ import { DialogPayment } from "./dialogs/DialogPayment";
 import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
 import { SitePendingDeposit } from "./site/SitePendingDeposit.jsx";
 import { SiteAddRentsDue } from "./site/SiteAddRentsDue";
+import { SiteAddPaymentsMade } from "./site/SiteAddPaymentsMade.jsx";
 export function Router() {
   return (
     <ThemeProvider theme={theme}>
@@ -77,7 +78,16 @@ export function Router() {
         <Route path="/sites/:siteId/addrents" element={<SiteAddRentsDue />} />
 
         <Route path="/sites/:siteId/units" element={<SiteUnits />} />
-        <Route path="/sites/:siteId/adddeposit" element={<SitePendingDeposit />} />
+
+        <Route
+          path="/sites/:siteId/adddeposit"
+          element={<SitePendingDeposit />}
+        />
+
+        <Route
+          path="/sites/:siteId/addpayments"
+          element={<SiteAddPaymentsMade />}
+        />
         <Route path="/sites/:siteId/addrents" element={<FormRent />} />
         <Route path="/sites/:siteId/deposits" element={<SiteDeposits />} />
 

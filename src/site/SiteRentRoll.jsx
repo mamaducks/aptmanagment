@@ -5,11 +5,12 @@ import { useColumns } from "../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { SiteHeader } from "./SiteHeader";
 import { currencyFormatter } from "../formatters/cellFormatters";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { paymentDialogInfo } from "../state/dialogs";
+import { month, year } from "../state/data/reference";
 
-export const getColumns = ({ setPaymentDialogInfo }) => [
+export const columns =  [
   { field: "unitId", headerName: "Unit", width: 140 },
 
   {
@@ -25,7 +26,7 @@ export const getColumns = ({ setPaymentDialogInfo }) => [
   },
   {
     field: "paymentsTotal",
-    headerName: "Rent Paid",
+    headerName: "Payment Amount",
     valueFormatter: currencyFormatter,
     width: 200,
   },
@@ -45,16 +46,13 @@ export const getColumns = ({ setPaymentDialogInfo }) => [
     disableColumnMenu: true,
     headerName: "Actions",
     width: 450,
-    renderCell: ({ row }) => {
+    renderCell: (cellValues ) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Box display="flex" justifyContent="center" flexGrow={1}>
-            <Button
-              onClick={() => setPaymentDialogInfo(row)}
-              disabled={!row.tenant}
-            >
-              Enter Rent Payment
-            </Button>
+          <Button href={`/sites/${cellValues.row.siteId}/addpayments`}>
+            Enter Payments
+          </Button>
           </Box>
         </Box>
       );
@@ -64,22 +62,24 @@ export const getColumns = ({ setPaymentDialogInfo }) => [
 
 export function SiteRentRoll() {
   const { siteId } = useParams();
-  const setPaymentDialogInfo = useSetRecoilState(paymentDialogInfo);
+  // const setPaymentDialogInfo = useSetRecoilState(paymentDialogInfo);
 
-  const columnsToUse = useColumns(
-    useMemo(() => getColumns({ setPaymentDialogInfo }), [setPaymentDialogInfo])
-  );
+  // const columnsToUse = useColumns(
+  //   useMemo(() => getColumns({ setPaymentDialogInfo }), [setPaymentDialogInfo])
+  // );
 
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   return (
     <div style={{ height: 600, width: "100%" }}>
       <SiteHeader />
-
+      <Typography textAlign="center">
+         Rent info for {month} {year}
+      </Typography>
       <DataGrid
         getRowId={(item) => item.unitId}
         rows={siteWithUnits.units.map((item) => ({ ...item, siteId }))}
-        columns={columnsToUse}
+        columns={columns}
       />
     </div>
   );

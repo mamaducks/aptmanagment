@@ -1,13 +1,15 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { rentsData } from "./data/rents";
-import { getSitesWithTenant } from "./sites";
+import { getSiteLedgerSummaryInfoMap, getSitesWithTenant } from "./sites";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { groupBy } from "lodash";
 import { getId, updateState } from "./helpers/dataHelpers";
+import { localStorageEffect } from "./localStorageEffect";
 
 export const rents = atom({
   key: "_rents",
-  default: rentsData,
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("_rents", rentsData)],
 });
 
 export const getTenantRentsMap = selector({
@@ -19,7 +21,10 @@ export const getTenantRentsMap = selector({
           get(rents),
           (item) => `${item.siteId}-${item.unitId}-${item.applicantId}`
         )
-      )
+      ).map(([item, value]) => [
+        item,
+        value.sort((a, b) => b.timestamp - a.timestamp),
+      ])
     ),
 });
 
@@ -33,7 +38,6 @@ export const getSiteRentsSummaryInfo = selector({
       const allPayments = units
         .map((item) => item.tenant?.payments || [])
         .flat();
-
       const totals = getRentPaymentTotals(allRents, allPayments);
 
       return {
@@ -51,6 +55,25 @@ export const getSiteRentsSummaryMap = selector({
         groupBy(get(getSiteRentsSummaryInfo), (item) => item.siteId)
       )
     ),
+});
+
+export const getSiteRentsSummaryInfoForMonthYear = selectorFamily({
+  key: "getSiteRentsSummaryInfoForMonthYear",
+  get:
+    ([year, month]) =>
+    ({ get }) => {
+      const ledgerMap = get(getSiteLedgerSummaryInfoMap);
+
+      return get(getSitesWithTenant).map((site) => {
+        //  const { units } = site;
+
+        return {
+          ...site,
+          ...ledgerMap.get(site.siteId)?.ledgerInfo?.[year]?.[month]
+            ?.rentTotals,
+        };
+      });
+    },
 });
 
 export const getRentsInfo = selector({

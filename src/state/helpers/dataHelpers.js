@@ -1,3 +1,6 @@
+import { eachMonthOfInterval, getMonth, getYear } from "date-fns";
+import { compact, groupBy, sortBy } from "lodash";
+
 export function getId() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
@@ -35,4 +38,47 @@ export function updateState(items, rowFind, newItem, isRemove) {
 
 export function mapPropsToOptions(obj) {
   return Object.entries(obj).map(([label, value]) => ({ label, value }));
+}
+
+export function getDataUpdater(idGetter) {
+  return (items, { id, field, value }) => {
+    const existing = items.find((item) => idGetter(item) === id);
+
+    return updateState(
+      items,
+      (item) => idGetter(item) === id,
+      { ...existing, [field]: value },
+      false
+    );
+  };
+}
+
+export function getYearMonthDateMap(items, valueFn = () => undefined) {
+  const itemsWithValue = compact(items.filter((item) => !!valueFn(item))).map(
+    (item) => {
+      const _value = new Date(valueFn(item));
+
+      return {
+        ...item,
+        _value,
+        _month: getMonth(_value),
+        _year: getYear(_value),
+      };
+    }
+  );
+
+  const sortedItems = sortBy(itemsWithValue, "_value");
+
+  const yearMonthGrouped = groupBy(sortedItems, "_year");
+
+  Object.keys(yearMonthGrouped).forEach((year) => {
+    const rows = yearMonthGrouped[year];
+
+    // yearMonthGrouped[year] = new Map(Object.entries(groupBy(rows, "_month")));
+    yearMonthGrouped[year] = groupBy(rows, "_month");
+  });
+
+  return yearMonthGrouped;
+
+  // return new Map(Object.entries(yearMonthGrouped));
 }

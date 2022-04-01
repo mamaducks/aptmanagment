@@ -1,3 +1,6 @@
+// add to units arrays == bedrooms "1", "2", "3", is RA: true, false, isFirstFloor: true, false,
+
+
 export const sitesWithUnitsData = [
   {
     siteId: "edgewoodAcres",
@@ -5,7 +8,7 @@ export const sitesWithUnitsData = [
     siteAddress: "439 Church Rd",
     siteCity: "Sicklerville",
     siteZip: "08081",
-    sitePhone: "856-7288244",
+    sitePhone: "8567288244",
     siteCounty: "Camden",
     units: [
       { unitId: "A01", number: "A01" },

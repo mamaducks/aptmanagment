@@ -7,6 +7,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currencyFormatter, dateFormatter } from "../formatters/cellFormatters";
 import { month, year } from "../state/data/reference";
 import { getDataUpdater } from "../state/helpers/dataHelpers";
+import { payments } from "../state/payments";
 import { rents } from "../state/rents";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { SiteHeader } from "./SiteHeader";
@@ -20,20 +21,20 @@ export const getColumns = () => [
     width: 420,
   },
   {
-    field: "lastRentDate",
-    headerName: "Previous Rent Date",
+    field: "lastPaymentDate",
+    headerName: "Previous Payment Date",
     valueFormatter: dateFormatter,
     width: 200,
   },
   {
-    field: "lastRentAmount",
-    headerName: "Previous Rent Due",
+    field: "lastPaymentAmount",
+    headerName: "Previous Payment Due",
     valueFormatter: currencyFormatter,
     width: 200,
   },
   {
     field: "amount",
-    headerName: "Rent Due",
+    headerName: "Enter Payments",
     valueFormatter: currencyFormatter,
     width: 200,
     type: "number",
@@ -41,34 +42,34 @@ export const getColumns = () => [
   },
 ];
 
-export function SiteAddRentsDue() {
+export function SiteAddPaymentsMade() {
   const { siteId } = useParams();
   const columns = getColumns();
-  const setRentsState = useSetRecoilState(rents);
+  const setPaymentState = useSetRecoilState(payments);
   const getRowId = (item) => item.unitId;
 
   const rows = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
   const [rowData, setRowData] = useState([]);
-  const [newRents, setNewRents] = useState([]);
+  const [newPayments, setNewPayments] = useState([]);
 
   const handleCellChange = useCallback((params) => {
     setRowData((current) => getDataUpdater(getRowId)(current, params));
   }, []);
 
-  const handleAddRents = useCallback(() => {
-    setRentsState((current) => [...current, ...newRents]);
-  }, [newRents, setRentsState]);
+  const handleAddPayments = useCallback(() => {
+    setPaymentState((current) => [...current, ...newPayments]);
+  }, [newPayments, setPaymentState]);
 
   useEffect(() => {
     setRowData(
       rows.units.map((item) => {
-        const lastRent = item.rents?.[0];
+        const lastPayment = item.payments?.[0];
 
         return {
           ...item,
-          amount: lastRent?.amount,
-          lastRentAmount: lastRent?.amount,
-          lastRentDate: lastRent?.timestamp,
+          amount: lastPayment?.amount,
+          lastPaymentAmount: lastPayment?.amount,
+          lastPaymentDate: lastPayment?.timestamp,
           siteId,
         };
       })
@@ -78,7 +79,7 @@ export function SiteAddRentsDue() {
   useEffect(() => {
     const timestamp = Date.now();
 
-    setNewRents(
+    setNewPayments(
       compact(
         rowData.map(({ siteId, unitId, applicantId, amount }) => {
           if (!!amount && !!applicantId) {
@@ -103,12 +104,12 @@ export function SiteAddRentsDue() {
     <div style={{ height: 600, width: "100%" }}>
       <SiteHeader />
 
-      <Button disabled={!newRents.length} onClick={handleAddRents}>
-        Add Rents
+      <Button disabled={!newPayments.length} onClick={handleAddPayments}>
+        Add Payments
       </Button>
 
       <Typography textAlign="center">
-        Enter rents due for {month} {year}
+        Enter Payments due for {month} {year}
       </Typography>
 
       <DataGrid
