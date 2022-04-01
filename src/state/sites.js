@@ -1,6 +1,10 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { sitesWithUnitsData } from "./data/sitesWithUnits";
-import { getSiteUnitTenantWithApplicantMap } from "./tenants";
+import {
+  getSiteUnitTenantWithApplicantMap,
+  getUpcomingRenewalTenantsSummaryInfoMap,
+  tenants,
+} from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { getApplicantsWithName } from "./applicants";
 import { deposits, getSiteDepositsSummaryInfoMap } from "./deposits";
@@ -190,9 +194,10 @@ export const getSiteWithTenantsSummaryInfo = selectorFamily({
     ({ get }) => {
       const siteInfo = get(getSitesWithTenantMap).get(siteId);
       const siteSummary = get(getSitesTenantSummaryInfoMap).get(siteId);
+      const tenantsItems = get(tenants);
 
       const unitSummary = siteInfo.units.map((unit) => {
-        const { tenant } = unit;
+        const { tenant, unitId } = unit;
         const applicant = tenant?.applicant;
 
         const rentTotals = getRentPaymentTotals(
@@ -200,20 +205,37 @@ export const getSiteWithTenantsSummaryInfo = selectorFamily({
           tenant?.payments || []
         );
 
+        const lastMoveOut = !tenant
+          ? tenantsItems
+              .filter(
+                (item) =>
+                  !!item.dateMoveOut &&
+                  item.unitId === unitId &&
+                  item.siteId === siteId
+              )
+              .sort((a, b) => b.dateMoveOut - a.dateMoveOut)[0]?.dateMoveOut
+          : undefined;
+
         return {
           ...unit,
           ...tenant,
           ...applicant,
           ...rentTotals,
+          lastMoveOut,
           tenantFullName: `${applicant?.firstName || ""} ${
             applicant?.lastName || ""
           }`,
         };
       });
 
+      const siteRenewals = get(getUpcomingRenewalTenantsSummaryInfoMap).get(
+        siteId
+      );
+
       return {
         ...siteInfo,
         siteSummary,
+        siteRenewals,
         units: unitSummary,
       };
     },

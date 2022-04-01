@@ -7,6 +7,8 @@ import Tab from "@mui/material/Tab";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { dateFormatter } from "../formatters/cellFormatters";
+import { SiteTotalsSummary } from "../hereisthestuffyourgoingtouse/totalslist";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
 import { SiteAddress } from "./SiteAddress";
 import { SiteHeader } from "./SiteHeader";
@@ -22,16 +24,17 @@ export function SiteUnitSummary() {
     setValue(newValue);
   };
 
+  const vacantUnits = siteInfo.units.filter((unit) => !unit.tenant);
+
   console.log(siteInfo);
 
   return (
     <Stack>
-      <Box sx={{flexGrow: 2}}>
-
+      <Box sx={{ flexGrow: 2 }}>
         <SiteAddress />
       </Box>
 
-      <Paper sx={{width: "100%"}} >
+      <Paper sx={{ width: "100%" }}>
         <Typography variant="h5" p={3}>
           Site Summary
         </Typography>
@@ -58,10 +61,12 @@ export function SiteUnitSummary() {
               </Box>
               <TabPanel value="1">
                 This Month
-                {siteInfo.units.map((item) => (
+                {siteInfo.siteRenewals.map((item) => (
                   <Stack>
-                    <Typography>{item.unitId}</Typography>
-                    <Typography>{item.dateRenewal}</Typography>
+                    <Typography>{item?.unitId}</Typography>
+                    <Typography>
+                      {dateFormatter({ value: item?.dateRenewal })}
+                    </Typography>
                     <Typography>Recert Button</Typography>
                   </Stack>
                 ))}
@@ -70,16 +75,23 @@ export function SiteUnitSummary() {
               </TabPanel>
               <TabPanel value="2">
                 <Typography>view waiting list this site</Typography>
-                <Stack>
-                  <Typography>unit id</Typography>
-                  <Typography>vacant since</Typography>
-                </Stack>
+                {vacantUnits.map((vacantUnit) => (
+                  <Stack>
+                    <Typography>{vacantUnit.unitId}</Typography>
+
+                    <Typography>
+                      vacant since{" "}
+                      {dateFormatter({ value: vacantUnit.lastMoveOut })}
+                    </Typography>
+                  </Stack>
+                ))}
               </TabPanel>
               {/* <TabPanel value="3">Item Three</TabPanel> */}
             </TabContext>
           </Box>
         </Stack>
       </Paper>
+      <SiteTotalsSummary />
     </Stack>
   );
 }

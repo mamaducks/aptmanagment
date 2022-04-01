@@ -5,7 +5,7 @@ import {
   getApplicantsWithNameMap,
 } from "./applicants";
 import { tenantsData } from "./data/tenants";
-import { compact } from "lodash";
+import { compact, groupBy } from "lodash";
 import { getTenantRentsMap } from "./rents";
 import { getTenantPaymentsMap } from "./payments";
 import { getSitesWithTenant } from "./sites";
@@ -96,6 +96,16 @@ export const getUpcomingRenewalTenantsSummaryInfo = selector({
         (tenantInfo) => tenantInfo?.dateRenewal < Date.now() + RENEWAL_DAYS
       )
       .flat(),
+});
+
+export const getUpcomingRenewalTenantsSummaryInfoMap = selector({
+  key: "getUpcomingRenewalTenantsSummaryInfoMap",
+  get: ({ get }) =>
+    new Map(
+      Object.entries(
+        groupBy(get(getUpcomingRenewalTenantsSummaryInfo), 'siteId')
+      )
+    ),
 });
 
 export const getTenantFormData = selectorFamily({

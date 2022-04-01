@@ -18,12 +18,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getSiteWithTenantsSummaryInfo } from "../state/sites";
+import { getUpcomingRenewalTenantsSummaryInfo } from "../state/tenants";
 
 export function SiteTotalsSummary() {
     const { siteId } = useParams();
-    const siteUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId)).units;
+    const siteUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
   
-    //   const t = useRecoilValue(getSiteTenantSummaryInfo(siteId))
+      // const t = useRecoilValue(getUpcomingRenewalTenantsSummaryInfo(siteId))
     console.log("aa", siteUnits);
   
     return (
@@ -46,19 +47,19 @@ export function SiteTotalsSummary() {
               <ListItem my={3}>
                 <ListItemText primary="# units" />
   
-                <ListItemText primary={siteUnits.totalNumberOfUnits} />
+                <ListItemText primary={siteUnits.siteSummary.totalNumberOfUnits} />
               </ListItem>
   
               <ListItem my={3}>
                 <ListItemText primary="# certifications expiring this month" />
   
-                <ListItemText primary="value" />
+                <ListItemText primary={siteUnits.siteRenewals.length} />
               </ListItem>
   
               <ListItem my={3}>
                 <ListItemText primary="# vacancies" />
   
-                <ListItemText primary={siteUnits.totalNumberOfVacantUnits} />
+                <ListItemText primary={siteUnits.siteSummary.totalNumberOfVacantUnits} />
               </ListItem>
             </List>
             {/* ))} */}
