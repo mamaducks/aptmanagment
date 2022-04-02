@@ -9,6 +9,7 @@ export const useStyles = makeStyles(() => ({
       fontWeight: "bolder",
     },
   },
+
 }));
 
 export function useColumns(columns) {
@@ -26,3 +27,4 @@ export function useColumns(columns) {
     [boldness, positive, negative, columns]
   );
 }
+

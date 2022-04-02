@@ -1,9 +1,13 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { rentsData } from "./data/rents";
-import { getSiteLedgerSummaryInfoMap, getSitesWithTenant } from "./sites";
+import {
+  getSiteLedgerSummaryInfoMap,
+  getSitesWithTenant,
+  getSiteLedgerSummaryInfo,
+} from "./sites";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { groupBy } from "lodash";
-import { getId, updateState } from "./helpers/dataHelpers";
+import { getId, mapPropsToOptions, updateState } from "./helpers/dataHelpers";
 import { localStorageEffect } from "./localStorageEffect";
 
 export const rents = atom({
@@ -73,6 +77,21 @@ export const getSiteRentsSummaryInfoForMonthYear = selectorFamily({
             ?.rentTotals,
         };
       });
+    },
+});
+
+export const getUnitRentTotals = selectorFamily({
+  key: "getUnitRentTotals",
+  get:
+    ([siteId, unitId]) =>
+    ({ get }) => {
+      const { allLedgerInfo = [] } =
+        get(getSiteLedgerSummaryInfoMap).get(siteId) || {};
+      console.log("ff", siteId, unitId, allLedgerInfo);
+
+      return allLedgerInfo.filter(
+        (item) => item.type !== "deposits" && item.unitId === unitId
+      );
     },
 });
 

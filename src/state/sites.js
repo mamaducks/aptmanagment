@@ -6,7 +6,11 @@ import {
   tenants,
 } from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
-import { getApplicantsWithName } from "./applicants";
+import {
+  getApplicantsMap,
+  getApplicantsWithName,
+  getApplicantsWithNameMap,
+} from "./applicants";
 import { deposits, getSiteDepositsSummaryInfoMap } from "./deposits";
 import { groupBy, sortBy } from "lodash";
 import { getTenantDepositedPaymentsMap, payments } from "./payments";
@@ -257,8 +261,8 @@ export const getSiteWithDepositSummaryInfo = selectorFamily({
       get(getSiteDepositsSummaryInfoMap).get(siteId),
 });
 
-export const getSiteLedgerSummaryInfo = selector({
-  key: "getSiteLedgerSummaryInfo",
+export const getAllLedgerInfo = selector({
+  key: "getAllLedgerInfo",
 
   get: ({ get }) => {
     const allDeposits = get(deposits).map((item) => ({
@@ -278,8 +282,19 @@ export const getSiteLedgerSummaryInfo = selector({
 
     const allRentsAndPayments = [...allDeposits, ...allPayments, ...allRents];
 
+    return allRentsAndPayments.sort((a, b) => b.timestamp - a.timestamp);
+  },
+});
+
+export const getSiteLedgerSummaryInfo = selector({
+  key: "getSiteLedgerSummaryInfo",
+
+  get: ({ get }) => {
+    const allLedgerInfo = get(getAllLedgerInfo);
+    const applicantInfo = get(getApplicantsWithNameMap);
+
     const sitesLedgerInfo = Object.entries(
-      groupBy(allRentsAndPayments, "siteId")
+      groupBy(allLedgerInfo, "siteId")
     ).map(([site, siteItems]) => {
       const yearMonthMap = getYearMonthDateMap(
         siteItems,
@@ -305,7 +320,14 @@ export const getSiteLedgerSummaryInfo = selector({
         });
       });
 
-      return { siteId: site, ledgerInfo: yearMonthMap };
+      return {
+        siteId: site,
+        ledgerInfo: yearMonthMap,
+        allLedgerInfo: allLedgerInfo.map((item) => ({
+          ...item,
+          ...applicantInfo.get(item?.applicantId),
+        })),
+      };
     });
 
     return sitesLedgerInfo;
