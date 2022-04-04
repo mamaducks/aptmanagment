@@ -1,6 +1,5 @@
 // add to units arrays == bedrooms "1", "2", "3", is RA: true, false, isFirstFloor: true, false,
 
-
 export const sitesWithUnitsData = [
   {
     siteId: "edgewoodAcres",
@@ -832,8 +831,8 @@ export const sitesWithUnitsData = [
     ],
   },
   {
-    siteId: "monroeTownII",
-    siteName: "Monroe Towne",
+    siteId: "mTII",
+    siteName: "Monroe Towne II",
     siteAddress: "800 N Main Street",
     siteCity: "Williamstown",
     siteZip: "08094",
@@ -860,6 +859,7 @@ export const sitesWithUnitsData = [
       { unitId: "E10", number: "E10" },
       { unitId: "E11", number: "E11" },
       { unitId: "E12", number: "E12" },
+
       { unitId: "F01", number: "F01" },
       { unitId: "F02", number: "F02" },
       { unitId: "F03", number: "F03" },

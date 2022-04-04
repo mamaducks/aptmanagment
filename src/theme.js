@@ -304,7 +304,13 @@ const theme = responsiveFontSizes(
         defaultProps: {
           variant: "text",
           color: "primary",
+          
         },
+        styleOverrides: {
+          root: {
+            textDecoration: "underline"
+          }
+        }
       },
       MuiFormControl: {
         defaultProps: {

@@ -8,9 +8,9 @@ import {
   useRecoilValue,
 } from "recoil";
 import theme from "./theme";
-import NavTabs from "./App/LinkTabs";
+import NavTabs from "./newUnused/LinkTabs";
 import { Router } from "./Router";
-import { AllEmployees, CurrentUserInfo } from "./data/userAtoms";
+import { AllEmployees, CurrentUserInfo } from "./newUnused/data/userAtoms";
 import { ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -21,7 +21,7 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <BrowserRouter>
         <RecoilRoot>
-          <NavTabs />
+          {/* <NavTabs /> */}
           <CurrentUserInfo />
           <Router />
         </RecoilRoot>

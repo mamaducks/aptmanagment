@@ -1,4 +1,4 @@
-import { eachMonthOfInterval, format, getMonth, getYear } from "date-fns";
+import { eachMonthOfInterval, format, getDate, getMonth, getYear } from "date-fns";
 import { compact, groupBy, sortBy } from "lodash";
 
 export function getId() {
@@ -83,9 +83,21 @@ export function getYearMonthDateMap(items, valueFn = () => undefined) {
   // return new Map(Object.entries(yearMonthGrouped));
 }
 
-export function getCurrentMonthYearLabel() {
+export function getCurrentMonthYear() {
   const year = getYear(Date.now());
-  const month = format(Date.now(), "LLLL");
+  const month = getMonth(Date.now());
 
-  return `${month} ${year}`;
+  return [year, month];
+}
+
+export function getCurrentMonthYearLabel() {
+  const [year] = getCurrentMonthYear();
+
+  return `${format(Date.now(), "LLLL")} ${year}`;
+}
+
+export function getCurrentDate() {
+  const year = getYear(Date.now());
+  const month = getMonth(Date.now())
+  const Date = getDate
 }

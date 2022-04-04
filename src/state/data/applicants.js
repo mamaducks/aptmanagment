@@ -23,11 +23,13 @@ export const applicantRaceData = [
     label: "Native Hawiian or Pacific Islander",
   },
   { value: "5", label: "White" },
+  {value: "6", label: "None Provided"}
 ];
 
 export const applicantEthnicityData = [
   { value: "a", label: "Hispanic Latino" },
   { value: "b", label: "Non-Hispanic Latino" },
+  {value: "c", label: "None Provided"}
 ];
 
 export const applicantStatusData = mapPropsToOptions(APPLICANT_STATUS_MAP);

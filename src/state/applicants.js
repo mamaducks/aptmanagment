@@ -1,4 +1,5 @@
 import { atom, selector, selectorFamily } from "recoil";
+import { phoneFormatter } from "../formatters/cellFormatters";
 import { fullNameValueGetter } from "../formatters/valueGetters";
 import {
   applicantsData,
@@ -65,6 +66,9 @@ export const getApplicantsWithName = selector({
       ...item,
       applicantsName: (item.applicants || [])
         .map((applicant) => fullNameValueGetter({ row: applicant }))
+        .join(", "),
+      applicantsPhone: (item.applicants || [])
+        .map((applicant) => phoneFormatter({ value: applicant.phonePrimary }))
         .join(", "),
     })),
 });
