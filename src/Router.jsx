@@ -14,7 +14,7 @@ import { Management } from "./newUnused/Management";
 import { SiteUnits } from "./leonaPages/sites/SiteUnits";
 import { ManagementRents } from "./mightUse/ManagementRents";
 import { ManagementUnitRents } from "./newUnused/Grids/RentRollSummaryGrid";
-import { SiteRentRoll } from "./leonaPages/sites/SiteRentRoll";
+import { SiteRentRoll } from "./leonaPages/rents/SiteRentRoll";
 import { SiteApplicants } from "./leonaPages/applicants/SiteApplicants";
 import { ManagementRentSummary } from "./leonaPages/management/ManagementRentSummary";
 
@@ -36,15 +36,15 @@ import { FormRent } from "./forms/FormRent.jsx";
 import { DialogPayment } from "./dialogs/DialogPayment";
 import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
 import { SitePendingDeposit } from "./leonaPages/deposits/SitePendingDeposit.jsx";
-import { SiteAddRentsDue } from "./leonaPages/rents/AddRentsDue";
-import { SiteAddPaymentsMade } from "./leonaPages/rents/AddPaymentsMade.jsx";
+import { SiteAddRentsDue } from "./leonaPages/rents/SiteAddRentsDue";
+import { SiteAddPaymentsMade } from "./leonaPages/rents/SiteAddPaymentsMade.jsx";
 import { SiteRentActions } from "./leonaPages/rents/SiteRentsActions.jsx";
 import { SiteDepositActions } from "./leonaPages/deposits/SiteDepositActions.jsx";
 import { UnitLedger } from "./leonaPages/management/ManagementUnitLedger.jsx";
 import { TenantInfo } from "./leonaPages/tenant/TenantInfo.jsx";
 import { TenantLedger } from "./leonaPages/tenant/TenantLedger.jsx";
 import { ManagementSiteRentRoll } from "./leonaPages/management/ManagementSiteRentRoll.jsx";
-import { UnitSummary } from "./leonaPages/units/UnitSummary.jsx";
+import { UnitSummary } from "./leonaPages/sites/UnitSummary.jsx";
 
 export function Router() {
   return (
