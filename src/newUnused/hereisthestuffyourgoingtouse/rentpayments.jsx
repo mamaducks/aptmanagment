@@ -16,7 +16,7 @@ import {
 import { useCallback, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { SiteHeader } from "../headers/SiteHeader";
+import { SiteHeader } from "../site/SiteHeader";
 import { employeeRoleData } from "../state/data/employees";
 import { employeeRoleDataMap, getEmployeeFormData } from "../state/employees";
 import {
@@ -25,37 +25,54 @@ import {
   getTenantRentsMap,
 } from "../state/rents";
 import { currencyFormatter } from "../formatters/cellFormatters";
-import {
-  getPaymentsMap,
-  getPaymentFormData,
-  payments,
-} from "../state/payments";
+import { getPaymentsMap, getPaymentFormData } from "../state/payments";
 import { Box } from "@mui/system";
 
-export function FormPayment() {
-  const { siteId } = useParams();
+export function FormRent({ applicantId, siteId, unitId, onClose }) {
+  // const { siteId } = useParams();
   // const navigate = useNavigate();
   //   const allRoles = useRecoilValue(sites);
-  // const unitPayment = useRecoilValue(getTenantRentsMap).get(applicantId);
-  const unitPayment = useRecoilValue(payments);
+  const unitRent = useRecoilValue(getTenantRentsMap).get(applicantId);
 
   const [paymentInfo, setPaymentInfo] = useRecoilState(
-    getPaymentFormData(siteId)
+    getPaymentFormData({ siteId, unitId, applicantId })
   );
 
-  const [item, setItem] = useState(paymentInfo);
+  const [rentInfo, setRentInfo] = useRecoilState(
+    getRentFormData({ siteId, unitId, applicantId })
+  );
 
-  // const allPayments = sitePayments
-  //   .get(rent.siteId)
-  //   .units.filter((item) => (unitId ? true : !item.tenant));
+  const [rent, setRent] = useState(rentInfo);
+  const [payment, setPayment] = useState(paymentInfo);
 
-  const setFieldValue = useCallback(
+  const siteRents = useRecoilValue(getRentsMap);
+
+  const sitePayments = useRecoilValue(getPaymentsMap);
+
+  const allRents = siteRents
+    .get(rent.siteId)
+    .units.filter((item) => (unitId ? true : !item.tenant));
+
+  const allPayments = sitePayments
+    .get(rent.siteId)
+    .units.filter((item) => (unitId ? true : !item.tenant));
+
+  const setRentFieldValue = useCallback(
     (name, value) => {
       console.log(name, value);
 
-      value !== null && setItem((item) => ({ ...item, [name]: value }));
+      value !== null && setRent((item) => ({ ...item, [name]: value }));
     },
-    [setItem]
+    [setRent]
+  );
+
+  const setPaymentFieldValue = useCallback(
+    (name, value) => {
+      console.log(name, value);
+
+      value !== null && setPayment((item) => ({ ...item, [name]: value }));
+    },
+    [setPayment]
   );
 
   // const addProps = useCallback(
@@ -76,19 +93,15 @@ export function FormPayment() {
   //   const rolesMap = useRecoilValue(employeeRoleDataMap);
 
   const handleSubmit = useCallback(() => {
-    setPaymentInfo(item);
-  }, [item, setPaymentInfo]);
+    setRentInfo(rent);
+    setPaymentInfo(payment);
+  }, [rent, setRentInfo, payment, setPaymentInfo]);
 
   return (
     <Box display="flex" justifyContent="center">
       <Stack direction="column" m={10}>
-        <Stack>
-
-          {/* <SiteHeader /> */}
-          <div>sitename</div>
-          <div>{item.timestamp}</div>
-        </Stack>
-        
+        {/* <SiteHeader /> */}
+        <div>sitename</div>
 
         <Stack>
           {/* <FormControl sx={{ flexGrow: 1 }}>
@@ -118,9 +131,8 @@ export function FormPayment() {
               <FormLabel>Unit</FormLabel>
               <TextField
                 margin="normal"
-                // label={siteRents.unitId}
-                value={item.unitId}
-                // defaultValue="unitId"
+                label={siteRents.unitId}
+                defaultValue="unitId"
                 variant="standard"
                 InputProps={{
                   readOnly: true,
@@ -131,9 +143,8 @@ export function FormPayment() {
               <FormLabel>Tenant</FormLabel>
               <TextField
                 margin="normal"
-                // label={siteRents.applicantId}
-                value={item.lastName}
-                // defaultValue="tenant name"
+                label={siteRents.applicantId}
+                defaultValue="tenant name"
                 variant="standard"
                 InputProps={{
                   readOnly: true,
@@ -141,17 +152,30 @@ export function FormPayment() {
               />
             </FormControl>
 
+            {/* <Typography sx={{ alignSelf: "center" }}>
+            {siteRents?.applicantId}
+            tenant last name or name
+          </Typography> */}
             <FormControl>
-              <FormLabel>Rent Paid</FormLabel>
-
               <TextField
                 onChange={({ target: { value } }) =>
-                  setFieldValue("amount", value)
+                  setRentFieldValue("amount", value)
                 }
-                label="amount recieved"
-                value={currencyFormatter(item.amount)}
+                label="Rent Due"
+                value={currencyFormatter(rent.amount)}
               >
-                amount recieved
+                rent due
+              </TextField>
+            </FormControl>
+            <FormControl>
+              <TextField
+                onChange={({ target: { value } }) =>
+                  setPaymentFieldValue("amount", value)
+                }
+                label="Rent Paid"
+                value={currencyFormatter(payment.amount)}
+              >
+                rent paid
               </TextField>
             </FormControl>
           </Stack>

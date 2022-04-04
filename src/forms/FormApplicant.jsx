@@ -265,7 +265,7 @@ export function FormApplicant() {
               </Typography>
 
               {!index && (
-                <Button variant="outlined" onClick={handleAddOccupant}>
+                <Button size="large" onClick={handleAddOccupant}>
                   Add Co-Applicant
                 </Button>
               )}

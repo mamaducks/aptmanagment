@@ -7,11 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCallback, useState } from "react";
-// import { Bill } from "../AppSections/Maintenance/Billing/EnterBill";
-// import { WorkOrderView } from "../hereisthestuffyourgoingtouse/WorkOrderView";
-import { BillTable } from "./BillTable";
+import { EditableWorkOrder } from "./EditableWorkOrderForm";
 
-export default function BillsDialog() {
+export default function OrderTableEditDialog({workOrderId}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,17 +23,17 @@ export default function BillsDialog() {
   return (
     <div>
       <Button  onClick={handleClickOpen}>
-        View Bills
+        Work Orders
       </Button>
       <Dialog open={open} onClose={handleClose} fullScreen>
+        <DialogTitle>Work Orders</DialogTitle>
+        <DialogContent>
+          <EditableWorkOrder workOrderId={workOrderId} />
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
-        <DialogTitle>View Bills</DialogTitle>
-        <DialogContent>
-          <BillTable />
-        </DialogContent>
       </Dialog>
     </div>
   );
