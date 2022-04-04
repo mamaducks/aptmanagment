@@ -9,7 +9,7 @@ import { dateFormatter, phoneFormatter } from "../../formatters/cellFormatters";
 import { tenantDialogInfo } from "../../state/dialogs";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { UnitSummary } from "../units/UnitSummary"
+import { UnitSummary } from "./UnitSummary"
 // import { SiteUnitSummary } from "../../site/SiteUnitSummary";
 
 export const getColumns = ({ setTenantDialogInfo }) => [

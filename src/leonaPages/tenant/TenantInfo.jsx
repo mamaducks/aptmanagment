@@ -1,11 +1,10 @@
-import { Button, Stack, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
+import { Button, Stack } from "@mui/material";
 import { SiteHeader } from "../../headers/SiteHeader";
-import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { TenantInfoCard } from "./TenantInfoCard";
 import { TenantLedger } from "./TenantLedger";
 import { TenantCurrentPayment } from "./TenantPaymentCard";
+
 
 export function TenantInfo() {
   return (

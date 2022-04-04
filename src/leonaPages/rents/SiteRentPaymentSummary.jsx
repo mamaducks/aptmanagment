@@ -1,4 +1,4 @@
-import NumbersIcon from "@mui/icons-material/Numbers";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import {
   Card,
   CardContent,
@@ -6,37 +6,21 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  ListSubheader,
-  Typography,
+  ListItemText, Typography
 } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-
+import { useRecoilValue } from "recoil";
 import {
-  getSiteWithDepositSummaryInfo,
-  getSiteWithTenantsSummaryInfo,
-  getSiteLedgerSummaryInfoMap,
-} from "../../state/sites";
-import { getApplicantsWithNameMap } from "../../state/applicants";
-
-import { getTenantFormData } from "../../state/tenants";
-import {
-  getCurrentMonthYear,
-  getCurrentMonthYearLabel,
-  getYearMonthDateMap,
-} from "../../state/helpers/dataHelpers";
-import { getTenantRentsMap, getUnitRentTotals } from "../../state/rents";
-import { textAlign } from "@mui/system";
-import {
-  dateFormatter,
-  currencyFormatter,
+  currencyFormatter
 } from "../../formatters/cellFormatters";
-import { MonthPicker } from "@mui/lab";
-import { getRentPaymentTotals } from "../../state/helpers/rentsHelpers";
-import { getMonth, getYear } from "date-fns";
+import {
+  getCurrentMonthYear
+} from "../../state/helpers/dataHelpers";
+import {
+  getSiteLedgerSummaryInfoMap, getSiteWithTenantsSummaryInfo
+} from "../../state/sites";
+
+
 
 export function SiteRentPaymentSummary() {
   const { siteId } = useParams();

@@ -1,18 +1,14 @@
-import { Button, Stack, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { compact } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currencyFormatter, dateFormatter } from "../../formatters/cellFormatters";
-import { month, year } from "../../state/data/reference";
+import { ActionSubheader } from "../../headers/ActionSubheader";
 import { getDataUpdater } from "../../state/helpers/dataHelpers";
+import { useColumns } from "../../state/helpers/hooks";
 import { rents } from "../../state/rents";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { SiteHeader } from "../../headers/SiteHeader";
-import { ActionSubheader } from "../../headers/ActionSubheader";
-import { useColumns } from "../../state/helpers/hooks";
-import { SiteRentPaymentSummary } from "./SiteRentsMonthTotals";
 
 
 export const columns = [

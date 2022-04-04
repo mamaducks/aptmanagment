@@ -1,19 +1,17 @@
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Button, Divider, Paper, Stack, Typography } from "@mui/material";
+import { Divider, Paper, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { dateFormatter } from "../../formatters/cellFormatters";
-import { SiteTotalsSummary } from "../sites/SiteTotalslist";
-import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { tenantDialogInfo } from "../../state/dialogs";
-
 import { SiteAddress } from "../../headers/SiteAddress";
-import { SiteHeader } from "../../headers/SiteHeader";
+import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
+import { SiteTotalsSummary } from "./SiteTotalsSummary";
+
 
 export function UnitSummary({ setTenantDialogInfo }) {
   const { siteId } = useParams();
@@ -69,14 +67,6 @@ export function UnitSummary({ setTenantDialogInfo }) {
                     <Typography>
                       {dateFormatter({ value: item?.dateRenewal })}
                     </Typography>
-
-                    {/* <Button
-                      onClick={() =>
-                        setTenantDialogInfo({ formType: "update" })
-                      }
-                    >
-                      Update Tenant
-                    </Button> */}
 
                     <Typography>Recert Button</Typography>
                   </Stack>

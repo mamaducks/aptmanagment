@@ -1,4 +1,4 @@
-import NumbersIcon from "@mui/icons-material/Numbers";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import {
   Card,
   CardContent,
@@ -7,25 +7,17 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
+  ListSubheader
 } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-
-import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { getApplicantsWithNameMap } from "../../state/applicants";
-
-import { getTenantFormData } from "../../state/tenants";
-import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
-import { getTenantRentsMap } from "../../state/rents";
-import { textAlign } from "@mui/system";
+import { useRecoilValue } from "recoil";
 import {
-  dateFormatter,
-  currencyFormatter,
+  currencyFormatter, dateFormatter
 } from "../../formatters/cellFormatters";
-import { MonthPicker } from "@mui/lab";
+import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
+import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
+
+
 
 export function TenantCurrentPayment() {
   const { siteId, unitId, applicantId } = useParams();

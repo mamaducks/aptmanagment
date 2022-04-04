@@ -1,21 +1,19 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Button, Divider, Stack, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
+import { Button, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
-import { SiteAddPaymentsMade } from "./AddPaymentsMade";
-import { SiteAddRentsDue } from "./AddRentsDue";
-import { SiteDeposits } from "../deposits/SiteDeposits";
 import { SiteHeader } from "../../headers/SiteHeader";
-import { SitePendingDeposit } from "../deposits/SitePendingDeposit";
-import { SiteRentRoll } from "../sites/SiteRentRoll";
-import { SiteRentPaymentSummary } from "./SiteRentsMonthTotals";
-import { SiteDelinquentSummary } from "./SiteDelinquentTotals";
 import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
+import { SiteAddPaymentsMade } from "./SiteAddPaymentsMade";
+import { SiteAddRentsDue } from "./SiteAddRentsDue";
+import { SiteDelinquentSummary } from "./SiteDelinquentSummary";
+import { SiteRentPaymentSummary } from "./SiteRentPaymentSummary";
+import { SiteRentRoll } from "./SiteRentRoll";
+
 
 export function SiteRentActions() {
   const [value, setValue] = useState("1");

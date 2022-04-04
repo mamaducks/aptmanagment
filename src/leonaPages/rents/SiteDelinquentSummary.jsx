@@ -1,3 +1,4 @@
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import {
   Button,
@@ -8,41 +9,23 @@ import {
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
-  ListItemText,
-  ListSubheader,
-  Popover,
-  Stack,
-  Typography,
+  ListItemText, Popover, Typography
 } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Box from "@mui/material/Box";
-import { useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-
-import {
-  getSiteWithDepositSummaryInfo,
-  getSiteWithTenantsSummaryInfo,
-  getSiteLedgerSummaryInfoMap,
-  sites,
-} from "../../state/sites";
-import { getApplicantsWithNameMap } from "../../state/applicants";
-
-import { getTenantFormData } from "../../state/tenants";
-import {
-  getCurrentMonthYear,
-  getCurrentMonthYearLabel,
-  getYearMonthDateMap,
-} from "../../state/helpers/dataHelpers";
-import { getTenantRentsMap, getUnitRentTotals } from "../../state/rents";
-import { textAlign } from "@mui/system";
-import {
-  dateFormatter,
-  currencyFormatter,
-} from "../../formatters/cellFormatters";
-import { MonthPicker } from "@mui/lab";
-import { getRentPaymentTotals } from "../../state/helpers/rentsHelpers";
-import { getMonth, getYear } from "date-fns";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import {
+  currencyFormatter
+} from "../../formatters/cellFormatters";
+import {
+  getCurrentMonthYear
+} from "../../state/helpers/dataHelpers";
+import {
+  getSiteLedgerSummaryInfoMap, getSiteWithTenantsSummaryInfo
+} from "../../state/sites";
+
+
 
 export function SiteDelinquentSummary() {
   const { siteId } = useParams();
@@ -86,12 +69,14 @@ export function SiteDelinquentSummary() {
       variant="outlined"
       sx={{
         width: 400,
-        height: 250
+        height: 250,
       }}
     >
       <CardContent>
         <List>
-          <Typography variant="h6"  lineHeight={2} sx={{textIndent: 12}}>Delinquencies</Typography>
+          <Typography variant="h6" lineHeight={2} sx={{ textIndent: 12 }}>
+            Delinquencies
+          </Typography>
 
           <Divider sx={{ mb: 1 }} />
 
@@ -100,12 +85,11 @@ export function SiteDelinquentSummary() {
               <NumbersIcon />
             </ListItemIcon>
             <ListItemText
-                           sx={{flex: "0 1 auto", pr: 2}}
-
+              sx={{ flex: "0 1 auto", pr: 2 }}
               primary={unitsDelinquent.length}
               primaryTypographyProps={{ fontSize: "large" }}
             />
-               <ListItemText
+            <ListItemText
               secondary="Units Delinquent"
               primaryTypographyProps={{ fontSize: "large" }}
             />

@@ -1,15 +1,14 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
-import { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { currencyFormatter, dateFormatter } from "../../formatters/cellFormatters";
 import { SiteHeader } from "../../headers/SiteHeader";
 import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { useColumns } from "../../state/helpers/hooks";
 import { getUnitRentTotals } from "../../state/rents";
+
 
 export const columns = [
   {

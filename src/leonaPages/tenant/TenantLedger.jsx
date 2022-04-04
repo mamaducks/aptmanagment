@@ -1,19 +1,15 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { format } from "date-fns";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   currencyFormatter,
-  dateFormatter,
+  dateFormatter
 } from "../../formatters/cellFormatters";
 import { SiteHeader } from "../../headers/SiteHeader";
-import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { useColumns } from "../../state/helpers/hooks";
 import { getUnitRentTotals } from "../../state/rents";
-import { getDate } from "date-fns/esm";
 
 export const columns = [
   {

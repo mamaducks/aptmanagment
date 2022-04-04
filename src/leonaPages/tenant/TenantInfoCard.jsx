@@ -6,24 +6,16 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  ListSubheader,
-  Paper,
+  ListItemText
 } from "@mui/material";
-import Box from "@mui/material/Box";
-import PersonIcon from "@mui/icons-material/Person";
-import EventIcon from "@mui/icons-material/Event";
 import { useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-
-import {
-  getSitesWithTenantMap,
-  getSiteWithTenantsSummaryInfo,
-} from "../../state/sites";
-import { getApplicantsWithNameMap } from "../../state/applicants";
-
-import { getTenantFormData } from "../../state/tenants";
+import { useRecoilValue } from "recoil";
 import { dateFormatter, phoneFormatter } from "../../formatters/cellFormatters";
+import {
+  getSiteWithTenantsSummaryInfo
+} from "../../state/sites";
+
+
 
 export function TenantInfoCard() {
   const { siteId, unitId, applicantId } = useParams();

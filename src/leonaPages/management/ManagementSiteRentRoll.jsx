@@ -1,12 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { getMonth, getYear } from "date-fns";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
-import { paymentDialogInfo } from "../../state/dialogs";
-import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
 

@@ -1,28 +1,17 @@
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import { DatePicker } from "@mui/lab";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
 import {
   Box,
-  Button,
-  FormControl,
-  FormLabel,
-  IconButton,
-  TextField,
-  Typography,
+  Button
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { addMonths, getMonth, getYear } from "date-fns";
-import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
 import { useColumns } from "../../state/helpers/hooks";
 import {
-  getSiteRentsSummaryInfo,
-  getSiteRentsSummaryInfoForMonthYear,
+  getSiteRentsSummaryInfo
 } from "../../state/rents";
-import { getSiteLedgerSummaryInfo } from "../../state/sites";
+
+
 
 export const columns = [
   { field: "siteName", headerName: "Site", width: 320 },
@@ -84,7 +73,7 @@ export function ManagementRentSummary() {
   const rowData = useRecoilValue(getSiteRentsSummaryInfo);
 
   return (
-    <div style={{ height: 300, width: "100%" }}>
+    <div style={{ height: 1000, width: "100%" }}>
       <Button href="/" startIcon={<ArrowBackIosIcon />}>
         Back to All Sites
       </Button>

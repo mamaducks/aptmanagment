@@ -4,12 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currencyFormatter, dateFormatter } from "../../formatters/cellFormatters";
+import { ActionSubheader } from "../../headers/ActionSubheader";
 import { getDataUpdater } from "../../state/helpers/dataHelpers";
+import { useColumns } from "../../state/helpers/hooks";
 import { payments } from "../../state/payments";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { ActionSubheader } from "../../headers/ActionSubheader";
-import { useColumns } from "../../state/helpers/hooks";
-import { SiteRentPaymentSummary } from "./SiteRentsMonthTotals";
 
 
 export const columns = [
