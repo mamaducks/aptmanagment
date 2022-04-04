@@ -14,7 +14,6 @@ import { SiteDelinquentSummary } from "./SiteDelinquentSummary";
 import { SiteRentPaymentSummary } from "./SiteRentPaymentSummary";
 import { SiteRentRoll } from "./SiteRentRoll";
 
-
 export function SiteRentActions() {
   const [value, setValue] = useState("1");
 

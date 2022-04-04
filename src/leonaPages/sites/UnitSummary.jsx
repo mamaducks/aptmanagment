@@ -8,10 +8,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { dateFormatter } from "../../formatters/cellFormatters";
-import { SiteAddress } from "../../headers/SiteAddress";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
 import { SiteTotalsSummary } from "./SiteTotalsSummary";
-
 
 export function UnitSummary({ setTenantDialogInfo }) {
   const { siteId } = useParams();
@@ -30,14 +28,12 @@ export function UnitSummary({ setTenantDialogInfo }) {
 
   return (
     <Stack>
-      <Box sx={{ flexGrow: 2 }}>
-        <SiteAddress />
-
+      <Box>
         <SiteTotalsSummary />
       </Box>
 
-      <Paper p={6} sx={{ width: "100%" }}>
-        <Typography variant="h5" p={3}>
+      <Paper p={6} sx={{ width: 600 }}>
+        <Typography variant="h6" lineHeight={3} sx={{ textIndent: 12 }}>
           Site Summary
         </Typography>
         <Divider />

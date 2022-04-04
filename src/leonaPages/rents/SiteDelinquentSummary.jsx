@@ -8,24 +8,21 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText, Popover, Typography
+  ListItemText,
+  Popover,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { currencyFormatter } from "../../formatters/cellFormatters";
+import { getCurrentMonthYear } from "../../state/helpers/dataHelpers";
 import {
-  currencyFormatter
-} from "../../formatters/cellFormatters";
-import {
-  getCurrentMonthYear
-} from "../../state/helpers/dataHelpers";
-import {
-  getSiteLedgerSummaryInfoMap, getSiteWithTenantsSummaryInfo
+  getSiteLedgerSummaryInfoMap,
+  getSiteWithTenantsSummaryInfo,
 } from "../../state/sites";
-
-
 
 export function SiteDelinquentSummary() {
   const { siteId } = useParams();
@@ -69,7 +66,6 @@ export function SiteDelinquentSummary() {
       variant="outlined"
       sx={{
         width: 400,
-        height: 250,
       }}
     >
       <CardContent>
@@ -78,9 +74,19 @@ export function SiteDelinquentSummary() {
             Delinquencies
           </Typography>
 
-          <Divider sx={{ mb: 1 }} />
-
-          <ListItem my={3}>
+          <Divider sx={{ mb: 3 }} />
+          <ListItem sx={{ justifyContent: "flex-end" }}>
+            <Tooltip title="Units Delinquent">
+              <Button
+                aria-describedby={id}
+                variant="contained"
+                onClick={handleClick}
+              >
+                View
+              </Button>
+            </Tooltip>
+          </ListItem>
+          <ListItem my={8} pt={4}>
             <ListItemIcon sx={{ minWidth: 30 }}>
               <NumbersIcon />
             </ListItemIcon>
@@ -93,15 +99,6 @@ export function SiteDelinquentSummary() {
               secondary="Units Delinquent"
               primaryTypographyProps={{ fontSize: "large" }}
             />
-            <ListItemSecondaryAction sx={{ alignSelf: "flex-end" }}>
-              <Button
-                aria-describedby={id}
-                variant="contained"
-                onClick={handleClick}
-              >
-                View
-              </Button>
-            </ListItemSecondaryAction>
 
             <Popover
               id={id}
@@ -128,7 +125,7 @@ export function SiteDelinquentSummary() {
 
             <ListItemText
               primary={currencyFormatter({ value: delinquencies })}
-              secondary="Amount"
+              secondary="Total Amount"
               primaryTypographyProps={{ fontSize: "large" }}
             />
           </ListItem>

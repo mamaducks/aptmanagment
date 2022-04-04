@@ -15,21 +15,21 @@ export const applicantGendersData = [
 ];
 
 export const applicantRaceData = [
-  { value: "1", label: "American Indian or Alaskan Native" },
+  { value: "1", label: "Native American" },
   { value: "2", label: "Asian" },
-  { value: "3", label: "Black or African American" },
+  { value: "3", label: "Black" },
   {
     value: "4",
-    label: "Native Hawiian or Pacific Islander",
+    label: "Pacific Islander",
   },
   { value: "5", label: "White" },
-  {value: "6", label: "None Provided"}
+  { value: "6", label: "None" },
 ];
 
 export const applicantEthnicityData = [
-  { value: "a", label: "Hispanic Latino" },
-  { value: "b", label: "Non-Hispanic Latino" },
-  {value: "c", label: "None Provided"}
+  { value: "a", label: "Hispanic" },
+  { value: "b", label: "Non-Hispanic" },
+  { value: "c", label: "None" },
 ];
 
 export const applicantStatusData = mapPropsToOptions(APPLICANT_STATUS_MAP);

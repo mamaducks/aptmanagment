@@ -1,16 +1,15 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { dateFormatter, phoneFormatter } from "../../formatters/cellFormatters";
+import { SiteAddress } from "../../headers/SiteAddress";
 import { tenantDialogInfo } from "../../state/dialogs";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { UnitSummary } from "./UnitSummary"
-// import { SiteUnitSummary } from "../../site/SiteUnitSummary";
+import { UnitSummary } from "./UnitSummary";
 
 export const getColumns = ({ setTenantDialogInfo }) => [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -86,7 +85,7 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-           <Button
+          <Button
             variant="contained"
             color="primary"
             alignSelf="center"
@@ -101,8 +100,6 @@ export const getColumns = ({ setTenantDialogInfo }) => [
   },
 ];
 
-
-
 export function SiteUnits() {
   const { siteId } = useParams();
   const setTenantDialogInfo = useSetRecoilState(tenantDialogInfo);
@@ -113,26 +110,40 @@ export function SiteUnits() {
 
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
-
   const rowData = siteWithUnits.units.map((item) => ({ ...item, siteId }));
   console.log(rowData);
   return (
     <div style={{ height: 900, width: "100%" }}>
       <Stack>
-
-    <Button href="/" startIcon={<ArrowBackIosIcon />}>
+        <Box>
+          <Button href="/" startIcon={<ArrowBackIosIcon />} size="large">
             Back to All Sites
           </Button>
-      </Stack>
-   
-      <UnitSummary />
 
-      <Typography sx={{ fontSize: "larger", width: "100%" }}>
+          <Box
+            display="flex"
+            ml={10}
+            style={{ alignItems: "center", height: "100%", gap: 10 }}
+          >
+            <div>
+              <SiteAddress />
+            </div>
+          </Box>
+        </Box>
+
+        <Stack justifyContent={"flex-end"}>
+          <UnitSummary />
+        </Stack>
+      </Stack>
+
+      {/* <Box sx={{m: 4}}> */}
+      <Typography lineHeight={2} variant="h5" textAlign="center" pt={1}>
         Current Tenants
       </Typography>
+      {/* </Box> */}
 
       <DataGrid
-        getRowId={(item) => item.unitId }
+        getRowId={(item) => item.unitId}
         rows={rowData}
         columns={columnsToUse}
       />

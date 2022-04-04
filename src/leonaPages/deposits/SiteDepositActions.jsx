@@ -2,11 +2,12 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
 import { SiteHeader } from "../../headers/SiteHeader";
+import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { SiteDepositSummary } from "./SiteDepositMonthTotals";
 import { SiteDeposits } from "./SiteDeposits";
 import { SitePendingDeposit } from "./SitePendingDeposit";
@@ -22,16 +23,31 @@ export function SiteDepositActions() {
     <Stack>
       <Box sx={{ width: "100%" }}>
         <Stack>
-          <SiteHeader />
-          <Button href="/" startIcon={<ArrowBackIosIcon />}>
-            Back to Dashboard
-          </Button>
-        </Stack>
-        <Box display="flex" justifyContent="flex-end">
-          <SiteDepositSummary />
-        </Box>
+          <Box>
+            <Button href="/" startIcon={<ArrowBackIosIcon />} size="large">
+              Back to All Sites
+            </Button>
 
-        {/* <Divider /> */}
+            <Box
+              display="flex"
+              ml={10}
+              style={{ alignItems: "center", height: "100%", gap: 10 }}
+            >
+              <div>
+                <SiteHeader />
+                <Typography variant="h5">
+                  {getCurrentMonthYearLabel()}
+                </Typography>
+              </div>
+            </Box>
+          </Box>
+
+          <Stack justifyContent={"flex-end"}>
+            <Box>
+              <SiteDepositSummary />
+            </Box>
+          </Stack>
+        </Stack>
 
         <Stack>
           <Box

@@ -1,12 +1,10 @@
-import {
-  Typography
-} from "@mui/material";
+import { Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import {
   currencyFormatter,
-  dateTimeFormatter
+  dateTimeFormatter,
 } from "../../formatters/cellFormatters";
 import { getCurrentMonthYearLabel } from "../../state/helpers/dataHelpers";
 import { useColumns } from "../../state/helpers/hooks";
@@ -39,9 +37,7 @@ export function SiteDeposits() {
 
   return (
     <div style={{ height: 900, width: "100%" }}>
-     
-
-      <Typography textAlign="center" variant="h6">
+      <Typography textAlign="center" variant="h5" lineHeight={2}>
         Site Deposits as of {getCurrentMonthYearLabel()}
       </Typography>
 
