@@ -48,7 +48,7 @@ export function SiteDepositSummary() {
     <Card
       variant="outlined"
       sx={{
-        width: 600,
+        width: 550,
       }}
     >
       <CardContent>
@@ -58,7 +58,7 @@ export function SiteDepositSummary() {
 
         <Divider sx={{ mb: 1 }} />
         <Stack>
-          <List>
+          <List pl={5}>
             <ListSubheader>Payments</ListSubheader>
             <Divider sx={{ mb: 1 }} />
             <ListItem my={3}>
@@ -95,7 +95,7 @@ export function SiteDepositSummary() {
             </ListItem>
           </List>
 
-          <List>
+          <List pr={5}>
             <ListSubheader>Deposits</ListSubheader>
             <Divider sx={{ mb: 1 }} />
             <ListItem my={3}>

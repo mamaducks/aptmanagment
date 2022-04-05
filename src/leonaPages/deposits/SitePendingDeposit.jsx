@@ -85,6 +85,7 @@ export function SitePendingDeposit() {
           <Button
             disabled={!selectedPayments.length}
             onClick={handleSubmitDeposit}
+            variant="contained"
           >
             Submit Deposit
           </Button>

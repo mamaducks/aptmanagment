@@ -37,6 +37,7 @@ export const columns = [
     valueFormatter: currencyFormatter,
     width: 200,
     type: "number",
+    highlight: true,
     editable: true,
   },
 ];

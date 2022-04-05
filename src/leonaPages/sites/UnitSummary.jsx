@@ -1,7 +1,7 @@
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Divider, Paper, Stack, Typography } from "@mui/material";
+import { Divider, List, Paper, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { dateFormatter } from "../../formatters/cellFormatters";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
+import {RecertListScroll, VacantListScroll} from "../StickyScroll";
 import { SiteTotalsSummary } from "./SiteTotalsSummary";
 
 export function UnitSummary({ setTenantDialogInfo }) {
@@ -27,12 +28,12 @@ export function UnitSummary({ setTenantDialogInfo }) {
   console.log(siteInfo);
 
   return (
-    <Stack>
-      <Box>
+    <Stack > 
+      <Box display="flex" justifyContent="flex-end" >
         <SiteTotalsSummary />
       </Box>
 
-      <Paper p={6} sx={{ width: 600 }}>
+      <Paper p={6}  sx={{ width: 600 }}>
         <Typography variant="h6" lineHeight={3} sx={{ textIndent: 12 }}>
           Site Summary
         </Typography>
@@ -47,7 +48,7 @@ export function UnitSummary({ setTenantDialogInfo }) {
             }}
           >
             <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Box sx={{ borderColor: "divider" }} >
                 <TabList
                   onChange={handleChange}
                   aria-label="lab API tabs example"
@@ -57,7 +58,7 @@ export function UnitSummary({ setTenantDialogInfo }) {
                 </TabList>
               </Box>
               <TabPanel value="1">
-                {siteInfo.siteRenewals.map((item) => (
+                {/* {siteInfo.siteRenewals.map((item) => (
                   <Stack>
                     <Typography>{item?.unitId}</Typography>
                     <Typography>
@@ -66,22 +67,23 @@ export function UnitSummary({ setTenantDialogInfo }) {
 
                     <Typography>Recert Button</Typography>
                   </Stack>
-                ))}
-                <Typography>60 days accordion</Typography>
-                <Typography>90 days accordion</Typography>
+                ))} */}
+                <RecertListScroll />
+             
               </TabPanel>
               <TabPanel value="2">
-                <Typography>view waiting list this site</Typography>
-                {vacantUnits.map((vacantUnit) => (
+
+                <VacantListScroll />
+                {/* {vacantUnits.map((vacantUnit) => ( 
                   <Stack>
-                    <Typography>{vacantUnit.unitId}</Typography>
+                    {/* <Typography>{vacantUnit.unitId}</Typography>
 
                     <Typography>
                       vacant since{" "}
                       {dateFormatter({ value: vacantUnit.lastMoveOut })}
                     </Typography>
-                  </Stack>
-                ))}
+                  </Stack> */}
+                {/* ))} */}
               </TabPanel>
             </TabContext>
           </Box>

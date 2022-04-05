@@ -49,7 +49,7 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions",
-    width: 370,
+    width: 270,
     renderCell: (cellValues ) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>

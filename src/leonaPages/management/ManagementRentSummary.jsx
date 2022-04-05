@@ -1,11 +1,13 @@
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   Box,
-  Button
+  Button,
+  Typography
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
+import { RowHeader } from "../../headers/RowHeader";
 import { useColumns } from "../../state/helpers/hooks";
 import {
   getSiteRentsSummaryInfo
@@ -74,10 +76,9 @@ export function ManagementRentSummary() {
 
   return (
     <div style={{ height: 1000, width: "100%" }}>
-      <Button href="/" startIcon={<ArrowBackIosIcon />}>
-        Back to All Sites
-      </Button>
-     
+
+      <RowHeader label="Sites Rents Totals" />
+ 
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}

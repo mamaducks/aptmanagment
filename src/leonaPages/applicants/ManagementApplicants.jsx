@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
-import { SiteButtonHeader } from "../../headers/SiteButtonHeader";
+import { AddIconButton } from "../../headers/SiteButtonHeader";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteApplicantsSummaryInfo } from "../../state/sites";
 
@@ -45,11 +45,8 @@ export function ManagementApplicants() {
   return (
     <div style={{ height: 900, width: "100%" }}>
 
-      <Button href="/" startIcon={<ArrowBackIosIcon />}>
-            Back to All Sites
-          </Button>
 
-      <SiteButtonHeader
+      <AddIconButton
         title="Waiting Lists"
         href="/forms/applicant/"
         label="Add New Applicant"

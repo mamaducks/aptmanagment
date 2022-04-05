@@ -5,15 +5,14 @@ import { useMemo } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   dateFormatter,
-  referenceArrayFormatter
+  referenceArrayFormatter,
 } from "../../formatters/cellFormatters";
 import { fullNameValueGetter } from "../../formatters/valueGetters";
-import { SiteButtonHeader } from "../../headers/SiteButtonHeader";
+import { AddIconButton } from "../../headers/SiteButtonHeader";
 import { employeeRoleData } from "../../state/data/employees";
 import { employeeDialogInfo } from "../../state/dialogs";
 import { getEmployeeSummaryInfo } from "../../state/employees";
 import { useColumns } from "../../state/helpers/hooks";
-
 
 export const getColumns = ({ setEmployeeDialogInfo }) => [
   {
@@ -75,14 +74,12 @@ export function ManagementEmployees() {
 
   return (
     <>
-   <Button href="/" startIcon={<ArrowBackIosIcon />}>
-            Back to All Sites
-          </Button>      <SiteButtonHeader
+      
+      <AddIconButton
         title="Employees"
         href="/forms/employee"
         label="Add New Employee"
       />
-
       <div style={{ height: 900, width: "100%" }}>
         <DataGrid
           getRowId={(item) => item.employeeId}

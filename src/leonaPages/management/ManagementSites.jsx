@@ -1,10 +1,11 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getSiteTenantSummaryInfo } from "../../state/sites";
 import { useColumns } from "../../state/helpers/hooks";
+import { RowHeader } from "../../headers/RowHeader";
 
 export const columns = [
   { field: "siteName", headerName: "Site Name", width: 320 },
@@ -53,9 +54,8 @@ export function ManagementSites() {
 
   return (
     <div style={{ height: 900, width: "100%" }}>
-<Button href="/" startIcon={<ArrowBackIosIcon />}>
-            Back to All Sites
-          </Button>  
+     
+      <RowHeader label="Sites Overview" />
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}

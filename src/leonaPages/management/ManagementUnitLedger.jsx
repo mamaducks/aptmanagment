@@ -14,7 +14,7 @@ export const columns = [
   {
     field: "type",
     headerName: "Type",
-    width: 420,
+    width: 220,
   },
   {
     field: "timestamp",
@@ -25,7 +25,7 @@ export const columns = [
   {
     field: "applicantsName",
     headerName: "Tenant",
-    width: 420,
+    width: 440,
   },
   {
     field: "amount",
@@ -42,21 +42,22 @@ export function UnitLedger() {
 
   const unitInfo = useRecoilValue(getUnitRentTotals([siteId, unitId]));
 
-  console.log("ll", unitInfo, siteId, unitId);
+  console.log("ll",  siteId, unitId);
 
   return (
     <div style={{ height: 900, width: "100%" }}>
-      <Box gap={12}>
+      <Box ml={3} >
         <Button href="/" startIcon={<ArrowBackIosIcon />}>
           Back to Dashboard
         </Button>
-        <Box ml={10}>
+        <Box ml={10} pt={3}>
           <SiteHeader />
         </Box>
        
       </Box>
-      <Typography textAlign="center" variant="h6">
-        Unit Summary as of {getCurrentMonthYearLabel()}
+    
+      <Typography textAlign="center" variant="h5" lineHeight={2}>
+       {unitId} Unit Summary as of {getCurrentMonthYearLabel()}
       </Typography>
 
       <DataGrid

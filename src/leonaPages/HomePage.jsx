@@ -13,7 +13,7 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Rent",
-    width: 260,
+    width: 180,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
@@ -34,7 +34,7 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Deposits",
-    width: 260,
+    width: 180,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
@@ -55,7 +55,7 @@ export const columns = [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Site Info",
-    width: 260,
+    width: 180,
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
@@ -78,8 +78,9 @@ export function SitesDashboard() {
 
   return (
     <>
-      <Typography variant="h5">Lower County Property Management</Typography>
-      <Stack>
+     <Stack pb={4} pr={5} pt={5}>
+      <Typography variant="h5" p={5} >Lower County Property Management</Typography>
+     
         <Button href={`/management/rents`}>Rents Overview</Button>
         <Button href={`/management/sites`}>Sites Overview</Button>
         <Button href={`/applicants`}>Applicants</Button>

@@ -37,10 +37,9 @@ export const columns = [
     field: "amount",
     headerName: "Enter Rent Due",
     valueFormatter: currencyFormatter,
-
+    highlight: true,
     width: 200,
     type: "number",
-
     editable: true,
   },
 ];

@@ -12,7 +12,7 @@ import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
 import { UnitSummary } from "./UnitSummary";
 
 export const getColumns = ({ setTenantDialogInfo }) => [
-  { field: "unitId", headerName: "Unit", width: 140 },
+  { field: "unitId", headerName: "Unit", width: 100 },
   {
     field: "applicantsName",
     headerName: "Tenant",
@@ -28,19 +28,19 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     field: "dateMoveIn",
     headerName: "Move In Date",
     valueFormatter: dateFormatter,
-    width: 180,
+    width: 160,
   },
   {
     field: "dateLease",
     headerName: "Lease Date",
     valueFormatter: dateFormatter,
-    width: 180,
+    width: 160,
   },
   {
     field: "dateRenewal",
     headerName: "Renewal Date",
     valueFormatter: dateFormatter,
-    width: 180,
+    width: 160,
   },
   // {
   //   field: "dateMoveOut",
@@ -54,7 +54,7 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions",
-    width: 420,
+    width: 270,
     renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
@@ -81,12 +81,11 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     sortable: false,
     disableColumnMenu: true,
     headerName: "Actions Edit",
-    width: 300,
+    width: 140,
     renderCell: ({ row }) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Button
-            variant="contained"
             color="primary"
             alignSelf="center"
             disabled={!row.tenant}
@@ -114,30 +113,28 @@ export function SiteUnits() {
   console.log(rowData);
   return (
     <div style={{ height: 900, width: "100%" }}>
-      <Stack>
-        <Box>
+      <Stack sx={{pr: 5}}>
+        <Box ml={2}>
           <Button href="/" startIcon={<ArrowBackIosIcon />} size="large">
             Back to All Sites
           </Button>
 
           <Box
             display="flex"
-            ml={10}
+            ml={8}
             style={{ alignItems: "center", height: "100%", gap: 10 }}
           >
-            <div>
-              <SiteAddress />
-            </div>
+            <SiteAddress />
           </Box>
         </Box>
 
-        <Stack justifyContent={"flex-end"}>
-          <UnitSummary />
+        <Stack justifyContent="flex-end"  >
+          <UnitSummary  />
         </Stack>
       </Stack>
 
       {/* <Box sx={{m: 4}}> */}
-      <Typography lineHeight={2} variant="h5" textAlign="center" pt={1}>
+      <Typography lineHeight={2} variant="h5" textAlign="center" pt={2}>
         Current Tenants
       </Typography>
       {/* </Box> */}

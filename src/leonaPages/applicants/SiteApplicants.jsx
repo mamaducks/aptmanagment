@@ -144,14 +144,16 @@ export function SiteApplicants() {
   return (
     <div style={{ height: 900, width: "100%" }}>
       <Stack direction="column" m={2}>
-        <Stack>
-          <SiteHeader />
+        <Stack justifyContent="normal">
           <Button href="/applicants" startIcon={<ArrowBackIosIcon />}>
-            Back to All Sites
+            Back to All Waiting
           </Button>
         </Stack>
+        <span style={{ textAlign: "center", flexgrow: 1 }}>
+          <SiteHeader />
+        </span>
 
-        <Stack>
+        <Stack mr={4}>
           <FormControl>
             <FormLabel>Sort By Application Status</FormLabel>
 
@@ -168,14 +170,17 @@ export function SiteApplicants() {
               ))}
             </ToggleButtonGroup>
           </FormControl>
-          <Button
-            size="large"
-            href="/forms/applicant/"
-            startIcon={<AddBoxIcon />}
-            sx={{ textDecoration: "none", alignSelf: "flex-end" }}
-          >
-            Add New Applicant
-          </Button>
+
+          <div>
+            <Button
+              variant="contained"
+              href="/forms/applicant/"
+              startIcon={<AddBoxIcon />}
+              sx={{ textDecoration: "none", alignSelf: "center" }}
+            >
+              Add New Applicant
+            </Button>
+          </div>
         </Stack>
       </Stack>
 

@@ -9,22 +9,31 @@ export const useStyles = makeStyles(() => ({
       fontWeight: "bolder",
     },
   },
-
+  highlight: {
+    backgroundColor: "#eaf4fa",
+  },
 }));
 
 export function useColumns(columns) {
-  const { boldness, positive, negative } = useStyles();
+  const { boldness, positive, highlight, negative } = useStyles();
 
   return useMemo(
     () =>
       columns.map((column) => ({
         headerClassName: boldness,
-        cellClassName: column.highlightPositiveNegative
-          ? ({ value }) => (value >= 0 ? positive : negative)
-          : "",
+        cellClassName:
+          column.highlightPositiveNegative || column.highlight
+            ? ({ value }) =>
+                column.highlightPositiveNegative
+                  ? value >= 0
+                    ? positive
+                    : negative
+                  : column.highlight
+                  ? highlight
+                  : ""
+            : "",
         ...column,
       })),
-    [boldness, positive, negative, columns]
+    [boldness, highlight, positive, negative, columns]
   );
 }
-

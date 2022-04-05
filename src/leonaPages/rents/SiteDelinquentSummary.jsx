@@ -81,6 +81,7 @@ export function SiteDelinquentSummary() {
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
+                disabled={!unitsDelinquent.length}
               >
                 View
               </Button>

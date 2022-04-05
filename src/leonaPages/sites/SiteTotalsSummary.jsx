@@ -21,15 +21,16 @@ export function SiteTotalsSummary() {
   console.log("aa", siteUnits);
 
   return (
-    <Box display="flex" flexDirection="column" p={2}>
+    <Box display="flex" flexDirection="column" justifyContent="flex-end" >
       <Card
         variant="outlined"
         sx={{
           // maxHeight: "fit-content",
-          width: 500,
+          width: 460,
+
         }}
       >
-        <CardContent>
+        <CardContent sx={{paddingBottom: 0}}>
           <List>
             <Typography variant="h6" lineHeight={2} sx={{ textIndent: 12 }}>
               Total

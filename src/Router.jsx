@@ -1,54 +1,38 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import routes from "./routes.js";
-import { history } from "./helpers";
-import theme from "./theme";
-import { ThemeProvider } from "@mui/material";
-// import { UnitsGrid } from "./App/Grids/UnitsGrid";
-import { Maintenence } from "./unused/Maintenance";
-import { Tenants } from "./mightUse/tenants/Tenants";
-// import { Management } from "./AppSections/Management/Management";
-import { SitesDashboard } from "./leonaPages/HomePage";
-import { ManagementSites } from "./leonaPages/management/ManagementSites";
-import { Management } from "./newUnused/Management";
-import { SiteUnits } from "./leonaPages/sites/SiteUnits";
-import { ManagementRents } from "./mightUse/ManagementRents";
-import { ManagementUnitRents } from "./newUnused/Grids/RentRollSummaryGrid";
-import { SiteRentRoll } from "./leonaPages/rents/SiteRentRoll";
-import { SiteApplicants } from "./leonaPages/applicants/SiteApplicants";
-import { ManagementRentSummary } from "./leonaPages/management/ManagementRentSummary";
-
-import { ManagementEmployees } from "./leonaPages/employees/ManagementEmployees";
-import { Employee } from "./unused/Management/Employee";
+import { DialogEmployee } from "./dialogs/DialogEmployee.jsx";
+import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
+import { DialogPayment } from "./dialogs/DialogPayment";
+import { DialogTenant } from "./dialogs/DialogTenant.jsx";
+// import {ManagementBills} from "./App/Grids/ManagementBills"
+import { FormApplicant } from "./forms/FormApplicant.jsx";
+import { FormEmployee } from "./forms/FormEmployee.jsx";
+import { FormRent } from "./forms/FormRent.jsx";
 // import { NewApplicant } from "./applicants/NewApplicant";
 // import ViewApplicant from "./applicants/ViewAppicant";
 // import { MoveInApplicant } from "./applicants/MoveInApplicant";
 // import { EnterRents } from "./rents/EnterRents";
 import { ManagementApplicants } from "./leonaPages/applicants/ManagementApplicants.jsx";
-import { ManagementDeposits } from "./newUnused/management/ManagementDeposits.jsx";
-import { SiteDeposits } from "./leonaPages/deposits/SiteDeposits.jsx";
-// import {ManagementBills} from "./App/Grids/ManagementBills"
-import { FormApplicant } from "./forms/FormApplicant.jsx";
-import { DialogTenant } from "./dialogs/DialogTenant.jsx";
-import { DialogEmployee } from "./dialogs/DialogEmployee.jsx";
-import { FormEmployee } from "./forms/FormEmployee.jsx";
-import { FormRent } from "./forms/FormRent.jsx";
-import { DialogPayment } from "./dialogs/DialogPayment";
-import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
-import { SitePendingDeposit } from "./leonaPages/deposits/SitePendingDeposit.jsx";
-import { SiteAddRentsDue } from "./leonaPages/rents/SiteAddRentsDue";
-import { SiteAddPaymentsMade } from "./leonaPages/rents/SiteAddPaymentsMade.jsx";
-import { SiteRentActions } from "./leonaPages/rents/SiteRentsActions.jsx";
+import { SiteApplicants } from "./leonaPages/applicants/SiteApplicants";
 import { SiteDepositActions } from "./leonaPages/deposits/SiteDepositActions.jsx";
-import { UnitLedger } from "./leonaPages/management/ManagementUnitLedger.jsx";
-import { TenantInfo } from "./leonaPages/tenant/TenantInfo.jsx";
-import { TenantLedger } from "./leonaPages/tenant/TenantLedger.jsx";
+import { SitePendingDeposit } from "./leonaPages/deposits/SitePendingDeposit.jsx";
+import { ManagementEmployees } from "./leonaPages/employees/ManagementEmployees";
+// import { Management } from "./AppSections/Management/Management";
+import { SitesDashboard } from "./leonaPages/HomePage";
+import { ManagementRentSummary } from "./leonaPages/management/ManagementRentSummary";
 import { ManagementSiteRentRoll } from "./leonaPages/management/ManagementSiteRentRoll.jsx";
-import { UnitSummary } from "./leonaPages/sites/UnitSummary.jsx";
+import { ManagementSites } from "./leonaPages/management/ManagementSites";
+import { UnitLedger } from "./leonaPages/management/ManagementUnitLedger.jsx";
+import { SiteAddPaymentsMade } from "./leonaPages/rents/SiteAddPaymentsMade.jsx";
+import { SiteAddRentsDue } from "./leonaPages/rents/SiteAddRentsDue";
+import { SiteRentRoll } from "./leonaPages/rents/SiteRentRoll";
+import { SiteRentActions } from "./leonaPages/rents/SiteRentsActions.jsx";
+import { SiteUnits } from "./leonaPages/sites/SiteUnits";
+import { TenantLedger } from "./leonaPages/tenant/TenantLedger.jsx";
+import { ManagementDeposits } from "./newUnused/management/ManagementDeposits.jsx";
 
 export function Router() {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Routes>
         <Route path="/applicants" element={<ManagementApplicants />} />
         <Route path="/sites/:siteId/applicants" element={<SiteApplicants />} />
@@ -62,6 +46,7 @@ export function Router() {
         {/* <Route path="/applicants" element={<ManagementApplicants />} /> */}
 
         <Route path="/deposits" element={<ManagementDeposits />} />
+
         <Route
           path="/sites/:siteId/deposits"
           element={<SiteDepositActions />}
@@ -79,9 +64,9 @@ export function Router() {
         <Route path="/management/sites" element={<ManagementSites />} />
         <Route path="/sites/:siteId/units" element={<SiteUnits />} />
 
-             <Route
+        <Route
           path="/sites/:siteId/:unitId/:applicantId"
-          element={<TenantInfo />}
+          element={<TenantLedger />}
         />
 
         {/* <Route path="/management/rents" element={<ManagementRentSummary />} /> */}
@@ -94,9 +79,7 @@ export function Router() {
           element={<TenantLedger />}
         />
 
-<Route path="/sites/:siteId/rentroll" element={<SiteRentActions />} />
-
-   
+        <Route path="/sites/:siteId/rentroll" element={<SiteRentActions />} />
 
         <Route path="/employees" element={<ManagementEmployees />} />
         <Route path="/forms/employee" element={<FormEmployee />} />
@@ -122,10 +105,7 @@ export function Router() {
 
         {/* <Route path="/tenants" element={<ManagementTenants />} /> */}
 
-
         {/* <Route path="/sites/:siteId/rentroll" element={<SiteRentRoll />} /> */}
-
-
 
         <Route path="/sites/:siteId/addrents" element={<SiteAddRentsDue />} />
 
@@ -151,6 +131,6 @@ export function Router() {
       <DialogPayment />
 
       <DialogEmployee />
-    </ThemeProvider>
+    </>
   );
 }

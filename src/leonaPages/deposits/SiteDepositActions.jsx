@@ -43,7 +43,7 @@ export function SiteDepositActions() {
           </Box>
 
           <Stack justifyContent={"flex-end"}>
-            <Box>
+            <Box mr={8}>
               <SiteDepositSummary />
             </Box>
           </Stack>

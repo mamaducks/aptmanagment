@@ -1,10 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
+import { SiteHeader } from "../../headers/SiteHeader";
+import { RowHeader } from "../../headers/RowHeader";
 
 export const columns = [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -43,13 +47,15 @@ export const columns = [
     disableColumnMenu: true,
     headerName: "Actions",
     width: 450,
-    renderCell: (cellValues ) => {
+    renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button href={`/management/rents/sites/${cellValues.row.siteId}/siteLedger/${cellValues.row.unitId}`}>
-            Unit Ledger
-          </Button>
+            <Button
+              href={`/management/rents/sites/${cellValues.row.siteId}/siteLedger/${cellValues.row.unitId}`}
+            >
+              Unit Ledger
+            </Button>
           </Box>
         </Box>
       );
@@ -63,15 +69,11 @@ export function ManagementSiteRentRoll() {
 
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
-  console.log("nnn", siteWithUnits)
+  console.log("nnn", siteWithUnits);
 
   return (
     <div style={{ height: 900, width: "100%" }}>
-
-      <Typography textAlign="center" variant="h5" lineHeight={2}>
-        Rents
-      </Typography>
-
+      <RowHeader label={`${siteWithUnits.siteName} Rents`} />
       <DataGrid
         getRowId={(item) => item.unitId}
         rows={siteWithUnits.units.map((item) => ({ ...item, siteId }))}
