@@ -83,7 +83,7 @@ export function UnitSummary({ setTenantDialogInfo }) {
                         <ul>
                           <ListSubheader>{`${sectionId} Days`}</ListSubheader>
                           {siteInfo?.siteRenewals?.map((item) => (
-                            <ListItem key={`item-${sectionId}-${item}`}>
+                            <ListItem key={`item-${sectionId}-${item.unitId}`}>
                               <ListItemText primary={`Unit ${item?.unitId}`} />
                               <ListItemText
                                 primary={dateFormatter({
@@ -128,7 +128,7 @@ export function UnitSummary({ setTenantDialogInfo }) {
                       </ListItem>
 
                       {vacantUnits?.map((vacantUnit) => (
-                        <ListItem key={`item-${vacantUnit}-${vacantUnit}`}>
+                        <ListItem key={`item-${vacantUnit.siteId}-${vacantUnit.unitId}`}>
                           <ListItemText
                             primary={`Unit ${vacantUnit?.unitId}`}
                           />

@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
   Popover,
   Tooltip,
   Typography,
@@ -105,9 +106,28 @@ export function SiteDelinquentSummary() {
               }}
             >
               <Box p={5}>
-                {unitsDelinquent.map((item) => (
-                  <Typography lineHeight={2}>Unit {item.unitId}</Typography>
-                ))}
+                <List
+                  sx={{
+                    width: "100%",
+                    maxWidth: 360,
+                    bgcolor: "background.paper",
+                    position: "relative",
+                    overflow: "auto",
+                    maxHeight: 240,
+                    "& ul": { padding: 0 },
+                  }}
+                  subheader={<li />}
+                >
+                  <ul>
+                    <ListSubheader>Delinquencies</ListSubheader>
+                    {unitsDelinquent.map((delinqunet) => (
+                      <ListItem key={`item-${delinqunet.siteId}-${delinqunet.unitId}`}>
+                        <ListItemText primary={`Unit ${delinqunet?.unitId}`} />
+                      </ListItem>
+                    ))}
+                  </ul>
+                  {/* </li> */}
+                </List>
               </Box>
             </Popover>
           </ListItem>
