@@ -1,4 +1,3 @@
-import { mapPropsToOptions } from "../helpers/dataHelpers";
 
 import { Reference } from "./reference";
 import { sitesWithUnitsData } from "./sitesWithUnits";

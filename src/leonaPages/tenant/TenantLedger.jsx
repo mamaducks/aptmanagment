@@ -2,7 +2,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   Box,
   Button,
-  Stack,
   Typography,
   Card,
   CardContent,
@@ -10,7 +9,6 @@ import {
   Divider,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Grid,
 } from "@mui/material";
@@ -64,7 +62,7 @@ export function TenantLedger() {
   const { units } = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
   const tenant = units.find((item) => item.unitId === unitId);
 
-  const event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+  // const event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
   const options = {
     weekday: "long",
     year: "numeric",

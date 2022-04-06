@@ -76,7 +76,6 @@ export function SiteDepositSummary() {
               </ListItemIcon>
               <Tooltip title="Total payments awaiting deposit">
                 <ListItemText
-                  // sx={{ flex: "0 1 auto", pr: 2 }}
                   primary={pendingPayments}
                   secondary="Pending Deposit"
                   primaryTypographyProps={{
@@ -85,11 +84,6 @@ export function SiteDepositSummary() {
                   }}
                 />
               </Tooltip>
-              {/* <ListItemText
-              secondary="Payments Pending Deposit"
-              primaryTypographyProps={{ fontSize: "large", 
-            }}
-            /> */}
             </ListItem>
           </List>
 

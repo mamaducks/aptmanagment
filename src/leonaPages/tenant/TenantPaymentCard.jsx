@@ -17,7 +17,7 @@ import {
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
 
 export function TenantCurrentPayment() {
-  const { siteId, unitId, applicantId } = useParams();
+  const { siteId, unitId } = useParams();
   const { units } = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
   const tenant = units.find((item) => item.unitId === unitId);
 

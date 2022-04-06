@@ -12,7 +12,7 @@ import {
 } from "./data/applicants";
 import { getId, updateState } from "./helpers/dataHelpers";
 import { localStorageEffect } from "./localStorageEffect";
-import { getTenantId, tenants } from "./tenants";
+import { tenants } from "./tenants";
 
 export const EMPTY_APPLICANT = {
   firstName: "",

@@ -46,7 +46,6 @@ export const columns = [
 
 export function SiteAddPaymentsMade() {
   const { siteId } = useParams();
-  // const columns = getColumns();
   const columnsToUse = useColumns(columns);
 
   const setPaymentState = useSetRecoilState(payments);

@@ -3,11 +3,10 @@ import { rentsData } from "./data/rents";
 import {
   getSiteLedgerSummaryInfoMap,
   getSitesWithTenant,
-  getSiteLedgerSummaryInfo,
 } from "./sites";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import { groupBy } from "lodash";
-import { getId, mapPropsToOptions, updateState } from "./helpers/dataHelpers";
+import { getId, updateState } from "./helpers/dataHelpers";
 import { localStorageEffect } from "./localStorageEffect";
 
 export const rents = atom({

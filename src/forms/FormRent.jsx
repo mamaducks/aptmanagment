@@ -14,7 +14,6 @@ import { getRentFormData, rents } from "../state/rents";
 
 export function FormRent() {
   const { siteId } = useParams();
-  // const navigate = useNavigate();
 
   const unitRent = useRecoilValue(rents);
 
@@ -31,23 +30,6 @@ export function FormRent() {
     [setitem]
   );
 
-  // const addProps = useCallback(
-  //   ({ name, label, type = "text" }) => {
-  //     return {
-  //       label,
-  //       name,
-  //       type,
-  //       onChange: ({ target: { checked, name, value } }) =>
-  //         setFieldValue(name, type === "text" ? value : Boolean(checked)),
-  //       value: item[name],
-  //     };
-  //   },
-  //   [item, setFieldValue]
-  // );
-
-  const canSumbit = true;
-  //   const rolesMap = useRecoilValue(employeeRoleDataMap);
-
   const handleSubmit = useCallback(() => {
     setRentInfo(item);
   }, [item, setRentInfo]);
@@ -56,8 +38,6 @@ export function FormRent() {
     <Box display="flex" justifyContent="center">
       <Stack direction="column" m={10}>
         <Stack>
-          {/* <SiteHeader /> */}
-
           <div>sitename</div>
           <div>Month</div>
         </Stack>
@@ -70,8 +50,6 @@ export function FormRent() {
                 <TextField
                   margin="normal"
                   value={item.unitId}
-                  // label={item.unitId}
-
                   defaultValue="unitId"
                   variant="standard"
                   InputProps={{
@@ -84,7 +62,6 @@ export function FormRent() {
                 <TextField
                   margin="normal"
                   value={item.lastName}
-                  // label={item.applicantId}
                   defaultValue="tenant name"
                   variant="standard"
                   InputProps={{
@@ -101,9 +78,6 @@ export function FormRent() {
                     setFieldValue("amount", value)
                   }
                   value={currencyFormatter(item.amount)}
-
-                  // {...addProps({ name: "amount", value: {currencyFormatter(amount)} })}
-                  // value={currencyFormatter(rent.amount)}
                 >
                   rent due
                 </TextField>
@@ -113,13 +87,8 @@ export function FormRent() {
         </Stack>
 
         <Stack justifyContent="center">
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
-            //   disabled={!canSumbit}
-          >
+          <Button variant="contained" onClick={handleSubmit}>
             Update Rents
-            {/* {isNew ? "Add" : "Update"} */}
           </Button>
 
           <Button href="/deposits">Cancel</Button>

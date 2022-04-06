@@ -7,7 +7,6 @@ import {
 } from "./tenants";
 import { getRentPaymentTotals } from "./helpers/rentsHelpers";
 import {
-  getApplicantsMap,
   getApplicantsWithName,
   getApplicantsWithNameMap,
 } from "./applicants";

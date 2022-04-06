@@ -3,20 +3,15 @@ import { DialogEmployee } from "./dialogs/DialogEmployee.jsx";
 import { DialogMoveOut } from "./dialogs/DialogMoveOut.jsx";
 import { DialogPayment } from "./dialogs/DialogPayment";
 import { DialogTenant } from "./dialogs/DialogTenant.jsx";
-// import {ManagementBills} from "./App/Grids/ManagementBills"
 import { FormApplicant } from "./forms/FormApplicant.jsx";
 import { FormEmployee } from "./forms/FormEmployee.jsx";
 import { FormRent } from "./forms/FormRent.jsx";
-// import { NewApplicant } from "./applicants/NewApplicant";
-// import ViewApplicant from "./applicants/ViewAppicant";
-// import { MoveInApplicant } from "./applicants/MoveInApplicant";
-// import { EnterRents } from "./rents/EnterRents";
+
 import { ManagementApplicants } from "./leonaPages/applicants/ManagementApplicants.jsx";
 import { SiteApplicants } from "./leonaPages/applicants/SiteApplicants";
 import { SiteDepositActions } from "./leonaPages/deposits/SiteDepositActions.jsx";
 import { SitePendingDeposit } from "./leonaPages/deposits/SitePendingDeposit.jsx";
 import { ManagementEmployees } from "./leonaPages/employees/ManagementEmployees";
-// import { Management } from "./AppSections/Management/Management";
 import { SitesDashboard } from "./leonaPages/HomePage";
 import { ManagementRentSummary } from "./leonaPages/management/ManagementRentSummary";
 import { ManagementSiteRentRoll } from "./leonaPages/management/ManagementSiteRentRoll.jsx";
@@ -28,7 +23,7 @@ import { SiteRentRoll } from "./leonaPages/rents/SiteRentRoll";
 import { SiteRentActions } from "./leonaPages/rents/SiteRentsActions.jsx";
 import { SiteUnits } from "./leonaPages/sites/SiteUnits";
 import { TenantLedger } from "./leonaPages/tenant/TenantLedger.jsx";
-import { ManagementDeposits } from "./newUnused/management/ManagementDeposits.jsx";
+import { ManagementDeposits } from "./leonaPages/management/ManagementDeposits.jsx";
 
 export function Router() {
   return (

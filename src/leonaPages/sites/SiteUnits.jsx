@@ -82,7 +82,6 @@ export const getColumns = ({ setTenantDialogInfo }) => [
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Button
             color="primary"
-            // alignSelf="center"
             disabled={!row.tenant}
             href={`/sites/${row.siteId}/${row.unitId}/${row.applicantId}`}
           >

@@ -5,16 +5,12 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  FormLabel,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
+  FormLabel, Stack,
+  TextField
 } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getApplicantsWithNameMap } from "../state/applicants";
-import { getSitesWithTenantMap } from "../state/sites";
 import { getTenantFormData } from "../state/tenants";
 
 export function FormMoveOut({ applicantId, siteId, unitId, onClose }) {
@@ -27,8 +23,7 @@ export function FormMoveOut({ applicantId, siteId, unitId, onClose }) {
   const [item, setItem] = useState(tenantInfo);
 
   const canSumbit = !!item.dateMoveOut?.length;
-  // const canSumbit = true; // add validation
-//   const sitesMap = useRecoilValue(getSitesWithTenantMap);
+ 
 
  
 
@@ -67,9 +62,7 @@ export function FormMoveOut({ applicantId, siteId, unitId, onClose }) {
               <FormLabel>Site</FormLabel>
               <TextField
                 margin="normal"
-                // label={siteRents.unitId}
                 value={applicant.siteName}
-                // defaultValue="unitId"
                 variant="standard"
                 InputProps={{
                   readOnly: true,
@@ -81,9 +74,7 @@ export function FormMoveOut({ applicantId, siteId, unitId, onClose }) {
               <FormLabel>Unit</FormLabel>
               <TextField
                 margin="normal"
-                // label={siteRents.unitId}
                 value={applicant.unitId}
-                // defaultValue="unitId"
                 variant="standard"
                 InputProps={{
                   readOnly: true,

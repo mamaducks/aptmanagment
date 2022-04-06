@@ -126,7 +126,6 @@ export function SiteDelinquentSummary() {
                       </ListItem>
                     ))}
                   </ul>
-                  {/* </li> */}
                 </List>
               </Box>
             </Popover>

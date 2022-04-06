@@ -5,19 +5,14 @@ import {
   FormLabel,
   Stack,
   TextField,
-  ToggleButton,
-  ToggleButtonGroup,
 } from "@mui/material";
 import { useCallback, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { employeeRoleData } from "../state/data/employees";
-import { employeeRoleDataMap, getEmployeeFormData } from "../state/employees";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { getEmployeeFormData } from "../state/employees";
 
 export function FormDeposit() {
   const { siteId } = useParams();
-  const navigate = useNavigate();
-  //   const allRoles = useRecoilValue(sites);
 
   const [depositInfo, setDepositInfo] = useRecoilState(
     getEmployeeFormData(siteId)
@@ -48,9 +43,6 @@ export function FormDeposit() {
     },
     [item, setFieldValue]
   );
-
-  const canSumbit = true;
-  //   const rolesMap = useRecoilValue(employeeRoleDataMap);
 
   const handleSubmit = useCallback(() => {
     setDepositInfo(item);
@@ -85,13 +77,7 @@ export function FormDeposit() {
       </Stack>
 
       <Stack justifyContent="center">
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          //   disabled={!canSumbit}
-        >
-          {/* {isNew ? "Add" : "Update"} */}
-        </Button>
+        <Button variant="contained" onClick={handleSubmit}></Button>
 
         <Button href="/deposits">Cancel</Button>
       </Stack>
