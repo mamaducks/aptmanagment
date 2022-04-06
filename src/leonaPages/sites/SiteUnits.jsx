@@ -42,12 +42,7 @@ export const getColumns = ({ setTenantDialogInfo }) => [
     valueFormatter: dateFormatter,
     width: 160,
   },
-  // {
-  //   field: "dateMoveOut",
-  //   headerName: "Move Out Date",
-  //   valueFormatter: dateFormatter,
-  //   width: 200,
-  // },
+
   {
     field: "actions",
     headerAlign: "center",
@@ -113,7 +108,7 @@ export function SiteUnits() {
   console.log(rowData);
   return (
     <div style={{ height: 900, width: "100%" }}>
-      <Stack sx={{pr: 5}}>
+      <Stack sx={{ pr: 5 }}>
         <Box ml={2}>
           <Button href="/" startIcon={<ArrowBackIosIcon />} size="large">
             Back to All Sites
@@ -128,16 +123,14 @@ export function SiteUnits() {
           </Box>
         </Box>
 
-        <Stack justifyContent="flex-end"  >
-          <UnitSummary  />
+        <Stack justifyContent="flex-end">
+          <UnitSummary />
         </Stack>
       </Stack>
 
-      {/* <Box sx={{m: 4}}> */}
       <Typography lineHeight={2} variant="h5" textAlign="center" pt={2}>
         Current Tenants
       </Typography>
-      {/* </Box> */}
 
       <DataGrid
         getRowId={(item) => item.unitId}

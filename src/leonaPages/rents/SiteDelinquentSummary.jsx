@@ -26,8 +26,6 @@ import {
 
 export function SiteDelinquentSummary() {
   const { siteId } = useParams();
-  //   const { units } = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
-  //   const tenant = units.find((item) => item.unitId === unitId);
 
   const { ledgerInfo } =
     useRecoilValue(getSiteLedgerSummaryInfoMap).get(siteId) || {};
@@ -43,11 +41,6 @@ export function SiteDelinquentSummary() {
     (item) => item.totalSummary < 0
   );
 
-  console.log("ss", delinquencies);
-  //     "bb",
-  //     depositSummary,
-  //     "ff",
-  //     pendingPayments
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

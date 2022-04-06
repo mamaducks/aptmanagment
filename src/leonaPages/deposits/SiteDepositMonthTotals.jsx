@@ -21,8 +21,6 @@ import { getSiteLedgerSummaryInfoMap } from "../../state/sites";
 
 export function SiteDepositSummary() {
   const { siteId } = useParams();
-  //   const { units } = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
-  //   const tenant = units.find((item) => item.unitId === unitId);
 
   const { ledgerInfo } =
     useRecoilValue(getSiteLedgerSummaryInfoMap).get(siteId) || {};

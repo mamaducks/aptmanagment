@@ -50,13 +50,15 @@ export const columns = [
     disableColumnMenu: true,
     headerName: "Actions",
     width: 270,
-    renderCell: (cellValues ) => {
+    renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
           <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button href={`/sites/${cellValues.row.siteId}/tenantLedger/${cellValues.row.unitId}`}>
-            Tenant Ledger
-          </Button>
+            <Button
+              href={`/sites/${cellValues.row.siteId}/tenantLedger/${cellValues.row.unitId}`}
+            >
+              Tenant Ledger
+            </Button>
           </Box>
         </Box>
       );
@@ -70,11 +72,8 @@ export function SiteRentRoll() {
 
   const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
-  console.log("nnn", siteWithUnits)
-
   return (
     <div style={{ height: 900, width: "100%" }}>
-
       <Typography textAlign="center" variant="h5" lineHeight={2}>
         Rents
       </Typography>

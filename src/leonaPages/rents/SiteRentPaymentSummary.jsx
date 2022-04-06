@@ -6,27 +6,17 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText, Typography
+  ListItemText,
+  Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import {
-  currencyFormatter
-} from "../../formatters/cellFormatters";
-import {
-  getCurrentMonthYear
-} from "../../state/helpers/dataHelpers";
-import {
-  getSiteLedgerSummaryInfoMap, getSiteWithTenantsSummaryInfo
-} from "../../state/sites";
-
-
+import { currencyFormatter } from "../../formatters/cellFormatters";
+import { getCurrentMonthYear } from "../../state/helpers/dataHelpers";
+import { getSiteLedgerSummaryInfoMap } from "../../state/sites";
 
 export function SiteRentPaymentSummary() {
   const { siteId } = useParams();
-  //   const { units } = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
-  //   const tenant = units.find((item) => item.unitId === unitId);
-  const siteWithUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
   const { ledgerInfo } =
     useRecoilValue(getSiteLedgerSummaryInfoMap).get(siteId) || {};
@@ -38,9 +28,6 @@ export function SiteRentPaymentSummary() {
   const PaymentssMade = summaryInfo?.rentTotals?.paymentsTotal;
 
   const depositSummary = summaryInfo?.rentTotals?.depositsTotal;
-  //   const paymentSummary = summaryInfo?.rentTotals?.paymentsTotal;
-  //   const pendingPayments = summaryInfo?.rentTotals?.pendingPaymentsAmount;
-  //   const pendingSummary = summaryInfo?.rentTotals?.pendingDepositsTotal;
 
   return (
     <Card
@@ -52,7 +39,9 @@ export function SiteRentPaymentSummary() {
     >
       <CardContent>
         <List>
-          <Typography variant="h6"  lineHeight={2} sx={{textIndent: 12}}>Totals Summary</Typography>
+          <Typography variant="h6" lineHeight={2} sx={{ textIndent: 12 }}>
+            Totals Summary
+          </Typography>
 
           <Divider sx={{ mb: 1 }} />
 

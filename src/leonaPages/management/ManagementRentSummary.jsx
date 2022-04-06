@@ -1,19 +1,10 @@
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import {
-  Box,
-  Button,
-  Typography
-} from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
 import { RowHeader } from "../../headers/RowHeader";
 import { useColumns } from "../../state/helpers/hooks";
-import {
-  getSiteRentsSummaryInfo
-} from "../../state/rents";
-
-
+import { getSiteRentsSummaryInfo } from "../../state/rents";
 
 export const columns = [
   { field: "siteName", headerName: "Site", width: 320 },
@@ -57,13 +48,11 @@ export const columns = [
     renderCell: (cellValues) => {
       return (
         <Box display="flex" justifyContent="center" flexGrow={1}>
-          <Button href={`/management/rents/sites/${cellValues.row.siteId}/siteLedger`}>
+          <Button
+            href={`/management/rents/sites/${cellValues.row.siteId}/siteLedger`}
+          >
             Site Rents
           </Button>
-
-          {/* <Button href={`/sites/${cellValues.row.siteId}/rentroll`}>
-            Site Rents
-          </Button> */}
         </Box>
       );
     },
@@ -76,9 +65,8 @@ export function ManagementRentSummary() {
 
   return (
     <div style={{ height: 1000, width: "100%" }}>
-
       <RowHeader label="Sites Rents Totals" />
- 
+
       <DataGrid
         getRowId={(item) => item.siteId}
         rows={rowData}

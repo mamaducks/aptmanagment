@@ -18,14 +18,12 @@ export function SiteTotalsSummary() {
   const { siteId } = useParams();
   const siteUnits = useRecoilValue(getSiteWithTenantsSummaryInfo(siteId));
 
-  console.log("aa", siteUnits);
 
   return (
     <Box display="flex" flexDirection="column" justifyContent="flex-end" >
       <Card
         variant="outlined"
         sx={{
-          // maxHeight: "fit-content",
           width: 460,
 
         }}
@@ -61,7 +59,7 @@ export function SiteTotalsSummary() {
               />
 
               <ListItemText
-                primary={siteUnits.siteRenewals?.length}
+                primary={siteUnits.siteRenewals?.length || 0}
                 primaryTypographyProps={{ fontSize: "large", textAlign: "end" }}
               />
             </ListItem>
@@ -81,7 +79,6 @@ export function SiteTotalsSummary() {
               />
             </ListItem>
           </List>
-          {/* ))} */}
         </CardContent>
       </Card>
     </Box>

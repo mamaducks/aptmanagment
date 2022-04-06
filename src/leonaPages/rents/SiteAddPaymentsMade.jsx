@@ -3,13 +3,15 @@ import { compact } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { currencyFormatter, dateFormatter } from "../../formatters/cellFormatters";
+import {
+  currencyFormatter,
+  dateFormatter,
+} from "../../formatters/cellFormatters";
 import { ActionSubheader } from "../../headers/ActionSubheader";
 import { getDataUpdater } from "../../state/helpers/dataHelpers";
 import { useColumns } from "../../state/helpers/hooks";
 import { payments } from "../../state/payments";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-
 
 export const columns = [
   { field: "unitId", headerName: "Unit", width: 140 },
@@ -100,18 +102,14 @@ export function SiteAddPaymentsMade() {
     );
   }, [rowData]);
 
-
   return (
     <div style={{ height: 1000, width: "100%" }}>
-
-      
       <ActionSubheader
         title="Payments"
         disabled={!newPayments.length}
         handleClick={handleAddPayments}
         label="Enter Payments"
       />
-     
 
       <DataGrid
         getRowId={getRowId}

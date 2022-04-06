@@ -15,7 +15,6 @@ import {
   Grid,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import {
@@ -27,7 +26,6 @@ import { SiteHeader } from "../../headers/SiteHeader";
 import { useColumns } from "../../state/helpers/hooks";
 import { getUnitRentTotals } from "../../state/rents";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { SiteTotalsSummary } from "../sites/SiteTotalsSummary";
 import { TenantCurrentPayment } from "./TenantPaymentCard";
 
 export const columns = [
@@ -73,7 +71,6 @@ export function TenantLedger() {
     month: "long",
     day: "numeric",
   };
-  //  console.log("ll", tenantInfo, siteId, unitId, applicantId);
 
   return (
     <div style={{ height: 900, width: "100%" }}>
@@ -117,7 +114,6 @@ export function TenantLedger() {
               maxHeight: "fit-content",
               width: 600,
               mr: 8,
-              // maxWidth: 700,
             }}
           >
             <CardHeader
@@ -140,7 +136,6 @@ export function TenantLedger() {
                     primary={phoneFormatter({ value: tenant.applicantsPhone })}
                     secondary="Phone Number"
                     primaryTypographyProps={{ fontSize: "large" }}
-                    // sx={{textAlign: "end"}}
                   />
                 </ListItem>
                 <ListItem>

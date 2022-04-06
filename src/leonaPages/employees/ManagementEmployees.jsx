@@ -1,4 +1,3 @@
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useMemo } from "react";
@@ -74,7 +73,6 @@ export function ManagementEmployees() {
 
   return (
     <>
-      
       <AddIconButton
         title="Employees"
         href="/forms/employee"

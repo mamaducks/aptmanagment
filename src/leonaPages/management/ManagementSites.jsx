@@ -1,6 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
+import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useRecoilValue } from "recoil";
 import { getSiteTenantSummaryInfo } from "../../state/sites";

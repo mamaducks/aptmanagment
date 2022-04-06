@@ -1,5 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { Box, Button } from "@mui/material";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { useParams } from "react-router-dom";
@@ -7,7 +6,6 @@ import { useRecoilValue } from "recoil";
 import { currencyFormatter } from "../../formatters/cellFormatters";
 import { useColumns } from "../../state/helpers/hooks";
 import { getSiteWithTenantsSummaryInfo } from "../../state/sites";
-import { SiteHeader } from "../../headers/SiteHeader";
 import { RowHeader } from "../../headers/RowHeader";
 
 export const columns = [
