@@ -1,6 +1,6 @@
 import { atom, selector, selectorFamily } from "recoil";
 import { Reference } from "./data/reference";
-
+import { localStorageEffect } from "./localStorageEffect";
 import { employeesData, employeeRoleData } from "./data/employees";
 import { getId, updateState } from "./helpers/dataHelpers";
 
@@ -10,11 +10,14 @@ export const EMPTY_EMPLOYEE = {
   phoneNumber: "",
   dateHired: Reference.dateTime,
   roles: employeeRoleData[0].value,
+
 };
 
 export const employees = atom({
   key: "_employees",
-  default: employeesData,
+  default: [],
+  effects_UNSTABLE: [localStorageEffect("_tenants", employeesData)],
+
 });
 
 export const employeeRoles = atom({
