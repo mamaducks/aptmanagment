@@ -18,7 +18,6 @@ export function FormEmployee() {
   const { employeeId } = useParams();
   const isNew = !employeeId;
   const navigate = useNavigate();
-
   const [employeeInfo, setEmployeeInfo] = useRecoilState(
     getEmployeeFormData(employeeId)
   );

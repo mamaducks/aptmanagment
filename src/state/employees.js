@@ -45,7 +45,7 @@ export const getEmployeeSummaryInfo = selector({
 export const getEmployeeMap = selector({
   key: "getEmployeeMap",
   get: ({ get }) =>
-    new Map(get(getEmployeeSummaryInfo).map((item) => [item.value, item])),
+    new Map(get(getEmployeeSummaryInfo).map((item) => [item.employeeId, item])),
 });
 
 export const getEmployeeFormData = selectorFamily({
@@ -55,10 +55,10 @@ export const getEmployeeFormData = selectorFamily({
     ({ get }) =>
       get(getEmployeeMap).get(employeeId) || {
         employeeId: getId(),
-        roles: get(employeeRoles)[0].value,
+        roles: [get(employeeRoles)[0].value],
         dateHired: Date.now(),
         sitePermissionsFor: [],
-        employees: [{ ...EMPTY_EMPLOYEE }],
+        // employees: [{ ...EMPTY_EMPLOYEE }],
       },
   set:
     () =>
