@@ -16,7 +16,7 @@ export const EMPTY_EMPLOYEE = {
 export const employees = atom({
   key: "_employees",
   default: [],
-  effects_UNSTABLE: [localStorageEffect("_tenants", employeesData)],
+  effects_UNSTABLE: [localStorageEffect("_employees", employeesData)],
 
 });
 
